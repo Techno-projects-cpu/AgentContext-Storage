@@ -1,0 +1,43 @@
+# video + audio deliverables — never commit
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.avi
+*.m4v
+*.gif
+
+# audio (voiceovers, mixes, music)
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.ogg
+*.opus
+
+# model weights / caches
+*.onnx
+*.bin
+*.br
+*.tar
+.cache/
+
+# extracted frame sequences
+frames/
+*.png
+*.jpg
+*.jpeg
+!docs/**/*.png
+!docs/**/*.svg
+
+# node / python
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# editor
+.DS_Store
+.idea/
+.vscode/
