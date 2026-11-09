@@ -26,6 +26,7 @@ The bar: **Nezaad — 22.5 s, 1080×1920, voiceover, 0 errors, 41/41 contrast pa
 |---|---|
 | `bootstrap.sh`, `scripts/` | ✅ verified end-to-end today |
 | `BRAG-PROMPT.md` | ✅ the reusable authoring prompt |
+| `templates/brag/` | ✅ working template — 17.5 s film, 9/9 QC |
 | `nezaad/` composition source | ❌ **not in this checkout** — the old workspace is gone. Ask me for it or rebuild from the brief |
 | `HANDOFF-LONG.md` (489-line version) | ❌ not carried over |
 | `~/brag2/work/score.py` (music+VO mix) | ❌ gone |
@@ -53,9 +54,13 @@ Idempotent, ~40 s cold. It installs, all from **npm only**:
 Then:
 
 ```bash
-scripts/new-project.sh intro portrait     # scaffolds + de-CDN's automatically
-scripts/render.sh intro                   # -> intro/out.mp4
+scripts/new-film.sh intro portrait        # template + fonts + GSAP + demo audio
+scripts/render.sh intro                   # render, then the QC gate
 ```
+
+`new-film.sh` stamps `templates/brag` into a new project. You edit **one object**
+(`FILM` in `index.html`: scenes, copy, durations) and nothing else. Scene start
+times, cross-fades, holds, entrances and the camera move are derived.
 
 ## Sandbox boundaries (learned the hard way)
 
@@ -83,7 +88,12 @@ scripts/render.sh intro                   # -> intro/out.mp4
 
 **Authoring traps (unchanged):**
 
-4. `<audio>` MUST carry an `id=` — without it the render is **silent with no error**.
+4. **Audio must be static markup, and must have an `id=`.** Two ways to ship a mute
+   film, neither with an error:
+   * no `id` → the compiler scans `audio[id]` and skips it;
+   * created from JavaScript → the runtime parses the **HTML source, not the live
+     DOM**, so a scripted `<audio>` is never mixed. It renders perfect and weighs
+     nothing. This bit me on 2026-11-09; `qc.py` now decodes the MP4 to catch it.
 5. `.clip{inset:0}` stretches any corner-positioned element → add
    `right:auto;bottom:auto;height:auto`.
 6. Don't trust GSAP `steps()` easing → use explicit `tl.set()` at computed times.
@@ -92,6 +102,10 @@ scripts/render.sh intro                   # -> intro/out.mp4
 9. Type ≥28 px · hold text `0.5 s + 0.3 s/word` · all text passes WCAG AA.
 10. Self-host fonts (woff2 + `@font-face`, `font-display:block`). Never hotlink a CDN — see trap 1.
 11. No `Math.random` / `Date.now` / network at runtime — the render must be deterministic.
+12. **Never fade the copy while the scene is cross-fading.** Two opacity narratives
+    at the same instant both go dark and the frame dips to black — a flash nobody
+    catches in code review. Scene dissolves, copy *slides* in. `qc.py` samples every
+    0.1 s and fails on any empty frame.
 
 ## My standing preferences
 
@@ -124,20 +138,42 @@ soft GL) · drift (backgrounds only)
 
 ## QC before delivering
 
+`scripts/render.sh` runs the gate for you; exit code is the render's verdict.
+
 ```bash
+scripts/qc.py out.mp4                    # 9 numeric checks on the encoded file
 npx hyperframes check                    # lint + runtime + layout + contrast
-ffprobe -hide_banner <file>.mp4          # duration, streams, and that audio exists
-ffmpeg -i <file>.mp4 -af astats -f null -   # RMS > ~-40 dB means there IS voice
 ```
 
-Never claim a video "looks good". Claim what the numbers say.
+What the gate proves, and what it cannot:
+
+| Check | Catches |
+|---|---|
+| `audio_stream` / `audio_audible` | the silent render (decodes the MP4, doesn't trust markup) |
+| `duration_15_25s` | the /brag gate |
+| `first_frame_has_ink` | a black thumbnail |
+| `no_edge_cropping` | text running off the canvas |
+| `type_floor` | copy below 30 px |
+| `contrast_min_3to1` | ink that can't be read against the ground |
+| `no_black_dip` | transitions that flash to black |
+| `motion_present` | a film that is accidentally a slideshow |
+
+It cannot tell you the film is *good*. Never claim it looks good — claim exactly
+what the table says, and say plainly that nobody has watched it.
+
+### One expected warning
+
+`hyperframes check` reports `content_overlap: Two text blocks overlap` at each
+cross-fade (on a 17.5 s film: ≈5.6 s, 9.6 s, 14.6 s). That is the dissolve —
+two scenes are legitimately on screen together for 0.3 s. Confirm it is *only*
+at the transitions before ignoring it; an overlap anywhere else is real.
 
 ## Next
 
-1. Recover `nezaad/` source or rebuild it from the brief — nothing here references it yet.
+1. Recover `nezaad/` source or rebuild it on the template — the old source is gone.
 2. Port Parakeet word-timings for karaoke captions (biggest gap; needs internet once).
-3. First reusable template + `hyperframes render --batch rows.json`.
-4. Landscape cut of the Nezaad video.
+3. Batch renders: `hyperframes render --batch rows.json` over one template.
+4. Landscape / square variants are already supported by `new-film.sh`.
 5. Verify how Kokoro pronounces "Nezaad".
 6. Startup brand kit — no site, no tokens yet.
 

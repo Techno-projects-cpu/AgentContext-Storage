@@ -74,10 +74,14 @@ Voice timing drives every cut. Order of operations:
 ## 5. QC gate — report numbers, never impressions
 
 ```bash
-npx hyperframes check                       # lint + runtime + layout + contrast
-ffprobe -hide_banner out.mp4                # duration + streams + audio present
-ffmpeg -i out.mp4 -af astats -f null -      # RMS proves the VO actually mixed in
+scripts/render.sh <project>      # renders, then runs qc.py — non-zero exit = FAIL
+scripts/qc.py out.mp4            # 9 numeric checks on the encoded MP4
+npx hyperframes check            # lint + runtime + layout + contrast
 ```
+
+The gate covers the failures that have actually shipped: a mute file, cropped copy,
+sub-floor type, unreadable contrast, a black thumbnail, a flash-to-black between
+scenes, and a film with no motion. Fix the cause, never the threshold.
 
 Deliverable message must state: duration, resolution, contrast pass count, error count,
 and the measured RMS. Say plainly that **nobody has watched it** — you have no vision.

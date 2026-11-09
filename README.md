@@ -13,9 +13,12 @@ rebuild the toolchain in a fresh sandbox. No videos, no audio, no model weights.
 | [`HANDOFF.md`](HANDOFF.md) | Operational brief — who I am, how to rebuild, traps, QC |
 | [`BRAG-PROMPT.md`](BRAG-PROMPT.md) | The reusable video-authoring prompt |
 | [`bootstrap.sh`](bootstrap.sh) | Rebuilds ffmpeg + Chromium + hyperframes + GSAP from npm |
-| [`scripts/new-project.sh`](scripts/new-project.sh) | Scaffolds a composition that renders here |
+| [`templates/brag/`](templates/brag) | Data-driven film template — edit one object |
+| [`scripts/new-film.sh`](scripts/new-film.sh) | Stamps a new film from the template |
+| [`scripts/render.sh`](scripts/render.sh) | Render flags that survive 2 cores / software GL, + QC |
+| [`scripts/qc.py`](scripts/qc.py) | 9 numeric checks on the encoded MP4 |
 | [`scripts/fix-cdn.sh`](scripts/fix-cdn.sh) | Strips CDN refs that would abort a render |
-| [`scripts/render.sh`](scripts/render.sh) | The render flags that survive 2 cores / software GL |
+| [`scripts/make-demo-audio.sh`](scripts/make-demo-audio.sh) | Placeholder VO/music so the pipeline runs |
 
 ## Quick start
 
@@ -23,9 +26,16 @@ rebuild the toolchain in a fresh sandbox. No videos, no audio, no model weights.
 bash bootstrap.sh
 source ~/.local/env.sh
 
-scripts/new-project.sh intro portrait
-scripts/render.sh intro            # -> intro/out.mp4
+scripts/new-film.sh intro portrait     # template + fonts + GSAP + demo audio
+scripts/render.sh intro                # render, then the numeric QC gate
 ```
+
+Edit only the `FILM` object in `intro/index.html`: scenes, copy, durations.
+Starts, cross-fades, holds, entrances and camera moves are derived from it.
+
+The gate **fails the render** if the film is silent, cropped, illegible, dips to
+black between scenes, or has no motion. It cannot tell you the film is good —
+nobody has watched it.
 
 ## Why the bootstrap is weird
 
@@ -40,6 +50,10 @@ The sandbox can only reach `registry.npmjs.org` and `github.com`. So:
 Known-unavailable: `hyperframes tts` (Kokoro weights are on HuggingFace), Parakeet models,
 and `npx hyperframes browser ensure` (Google storage). See the boundaries section of
 `HANDOFF.md`.
+
+Two silent-failure traps the template closes for good: an `<audio>` tag without an `id`,
+and an `<audio>` tag created from JavaScript — the runtime parses the HTML source, not the
+live DOM, so a scripted track is never mixed and the MP4 comes out mute with no error.
 
 ## Never commit
 

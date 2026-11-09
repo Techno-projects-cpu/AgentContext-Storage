@@ -105,6 +105,19 @@ if [ ! -s "$VENDOR/gsap/gsap.min.js" ]; then
   cp node_modules/gsap/dist/gsap.min.js node_modules/gsap/dist/ScrollTrigger.min.js "$VENDOR/gsap/"
 fi
 
+# Fonts must be self-hosted: a font CDN is just another blocked host that aborts
+# the render, and a fallback face silently changes every measurement.
+if [ ! -s "$VENDOR/fonts/space-grotesk-latin-700-normal.woff2" ]; then
+  say "Installing fonts from npm (@fontsource)"
+  cd "$RT_DIR"
+  npm i --no-audit --no-fund @fontsource/space-grotesk @fontsource/inter >/dev/null
+  mkdir -p "$VENDOR/fonts"
+  cp node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2 \
+     node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2 \
+     node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2 \
+     "$VENDOR/fonts/"
+fi
+
 # ---------------------------------------------------------------------------
 # 4. env file + doctor
 # ---------------------------------------------------------------------------
@@ -115,8 +128,11 @@ export TMPDIR="\$HOME/.cache/hf-tmp"
 export HYPERFRAMES_EXTRACT_CACHE_DIR="\$HOME/.cache/hf-frames"
 export HYPERFRAMES_BROWSER_PATH="$BIN/chrome"
 export PRODUCER_PUPPETEER_PROTOCOL_TIMEOUT_MS=300000
-# GSAP location, for scaffolding: cp -r \$GSAP ~/project/vendor
+# GSAP + fonts, copied into each new film by scripts/new-film.sh
 export GSAP="$VENDOR/gsap"
+export FONTS="$VENDOR/fonts"
+# python used by scripts/qc.py (needs pillow + numpy)
+export QC_PYTHON="$ROOT/venv/bin/python"
 ENV
 
 say "Wrote $ROOT/env.sh"
@@ -126,6 +142,20 @@ say "Wrote $ROOT/env.sh"
 say "Doctor:"
 cd "$HF_DIR"
 npx hyperframes doctor 2>&1 | grep -E '✓|✗' | grep -vE 'whisper|Docker|TTS|BGM|onnxruntime|genai' || true
+
+# ---------------------------------------------------------------------------
+# 5. QC venv — pillow + numpy, used by scripts/qc.py
+# ---------------------------------------------------------------------------
+if [ ! -x "$ROOT/venv/bin/python" ] || ! "$ROOT/venv/bin/python" -c "import PIL, numpy" 2>/dev/null; then
+  say "Setting up QC venv (pillow + numpy)"
+  python3 -m venv "$ROOT/venv" 2>/dev/null || true
+  "$ROOT/venv/bin/pip" install --quiet --upgrade pip >/dev/null 2>&1 || true
+  "$ROOT/venv/bin/pip" install --quiet pillow numpy >/dev/null
+else
+  say "QC venv already present"
+fi
+
+. "$ROOT/env.sh"
 
 cat <<'DONE'
 
