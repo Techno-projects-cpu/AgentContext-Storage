@@ -1,4 +1,5 @@
-# video + audio deliverables — never commit
+# media is ignored by default, but deliverables ARE committed under videos/
+# (no LFS on this account; forced in deliberately). Everything else stays text.
 *.mp4
 *.mov
 *.webm
