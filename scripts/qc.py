@@ -118,6 +118,46 @@ def ink_boxes(img: np.ndarray, threshold: float = 38.0) -> np.ndarray:
     return np.abs(lum - ground) > threshold
 
 
+def ink_blocks(mask: np.ndarray, stride: int = 8) -> list[tuple[int, int, int, int]]:
+    """
+    Per-block ink bounding boxes, not one union box.
+
+    A union box is useless for layout: the brand mark at the left edge and the
+    page counter at the right edge merge into a box that spans the frame, and a
+    legitimate margin looks like a crop. Downscale, find connected ink regions,
+    then map each back to full-resolution coordinates. 8-connected, minimum 2
+    cells — a stray pixel is not a block.
+    """
+    h, w = mask.shape
+    small = mask[: h // stride * stride, : w // stride * stride]
+    small = small.reshape(small.shape[0] // stride, stride,
+                          small.shape[1] // stride, stride).any(axis=(1, 3))
+    sh, sw = small.shape
+    seen = np.zeros_like(small, dtype=bool)
+    boxes = []
+    for y0 in range(sh):
+        for x0 in range(sw):
+            if not small[y0, x0] or seen[y0, x0]:
+                continue
+            stack, cells = [(y0, x0)], []
+            seen[y0, x0] = True
+            while stack:
+                y, x = stack.pop()
+                cells.append((y, x))
+                for dy in (-1, 0, 1):
+                    for dx in (-1, 0, 1):
+                        ny, nx = y + dy, x + dx
+                        if 0 <= ny < sh and 0 <= nx < sw and small[ny, nx] and not seen[ny, nx]:
+                            seen[ny, nx] = True
+                            stack.append((ny, nx))
+            if len(cells) < 2:
+                continue
+            ys = [c[0] for c in cells]; xs = [c[1] for c in cells]
+            boxes.append((min(xs) * stride, min(ys) * stride,
+                          (max(xs) + 1) * stride - 1, (max(ys) + 1) * stride - 1))
+    return boxes
+
+
 def bbox_of(mask: np.ndarray) -> tuple[int, int, int, int] | None:
     ys, xs = np.where(mask)
     if len(xs) < 40:            # a few stray pixels is not a line of type
@@ -190,6 +230,7 @@ def main() -> int:
                + ("" if audible else " — this is a SILENT render (<audio> id missing?)"))
 
     # ---- 3. frame 0 carries ink (thumbnail) ----
+    stride_tol = 10   # downscale granularity in ink_blocks()
     tmp = tempfile.mkdtemp(prefix="qc-")
     try:
         f0 = os.path.join(tmp, "f000.png")
@@ -225,10 +266,14 @@ def main() -> int:
             if bb is None:
                 continue
             x0, y0, x1, y1 = bb
-            # crop: ink must sit inside the safe area
-            if x0 < safe_x - 2 or y0 < safe_y - 2 or x1 > W - safe_x + 2 or y1 > H - safe_y + 2:
-                crop_issues.append(
-                    f"t={t:.1f}s ink box {x0},{y0}→{x1},{y1} touches the safe-area edge")
+
+            # crop: every ink BLOCK must sit inside the safe area, not the union
+            for (bx0, by0, bx1, by1) in ink_blocks(mask):
+                if (bx0 < safe_x - stride_tol or by0 < safe_y - stride_tol
+                        or bx1 > W - safe_x + stride_tol or by1 > H - safe_y + stride_tol):
+                    crop_issues.append(
+                        f"t={t:.1f}s block {bx0},{by0}→{bx1},{by1} crosses the "
+                        f"{int(args.safe*100)}% safe area")
 
             # type size: the tallest contiguous ink run is a proxy for cap height
             cols = np.where(mask.any(axis=0))[0]
@@ -274,22 +319,25 @@ def main() -> int:
         # the incoming one has any ink leaves an empty frame — the film appears to
         # flash black. This is invisible to every other check and to hyperframes
         # check, and it is the easiest craft bug to ship.
+        # One decode pass at 10 fps, not one ffmpeg call per sample: 250
+        # subprocesses cost ~90 s on this box and made the gate too slow to run.
+        scandir = os.path.join(tmp, "scan")
+        os.makedirs(scandir, exist_ok=True)
+        run([FFMPEG, "-hide_banner", "-loglevel", "error", "-i", vid,
+             "-vf", "fps=10,scale=270:480", "-q:v", "4",
+             os.path.join(scandir, "%05d.jpg")])
         black_frames = []
-        step = 0.1
-        t = 0.0
-        while t < duration - step:
-            p = os.path.join(tmp, "scan.png")
-            extract_frame(vid, t, p)
-            a = np.asarray(Image.open(p).convert("RGB"), dtype=np.float32)
+        for f in sorted(os.listdir(scandir)):
+            a = np.asarray(Image.open(os.path.join(scandir, f)).convert("RGB"), dtype=np.float32)
             if ink_boxes(a).mean() < 0.0008:          # essentially empty frame
-                black_frames.append(round(t, 2))
-            t += step
+                idx = int(os.path.splitext(f)[0]) - 1
+                black_frames.append(round(idx * 0.1, 2))
         if black_frames:
-            spans, run = [], [black_frames[0]]
+            spans, cur = [], [black_frames[0]]
             for t in black_frames[1:]:
-                if t - run[-1] <= step * 1.5: run.append(t)
-                else: spans.append(run); run = [t]
-            spans.append(run)
+                if t - cur[-1] <= 0.15: cur.append(t)
+                else: spans.append(cur); cur = [t]
+            spans.append(cur)
             detail = "; ".join(f"{sp[0]:.1f}–{sp[-1]:.1f}s empty" for sp in spans[:4])
             record("no_black_dip", False, detail)
         else:
