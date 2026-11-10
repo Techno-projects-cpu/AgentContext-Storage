@@ -1,17 +1,16 @@
 <!doctype html>
 <!--
-  ZERO-VAST / NEZAAD — 24.2s portrait film.
+  ZERO-VAST / NEZAAD — v2. 24.9s portrait film.
 
-  Facts come from zero-vast.vercel.app and nothing else. The site publishes no
-  prices, no testimonials and no client counts, so this film makes none of those
-  claims. Copy is either lifted from the site or plainly true of it.
+  v1 problem: five scenes sharing one skeleton, a near-imperceptible camera,
+  and 60% empty paper. It read as a slide deck.
 
-  Aesthetic: the subject is hand-written code with no framework. So the look is
-  an instrument panel — mono labels, numbered sections, hairline rules, a
-  measure-bar motif — on paper. Geometry and typography, no stock footage.
+  v2 adds: a filled frame (grid, corner brackets, ghost numerals), real parallax
+  depth, kinetic type (clip reveals, typed code, drawn rails, sweeping bars), a
+  progress rail, and camera moves you can actually see.
 
-  Voice timings are MEASURED (timing.json), not assumed: the scenes are cut to
-  where the voice actually lands, and music hits sit on line starts.
+  Facts from zero-vast.vercel.app only. No prices, no testimonials, no client
+  counts — the site publishes none.
 -->
 <html lang="en" data-resolution="portrait">
   <head>
@@ -19,328 +18,378 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <style>
-      @font-face {
-        font-family: "Display";
-        src: url("./assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");
-        font-weight: 700; font-display: block;
+      @font-face { font-family: "Display"; font-weight: 700; font-display: block;
+        src: url("./assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Display"; font-weight: 500; font-display: block;
+        src: url("./assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Text"; font-weight: 400; font-display: block;
+        src: url("./assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Mono"; font-weight: 500; font-display: block;
+        src: url("./assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+
+      :root{
+        --paper:#f4f2ec; --ink:#111110; --soft:#5c5c54;
+        --rule:#cfcbbf; --accent:#1b4dff;
+        --mono:"Mono",monospace; --sans:"Display",sans-serif; --text:"Text",sans-serif;
       }
-      @font-face {
-        font-family: "Display";
-        src: url("./assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2");
-        font-weight: 500; font-display: block;
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{
+        width:1080px;height:1920px;overflow:hidden;background:var(--paper);
+        color:var(--ink);-webkit-font-smoothing:antialiased;
       }
-      @font-face {
-        font-family: "Text";
-        src: url("./assets/fonts/inter-latin-400-normal.woff2") format("woff2");
-        font-weight: 400; font-display: block;
+      #root{width:100%;height:100%;position:relative;overflow:hidden}
+
+      /* ---------- fixed furniture: page grid, brackets, rail ---------- */
+      #grid{
+        position:absolute;inset:0;pointer-events:none;
+        background-image:repeating-linear-gradient(
+          90deg, rgba(17,17,16,.085) 0 1px, transparent 1px 96px);
       }
-      @font-face {
-        font-family: "Mono";
-        src: url("./assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
-        font-weight: 500; font-display: block;
+      #grid::after{
+        content:"";position:absolute;inset:0;
+        background-image:repeating-linear-gradient(
+          0deg, rgba(17,17,16,.05) 0 1px, transparent 1px 96px);
+      }
+      .bracket{position:absolute;width:34px;height:34px;border:2px solid var(--ink);pointer-events:none;opacity:.5}
+      .bracket.tl{top:72px;left:88px;border-right:0;border-bottom:0}
+      .bracket.tr{top:72px;right:88px;border-left:0;border-bottom:0}
+      .bracket.bl{bottom:72px;left:88px;border-right:0;border-top:0}
+      .bracket.br{bottom:72px;right:88px;border-left:0;border-top:0}
+
+      #rail{position:absolute;top:150px;left:88px;right:88px;height:4px;background:rgba(17,17,16,.14)}
+      #railFill{height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left center}
+
+      .hud{
+        position:absolute;left:88px;right:88px;display:flex;justify-content:space-between;
+        font-family:var(--mono);font-size:28px;letter-spacing:.16em;text-transform:uppercase;
+        color:var(--soft);
+      }
+      .hud.top{top:104px}
+      .hud.bot{bottom:104px}
+      .hud .live::before{
+        content:"";display:inline-block;width:13px;height:13px;background:var(--accent);
+        border-radius:50%;margin-right:14px;vertical-align:1px;
       }
 
-      :root {
-        --paper: #f2f0ea;
-        --ink: #12120f;
-        --ink-soft: #4a4a44;
-        --rule: #c9c5ba;
-        --accent: #1b4dff;
-        --mono: "Mono", monospace;
-        --sans: "Display", sans-serif;
-        --text: "Text", sans-serif;
+      /* ---------- scenes ---------- */
+      .scene{
+        position:absolute;top:0;left:0;width:100%;height:100%;
+        opacity:0;transform-origin:50% 50%;
       }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body {
-        width: 1080px; height: 1920px; overflow: hidden;
-        background: var(--paper); color: var(--ink);
-        -webkit-font-smoothing: antialiased;
-      }
-      #root { width: 100%; height: 100%; position: relative; }
-
-      .scene {
-        position: absolute; top: 0; left: 0;
-        width: 100%; height: 100%;
-        display: flex; flex-direction: column; justify-content: center;
-        padding: 120px 88px;
-        opacity: 0;
-        transform-origin: 50% 50%;
-        will-change: transform, opacity;
-      }
-      .scene[data-first] { opacity: 1; }
-      .stage { perspective: 1500px; transform-style: preserve-3d; }
-      .plane { transform-style: preserve-3d; }
-
-      /* ---- instrument chrome, shared by every scene ---- */
-      .hud {
-        position: absolute; left: 88px; right: 88px;
-        font-family: var(--mono); font-size: 30px;
-        letter-spacing: 0.14em; text-transform: uppercase;
-        color: var(--ink-soft);
-        display: flex; justify-content: space-between;
-      }
-      .hud.top { top: 96px; }
-      .hud.bot { bottom: 96px; }
-      .hud .live::before {
-        content: ""; display: inline-block; width: 14px; height: 14px;
-        background: var(--accent); border-radius: 50%;
-        margin-right: 16px; vertical-align: 2px;
-      }
-      .hair { position: absolute; left: 88px; right: 88px; height: 2px; background: var(--rule); }
-
-      .label {
-        font-family: var(--mono); font-size: 34px;
-        letter-spacing: 0.18em; text-transform: uppercase;
-        color: var(--accent); margin-bottom: 34px;
-      }
-      .head {
-        font-family: var(--sans); font-weight: 700;
-        font-size: 142px; line-height: 0.94; letter-spacing: -0.038em;
-      }
-      .head em { font-style: italic; font-weight: 500; color: var(--accent); }
-      .sub {
-        font-family: var(--text); font-size: 42px; line-height: 1.42;
-        color: var(--ink-soft); margin-top: 42px; max-width: 27ch;
+      .scene[data-first]{opacity:1}
+      .inner{
+        position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+        padding:120px 88px;perspective:1500px;transform-style:preserve-3d;
       }
 
-      /* ---- measure bar: the motif. real CSS 3D, not faked ---- */
-      .bars { display: flex; gap: 18px; margin-top: 64px; align-items: flex-end; }
-      .bar {
-        flex: 1; height: 96px; background: var(--ink);
-        transform-origin: bottom center;
+      /* big ghost numeral, sits behind and moves on its own plane */
+      .ghost{
+        position:absolute;right:96px;top:50%;
+        font-family:var(--sans);font-weight:700;font-size:400px;line-height:.8;
+        letter-spacing:-.06em;color:rgba(17,17,16,.10);
+        transform:translateY(-50%);pointer-events:none;z-index:0;
       }
-      .bar.hot { background: var(--accent); }
 
-      /* ---- stack chips ---- */
-      .chips { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 56px; }
-      .chip {
-        font-family: var(--mono); font-size: 30px; letter-spacing: 0.06em;
-        padding: 16px 26px; border: 2px solid var(--ink);
-        color: var(--ink); background: transparent;
+      .label{
+        position:relative;z-index:2;
+        font-family:var(--mono);font-size:32px;letter-spacing:.2em;
+        text-transform:uppercase;color:var(--accent);margin-bottom:30px;
       }
-      .chip.solid { background: var(--ink); color: var(--paper); }
+      .label .tick{display:inline-block;width:56px;height:3px;background:var(--accent);
+        vertical-align:7px;margin-right:18px;transform-origin:left center}
 
-      /* ---- steps ---- */
-      .steps { display: flex; flex-direction: column; gap: 0; margin-top: 30px; }
-      .step {
-        display: flex; align-items: baseline; gap: 34px;
-        padding: 30px 0; border-top: 2px solid var(--rule);
+      .head{
+        position:relative;z-index:2;
+        font-family:var(--sans);font-weight:700;font-size:132px;line-height:.93;
+        letter-spacing:-.04em;
       }
-      .step:last-child { border-bottom: 2px solid var(--rule); }
-      .step .n {
-        font-family: var(--mono); font-size: 30px; color: var(--accent);
-        letter-spacing: 0.1em; min-width: 64px;
-      }
-      .step .t { font-family: var(--sans); font-weight: 500; font-size: 76px; letter-spacing: -0.02em; }
-      .step .d { font-family: var(--text); font-size: 34px; color: var(--ink-soft); margin-left: auto; text-align: right; }
+      .head em{font-style:italic;font-weight:500;color:var(--accent)}
+      .line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+      .line > span{display:block}
 
-      /* ---- code plate for the stack scene ---- */
-      .plate {
-        background: #12120f; color: #e8e6df;
-        padding: 46px 42px; margin-top: 46px;
-        font-family: var(--mono); font-size: 29px; line-height: 1.7;
-        letter-spacing: 0.01em;
-        /* the plate must never clip its own code: break long lines instead */
-        white-space: pre-wrap; overflow-wrap: anywhere;
+      .sub{
+        position:relative;z-index:2;
+        font-family:var(--text);font-size:40px;line-height:1.42;
+        color:var(--soft);margin-top:38px;max-width:26ch;
       }
-      .plate .k { color: #8fb0ff; }
-      .plate .s { color: #d7ff3e; }
-      .plate .c { color: #6f6f68; }
 
-      /* ---- closing ---- */
-      .url {
-        font-family: var(--mono); font-size: 40px; letter-spacing: 0.06em;
-        margin-top: 56px; color: var(--ink);
-        border-bottom: 4px solid var(--accent); display: inline-block;
-        padding-bottom: 14px;
+      /* ---------- chips ---------- */
+      .chips{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:14px;margin-top:44px}
+      .chip{
+        position:relative;overflow:hidden;
+        font-family:var(--mono);font-size:28px;letter-spacing:.05em;
+        padding:15px 24px;border:2px solid var(--ink);
       }
-      .place {
-        font-family: var(--mono); font-size: 30px; letter-spacing: 0.16em;
-        text-transform: uppercase; color: var(--ink-soft); margin-top: 30px;
+      .chip .fill{position:absolute;inset:0;background:var(--ink);transform:scaleX(0);
+        transform-origin:left center;z-index:0}
+      .chip span{position:relative;z-index:1}
+      .chip.painted{color:var(--paper)}
+
+      /* ---------- code plate ---------- */
+      .plate{
+        position:relative;z-index:2;background:#111110;color:#ece9e1;
+        padding:42px 36px;margin:40px 46px 0 0;
+        font-family:var(--mono);font-size:28px;line-height:1.72;
+        white-space:pre-wrap;overflow-wrap:anywhere;
       }
+      .plate .k{color:#94b2ff}
+      .plate .s{color:#d7ff3e}
+      .plate .c{color:#6d6d65}
+      .plate .row{display:block;height:1.72em;overflow:hidden}
+      .caret{display:inline-block;width:14px;height:1.05em;background:#d7ff3e;
+        vertical-align:-.18em;margin-left:4px}
+
+      /* ---------- measure bars ---------- */
+      .barsWrap{position:relative;z-index:2;margin-top:56px}
+      .bars{display:flex;gap:16px;align-items:flex-end;height:200px;position:relative}
+      .bars .baseline{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ink);transform-origin:left center}
+      .bar{flex:1;background:var(--ink);transform:scaleY(0);transform-origin:bottom center}
+      .bar.hot{background:var(--accent)}
+      .scan{position:absolute;top:-16px;bottom:-16px;width:3px;background:var(--accent);left:0;opacity:.9}
+      .ticks{display:flex;justify-content:space-between;margin-top:14px;
+        font-family:var(--mono);font-size:29px;letter-spacing:.14em;color:var(--soft)}
+
+      /* ---------- steps ---------- */
+      .steps{position:relative;z-index:2;margin-top:26px}
+      .steps .rail{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rule);
+        transform-origin:top center}
+      .step{position:relative;display:flex;align-items:baseline;gap:30px;
+        padding:26px 0 26px 34px;border-bottom:2px solid var(--rule)}
+      .step .n{font-family:var(--mono);font-size:30px;color:var(--accent);letter-spacing:.1em;min-width:58px}
+      .step .t{font-family:var(--sans);font-weight:500;font-size:72px;letter-spacing:-.025em}
+      .step .d{font-family:var(--text);font-size:31px;color:var(--soft);margin-left:auto;text-align:right}
+      .step .wash{position:absolute;left:-14px;right:-14px;top:0;bottom:0;background:rgba(27,77,255,.13);
+        transform:scaleX(0);transform-origin:left center;z-index:0}
+      .step > *{position:relative;z-index:1}
+
+      /* ---------- close ---------- */
+      .urlBlock{position:relative;z-index:2;margin-top:46px;display:inline-block}
+      .url{font-family:var(--mono);font-size:42px;letter-spacing:.04em}
+      .underline{height:5px;background:var(--accent);margin-top:12px;transform-origin:left center}
+      .place{position:relative;z-index:2;font-family:var(--mono);font-size:28px;letter-spacing:.16em;
+        text-transform:uppercase;color:var(--soft);margin-top:26px;max-width:24ch}
     </style>
   </head>
-
   <body>
-    <div id="root" data-composition-id="main" data-start="0"
-         data-width="1080" data-height="1920"></div>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+      <div id="grid"></div>
+      <div class="bracket tl"></div><div class="bracket tr"></div>
+      <div class="bracket bl"></div><div class="bracket br"></div>
+      <div id="rail"><div id="railFill"></div></div>
+    </div>
 
-    <!--
-      AUDIO — literal tags, ids required. The runtime parses HTML source, not
-      the live DOM, so these cannot be created from JavaScript and survive.
-      The voice is real speech (generated, then mixed to the measured scene
-      starts); the bed is a quiet synth pad so the VO stays intelligible.
-    -->
-    <audio id="vo" src="assets/vo.wav" preload="auto"
-           data-start="0" data-volume="1"></audio>
-    <audio id="bed" src="assets/bed.wav" preload="auto"
-           data-start="0" data-volume="0.14"
+    <!-- literal audio tags with ids; the runtime parses source, not the DOM -->
+    <audio id="vo" src="assets/vo.wav" preload="auto" data-start="0" data-volume="1"></audio>
+    <audio id="bed" src="assets/bed.wav" preload="auto" data-start="0" data-volume="0.13"
            data-fade-in="1.2" data-fade-out="1.6"></audio>
 
     <script>
-      /* =====================================================================
-         EDIT HERE. Scene durations are measured from the voice, not guessed.
-         ===================================================================== */
+      /* ================= content: unchanged facts, same measured timings ===== */
       const FILM = {
         brand: "NEZAAD",
         total: 24.890,
         scenes: [
-          { kind: "hook", start: 0.0, dur: 3.62, label: "Websites, built",
-            head: "Websites built\n<em>to perform.</em>" },
-          { kind: "stack", start: 3.62, dur: 5.62, label: "02 / The stack",
-            head: "Hand-written.\nNo framework tax.",
+          { kind: "hook",  start: 0.00,  dur: 3.62, label: "Websites, built", ghost: "01",
+            head: ["Websites built", "<em>to perform.</em>"],
+            sub: "Quick on mobile networks. Readable in the source." },
+
+          { kind: "stack", start: 3.62,  dur: 5.62, label: "02 / The stack", ghost: "02",
+            head: ["Hand-written.", "No framework tax."],
             chips: ["Semantic HTML", "Modern CSS", "Vanilla JS", "No build step"],
-            plate: [
-              '<span class="c">&lt;!-- no page builder --&gt;</span>',
-              '<span class="k">&lt;main</span> <span class="s">class="site"</span><span class="k">&gt;</span>',
-              '  <span class="k">&lt;h1&gt;</span>Websites built to perform',
-              '<span class="k">&lt;/main&gt;</span>',
+            code: [
+              ['<span class="c">&lt;!-- no page builder --&gt;</span>'],
+              ['<span class="k">&lt;main</span> <span class="s">class="site"</span><span class="k">&gt;</span>'],
+              ['  <span class="k">&lt;h1&gt;</span>Websites built to perform'],
+              ['<span class="k">&lt;/main&gt;</span>'],
             ] },
-          { kind: "perf", start: 9.24, dur: 4.46, label: "03 / Performance",
-            head: "Budgets set\nbefore the code.",
+
+          { kind: "perf",  start: 9.24,  dur: 4.46, label: "03 / Performance", ghost: "03",
+            head: ["Budgets set", "before the code."],
             sub: "LCP, CLS and INP, agreed before the first line is written.",
-            bars: [0.72, 0.88, 0.61, 0.95, 0.78, 0.9, 1.0] },
-          { kind: "steps", start: 13.70, dur: 6.34, label: "04 / How I work",
-            head: "Brief to handover.",
-            steps: [["01", "Brief", "what it must achieve"],
-                    ["02", "Scope", "written, approved"],
-                    ["03", "Build", "live preview"],
-                    ["04", "Handover", "yours outright"]] },
-          { kind: "close", start: 20.04, dur: 4.85, label: "Available for new work",
-            head: "Let's build\n<em>the next one.</em>",
+            bars: [0.62, 0.84, 0.54, 0.96, 0.70, 0.88, 1.0] },
+
+          { kind: "steps", start: 13.70, dur: 6.34, label: "04 / How I work", ghost: "04",
+            head: ["Brief to handover."],
+            steps: [["01","Brief","what it must achieve"],
+                    ["02","Scope","written, approved"],
+                    ["03","Build","live preview"],
+                    ["04","Handover","yours outright"]] },
+
+          { kind: "close", start: 20.04, dur: 4.85, label: "Available for new work", ghost: "05",
+            head: ["Let's build", "<em>the next one.</em>"],
             url: "zero-vast.vercel.app",
             place: "Independent developer · Khammam, Telangana" },
         ],
       };
 
-      /* ---- craft floor: derived, never typed by hand ---------------------- */
-      const CRAFT = {
-        enter: 0.58,
-        enterEase: "expo.out",
-        scatter: 0.075,
-        crossfade: 0.30,
-        settle: 0.40,
-      };
+      const CRAFT = { enter: 0.62, ease: "expo.out", crossfade: 0.30 };
 
-      const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const html = (s) => String(s).replace(/\n/g, "<br>");   // keeps authored <em>
-      const starts = FILM.scenes.map((s) => s.start);
+      const esc = (s) => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      const starts = FILM.scenes.map(s => s.start);
 
-      /* ---- scene markup -------------------------------------------------- */
-      function chrome(i, s) {
-        return `
-          <div class="hud top plane">
-            <span class="live">${esc(FILM.brand)}</span>
-            <span>${String(i + 1).padStart(2, "0")} / ${String(FILM.scenes.length).padStart(2, "0")}</span>
-          </div>
-          <div class="hud bot plane">
-            <span>${esc(s.label || "")}</span>
-            <span>1080 × 1920</span>
-          </div>`;
+      /* ================= markup ================= */
+      const headHTML = (lines) => lines.map(l =>
+        `<span class="line"><span>${l}</span></span>`).join("");
+
+      function body(s, i){
+        const ghost = "";
+        const label = `<div class="label"><span class="tick"></span>${esc(s.label)}</div>`;
+        const head  = `<div class="head">${headHTML(s.head)}</div>`;
+
+        if (s.kind === "hook")
+          return `${ghost}${label}${head}<div class="sub">${esc(s.sub)}</div>`;
+
+        if (s.kind === "stack") {
+          const chips = (s.chips||[]).map(c =>
+            `<span class="chip"><i class="fill"></i><span>${esc(c)}</span></span>`).join("");
+          const code = (s.code||[]).map(r =>
+            `<span class="row">${r[0]}</span>`).join("");
+          return `${ghost}${label}${head}
+            <div class="chips">${chips}</div>
+            <div class="plate">${code}<span class="row"><span class="caret"></span></span></div>`;
+        }
+
+        if (s.kind === "perf") {
+          const bars = (s.bars||[]).map((v,k) =>
+            `<div class="bar${k===s.bars.length-1?" hot":""}" style="height:${Math.round(v*100)}%"></div>`).join("");
+          return `${ghost}${label}${head}
+            <div class="barsWrap">
+              <div class="bars"><div class="baseline"></div>${bars}<div class="scan"></div></div>
+              <div class="ticks"><span>LCP</span><span>CLS</span><span>INP</span></div>
+            </div>
+            <div class="sub">${esc(s.sub)}</div>`;
+        }
+
+        if (s.kind === "steps") {
+          const rows = (s.steps||[]).map(([n,t,d]) =>
+            `<div class="step"><div class="wash"></div><span class="n">${esc(n)}</span>
+               <span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></div>`).join("");
+          return `${ghost}${label}${head}
+            <div class="steps"><div class="rail"></div>${rows}</div>`;
+        }
+
+        return `${ghost}${label}${head}
+          <div class="urlBlock"><div class="url">${esc(s.url)}</div><div class="underline"></div></div>
+          <div class="place">${esc(s.place)}</div>`;
       }
 
-      function body(s) {
-        if (s.kind === "hook") {
-          return `<div class="label plane">Websites, built</div>
-                  <div class="head plane">${html(s.head)}</div>
-                  <div class="sub plane">Quick on mobile networks. Readable in the source.</div>`;
-        }
-        if (s.kind === "stack") {
-          return `<div class="label plane">${esc(s.label)}</div>
-                  <div class="head plane" style="font-size:104px">${html(s.head)}</div>
-                  <div class="chips plane">${(s.chips || []).map((c, k) =>
-                    `<span class="chip${k === 0 ? " solid" : ""}">${esc(c)}</span>`).join("")}</div>
-                  <div class="plate plane">${(s.plate || []).join("<br>")}</div>`;
-        }
-        if (s.kind === "perf") {
-          const bars = (s.bars || []).map((v, k) =>
-            `<div class="bar${k === s.bars.length - 1 ? " hot" : ""}" style="height:${Math.round(v * 100)}px"></div>`).join("");
-          return `<div class="label plane">${esc(s.label)}</div>
-                  <div class="head plane">${html(s.head)}</div>
-                  <div class="bars plane">${bars}</div>
-                  <div class="sub plane">${esc(s.sub)}</div>`;
-        }
-        if (s.kind === "steps") {
-          const rows = (s.steps || []).map(([n, t, d]) =>
-            `<div class="step plane"><span class="n">${esc(n)}</span>
-               <span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></div>`).join("");
-          return `<div class="label plane">${esc(s.label)}</div>
-                  <div class="head plane" style="font-size:104px">${html(s.head)}</div>
-                  <div class="steps">${rows}</div>`;
-        }
-        // close
-        return `<div class="label plane">${esc(s.label)}</div>
-                <div class="head plane">${html(s.head)}</div>
-                <div class="url plane">${esc(s.url)}</div>
-                <div class="place plane">${esc(s.place)}</div>`;
+      function chrome(i, s){
+        return `<div class="hud top"><span class="live">${esc(FILM.brand)}</span>
+                  <span>${String(i+1).padStart(2,"0")} / ${String(FILM.scenes.length).padStart(2,"0")}</span></div>
+                <div class="hud bot"><span>${esc(s.label)}</span><span>1080 × 1920</span></div>`;
       }
 
       const root = document.getElementById("root");
       root.dataset.duration = String(FILM.total);
-      root.innerHTML = FILM.scenes.map((s, i) => {
+      root.insertAdjacentHTML("beforeend", FILM.scenes.map((s,i)=>{
         const isLast = i === FILM.scenes.length - 1;
         const clipDur = isLast ? s.dur : s.dur + CRAFT.crossfade;
-        // The camera transform goes on `.inner` only. HUD chrome is fixed
-        // furniture: scaling it pushes the brand mark and page counter past
-        // the safe margin, which is what the crop check caught at t=2.7s.
-        return `<section class="scene" id="scene-${i}"
-                   data-start="${s.start}" data-duration="${clipDur}"
-                   ${i === 0 ? "data-first" : ""}>
-                  ${chrome(i, s)}
-                  <div class="inner stage">${body(s)}</div>
+        return `<section class="scene" id="scene-${i}" data-start="${s.start}"
+                   data-duration="${clipDur}" ${i===0?"data-first":""}>
+                  ${chrome(i,s)}
+                  <div class="ghost" aria-hidden="true" data-layout-ignore>${esc(s.ghost||"")}</div>
+                  <div class="inner">${body(s,i)}</div>
                 </section>`;
-      }).join("");
+      }).join(""));
 
-      /* ---- timeline ------------------------------------------------------ */
+      /* ================= timeline ================= */
       const tl = gsap.timeline({ paused: true });
 
-      // one camera idea per scene, alternating so the moves never repeat back to back
+      // progress rail spans the whole film
+      tl.fromTo("#railFill", { scaleX: 0 }, { scaleX: 1, duration: FILM.total, ease: "none" }, 0);
+
+      // camera: visible moves, alternating direction so no two scenes feel alike
       const CAM = [
-        { from: { scale: 1.0, y: 0 },  to: { scale: 1.06, y: -26 } },                 // push-in
-        { from: { scale: 1.08, rotateY: -7, x: 54 }, to: { scale: 1.0, rotateY: 0, x: 0 } }, // orbit
-        { from: { scale: 1.02, y: 34 }, to: { scale: 1.07, y: 0 } },                  // drift
-        { from: { scale: 1.10 }, to: { scale: 1.0 } },                                // pull-back
-        { from: { scale: 1.0, y: 0 }, to: { scale: 1.05, y: -14 } },                  // push-in
+        { from:{ scale:1.00, y:0 },    to:{ scale:1.06, y:-30 } },              // push in
+        { from:{ scale:1.10, rotateY:-5, x:22 }, to:{ scale:1.00, rotateY:0, x:0 } }, // orbit
+        { from:{ scale:1.02, y:46 },   to:{ scale:1.07, y:0 } },                // drift up
+        { from:{ scale:1.08 },         to:{ scale:1.00 } },                     // pull back
+        { from:{ scale:1.00, y:0 },    to:{ scale:1.05, y:-18 } },              // push in
       ];
 
-      FILM.scenes.forEach((s, i) => {
+      FILM.scenes.forEach((s,i) => {
         const sel = `#scene-${i}`;
-        const planes = `${sel} .plane`;
         const t0 = s.start;
+        const isFirst = i === 0;
 
-        if (i === 0) {
-          tl.set(sel, { opacity: 1 }, 0);
-        } else {
-          tl.fromTo(sel, { opacity: 0 },
-            { opacity: 1, duration: CRAFT.crossfade, ease: "power2.out" }, t0);
+        if (isFirst) tl.set(sel, { opacity: 1 }, 0);
+        else tl.fromTo(sel, { opacity: 0 },
+               { opacity: 1, duration: CRAFT.crossfade, ease: "power2.out" }, t0);
+
+        // camera on the content plane only — chrome must stay inside the margin
+        tl.fromTo(`${sel} .inner`, CAM[i % CAM.length].from,
+          { ...CAM[i % CAM.length].to, duration: Math.min(s.dur, 6.4), ease: "power1.out" }, t0);
+
+        // ghost numeral drifts the opposite way: parallax, the cheap depth trick
+        tl.fromTo(`${sel} .ghost`, { x: 40 },
+          { x: -40, duration: Math.min(s.dur, 6.4), ease: "none" }, t0);
+
+        const at = isFirst ? 0 : t0 + CRAFT.crossfade * 0.3;
+
+        // label tick draws
+        tl.fromTo(`${sel} .label .tick`, { scaleX: 0 },
+          { scaleX: 1, duration: 0.45, ease: "power4.out" }, at);
+
+        // headline: masked line reveal, one line after another
+        tl.fromTo(`${sel} .line > span`, { yPercent: 118 },
+          { yPercent: 0, duration: 0.72, ease: "power4.out", stagger: 0.09 }, at + 0.08);
+
+        if (s.sub) tl.fromTo(`${sel} .sub`, { y: 40 },
+            { y: 0, duration: 0.6, ease: CRAFT.ease }, at + 0.42);
+
+        if (s.chips) {
+          tl.fromTo(`${sel} .chip`, { y: 34, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.07 }, at + 0.5);
+          tl.fromTo(`${sel} .chip .fill`, { scaleX: 0 },
+            { scaleX: 1, duration: 0.5, ease: "power2.inOut", stagger: 0.07 }, at + 0.72);
+          tl.to(`${sel} .chip`, { color: "#f4f2ec", duration: 0.5, stagger: 0.07 }, at + 0.72);
         }
 
-        // camera: one continuous move across the scene, on the content plane
-        const camSel = `${sel} .inner`;
-        tl.fromTo(camSel, CAM[i % CAM.length].from,
-          { ...CAM[i % CAM.length].to, duration: Math.min(s.dur, 6.2), ease: "power1.out" }, t0);
-        void camSel;
+        // code plate: rows rise one at a time, caret blinks at the end
+        if (s.code) {
+          tl.fromTo(`${sel} .plate`, { y: 40 },
+            { y: 0, duration: 0.55, ease: "power3.out" }, at + 0.85);
+          tl.fromTo(`${sel} .plate .row`, { yPercent: 110 },
+            { yPercent: 0, duration: 0.42, ease: "power2.out", stagger: 0.16 }, at + 0.95);
+          tl.to(`${sel} .caret`, { opacity: 0, duration: 0.42, repeat: 3,
+              yoyo: true, ease: "none" }, at + 1.75);
+        }
 
-        // copy arrives by motion only — never fades, or it fights the cross-fade
-        // and the frame dips to black mid-transition
-        tl.fromTo(planes, { y: 46 },
-          { y: 0, duration: CRAFT.enter, ease: CRAFT.enterEase, stagger: CRAFT.scatter },
-          i === 0 ? 0 : t0 + CRAFT.crossfade * 0.35);
-
-        // the measure bars are drawn, not popped: scaleY from the floor
+        // bars: baseline draws, then bars grow, then one scan sweep
         if (s.bars) {
+          tl.fromTo(`${sel} .baseline`, { scaleX: 0 },
+            { scaleX: 1, duration: 0.5, ease: "power2.out" }, at + 0.30);
           tl.fromTo(`${sel} .bar`, { scaleY: 0 },
-            { scaleY: 1, duration: 0.7, ease: "expo.out", stagger: 0.055 },
-            t0 + 0.30);
+            { scaleY: 1, duration: 0.62, ease: "expo.out", stagger: 0.06 }, at + 0.40);
+          tl.fromTo(`${sel} .scan`, { xPercent: 0, opacity: 0 },
+            { xPercent: 860, opacity: 1, duration: 1.5, ease: "power2.inOut" }, at + 1.05);
+          tl.to(`${sel} .scan`, { opacity: 0, duration: 0.3 }, at + 2.55);
+          tl.fromTo(`${sel} .ticks span`, { opacity: 0 },
+            { opacity: 1, duration: 0.4, stagger: 0.12 }, at + 0.9);
         }
 
-        // the code plate types on, line by line
-        if (s.plate) {
-          tl.fromTo(`${sel} .plate`, { opacity: 0, y: 26 },
-            { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, t0 + 1.15);
+        // steps: rail draws down, each row washes as the voice reaches it
+        if (s.steps) {
+          tl.fromTo(`${sel} .rail`, { scaleY: 0 },
+            { scaleY: 1, duration: 1.5, ease: "power2.inOut" }, at + 0.35);
+          tl.fromTo(`${sel} .step`, { x: -26, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.30 }, at + 0.45);
+          tl.fromTo(`${sel} .wash`, { scaleX: 0, opacity: 1 },
+            { scaleX: 1, duration: 0.45, ease: "power2.out", stagger: 0.30 }, at + 0.55);
+          // and release: a wash that stays on four rows is a slab, not a highlight
+          tl.to(`${sel} .wash`, { opacity: 0, duration: 0.7, stagger: 0.30,
+              ease: "power2.inOut" }, at + 1.45);
         }
 
-        // dissolve into the next scene
+        // close: underline draws
+        if (s.url) {
+          tl.fromTo(`${sel} .underline`, { scaleX: 0 },
+            { scaleX: 1, duration: 0.7, ease: "power4.out" }, at + 0.75);
+          tl.fromTo(`${sel} .place`, { y: 30 },
+            { y: 0, duration: 0.6, ease: CRAFT.ease }, at + 0.9);
+        }
+
+        // dissolve out
         tl.to(sel, { opacity: 0, duration: CRAFT.crossfade, ease: "power2.inOut" }, t0 + s.dur);
       });
 
