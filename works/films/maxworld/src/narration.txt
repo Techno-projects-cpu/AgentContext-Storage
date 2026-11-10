@@ -1,0 +1,25 @@
+# Max World — narration (VO)
+# Complements the captions, never repeats them.
+# Each clip is peak-normalised at 0 dB by the generator, so it is placed at unity
+# gain and the music is dropped instead — raising the voice would clip it.
+# Voice starts at 0.45 s; music is sidechain-ducked 4.6-7.9 dB under it.
+
+[en]
+Khammam's shops need eyes on them. Real CP Plus, Hikvision, Dahua, Prama. Our own
+men do the wiring. No advance, we look first. Laptops too. Indera Nagar, near Ek
+Minar Masjid. Seven six six one nine, seven two seven five eight.
+
+[te]
+ఖమ్మం దుకాణాలకు కన్ను కావాలి. నిజమైన సీపీ ప్లస్, హైక్ విజన్, దహువా, ప్రమ. వైరింగ్
+మావాళ్లే చేస్తాం. అడ్వాన్స్ లేదు, ముందు చూస్తాం. ల్యాప్ టాప్ కూడా. ఇందేర నగర్,
+ఏక్ మినార్ మసీదు పక్కన. ఫోన్: 76619 72758.
+
+[hi]
+खम्मम की दुकानों पर नज़र चाहिए। असली सीपी प्लस, हाइक विज़न, दहुआ, प्रमा। वायरिंग हमारे
+लोग करते हैं। एडवांस नहीं, पहले देख लेंगे। लैपटॉप भी। इंदेरा नगर, एक मीनार मस्जिद के
+पास। फ़ोन: 76619 72758।
+
+[ur]
+کھمم کی دکانوں پر نظر چاہیے۔ اصلی سی پی پلس، ہائیک ویژن، دہوا، پرما۔ وائرنگ ہمارے لوگ
+کرتے ہیں۔ پیشگی نہیں، پہلے دیکھ لیں گے۔ لیپ ٹاپ بھی۔ اندرا نگر، ایک مینار مسجد کے قریب۔
+فون: 76619 72758۔
