@@ -131,7 +131,7 @@ export PRODUCER_PUPPETEER_PROTOCOL_TIMEOUT_MS=300000
 # GSAP + fonts, copied into each new film by scripts/new-film.sh
 export GSAP="$VENDOR/gsap"
 export FONTS="$VENDOR/fonts"
-# python used by scripts/qc.py (needs pillow + numpy)
+# python used by tooling/qc.py (needs pillow + numpy)
 export QC_PYTHON="$ROOT/venv/bin/python"
 ENV
 
@@ -144,7 +144,7 @@ cd "$HF_DIR"
 npx hyperframes doctor 2>&1 | grep -E '✓|✗' | grep -vE 'whisper|Docker|TTS|BGM|onnxruntime|genai' || true
 
 # ---------------------------------------------------------------------------
-# 5. QC venv — pillow + numpy, used by scripts/qc.py
+# 5. QC venv — pillow + numpy, used by tooling/qc.py
 # ---------------------------------------------------------------------------
 if [ ! -x "$ROOT/venv/bin/python" ] || ! "$ROOT/venv/bin/python" -c "import PIL, numpy" 2>/dev/null; then
   say "Setting up QC venv (pillow + numpy)"
@@ -161,7 +161,7 @@ cat <<'DONE'
 
 Next:
   source ~/.local/env.sh
-  cd <project> && npx hyperframes render -w 1 --low-memory-mode
+  tooling/render.sh <project>
 
 Blocked in this sandbox (budget for it):
   * hyperframes tts  -> Kokoro weights are on HuggingFace (unreachable)

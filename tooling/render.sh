@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# render.sh <project-dir> [output.mp4] [extra hyperframes render flags...]
+# tooling/render.sh <project-dir> [output.mp4] [extra hyperframes render flags...]
 #
 # Render, then measure. The QC gate runs by default and its exit code is this
 # script's exit code: a render that is silent, cropped, illegible or static

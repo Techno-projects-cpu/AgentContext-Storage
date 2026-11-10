@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# new-film.sh <name> [portrait|landscape|square]
+# new-film.sh <name> [portrait|landscape|square] [brag|3d]
 #
-# Stamps a fresh film from templates/brag into ./<name>/:
+# Stamps a fresh film into ./<name>/ from engines/brag (default) or
+# engines/explainer3d (third argument "3d"):
 #   index.html      the template (edit only the FILM object)
 #   vendor/gsap     vendored, not CDN
 #   assets/fonts    self-hosted, not CDN
@@ -11,11 +12,16 @@
 # degrading. If you add anything from the outside world, re-run fix-cdn.sh.
 set -euo pipefail
 
-NAME="${1:?usage: new-film.sh <name> [portrait|landscape|square]}"
+NAME="${1:?usage: new-film.sh <name> [portrait|landscape|square] [brag|3d]}"
 RES="${2:-portrait}"
+ENGINE="${3:-brag}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(dirname "$HERE")"
-TPL="$REPO/templates/brag"
+case "$ENGINE" in
+  brag) TPL="$REPO/engines/brag/template.html" ;;
+  3d)   TPL="$REPO/engines/explainer3d/template.html" ;;
+  *) echo "unknown engine: $ENGINE (brag|3d)"; exit 1 ;;
+esac
 
 [ -f "$HOME/.local/env.sh" ] && . "$HOME/.local/env.sh"
 GSAP="${GSAP:-$HOME/.local/vendor/gsap}"
@@ -26,7 +32,7 @@ FONTS="${FONTS:-$HOME/.local/vendor/fonts}"
 [ -d "$NAME" ] && { echo "refusing to overwrite existing $NAME"; exit 1; }
 
 mkdir -p "$NAME/vendor" "$NAME/assets/fonts"
-cp "$TPL/index.html" "$NAME/index.html"
+cp "$TPL" "$NAME/index.html"
 cp "$GSAP/gsap.min.js" "$NAME/vendor/gsap.min.js"
 cp "$FONTS"/*.woff2 "$NAME/assets/fonts/"
 
