@@ -22,10 +22,11 @@ carry different words.
 
 ### 02 — Zero-vast 3D explainer · 24.9 s, vertical
 
-The same brand explained in motion. Five chapters: masked headline, a helix of
-plates for the stack, a throat of rules racing past the performance numbers, a
-title-sequence window for the four steps, and a close. Warm paper-white type on
-near-black, one accent, one hot colour — no stock footage, no shaders.
+The same brand explained in motion, on paper: warm off-white ground, near-black
+ink, a printed blue and a deep forest green. Five chapters — headline, a helix of
+white cards for the stack, a throat of rules racing past the performance numbers,
+a title-sequence window for the four steps, and a close. Very few elements per
+frame and a great deal of empty paper; no stock footage, no shaders.
 
 | Watch | File | Size |
 |---|---|---|

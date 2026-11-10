@@ -27,6 +27,22 @@ single centring `translate` left in the engine.
 Same reason the mask reveal sets its hidden state with `tl.set(..., 0)` rather
 than a CSS class.
 
+## On paper, three more traps
+
+- **A `perspective` scene makes `overflow:hidden` stop clipping.** A scene with
+  `perspective: 1400px` is a 3D rendering context, so a window inside it will not
+  clip a transformed descendant — the drive rows spilled 500px down the frame.
+  The chapter is flat 2D now and its layout fits the window by construction;
+  never rely on clipping inside a perspective scene.
+- **A faded-out scene leaves a ghost.** On the software GL stack, a scene at
+  `opacity: 0` keeps painting a faint copy of itself — a soft grey smear across
+  later chapters. `visibility: hidden` is set at the end of the crossfade, which
+  is the only thing that removes it. Verified by measurement: background std in
+  the smeared band went from 3.35 to 0.47.
+- **Hairline outlines read as printing ghosts on light ground.** Rows at
+  74–84px with a 1.2px stroke looked like faded ink. Solid translucent ink at
+  16% is cleaner and survives encode.
+
 ## Three more, found by looking at frames
 
 - **A mask must contain exactly one line.** "Websites built" wrapped to two lines

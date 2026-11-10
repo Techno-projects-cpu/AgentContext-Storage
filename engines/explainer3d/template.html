@@ -48,24 +48,25 @@
     src:url("./assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
 
   :root{
-    --void:#08080a;
-    --paper:#f5f2ea;          /* warm white, not #fff: reads as print, not UI */
-    --dim:#948f86;
-    --accent:#8b98ff;
-    --hot:#d9ff45;
+    --field:#f6f3ec;          /* warm paper ground — off-white, never pure #fff */
+    --ink:#12120f;            /* near-black, not #000: ink on paper */
+    --dim:#726d63;            /* 4.9:1 on the field */
+    --accent:#3f4fd8;         /* 6.4:1 — a printed blue, not a screen glow */
+    --hot:#1d5c2f;            /* 7.6:1 deep forest; hot accents on paper must be dark */
+    --rule:rgba(18,18,15,.14);
     --sans:"Display",sans-serif; --text:"Text",sans-serif; --mono:"Mono",monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{width:1080px;height:1920px;overflow:hidden;background:var(--void);
-    color:var(--paper);-webkit-font-smoothing:antialiased}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:var(--field);
+    color:var(--ink);-webkit-font-smoothing:antialiased}
   #root{position:relative;width:100%;height:100%;overflow:hidden}
 
   /* ---- ground: one quiet gradient. It never moves, so it never crops. ---- */
   .ground{position:absolute;inset:0;pointer-events:none;
     background:
-      radial-gradient(110% 58% at 50% 12%, rgba(139,152,255,.15), transparent 60%),
-      linear-gradient(178deg, #0d0d13 0%, #08080b 52%, #050506 100%)}
-  .frame{position:absolute;inset:62px;border:1px solid rgba(245,242,234,.09);
+      radial-gradient(90% 52% at 50% 4%, rgba(255,255,255,.85), transparent 58%),
+      linear-gradient(178deg, #faf8f3 0%, #f5f2ea 46%, #ece8de 100%)}
+  .frame{position:absolute;inset:62px;border:1px solid rgba(18,18,15,.13);
     pointer-events:none;z-index:90}
 
   .scene{position:absolute;inset:0;opacity:0;
@@ -79,9 +80,9 @@
     text-transform:uppercase;color:var(--dim);z-index:80}
   .hud.top{top:100px}
   .hud.bot{bottom:100px}
-  .hud .brand{color:var(--paper)}
+  .hud .brand{color:var(--ink)}
   .hud .dot{display:inline-block;width:12px;height:12px;border-radius:50%;
-    background:var(--hot);margin-right:14px;vertical-align:middle}
+    background:var(--accent);margin-right:14px;vertical-align:middle}
 
   /* ---- the masked line: the engine's signature type move ----
      No transform in CSS. The hidden state is set by the timeline on frame 0,
@@ -93,83 +94,93 @@
   .m{display:block;overflow:hidden;padding:.10em 0 .26em;margin-top:-.10em;margin-bottom:-.26em}
   .m > .in{display:block}
 
-  .display{font-family:var(--sans);font-weight:700;line-height:1.02;letter-spacing:-.045em}
+  .display{font-family:var(--sans);font-weight:700;line-height:1.04;letter-spacing:-.038em}
 
   /* flex centring, NOT translateY(-50%): GSAP writes y on these elements */
   .hero{position:absolute;inset:0;display:flex;flex-direction:column;
-    justify-content:center;padding:0 96px;transform-style:preserve-3d}
-  .hero .kick{font-family:var(--mono);font-size:34px;letter-spacing:.24em;
+    justify-content:center;padding:0 128px;transform-style:preserve-3d}
+  .hero .kick{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
     text-transform:uppercase;color:var(--accent);margin-bottom:36px}
-  .hero h1{font-size:146px}
+  .hero h1{font-size:116px}
   .hero h1 em{font-style:normal;color:var(--hot)}
-  .hero .sub{font-family:var(--text);font-size:38px;line-height:1.45;color:var(--dim);
-    margin-top:40px;max-width:780px}
-  .hero .rule{height:2px;background:rgba(245,242,234,.2);margin-top:48px;
-    transform-origin:left center;width:100%}
+  .hero .sub{font-family:var(--text);font-size:36px;line-height:1.55;color:var(--dim);
+    margin-top:52px;max-width:700px}
+  .hero .rule{height:1px;background:var(--rule);margin-top:64px;
+    transform-origin:left center;width:60%}
 
   /* a huge outlined chapter numeral, sitting behind the type */
   .ghost{position:absolute;right:52px;bottom:170px;font-family:var(--sans);font-weight:700;
     font-size:330px;line-height:.8;letter-spacing:-.06em;
-    -webkit-text-stroke:1.5px rgba(245,242,234,.14);color:transparent;
+    -webkit-text-stroke:1.5px rgba(18,18,15,.10);color:transparent;
     z-index:0;pointer-events:none}
 
   /* ---- spiral: a strand of plates on one helix ---- */
-  .plate{position:absolute;left:50%;top:50%;width:620px;padding:30px 34px;
-    background:rgba(17,17,23,.9);
-    border:1px solid rgba(245,242,234,.14);
+  .plate{position:absolute;left:50%;top:50%;width:560px;padding:36px 40px;
+    background:#fffdf8;
+    border:1px solid rgba(18,18,15,.10);
     border-left:3px solid var(--accent);
+    box-shadow:0 30px 60px -30px rgba(18,18,15,.28);
     transform-style:preserve-3d}
-  .plate .tag{font-family:var(--mono);font-size:32px;letter-spacing:.22em;
+  .plate .tag{font-family:var(--mono);font-size:28px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-  .plate .line{font-family:var(--sans);font-weight:700;font-size:58px;line-height:.95;
+  .plate .line{font-family:var(--sans);font-weight:700;font-size:54px;line-height:1;
     letter-spacing:-.035em}
-  .plate .note{font-family:var(--text);font-size:34px;line-height:1.4;color:var(--dim);
-    margin-top:14px}
+  .plate .note{font-family:var(--text);font-size:30px;line-height:1.5;color:var(--dim);
+    margin-top:16px}
   .plate .idx{position:absolute;right:24px;bottom:10px;font-family:var(--mono);
-    font-size:86px;line-height:1;color:rgba(245,242,234,.07)}
+    font-size:80px;line-height:1;color:rgba(18,18,15,.06)}
 
   /* ---- thread: one loop that runs through the middle of the film ---- */
   .thread{position:absolute;left:50%;top:50%;width:280px;height:280px;
     border-radius:50%;
-    border:2px solid rgba(139,152,255,.5);transform-style:preserve-3d}
+    border:1.5px solid rgba(63,79,216,.35);transform-style:preserve-3d}
 
   /* ---- tunnel: type holds still while the throat races past ---- */
   .throat{position:absolute;left:50%;top:50%;width:900px;height:900px;
-    border:2px solid rgba(245,242,234,.11)}
+    border:1px solid rgba(18,18,15,.13)}
   .tunnel-hero{position:absolute;inset:0;display:flex;flex-direction:column;
     justify-content:center;align-items:center;text-align:center;padding:0 96px;
     transform-style:preserve-3d;z-index:5}
-  .tunnel-hero .kick{font-family:var(--mono);font-size:34px;letter-spacing:.24em;
+  .tunnel-hero .kick{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
     text-transform:uppercase;color:var(--accent);margin-bottom:30px}
-  .tunnel-hero h1{font-family:var(--sans);font-weight:700;font-size:122px;line-height:1.04;
-    letter-spacing:-.04em}
+  .tunnel-hero h1{font-family:var(--sans);font-weight:700;font-size:104px;line-height:1.06;
+    letter-spacing:-.035em}
   .picks{display:flex;justify-content:center;gap:16px;margin-top:54px}
-  .pick{font-family:var(--mono);font-size:36px;letter-spacing:.1em;padding:16px 22px;
-    color:var(--hot);border:1px solid rgba(217,255,69,.45);
-    background:rgba(217,255,69,.06);transform-style:preserve-3d}
+  .pick{font-family:var(--mono);font-size:32px;letter-spacing:.12em;padding:18px 26px;
+    color:var(--hot);border:1px solid rgba(29,92,47,.45);
+    background:rgba(29,92,47,.05);transform-style:preserve-3d}
 
   /* ---- drive: type racing behind a window, like a title sequence ---- */
-  .drive-win{position:absolute;left:96px;right:96px;top:520px;height:600px;
+  /* NOTE: this window used to hold 3D rows. `overflow:hidden` does not clip a
+     3D-transformed descendant in Chrome, so the rows spilled down the frame as a
+     soft grey smear. The chapter is flat 2D now — x parallax and a slight scale —
+     which clips correctly and reads better on paper than receding perspective
+     did. */
+  .drive-win{position:absolute;left:96px;right:96px;top:560px;height:520px;
     overflow:hidden;z-index:2;
-    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
-            mask-image:linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%)}
-  .drive-stage{position:absolute;left:0;right:0;top:50%;transform-style:preserve-3d}
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+            mask-image:linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%)}
+  /* The window sits inside a `perspective` context, so `overflow:hidden` does not
+     actually clip a transformed descendant in Chrome. Layout owns the fit here:
+     the stage is exactly the height of its three rows, centred in a window with
+     100px of headroom, and the rows never need clipping in the first place. */
+  .drive-stage{position:absolute;left:0;right:0;inset-block:0;
+    display:flex;flex-direction:column;justify-content:center}
   /* three rows, but only the middle one is the subject: the outer two are
      smaller, dimmer and outlined, so the window reads as one line in motion
      with echo behind it instead of three rows competing */
   .drive-row{display:flex;white-space:nowrap;align-items:center}
   .drive-row span{font-family:var(--sans);font-weight:700;line-height:1.16;
     letter-spacing:-.05em;padding-right:40px}
-  .drive-row[data-r="1"] span{font-size:132px;color:var(--paper)}
+  .drive-row[data-r="1"] span{font-size:120px;color:var(--ink)}
   .drive-row[data-r="1"] span.hot{color:var(--hot)}
-  .drive-row[data-r="0"] span,.drive-row[data-r="2"] span{font-size:84px;
-    -webkit-text-stroke:1.2px rgba(245,242,234,.26);color:transparent}
-  .drive-row[data-r="0"]{margin-top:-26px}
-  .drive-row[data-r="2"]{margin-top:0}
+  .drive-row[data-r="0"] span,.drive-row[data-r="2"] span{font-size:74px;
+    color:rgba(18,18,15,.16)}
+  .drive-row[data-r="0"],.drive-row[data-r="2"]{line-height:1.1}
   .drive-cap{position:absolute;left:96px;right:96px;bottom:300px;transform-style:preserve-3d}
-  .drive-cap .k{font-family:var(--mono);font-size:34px;letter-spacing:.24em;
+  .drive-cap .k{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
     text-transform:uppercase;color:var(--accent);margin-bottom:20px}
-  .drive-cap .t{font-family:var(--text);font-size:38px;color:var(--paper);line-height:1.35;
+  .drive-cap .t{font-family:var(--text);font-size:36px;color:var(--dim);line-height:1.5;
     max-width:700px}
 </style>
 </head>
@@ -345,6 +356,11 @@ FILM.chapters.forEach((s, i) => {
   const sel = `#ch-${i}`;
   const t0 = s.start;
 
+  // opacity alone leaves a stale compositor layer behind on this software GL
+  // stack: a faded-out scene keeps painting a faint ghost of itself for the rest
+  // of the film. Pairing the fade with visibility takes it out of painting
+  // altogether, which is the only thing that actually removes the ghost.
+  tl.set(sel, { visibility: "visible" }, 0);
   if (i === 0) tl.set(sel, { opacity: 1 }, 0);
   else tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: CRAFT.crossfade, ease: "power2.out" }, t0);
 
@@ -421,14 +437,13 @@ FILM.chapters.forEach((s, i) => {
 
   /* ---------- drive: rows of type race toward the horizon ---------- */
   if (s.kind === "drive") {
-    tl.fromTo(`${sel} [data-drive]`,
-      { z: -520, rotateX: 18 },
-      { z: 60, rotateX: 4, duration: s.dur, ease: "power1.inOut" }, t0);
+    tl.fromTo(`${sel} [data-drive]`, { scale: 1.1 },
+      { scale: 1, duration: s.dur, ease: "power1.out" }, t0);
     // rows slide in opposite directions at different speeds: parallax in a window
     [1, -1, 1].forEach((dir, r) => {
       tl.fromTo(`${sel} .drive-row[data-r="${r}"]`,
-        { x: dir * 460 },
-        { x: dir * -230, duration: s.dur, ease: "none" }, t0);
+        { x: dir * 420 },
+        { x: dir * -300, duration: s.dur, ease: "none" }, t0);
     });
     tl.fromTo(`${sel} .drive-cap .k`, { opacity: 0, y: 18 },
       { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, t0 + 0.5);
@@ -437,6 +452,7 @@ FILM.chapters.forEach((s, i) => {
   }
 
   tl.to(sel, { opacity: 0, duration: CRAFT.crossfade, ease: "power2.inOut" }, t0 + s.dur);
+  tl.set(sel, { visibility: "hidden" }, t0 + s.dur + CRAFT.crossfade);
 });
 
 window.__timelines = window.__timelines || {};
