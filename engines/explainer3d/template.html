@@ -86,10 +86,14 @@
   /* ---- the masked line: the engine's signature type move ----
      No transform in CSS. The hidden state is set by the timeline on frame 0,
      because a CSS transform here would be read by GSAP as a baseline offset. */
-  .m{display:block;overflow:hidden;padding-bottom:.04em}
+    /* A clip box cuts at its padding edge, so the mask carries its own room for
+     ascenders and descenders: at line-height .9 the glyph box is taller than the
+     line box, and a mask with no padding slices the toes off p, y and g.
+     Negative margins give the space back to the layout. */
+  .m{display:block;overflow:hidden;padding:.10em 0 .26em;margin-top:-.10em;margin-bottom:-.26em}
   .m > .in{display:block}
 
-  .display{font-family:var(--sans);font-weight:700;line-height:.9;letter-spacing:-.045em}
+  .display{font-family:var(--sans);font-weight:700;line-height:1.02;letter-spacing:-.045em}
 
   /* flex centring, NOT translateY(-50%): GSAP writes y on these elements */
   .hero{position:absolute;inset:0;display:flex;flex-direction:column;
@@ -137,7 +141,7 @@
     transform-style:preserve-3d;z-index:5}
   .tunnel-hero .kick{font-family:var(--mono);font-size:34px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--accent);margin-bottom:30px}
-  .tunnel-hero h1{font-family:var(--sans);font-weight:700;font-size:122px;line-height:.92;
+  .tunnel-hero h1{font-family:var(--sans);font-weight:700;font-size:122px;line-height:1.04;
     letter-spacing:-.04em}
   .picks{display:flex;justify-content:center;gap:16px;margin-top:54px}
   .pick{font-family:var(--mono);font-size:36px;letter-spacing:.1em;padding:16px 22px;
@@ -197,7 +201,7 @@ const FILM = {
     {
       start: 0.0, dur: 4.45, kind: "hero",
       kick: "Websites, built",
-      head: "Websites built<br><em>to perform.</em>",
+      head: "Websites<br>built<br><em>to perform.</em>",
       sub: "Hand-written. No framework tax.",
       rule: true,
     },
@@ -214,7 +218,7 @@ const FILM = {
     {
       start: 10.45, dur: 5.6, kind: "tunnel",
       kick: "02 / Performance",
-      head: "Budgets set<br>before the code.",
+      head: "Budgets set<br>before<br>the code.",
       picks: ["LCP", "CLS", "INP"],
     },
     {
@@ -346,11 +350,14 @@ FILM.chapters.forEach((s, i) => {
 
   /* ---------- hero: type rises out of masks, camera creeps and tilts ---------- */
   if (s.kind === "hero") {
-    tl.fromTo(`${sel} .hero`, { z: 0, rotateX: 0 },
-      { z: 44, rotateX: -2, ease: "sine.inOut", duration: s.dur }, t0);
+    // A z-push on 146px type forces the compositor to re-rasterise the glyphs at
+    // every frame, which leaves hairline seams down the strokes. Scaling a
+    // group keeps the same drift with one clean raster.
+    tl.fromTo(`${sel} .hero`, { scale: 1, y: 0 },
+      { scale: 1.032, y: -8, ease: "sine.inOut", duration: s.dur }, t0);
     tl.fromTo(`${sel} .ghost`, { yPercent: 6, opacity: 0.5 },
       { yPercent: -4, opacity: 1, ease: "sine.inOut", duration: s.dur }, t0);
-    tl.to(`${sel} .in`,
+    if (i !== 0) tl.to(`${sel} .in`,
       { yPercent: 0, skewY: 0, duration: 1.05, ease: CRAFT.ease, stagger: 0.13 }, t0 + 0.12);
     tl.fromTo(`${sel} .kick`, { opacity: 0, y: 16 },
       { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, t0 + 0.02);
@@ -383,11 +390,11 @@ FILM.chapters.forEach((s, i) => {
           rotateY: side * 30, rotateZ: side * -3, opacity: 0 }, 0);
       // arrives from deep in the frame, swinging to face front
       tl.to(`${sel} .plate[data-k="${k}"]`,
-        { z: -170, rotateY: side * -6, rotateZ: 0, opacity: 1,
+        { z: -60, rotateY: side * -6, rotateZ: 0, opacity: 1,
           duration: per * 0.44, ease: "power3.out" }, at);
       // holds, then is dragged past the lens on the same arc it came from
       tl.to(`${sel} .plate[data-k="${k}"]`,
-        { z: 150, x: side * 40, rotateY: side * 10, opacity: 0,
+        { z: 230, x: side * 40, rotateY: side * 10, opacity: 0,
           duration: per * 0.24, ease: "power2.in" }, at + per * 0.76);
     }
   }

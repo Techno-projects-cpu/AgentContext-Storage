@@ -27,6 +27,20 @@ single centring `translate` left in the engine.
 Same reason the mask reveal sets its hidden state with `tl.set(..., 0)` rather
 than a CSS class.
 
+## Three more, found by looking at frames
+
+- **A mask must contain exactly one line.** "Websites built" wrapped to two lines
+  inside a mask box sized for the wrapped content, so the second line was sliced
+  through its middle and the frame read as a broken mask. Line breaks are explicit
+  in the copy now.
+- **A clip box cuts at its padding edge.** At `line-height: .9` the glyph box is
+  taller than the line box, so a mask with no padding takes the descenders off
+  p, y and g. `.m` carries `.10em`/`.26em` padding with matching negative margins,
+  and the display line-height is `1.02`.
+- **A z-push on 146px type leaves hairline seams** down the strokes, because the
+  compositor re-rasterises the glyphs every frame. The hero drifts on `scale`
+  instead of `z`: same movement, one clean raster. Large type never rides z.
+
 ## A safe area is a number, and the frame border has to obey it
 
 `qc.py` treats the outer 6% as unsafe: at 1080 wide that is 32px each side. A
