@@ -4,6 +4,9 @@ Four 20-second ads for **Max World**, Indera Nagar, Khammam — CC cameras,
 complete CCTV systems and laptop sales & service. One cut pattern, four graphic
 languages.
 
+> ⚠️ **Urdu has no voiceover yet.** Its clip stops before the phone number, so it
+> is held back rather than shipped half-spoken. EN / TE / HI are fully voiced.
+
 ## Watch them
 
 GitHub cannot stream an MP4 in the browser. Click a file, then press **Download**.
@@ -68,12 +71,19 @@ exposure. The music is 110 BPM, so every cut lands on a beat.
 
 ## Audio
 
-- Music *happy-beats-business-moves-vol-12* (ende-dot-app, 110 BPM), volume 0.35,
-  fade in 0–0.5 s, fade out 18.6–20.0 s.
+- **Narration** per language (`src/vo/vo-<lang>.mp3`), entering at 0.45 s. It
+  complements the captions rather than reading them aloud — it never repeats the
+  on-screen line word for word.
+- Music *happy-beats-business-moves-vol-12* (ende-dot-app, 110 BPM), fade in
+  0–0.5 s, fade out 18.6–20.0 s, **sidechain-ducked under the voice**.
 - SFX: `drop_001` at 4.91 / 5.34 / 6.00 / 6.56 (the chip drops), `bong_001` at
   8.74, `impactSoft_medium_001` at 17.47.
-- Seven tracks summed with **no auto-normalise**, then `loudnorm` to −16 LUFS.
-- Measured on every master: **−17.3 dB RMS, −1.15 dB peak, no silent gap.**
+- The bed is `loudnorm`'d on its own; the voice is summed on top and the result is
+  **limited, not normalised** — a final loudnorm would renormalise the sum and
+  undo the balance.
+- Measured: voice **4.6–7.9 dB above the music** in the 300–3000 Hz speech band
+  across the whole film; −18.9 / −18.3 / −18.4 LUFS; true peak −4.0 / −3.9 /
+  −3.4 dBFS. No silent gap.
 
 ## Encode
 
@@ -102,6 +112,13 @@ Space Grotesk — the TTFs travel in [`src/assets/fonts/`](src/assets/fonts).
 
 ```bash
 cd src && bash build.sh en te hi ur
+```
+
+To change only the sound of an approved picture, `src/remix.sh` swaps the audio
+and copies the video stream — no re-render, no re-encode:
+
+```bash
+cd src && bash remix.sh en ../03-maxworld-ad-en-vertical-1080p.mp4 /tmp/out.mp4
 ```
 
 [`src/index.html`](src/index.html) is the whole composition — one file, four

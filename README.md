@@ -39,8 +39,13 @@ Four ads for Max World (CC cameras, systems, laptops — Indera Nagar, Khammam),
 one cut pattern, four graphic languages. Telugu, Hindi and Urdu are shaped by a
 real browser (HarfBuzz), so the Nastaliq and the Telugu conjuncts are correct.
 
-**Vertical 1080×1920 is the one to post. Square and wide use a blurred fill, not
-a crop.**
+A voiceover in each language, over a 110 BPM bed. **Vertical 1080×1920 is the
+one to post. Square and wide use a blurred fill, not a crop.**
+
+> ⚠️ **Urdu is not finished.** `03-maxworld-ad-ur-*` currently has music and SFX
+> but **no voice** — the Urdu narration clip stops before the phone number, so it
+> was held back rather than shipped half-spoken. English, Telugu and Hindi all
+> have their voiceovers.
 
 | Language | Post this | Square | Wide |
 |---|---|---|---|
