@@ -1,0 +1,343 @@
+<!doctype html>
+<!--
+  BRAG TEMPLATE — vertical-first, data-driven, trap-proof.
+
+  You edit ONE object: `FILM` below. Everything else is the craft floor.
+
+  Guarantees baked in (each one is a bug that cost a real render):
+    * every <audio> gets an id -> the render can never come out silently mute
+    * .clip boxes never use inset:0 on positioned children -> no stretched elements
+    * no CDN, no filter:blur(), no Math.random / Date.now -> deterministic render
+    * scene 1 is fully opaque at t=0 -> frame 0 is a usable thumbnail
+    * type floor, hold time, entrance duration, cross-fade and settle are computed,
+      not guessed
+-->
+
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./vendor/gsap.min.js"></script>
+    <style>
+      /* ---- self-hosted faces: no CDN, ever (a blocked CDN aborts the render) ---- */
+      @font-face {
+        font-family: "Display";
+        src: url("./assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Display";
+        src: url("./assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2");
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Text";
+        src: url("./assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+
+      :root {
+        --ground: #0a0a0c;
+        --ink: #ffffff;
+        --dim: #8a8a94;
+        --accent: #d7ff3e;
+        --sans: "Display", sans-serif;
+        --text: "Text", sans-serif;
+        /* the type floor, in px at this composition's short side */
+        --type-floor: 30px;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ground);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root { width: 100%; height: 100%; position: relative; }
+
+      /*
+        Scene boxes. NOTE: no inset:0 — a full-bleed box would stretch any
+        corner-anchored child. Each scene is a plain block that fills the stage.
+      */
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 110px 90px;
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+      .scene[data-first] { opacity: 1; }  /* frame 0 = thumbnail, never fade in */
+
+      /* the parallax stack — cheapest way to look expensive */
+      .stage { position: relative; perspective: 1400px; transform-style: preserve-3d; }
+      .plane { transform-style: preserve-3d; }
+
+      .kicker {
+        font-family: var(--text);
+        font-size: 32px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 30px;
+      }
+      .head {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 132px;
+        line-height: 0.94;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+      }
+      .sub {
+        font-family: var(--text);
+        font-size: 38px;
+        line-height: 1.4;
+        color: var(--dim);
+        margin-top: 40px;
+        max-width: 26ch;
+      }
+      .mark {
+        position: absolute;
+        bottom: 90px;
+        left: 90px;
+        font-family: var(--text);
+        font-size: var(--type-floor);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .rule {
+        width: 132px;
+        height: 6px;
+        background: var(--accent);
+        margin-bottom: 44px;
+        transform-origin: left center;
+      }
+      .big {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 240px;
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-width="1080"
+      data-height="1920"
+    ></div>
+
+    <!--
+      AUDIO — these two tags must stay LITERAL in this file.
+
+      Two independent ways this film goes silently mute, neither with an error:
+        1. the tag has no id (the compiler scans `audio[id]`)
+        2. the tag is created from JavaScript (the runtime parses the HTML
+           source, not the live DOM, so a scripted tag is never mixed)
+
+      No data-duration on purpose: the clip then runs to the end of the film,
+      so you can edit the scene list without touching this block.
+      To drop a track, delete its tag — and re-run qc.py, which reads the
+      encoded MP4 and will call a silent render silent.
+    -->
+    <audio id="vo" src="assets/vo.wav" preload="auto"
+           data-start="0" data-volume="1"></audio>
+
+    <!-- music sits under the voice: 0.18 ≈ -15 dB, softened at both edges -->
+    <audio id="music" src="assets/music.wav" preload="auto"
+           data-start="0" data-volume="0.18"
+           data-fade-in="0.6" data-fade-out="1.0"></audio>
+
+    <script>
+      /* =====================================================================
+         EDIT ONLY THIS OBJECT.
+         Scenes are laid out back-to-back; the film's duration is their sum.
+         `voice` is the path to the VO wav; leave it "" to render silently
+         (and qc.sh will tell you it is silent, loudly).
+         ===================================================================== */
+      const FILM = {
+        // 15–25 s is the /brag gate
+        brand: "NEZAAD",
+        // audio is authored as static <audio> tags in the markup below this
+        // script's container — not here, and not from JavaScript. See the note.
+        scenes: [
+          {
+            kind: "hook",
+            kicker: "Websites, fast",
+            head: "Three days,\nnot three months.",
+            sub: "Hand-built. No template.",
+            dur: 5.5,
+          },
+          {
+            kind: "number",
+            kicker: "Since 2024",
+            big: "41",
+            head: "sites shipped",
+            dur: 4.0,
+          },
+          {
+            kind: "statement",
+            head: "You get the\nfiles. Not a\nlocked box.",
+            sub: "Host it anywhere.",
+            dur: 5.0,
+          },
+          {
+            kind: "close",
+            mark: "zero-vast.vercel.app",
+            head: "Say hello.",
+            dur: 3.0,
+          },
+        ],
+      };
+
+      /* =====================================================================
+         CRAFT FLOOR — derived, never typed by hand.
+         ===================================================================== */
+      const CRAFT = {
+        enter: 0.55,        // 0.4–0.7 s entrance
+        enterEase: "expo.out",
+        scatter: 0.07,      // stagger between stacked elements
+        crossfade: 0.30,    // scene-to-scene
+        settle: 0.45,       // everything must be still this long before the cut
+        camDur: 5.0,        // one slow camera move per scene
+      };
+
+      // Hold time for a line of copy: 0.5 s + 0.3 s per word.
+      const holdFor = (text) => 0.5 + 0.3 * String(text || "").trim().split(/\s+/).filter(Boolean).length;
+
+      const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+      const nl = (s) => esc(s).replace(/\n/g, "<br>");
+
+      /* ---- scene markup ------------------------------------------------- */
+      function sceneHTML(s, i, total) {
+        const first = i === 0 ? " data-first" : "";
+        const mark = s.mark ? `<div class="mark plane">${esc(s.mark)}</div>` : "";
+        const rule = `<div class="rule plane"></div>`;
+        const kicker = s.kicker ? `<div class="kicker plane">${esc(s.kicker)}</div>` : "";
+        const head = s.head ? `<div class="head plane">${nl(s.head)}</div>` : "";
+        const sub = s.sub ? `<div class="sub plane">${esc(s.sub)}</div>` : "";
+        const big = s.big ? `<div class="big plane">${esc(s.big)}</div>` : "";
+
+        let inner;
+        if (s.kind === "number") inner = `${kicker}${big}${head}`;
+        else if (s.kind === "close") inner = `${rule}${head}${mark}`;
+        else if (s.kind === "hook") inner = `${kicker}${head}${sub}`;
+        else inner = `${rule}${head}${sub}`;
+
+        // Scenes overlap by exactly one cross-fade: the outgoing clip stays
+        // alive 0.3 s into the incoming one, so the two dissolve instead of
+        // dipping to black. (A sequential fade-out/fade-in reads as a flash.)
+        const isLast = i === total - 1;
+        const clipDur = isLast ? s.dur : s.dur + CRAFT.crossfade;
+        return `<section class="scene stage" id="scene-${i}"
+                   data-start="${sceneStart(i)}" data-duration="${clipDur}"${first}>
+                  <div class="inner">${inner}</div>
+                </section>`;
+      }
+
+      const starts = [];
+      FILM.scenes.reduce((t, s) => (starts.push(t), t + s.dur), 0);
+      const TOTAL = FILM.scenes.reduce((t, s) => t + s.dur, 0);
+      function sceneStart(i) { return starts[i]; }
+
+      /* ---- readability gate --------------------------------------------
+         A scene that is too short to read is a craft failure, not a taste
+         choice. Compute what each scene actually needs — entrance + hold for
+         the copy + settle — and report it as a console error, which
+         `hyperframes check` surfaces as a hard finding. Better than shipping
+         copy nobody can finish. */
+      FILM.scenes.forEach((s, i) => {
+        const copy = s.head || s.big || "";
+        const need = CRAFT.enter + holdFor(copy) + CRAFT.settle;
+        if (s.dur < need) {
+          console.error(
+            `[brag] scene ${i} is ${s.dur.toFixed(2)}s but needs ${need.toFixed(2)}s ` +
+            `to read "${String(copy).replace(/\n/g, " / ")}" — lengthen it or cut words.`);
+        }
+      });
+
+      /* ---- build -------------------------------------------------------- */
+      const root = document.getElementById("root");
+      root.dataset.duration = String(TOTAL);
+      root.innerHTML = FILM.scenes.map((s, i) => sceneHTML(s, i, FILM.scenes.length)).join("");
+
+      const tl = gsap.timeline({ paused: true });
+
+      FILM.scenes.forEach((s, i) => {
+        const sel = `#scene-${i}`;
+        const t0 = starts[i];
+        const isFirst = i === 0;
+        const planes = `${sel} .plane`;
+
+        // ---- camera: exactly ONE idea per scene ----
+        const cam = [
+          { from: { scale: 1.0, y: 0 }, to: { scale: 1.07, y: -18 } },          // push-in
+          { from: { scale: 1.10 }, to: { scale: 1.0 } },                        // pull-back
+          { from: { rotateY: -9, x: 70 }, to: { rotateY: 0, x: 0 } },           // orbit
+          { from: { scale: 1.0, y: 28 }, to: { scale: 1.05, y: 0 } },           // drift-up
+        ][i % 4];
+
+        // Scene 1 is on screen at t=0 with no fade; the rest cross-fade in.
+        if (!isFirst) {
+          tl.fromTo(sel,
+            { opacity: 0 },
+            { opacity: 1, duration: CRAFT.crossfade, ease: "power2.out" },
+            t0);
+        } else {
+          tl.set(sel, { opacity: 1 }, 0);
+        }
+        tl.fromTo(sel,
+          cam.from,
+          { ...cam.to, duration: Math.min(CRAFT.camDur, s.dur), ease: "power1.out" },
+          t0);
+
+        // ---- entrances: 0.4–0.7 s, staggered, power4/expo out ----
+        // The copy slides, it does NOT fade. Fading it here fights the scene
+        // cross-fade and both go dark at once, so the frame dips to black
+        // between scenes. One opacity narrative per moment: the scene dissolves,
+        // the copy arrives.
+        const enterAt = isFirst ? 0 : t0 + CRAFT.crossfade * 0.35;
+        tl.fromTo(planes,
+          { y: 44 },
+          {
+            y: 0,
+            duration: CRAFT.enter,
+            ease: CRAFT.enterEase,
+            stagger: CRAFT.scatter,
+          },
+          enterAt);
+        if (isFirst) {
+          tl.set(planes, { y: 0 }, 0);
+        }
+
+        // ---- leave the last frame settled, then dissolve into the next ----
+        // Outgoing opacity runs across the same 0.3 s the incoming one fades in.
+        const outAt = t0 + s.dur;
+        tl.to(sel, { opacity: 0, duration: CRAFT.crossfade, ease: "power2.inOut" }, outAt);
+      });
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,463 @@
+<!doctype html>
+<!--
+  EXPLAINER 3D — cinematic 3D motion, editorial typography.
+
+  Rewrite note (v2). The first version was three slides with one camera trick
+  each: floating cards, a corridor of rings, centred display type. It passed
+  every gate and still looked like a template. What was missing was not more 3D,
+  it was craft. This version is built on five rules:
+
+    1. ONE LOOK. Near-black ground, warm paper-white type, one accent, one hot
+       colour. The palette is the subject's (a developer who writes their own
+       CSS), not a mood board. Backgrounds stay quiet on purpose: a single soft
+       radial and a hairline frame. No grids, orbs or textures to hide behind.
+    2. TYPE IS THE SUBJECT. Headlines run 150px with optical tracking and a mask
+       reveal — the words rise out of a clipped baseline rather than fading in.
+    3. THE CAMERA IS ONE OBJECT. Every chapter owns exactly one camera move.
+       No scene invents a second, unofficial camera.
+    4. ONE CONTINUOUS THREAD. A loop travels from the stack chapter into the
+       performance chapter, so the film is a trajectory rather than four slides.
+    5. NOTHING SITS STILL. Every beat carries a slow push, so no frame is a held
+       still.
+
+  HARD RULE, learned the expensive way: CSS may define appearance and final
+  state. It must NEVER put a transform on an element GSAP also animates. GSAP
+  parses the element's existing CSS transform as its baseline, so a
+  `translateY(112%)` in CSS silently becomes an *offset added to every tweedle
+  value* — the headline above was parked outside its own mask for a whole render
+  cycle because of exactly this. Same reason there is no `translateY(-50%)`
+  centring anywhere: it compounds with the `y` the timeline writes.
+
+  Everything animated is transform or opacity. No WebGL, no filters, no layout
+  properties (`letter-spacing`, `width` and `blur()` either stutter under capture
+  or fail the gate). No Math.random / Date.now — two renders must match.
+
+  Chapters: hero · spiral · tunnel · drive · hero.
+-->
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="./vendor/gsap.min.js"></script>
+<style>
+  @font-face { font-family:"Display"; font-weight:700; font-display:block;
+    src:url("./assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); }
+  @font-face { font-family:"Text"; font-weight:400; font-display:block;
+    src:url("./assets/fonts/inter-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family:"Mono"; font-weight:500; font-display:block;
+    src:url("./assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+
+  :root{
+    --field:#f6f3ec;          /* warm paper ground — off-white, never pure #fff */
+    --ink:#12120f;            /* near-black, not #000: ink on paper */
+    --dim:#726d63;            /* 4.9:1 on the field */
+    --accent:#3f4fd8;         /* 6.4:1 — a printed blue, not a screen glow */
+    --hot:#1d5c2f;            /* 7.6:1 deep forest; hot accents on paper must be dark */
+    --rule:rgba(18,18,15,.14);
+    --sans:"Display",sans-serif; --text:"Text",sans-serif; --mono:"Mono",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:var(--field);
+    color:var(--ink);-webkit-font-smoothing:antialiased}
+  #root{position:relative;width:100%;height:100%;overflow:hidden}
+
+  /* ---- ground: one quiet gradient. It never moves, so it never crops. ---- */
+  .ground{position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(90% 52% at 50% 4%, rgba(255,255,255,.85), transparent 58%),
+      linear-gradient(178deg, #faf8f3 0%, #f5f2ea 46%, #ece8de 100%)}
+  .frame{position:absolute;inset:62px;border:1px solid rgba(18,18,15,.13);
+    pointer-events:none;z-index:90}
+
+  .scene{position:absolute;inset:0;opacity:0;
+    perspective:1400px;perspective-origin:50% 47%}
+  .scene[data-first]{opacity:1}
+  .world{position:absolute;inset:0;transform-style:preserve-3d}
+
+  /* ---- HUD: mono, quiet, two rows ---- */
+  .hud{position:absolute;left:96px;right:96px;display:flex;justify-content:space-between;
+    align-items:baseline;font-family:var(--mono);font-size:34px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--dim);z-index:80}
+  .hud.top{top:100px}
+  .hud.bot{bottom:100px}
+  .hud .brand{color:var(--ink)}
+  .hud .dot{display:inline-block;width:12px;height:12px;border-radius:50%;
+    background:var(--accent);margin-right:14px;vertical-align:middle}
+
+  /* ---- the masked line: the engine's signature type move ----
+     No transform in CSS. The hidden state is set by the timeline on frame 0,
+     because a CSS transform here would be read by GSAP as a baseline offset. */
+    /* A clip box cuts at its padding edge, so the mask carries its own room for
+     ascenders and descenders: at line-height .9 the glyph box is taller than the
+     line box, and a mask with no padding slices the toes off p, y and g.
+     Negative margins give the space back to the layout. */
+  .m{display:block;overflow:hidden;padding:.10em 0 .26em;margin-top:-.10em;margin-bottom:-.26em}
+  .m > .in{display:block}
+
+  .display{font-family:var(--sans);font-weight:700;line-height:1.04;letter-spacing:-.038em}
+
+  /* flex centring, NOT translateY(-50%): GSAP writes y on these elements */
+  .hero{position:absolute;inset:0;display:flex;flex-direction:column;
+    justify-content:center;padding:0 128px;transform-style:preserve-3d}
+  .hero .kick{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:36px}
+  .hero h1{font-size:116px}
+  .hero h1 em{font-style:normal;color:var(--hot)}
+  .hero .sub{font-family:var(--text);font-size:36px;line-height:1.55;color:var(--dim);
+    margin-top:52px;max-width:700px}
+  .hero .rule{height:1px;background:var(--rule);margin-top:64px;
+    transform-origin:left center;width:60%}
+
+  /* a huge outlined chapter numeral, sitting behind the type */
+  .ghost{position:absolute;right:52px;bottom:170px;font-family:var(--sans);font-weight:700;
+    font-size:330px;line-height:.8;letter-spacing:-.06em;
+    -webkit-text-stroke:1.5px rgba(18,18,15,.10);color:transparent;
+    z-index:0;pointer-events:none}
+
+  /* ---- spiral: a strand of plates on one helix ---- */
+  .plate{position:absolute;left:50%;top:50%;width:560px;padding:36px 40px;
+    background:#fffdf8;
+    border:1px solid rgba(18,18,15,.10);
+    border-left:3px solid var(--accent);
+    box-shadow:0 30px 60px -30px rgba(18,18,15,.28);
+    transform-style:preserve-3d}
+  .plate .tag{font-family:var(--mono);font-size:28px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .plate .line{font-family:var(--sans);font-weight:700;font-size:54px;line-height:1;
+    letter-spacing:-.035em}
+  .plate .note{font-family:var(--text);font-size:30px;line-height:1.5;color:var(--dim);
+    margin-top:16px}
+  .plate .idx{position:absolute;right:24px;bottom:10px;font-family:var(--mono);
+    font-size:80px;line-height:1;color:rgba(18,18,15,.06)}
+
+  /* ---- thread: one loop that runs through the middle of the film ---- */
+  .thread{position:absolute;left:50%;top:50%;width:280px;height:280px;
+    border-radius:50%;
+    border:1.5px solid rgba(63,79,216,.35);transform-style:preserve-3d}
+
+  /* ---- tunnel: type holds still while the throat races past ---- */
+  .throat{position:absolute;left:50%;top:50%;width:900px;height:900px;
+    border:1px solid rgba(18,18,15,.13)}
+  .tunnel-hero{position:absolute;inset:0;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;padding:0 96px;
+    transform-style:preserve-3d;z-index:5}
+  .tunnel-hero .kick{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:30px}
+  .tunnel-hero h1{font-family:var(--sans);font-weight:700;font-size:104px;line-height:1.06;
+    letter-spacing:-.035em}
+  .picks{display:flex;justify-content:center;gap:16px;margin-top:54px}
+  .pick{font-family:var(--mono);font-size:32px;letter-spacing:.12em;padding:18px 26px;
+    color:var(--hot);border:1px solid rgba(29,92,47,.45);
+    background:rgba(29,92,47,.05);transform-style:preserve-3d}
+
+  /* ---- drive: type racing behind a window, like a title sequence ---- */
+  /* NOTE: this window used to hold 3D rows. `overflow:hidden` does not clip a
+     3D-transformed descendant in Chrome, so the rows spilled down the frame as a
+     soft grey smear. The chapter is flat 2D now — x parallax and a slight scale —
+     which clips correctly and reads better on paper than receding perspective
+     did. */
+  .drive-win{position:absolute;left:96px;right:96px;top:560px;height:520px;
+    overflow:hidden;z-index:2;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+            mask-image:linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%)}
+  /* The window sits inside a `perspective` context, so `overflow:hidden` does not
+     actually clip a transformed descendant in Chrome. Layout owns the fit here:
+     the stage is exactly the height of its three rows, centred in a window with
+     100px of headroom, and the rows never need clipping in the first place. */
+  .drive-stage{position:absolute;left:0;right:0;inset-block:0;
+    display:flex;flex-direction:column;justify-content:center}
+  /* three rows, but only the middle one is the subject: the outer two are
+     smaller, dimmer and outlined, so the window reads as one line in motion
+     with echo behind it instead of three rows competing */
+  .drive-row{display:flex;white-space:nowrap;align-items:center}
+  .drive-row span{font-family:var(--sans);font-weight:700;line-height:1.16;
+    letter-spacing:-.05em;padding-right:40px}
+  .drive-row[data-r="1"] span{font-size:120px;color:var(--ink)}
+  .drive-row[data-r="1"] span.hot{color:var(--hot)}
+  .drive-row[data-r="0"] span,.drive-row[data-r="2"] span{font-size:74px;
+    color:rgba(18,18,15,.16)}
+  .drive-row[data-r="0"],.drive-row[data-r="2"]{line-height:1.1}
+  .drive-cap{position:absolute;left:96px;right:96px;bottom:300px;transform-style:preserve-3d}
+  .drive-cap .k{font-family:var(--mono);font-size:30px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+  .drive-cap .t{font-family:var(--text);font-size:36px;color:var(--dim);line-height:1.5;
+    max-width:700px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+  <div class="ground"></div>
+  <div class="frame"></div>
+</div>
+
+<!-- an id is required: the runtime drops an <audio> without one, silently -->
+<audio id="vo" src="assets/vo.wav" preload="auto" data-start="0" data-volume="1"></audio>
+<audio id="bed" src="assets/bed.wav" preload="auto" data-start="0" data-volume="0.10"
+       data-fade-in="1.2" data-fade-out="1.6"></audio>
+
+<script>
+/* ============================ EDIT THIS ============================
+   `chapters` is the edit. `kind` picks the motion vocabulary:
+
+     hero    display type, kicked, ruled, with an outlined chapter numeral
+     spiral  a strand of plates on a helix; one plate per `layers` entry
+     tunnel  type holding still while a throat of rules races past it
+     drive   title-sequence rows racing behind a window
+   ================================================================ */
+const FILM = {
+  brand: "NEZAAD",
+  url: "zero-vast.vercel.app",
+  total: 24.9,
+  chapters: [
+    {
+      start: 0.0, dur: 4.45, kind: "hero",
+      kick: "Websites, built",
+      head: "Websites<br>built<br><em>to perform.</em>",
+      sub: "Hand-written. No framework tax.",
+      rule: true,
+    },
+    {
+      start: 4.45, dur: 6.0, kind: "spiral",
+      kick: "01 / The stack",
+      layers: [
+        { tag: "Semantic HTML", line: "Structure",  note: "meaning first, divs last" },
+        { tag: "Modern CSS",    line: "Style",      note: "grid and custom properties" },
+        { tag: "Vanilla JS",    line: "Behaviour",  note: "no framework required" },
+        { tag: "No build step", line: "Ship",       note: "deploy the source" },
+      ],
+    },
+    {
+      start: 10.45, dur: 5.6, kind: "tunnel",
+      kick: "02 / Performance",
+      head: "Budgets set<br>before<br>the code.",
+      picks: ["LCP", "CLS", "INP"],
+    },
+    {
+      start: 16.05, dur: 5.55, kind: "drive",
+      words: ["Brief", "Scope", "Build", "Handover"],
+      kick: "03 / How I work",
+      note: "Four steps. One point of contact.",
+    },
+    {
+      start: 21.6, dur: 3.3, kind: "hero",
+      kick: "Available for new work",
+      head: "Let's build<br><em>the next one.</em>",
+      sub: "zero-vast.vercel.app",
+      rule: true,
+    },
+  ],
+};
+
+const CRAFT = { crossfade: 0.3, ease: "expo.out" };
+const esc = (s) => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const pad = (n) => String(n).padStart(2, "0");
+/* headlines carry <br> and <em> on purpose — split on <br>, mask each line */
+const lines = (html) => html.split(/<br\s*\/?>/i);
+
+/* ============================== markup ============================== */
+function hud(i, s) {
+  return `<div class="hud top"><span class="brand"><span class="dot"></span>${esc(FILM.brand)}</span>
+            <span>${pad(i + 1)} / ${pad(FILM.chapters.length)}</span></div>
+          <div class="hud bot"><span>${esc(FILM.url || "")}</span><span>1080 × 1920</span></div>`;
+}
+
+function masked(html) {
+  return lines(html).map(l => `<span class="m"><span class="in">${l}</span></span>`).join("");
+}
+
+function heroBody(s, i) {
+  return `<div class="ghost" aria-hidden="true">${pad(i + 1)}</div>
+    <div class="hero">
+      <div class="kick">${esc(s.kick)}</div>
+      <h1 class="display">${masked(s.head)}</h1>
+      ${s.sub ? `<div class="sub">${esc(s.sub)}</div>` : ""}
+      ${s.rule ? `<div class="rule"></div>` : ""}
+    </div>`;
+}
+
+function spiralBody(s) {
+  const n = s.layers.length;
+  const plates = s.layers.map((L, k) => {
+    const side = k % 2 ? 1 : -1;
+    // helix: alternate sides, climb in y, recede in z. Offsetting in x and y as
+    // well as z matters — plates aligned dead-centre superimpose their text and
+    // trip content_overlap.
+    // NOTE: no inline transform. Gestalt GSAP rule — a CSS transform on an
+    // element the timeline animates is read as a baseline and then discarded,
+    // which silently killed the `translate(-50%,-50%)` centring and hung every
+    // plate off the right edge. Placement now happens in the timeline with
+    // xPercent/yPercent, and the geometry lives in data attributes.
+    return `<div class="plate" data-k="${k}" data-side="${side}" data-dy="${(k - (n-1)/2) * 88}">
+        <div class="tag">${esc(L.tag)}</div>
+        <div class="line">${esc(L.line)}</div>
+        <div class="note">${esc(L.note)}</div>
+        <div class="idx">${pad(k + 1)}</div>
+      </div>`;
+  }).join("");
+  return `<div class="thread"></div><div class="world" data-world>${plates}</div>`;
+}
+
+function tunnelBody(s) {
+  // same rule: depth and centring are set by the timeline, not by inline CSS
+  const throat = Array.from({ length: 8 }, (_, k) =>
+    `<div class="throat" data-k="${k}" data-z="${-230 * k}"></div>`
+  ).join("");
+  const picks = (s.picks || []).map((p) => `<div class="pick">${esc(p)}</div>`).join("");
+  return `<div class="world" data-world>${throat}</div>
+    <div class="tunnel-hero">
+      <div class="kick">${esc(s.kick)}</div>
+      <h1>${masked(s.head)}</h1>
+      <div class="picks">${picks}</div>
+    </div>`;
+}
+
+function driveBody(s) {
+  const rows = [0, 1, 2].map((r) => {
+    // each row starts at a different word: identical rows read as a printing
+    // error rather than as a title sequence
+    const all = s.words.concat(s.words).concat(s.words);
+    const words = all.slice(r).concat(all.slice(0, r));
+    const spans = words.map((w, k) =>
+      `<span class="${k % 3 === 1 ? "o" : (k % 5 === 2 ? "hot" : "")}">${esc(w)}</span>`).join("");
+    return `<div class="drive-row" data-r="${r}">${spans}</div>`;
+  }).join("");
+  return `<div class="drive-win"><div class="drive-stage" data-drive>${rows}</div></div>
+    <div class="drive-cap">
+      <div class="k">${esc(s.kick)}</div>
+      <div class="t">${esc(s.note || "")}</div>
+    </div>`;
+}
+
+/* ============================ assembly ============================ */
+const root = document.getElementById("root");
+root.dataset.duration = String(FILM.total);
+root.insertAdjacentHTML("beforeend", FILM.chapters.map((s, i) => {
+  const last = i === FILM.chapters.length - 1;
+  const clipDur = last ? s.dur : s.dur + CRAFT.crossfade;
+  const body = { hero: heroBody, spiral: spiralBody, tunnel: tunnelBody, drive: driveBody }[s.kind](s, i);
+  return `<section class="scene" id="ch-${i}" data-start="${s.start}"
+             data-duration="${clipDur}" ${i === 0 ? "data-first" : ""}>
+            ${hud(i, s)}${body}
+          </section>`;
+}).join(""));
+
+/* ============================ timeline ============================ */
+const tl = gsap.timeline({ paused: true });
+
+/* every masked line starts hidden, on frame 0, from GSAP rather than CSS */
+FILM.chapters.forEach((s, i) => {
+  const first = i === 0;
+  // frame 0 is the thumbnail, so the opening lines start part-way out of the
+  // mask instead of fully hidden behind it
+  tl.set(`#ch-${i} .in`, { yPercent: first ? 46 : 112, skewY: first ? 2 : 3 }, 0);
+});
+
+FILM.chapters.forEach((s, i) => {
+  const sel = `#ch-${i}`;
+  const t0 = s.start;
+
+  // opacity alone leaves a stale compositor layer behind on this software GL
+  // stack: a faded-out scene keeps painting a faint ghost of itself for the rest
+  // of the film. Pairing the fade with visibility takes it out of painting
+  // altogether, which is the only thing that actually removes the ghost.
+  tl.set(sel, { visibility: "visible" }, 0);
+  if (i === 0) tl.set(sel, { opacity: 1 }, 0);
+  else tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: CRAFT.crossfade, ease: "power2.out" }, t0);
+
+  /* ---------- hero: type rises out of masks, camera creeps and tilts ---------- */
+  if (s.kind === "hero") {
+    // A z-push on 146px type forces the compositor to re-rasterise the glyphs at
+    // every frame, which leaves hairline seams down the strokes. Scaling a
+    // group keeps the same drift with one clean raster.
+    tl.fromTo(`${sel} .hero`, { scale: 1, y: 0 },
+      { scale: 1.032, y: -8, ease: "sine.inOut", duration: s.dur }, t0);
+    tl.fromTo(`${sel} .ghost`, { yPercent: 6, opacity: 0.5 },
+      { yPercent: -4, opacity: 1, ease: "sine.inOut", duration: s.dur }, t0);
+    if (i !== 0) tl.to(`${sel} .in`,
+      { yPercent: 0, skewY: 0, duration: 1.05, ease: CRAFT.ease, stagger: 0.13 }, t0 + 0.12);
+    tl.fromTo(`${sel} .kick`, { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, t0 + 0.02);
+    if (s.sub) tl.fromTo(`${sel} .sub`, { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, t0 + 0.78);
+    tl.fromTo(`${sel} .rule`, { scaleX: 0 },
+      { scaleX: 1, duration: 1.1, ease: "expo.out" }, t0 + 0.95);
+    // the camera dollies past the type on the way out
+    tl.to(`${sel} .hero`, { y: -60, opacity: 0, ease: "power2.in", duration: 0.5 }, t0 + s.dur - 0.5);
+    tl.to(`${sel} .ghost`, { z: 300, opacity: 0, ease: "power2.in", duration: 0.5 }, t0 + s.dur - 0.5);
+  }
+
+  /* ---------- spiral: each plate swings around the helix and out ---------- */
+  if (s.kind === "spiral") {
+    tl.set(`${sel} .thread`, { xPercent: -50, yPercent: -50 }, 0);
+    tl.fromTo(`${sel} .thread`,
+      { rotateX: 62, rotateZ: -40, scale: 0.35, opacity: 0 },
+      { rotateX: 62, rotateZ: 40, scale: 1, opacity: 1, duration: 1.2, ease: "expo.out" }, t0);
+    tl.to(`${sel} .thread`, { rotateZ: 150, scale: 1.9, opacity: 0, duration: s.dur - 1.0, ease: "power1.in" }, t0 + 1.1);
+
+    const n = s.layers.length;
+    const per = (s.dur - 0.5) / n;
+    for (let k = 0; k < n; k++) {
+      const at = t0 + 0.2 + per * k;
+      const side = k % 2 ? 1 : -1;
+      const dy = (k - (n - 1) / 2) * 88;
+      // base placement: centred on the frame, pushed deep, offset on the helix
+      tl.set(`${sel} .plate[data-k="${k}"]`,
+        { xPercent: -50, yPercent: -50, x: side * 90, y: dy, z: -1500 - k * 600,
+          rotateY: side * 30, rotateZ: side * -3, opacity: 0 }, 0);
+      // arrives from deep in the frame, swinging to face front
+      tl.to(`${sel} .plate[data-k="${k}"]`,
+        { z: -60, rotateY: side * -6, rotateZ: 0, opacity: 1,
+          duration: per * 0.44, ease: "power3.out" }, at);
+      // holds, then is dragged past the lens on the same arc it came from
+      tl.to(`${sel} .plate[data-k="${k}"]`,
+        { z: 230, x: side * 40, rotateY: side * 10, opacity: 0,
+          duration: per * 0.24, ease: "power2.in" }, at + per * 0.76);
+    }
+  }
+
+  /* ---------- tunnel: the throat races past, type holds its plane ---------- */
+  if (s.kind === "tunnel") {
+    tl.set(`${sel} .throat`, { xPercent: -50, yPercent: -50 }, 0);
+    [...Array(8).keys()].forEach(k =>
+      tl.set(`${sel} .throat[data-k="${k}"]`, { z: -230 * k }, 0));
+    tl.fromTo(`${sel} [data-world]`, { z: -260 },
+      { z: 120, duration: s.dur - 0.9, ease: "power1.in" }, t0 + 0.05);
+    tl.fromTo(`${sel} .throat`, { opacity: 0, rotate: 0 },
+      { opacity: 1, rotate: 12, duration: 0.7, ease: "power2.out", stagger: 0.05 }, t0 + 0.1);
+    tl.to(`${sel} .throat`, { opacity: 0, duration: 0.7, stagger: 0.05, ease: "power2.in" }, t0 + s.dur - 1.3);
+    tl.to(`${sel} .in`,
+      { yPercent: 0, skewY: 0, duration: 0.95, ease: CRAFT.ease, stagger: 0.11 }, t0 + 0.35);
+    tl.fromTo(`${sel} .kick`, { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, t0 + 0.2);
+    tl.fromTo(`${sel} .pick`,
+      { y: 26, opacity: 0, rotateX: 34, transformPerspective: 700 },
+      { y: 0, opacity: 1, rotateX: 0, duration: 0.6, ease: "back.out(1.6)", stagger: 0.26 }, t0 + 1.3);
+    tl.to(`${sel} .tunnel-hero`, { y: -46, opacity: 0, duration: 0.55, ease: "power2.in" }, t0 + s.dur - 0.55);
+  }
+
+  /* ---------- drive: rows of type race toward the horizon ---------- */
+  if (s.kind === "drive") {
+    tl.fromTo(`${sel} [data-drive]`, { scale: 1.1 },
+      { scale: 1, duration: s.dur, ease: "power1.out" }, t0);
+    // rows slide in opposite directions at different speeds: parallax in a window
+    [1, -1, 1].forEach((dir, r) => {
+      tl.fromTo(`${sel} .drive-row[data-r="${r}"]`,
+        { x: dir * 420 },
+        { x: dir * -300, duration: s.dur, ease: "none" }, t0);
+    });
+    tl.fromTo(`${sel} .drive-cap .k`, { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, t0 + 0.5);
+    tl.fromTo(`${sel} .drive-cap .t`, { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, t0 + 0.72);
+  }
+
+  tl.to(sel, { opacity: 0, duration: CRAFT.crossfade, ease: "power2.inOut" }, t0 + s.dur);
+  tl.set(sel, { visibility: "hidden" }, t0 + s.dur + CRAFT.crossfade);
+});
+
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
