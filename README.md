@@ -20,15 +20,17 @@ carry different words.
 | 📱 **Start with this** | [`01-zero-vast-brag-vertical-720p.mp4`](works/films/zero-vast/01-zero-vast-brag-vertical-720p.mp4) | 1.4 MB |
 | 🎞 Master | [`01-zero-vast-brag-vertical-1080p.mp4`](works/films/zero-vast/01-zero-vast-brag-vertical-1080p.mp4) | 12 MB |
 
-### 02 — Zero-vast 3D explainer · 24.0 s, vertical
+### 02 — Zero-vast 3D explainer · 24.9 s, vertical
 
-The same brand, explained in depth: type arrives out of the dark, the camera
-falls through a stack of plates, then a corridor of rings. Four chapters.
+The same brand explained in motion. Five chapters: masked headline, a helix of
+plates for the stack, a throat of rules racing past the performance numbers, a
+title-sequence window for the four steps, and a close. Warm paper-white type on
+near-black, one accent, one hot colour — no stock footage, no shaders.
 
 | Watch | File | Size |
 |---|---|---|
-| 📱 **Start with this** | [`02-zero-vast-3d-explainer-vertical-720p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-720p.mp4) | 0.9 MB |
-| 🎞 Master | [`02-zero-vast-3d-explainer-vertical-1080p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-1080p.mp4) | 1.9 MB |
+| 📱 **Start with this** | [`02-zero-vast-3d-explainer-vertical-720p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-720p.mp4) | 1.4 MB |
+| 🎞 Master | [`02-zero-vast-3d-explainer-vertical-1080p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-1080p.mp4) | 3.2 MB |
 
 > **Honest caveat:** nobody has sat and watched these end to end. The gate that
 > ships them is numeric — it proves the frames are not cropped, not silent, not

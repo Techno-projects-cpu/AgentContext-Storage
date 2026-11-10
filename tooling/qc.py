@@ -171,8 +171,12 @@ def bbox_of(mask: np.ndarray) -> tuple[int, int, int, int] | None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
-    ap.add_argument("--type-floor", type=float, default=30.0,
-                    help="minimum cap height in px (default 30 at 1080 short side)")
+    ap.add_argument("--type-floor", type=float, default=None,
+                    help="minimum ink-band height in px. Default: 28 at the 1080 "
+                         "reference short side, scaled by the render's actual short "
+                         "side, so a correct 720p encode is not failed for being small")
+    ap.add_argument("--type-floor-abs", type=float, default=None,
+                    help="override with a fixed pixel floor instead of the scaled one")
     ap.add_argument("--safe", type=float, default=0.94,
                     help="fraction of the frame that counts as the safe area")
     ap.add_argument("--json")
@@ -256,6 +260,15 @@ def main() -> int:
             bb = bbox_of(mask)
             samples.append((t, img, mask, bb))
 
+        # The floor is a *proportion* of the frame, not a pixel count: measuring
+        # 30px on a 720x1280 encode of a 1080x1920 master fails a correct
+        # downscale. 28px of a 1080 short side is the design intent; scale it.
+        if args.type_floor_abs is not None:
+            floor = args.type_floor_abs
+        elif args.type_floor is not None:
+            floor = args.type_floor
+        else:
+            floor = 28.0 * (min(W, H) / 1080.0)
         safe_x = int(W * (1 - args.safe) / 2)
         safe_y = int(H * (1 - args.safe) / 2)
 
@@ -289,8 +302,8 @@ def main() -> int:
                         bands.append((start, rows[g])); start = rows[g + 1]
                     bands.append((start, rows[-1]))
                     tallest = max((b - a) for a, b in bands) if bands else 0
-                    if tallest and tallest < args.type_floor:
-                        small_text.append(f"t={t:.1f}s ink band {tallest}px < floor {args.type_floor:.0f}px")
+                    if tallest and tallest < floor:
+                        small_text.append(f"t={t:.1f}s ink band {tallest}px < floor {floor:.0f}px")
 
             # contrast: darkest 10% of ink vs median ground
             lum = luminance(img)
@@ -310,7 +323,8 @@ def main() -> int:
         record("no_edge_cropping", not crop_issues,
                "no ink outside the safe area" if not crop_issues else "; ".join(crop_issues[:3]))
         record("type_floor", not small_text,
-               f"all ink bands ≥ {args.type_floor:.0f}px" if not small_text else "; ".join(small_text[:3]))
+               f"all ink bands ≥ {floor:.0f}px (scaled for {min(W,H)}px short side)"
+               if not small_text else "; ".join(small_text[:3]))
         record("contrast_min_3to1", not contrast_fail,
                "sampled contrast ≥ 3:1" if not contrast_fail else "; ".join(contrast_fail[:3]))
 
