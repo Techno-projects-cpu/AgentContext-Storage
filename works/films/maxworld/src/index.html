@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!--
+  MAX WORLD — localised ad system. One file, four graphic languages, chosen by
+  ?lang=en|te|hi|ur.
+
+  Rendered by HyperFrames in real Chrome, so HarfBuzz shapes every script:
+  Telugu (Ramabhadra), Devanagari (Rozha One / Hind) and Urdu Nastaliq (Noto
+  Nastaliq Urdu). No pre-rendered text stamps, no manual shaping.
+
+  Facts are the shop's, from lib/site.ts: name, address, hours, phone, the four
+  brands, free site survey, laptop sales & service. No prices, no client counts,
+  no testimonials — none exist.
+
+  Timing is one beat grid at 110 BPM: cuts at 3.27 / 8.74 / 13.11; brand chips
+  at 4.91 / 5.34 / 6.00 / 6.56; bong at 8.74; phone punch at 17.47; 20.0 s total.
+
+  Every frame is a pure function of time — no Math.random, no Date.now.
+-->
+<style>
+  @font-face { font-family: "Space"; font-display: block;
+    src: url("./assets/fonts/SpaceGrotesk.ttf") format("truetype"); }
+  @font-face { font-family: "Ram"; font-display: block;
+    src: url("./assets/fonts/Ramabhadra-Regular.ttf") format("truetype"); }
+  @font-face { font-family: "Rozha"; font-display: block;
+    src: url("./assets/fonts/RozhaOne-Regular.ttf") format("truetype"); }
+  @font-face { font-family: "Hind"; font-weight: 600; font-display: block;
+    src: url("./assets/fonts/Hind-SemiBold.ttf") format("truetype"); }
+  @font-face { font-family: "Hind"; font-weight: 400; font-display: block;
+    src: url("./assets/fonts/Hind-Regular.ttf") format("truetype"); }
+  @font-face { font-family: "Nast"; font-display: block;
+    src: url("./assets/fonts/NotoNastaliqUrdu.ttf") format("truetype"); }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    background: #0e0d0a; color: #faf9f6;
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+
+  :root {
+    --paper: #faf9f6;
+    --brand: #e30613;
+    --accent: #e30613;
+    --accent-dim: rgba(227, 6, 19, 0.38);
+    --muted: rgba(250, 249, 246, 0.58);
+    --lane: 84px;
+  }
+
+  /* ---- product photography: blurred fill under a sharp plate ---- */
+  .bgfill { position: absolute; inset: -80px; z-index: 0; }
+  .bgfill img { width: 100%; height: 100%; object-fit: cover; }
+  .plate { position: absolute; inset: 0; z-index: 1; }
+  .plate img { width: 100%; height: 100%; object-fit: cover; }
+  .plate::after { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(120% 80% at 50% 40%, transparent 20%, rgba(0,0,0,.55) 100%); }
+  .bgtint { position: absolute; inset: 0; z-index: 2; }
+
+  /* ---- viewfinder chrome ---- */
+  .vf { position: absolute; inset: 56px; pointer-events: none; z-index: 40; }
+  .vf .cnr { position: absolute; width: 64px; height: 64px; border: 4px solid var(--paper); }
+  .vf .cnr.tl { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+  .vf .cnr.tr { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+  .vf .cnr.bl { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+  .vf .cnr.br { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+
+  .hud {
+    position: absolute; left: var(--lane); right: var(--lane); top: 96px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Space", monospace; font-weight: 700;
+    font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper); z-index: 45;
+  }
+  .hud .rec { display: inline-flex; align-items: center; gap: 14px; }
+  .hud .dot { width: 16px; height: 16px; border-radius: 50%; background: var(--brand);
+    box-shadow: 0 0 22px rgba(227, 6, 19, 0.85); }
+  .hudfoot {
+    position: absolute; left: var(--lane); right: var(--lane); bottom: 96px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: "Space", monospace; font-weight: 700;
+    font-size: 26px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); z-index: 45;
+  }
+
+  .logo { position: absolute; z-index: 45; display: flex; align-items: center; gap: 18px; }
+  .logo .sym { width: 68px; height: 61px; }
+  .logo .name { font-family: "Space", sans-serif; font-weight: 700;
+    font-size: 40px; letter-spacing: -0.02em; color: var(--paper); }
+  .logo .name i { font-style: normal; color: var(--brand); }
+
+  /* ---- scenes ---- */
+  .scene { position: absolute; inset: 0; opacity: 0; z-index: 10; }
+  .scene[data-first] { opacity: 1; }
+  #s1::before, #s4::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(14,13,10,.80) 0%, rgba(14,13,10,.62) 42%, rgba(14,13,10,.92) 100%);
+  }
+  #s3::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(14,13,10,.93) 0%, rgba(14,13,10,.88) 50%, rgba(14,13,10,.96) 100%);
+  }
+  body[data-lang="te"] #s1::before, body[data-lang="te"] #s4::before { background: linear-gradient(180deg, rgba(23,17,10,.82) 0%, rgba(23,17,10,.64) 42%, rgba(23,17,10,.93) 100%); }
+  body[data-lang="hi"] #s1::before, body[data-lang="hi"] #s4::before { background: linear-gradient(180deg, rgba(38,16,16,.82) 0%, rgba(38,16,16,.64) 42%, rgba(38,16,16,.93) 100%); }
+  body[data-lang="ur"] #s1::before, body[data-lang="ur"] #s4::before { background: linear-gradient(180deg, rgba(15,27,19,.84) 0%, rgba(15,27,19,.66) 42%, rgba(15,27,19,.94) 100%); }
+  body[data-lang="te"] #s3::before { background: linear-gradient(180deg, rgba(23,17,10,.94) 0%, rgba(23,17,10,.89) 50%, rgba(23,17,10,.97) 100%); }
+  body[data-lang="hi"] #s3::before { background: linear-gradient(180deg, rgba(38,16,16,.94) 0%, rgba(38,16,16,.89) 50%, rgba(38,16,16,.97) 100%); }
+  body[data-lang="ur"] #s3::before { background: linear-gradient(180deg, rgba(15,27,19,.94) 0%, rgba(15,27,19,.89) 50%, rgba(15,27,19,.97) 100%); }
+
+  /* ---- S1 ---- */
+  .hook-type { position: absolute; left: var(--lane); right: var(--lane); top: 46%;
+    transform: translateY(-50%); z-index: 20; }
+  .hook-type .kick {
+    font-family: "Space", monospace; font-weight: 700; font-size: 27px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--paper);
+    opacity: 0.82; margin-bottom: 34px;
+  }
+  .hook-type .hl { display: block; overflow: hidden; padding: 0.06em 0 0.14em; }
+  .hook-type .hl > span { display: block; }
+  .hook-type .l1, .hook-type .l2, .hook-type .l3 {
+    font-family: "Space", sans-serif; font-weight: 700; font-size: 148px;
+    line-height: 0.98; letter-spacing: -0.03em;
+  }
+  .hook-type .l1, .hook-type .l2 { color: var(--paper); }
+  .hook-type .l3 { color: var(--accent); }
+  body[data-lang="te"] .hook-type .l1, body[data-lang="te"] .hook-type .l2,
+  body[data-lang="te"] .hook-type .l3 { font-family: "Ram", sans-serif; font-size: 108px; line-height: 1.34; letter-spacing: 0; }
+  body[data-lang="hi"] .hook-type .l1, body[data-lang="hi"] .hook-type .l2,
+  body[data-lang="hi"] .hook-type .l3 { font-family: "Rozha", serif; font-size: 116px; line-height: 1.32; letter-spacing: 0; }
+  body[data-lang="ur"] .hook-type .l1, body[data-lang="ur"] .hook-type .l2,
+  body[data-lang="ur"] .hook-type .l3 { font-family: "Nast", serif; font-size: 92px; line-height: 1.9; letter-spacing: 0; direction: rtl; }
+  body[data-lang="ur"] .hook-type .kick { font-family: "Nast", serif; font-size: 34px; line-height: 2.1;
+    letter-spacing: 0; direction: rtl; text-transform: none; opacity: 1; color: var(--accent); text-align: right; }
+  body[data-lang="te"] .hook-type .kick { font-family: "Ram", sans-serif; font-size: 32px;
+    letter-spacing: 0; text-transform: none; opacity: 1; color: var(--accent); }
+  body[data-lang="hi"] .hook-type .kick { font-family: "Hind", sans-serif; font-weight: 600;
+    font-size: 32px; letter-spacing: 0.02em; text-transform: none; opacity: 1; color: var(--accent); }
+
+  .tagline { position: absolute; left: var(--lane); right: var(--lane); bottom: 300px;
+    font-size: 34px; line-height: 1.5; color: var(--muted); z-index: 20; }
+  body[data-lang="en"] .tagline { font-family: "Space", sans-serif; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase; }
+  body[data-lang="te"] .tagline { font-family: "Ram", sans-serif; font-size: 38px; color: var(--paper); }
+  body[data-lang="hi"] .tagline { font-family: "Hind", sans-serif; font-weight: 600; font-size: 38px; color: var(--paper); }
+  body[data-lang="ur"] .tagline { font-family: "Nast", serif; font-size: 40px; line-height: 1.9;
+    color: var(--paper); direction: rtl; text-align: right; }
+
+  /* ---- S2 ---- */
+  .lockup { position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; z-index: 20; }
+  .lockup .payoff { text-align: center; margin-top: 56px; }
+  body[data-lang="en"] .lockup .payoff { font-family: "Space", sans-serif; font-weight: 700;
+    font-size: 46px; letter-spacing: -0.01em; text-transform: uppercase; }
+  body[data-lang="te"] .lockup .payoff { font-family: "Ram", sans-serif; font-size: 50px; color: var(--accent); }
+  body[data-lang="hi"] .lockup .payoff { font-family: "Rozha", serif; font-size: 46px; color: var(--paper); }
+  body[data-lang="ur"] .lockup .payoff { font-family: "Nast", serif; font-size: 46px; line-height: 1.9;
+    color: var(--accent); direction: rtl; }
+
+  .chips { position: absolute; left: var(--lane); right: var(--lane); bottom: 420px;
+    display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; z-index: 20; }
+  .chip { font-family: "Space", monospace; font-weight: 700; font-size: 32px;
+    letter-spacing: 0.06em; padding: 20px 30px; color: var(--paper);
+    border: 2px solid var(--accent-dim); background: rgba(0, 0, 0, 0.28); }
+
+  /* ---- S3 ---- */
+  .rows { position: absolute; inset: 0; z-index: 20; }
+  .rows .roof { position: absolute; left: var(--lane); right: var(--lane); top: 300px; }
+  body[data-lang="en"] .rows .roof { font-family: "Space", sans-serif; font-weight: 700;
+    font-size: 74px; line-height: 1.02; letter-spacing: -0.03em; text-transform: uppercase; }
+  body[data-lang="te"] .rows .roof { font-family: "Ram", sans-serif; font-size: 66px; line-height: 1.25; }
+  body[data-lang="hi"] .rows .roof { font-family: "Rozha", serif; font-size: 66px; line-height: 1.2; }
+  body[data-lang="ur"] .rows .roof { font-family: "Nast", serif; font-size: 58px; line-height: 2.0;
+    direction: rtl; text-align: right; padding-right: 34px; border-right: 4px solid var(--accent-dim); }
+
+  .row { position: absolute; left: var(--lane); right: var(--lane); }
+  .row .num { font-family: "Space", monospace; font-weight: 700; font-size: 30px;
+    color: var(--accent); letter-spacing: 0.1em; }
+  .row .t1 { margin-top: 12px; font-weight: 700; color: var(--paper); }
+  .row .t2 { margin-top: 10px; color: var(--muted); }
+  body[data-lang="en"] .row .t1 { font-family: "Space", sans-serif; font-weight: 700; font-size: 44px;
+    line-height: 1.18; text-transform: uppercase; letter-spacing: -0.01em; }
+  body[data-lang="en"] .row .t2 { font-family: "Space", sans-serif; font-size: 32px; line-height: 1.42; }
+  body[data-lang="te"] .row .t1 { font-family: "Ram", sans-serif; font-size: 42px; line-height: 1.55; }
+  body[data-lang="te"] .row .t2 { font-family: "Ram", sans-serif; font-size: 33px; line-height: 1.75; }
+  body[data-lang="hi"] .row .t1 { font-family: "Hind", sans-serif; font-weight: 600; font-size: 44px; line-height: 1.46; }
+  body[data-lang="hi"] .row .t2 { font-family: "Hind", sans-serif; font-weight: 400; font-size: 33px; line-height: 1.62; }
+  body[data-lang="ur"] .row { padding-right: 34px; border-right: 4px solid var(--accent-dim); }
+  body[data-lang="ur"] .row .num { display: block; text-align: right; }
+  body[data-lang="ur"] .row .t1 { font-family: "Nast", serif; font-size: 42px; line-height: 2.15;
+    direction: rtl; text-align: right; }
+  body[data-lang="ur"] .row .t2 { font-family: "Nast", serif; font-size: 34px; line-height: 2.15;
+    direction: rtl; text-align: right; }
+
+  /* ---- S4 ---- */
+  .cta { position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; z-index: 20; }
+  .cta .outro { text-align: center; }
+  body[data-lang="en"] .cta .outro { font-family: "Space", sans-serif; font-weight: 700;
+    font-size: 86px; line-height: 1.04; letter-spacing: -0.03em; text-transform: uppercase; }
+  body[data-lang="te"] .cta .outro { font-family: "Ram", sans-serif; font-size: 74px; line-height: 1.3; }
+  body[data-lang="hi"] .cta .outro { font-family: "Rozha", serif; font-size: 78px; line-height: 1.22; }
+  body[data-lang="ur"] .cta .outro { font-family: "Nast", serif; font-size: 66px; line-height: 2.0; direction: rtl; }
+
+  .phone { margin-top: 64px; font-family: "Space", monospace; font-weight: 700;
+    font-size: 118px; letter-spacing: 0.02em; color: var(--paper); white-space: nowrap; }
+  .phonebar { margin-top: 18px; width: 620px; height: 10px; background: var(--brand);
+    transform-origin: center; }
+
+  .meta { position: absolute; left: var(--lane); right: var(--lane); bottom: 300px;
+    text-align: center; z-index: 20; }
+  .meta .addr, .meta .hours { color: var(--muted); }
+  body[data-lang="en"] .meta .addr, body[data-lang="en"] .meta .hours {
+    font-family: "Space", sans-serif; font-weight: 700; font-size: 29px;
+    letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.6; }
+  body[data-lang="en"] .meta .bottom { font-family: "Space", sans-serif; font-weight: 700;
+    font-size: 34px; letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--paper); margin-top: 22px; }
+  body[data-lang="te"] .meta .addr, body[data-lang="te"] .meta .hours { font-family: "Ram", sans-serif;
+    font-size: 34px; line-height: 1.6; }
+  body[data-lang="te"] .meta .bottom { font-family: "Ram", sans-serif; font-size: 34px;
+    line-height: 1.6; color: var(--accent); margin-top: 22px; }
+  body[data-lang="hi"] .meta .addr, body[data-lang="hi"] .meta .hours { font-family: "Hind", sans-serif;
+    font-weight: 400; font-size: 34px; line-height: 1.6; }
+  body[data-lang="hi"] .meta .bottom { font-family: "Hind", sans-serif; font-weight: 600;
+    font-size: 34px; line-height: 1.6; color: var(--paper); margin-top: 22px; }
+  body[data-lang="ur"] .meta .addr, body[data-lang="ur"] .meta .hours { font-family: "Nast", serif;
+    font-size: 34px; line-height: 2.05; direction: rtl; }
+  body[data-lang="ur"] .meta .bottom { font-family: "Nast", serif; font-size: 34px;
+    line-height: 2.05; color: var(--accent); direction: rtl; margin-top: 16px; }
+
+  /* ---- per-language ornament ---- */
+  .arcs { position: absolute; left: 50%; top: 50%; width: 900px; height: 900px;
+    margin: -450px 0 0 -450px; z-index: 5; }
+  .arcs i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--accent-dim); }
+  .arcs i:nth-child(2) { inset: 90px; }
+  .arcs i:nth-child(3) { inset: 180px; }
+  .arcs i:nth-child(4) { inset: 270px; }
+  .diya { position: absolute; left: 50%; top: 50%; width: 820px; height: 820px;
+    margin: -410px 0 0 -410px; z-index: 5; }
+  .diya i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--accent-dim); }
+  .diya i:nth-child(2) { inset: 70px; opacity: 0.7; }
+  .diya i:nth-child(3) { inset: 150px; opacity: 0.45; }
+  .dia { display: inline-block; width: 18px; height: 18px; background: var(--accent);
+    transform: rotate(45deg); margin: 0 22px 6px; vertical-align: middle; }
+  .bookframe { position: absolute; inset: 30px; border: 3px solid var(--accent-dim); z-index: 8; }
+  .bookframe::after { content: ""; position: absolute; inset: 14px;
+    border: 1.5px solid rgba(205, 178, 107, 0.35); }
+
+  body[data-lang="hi"] .vf .cnr { border-width: 7px; border-color: var(--accent); width: 78px; height: 78px; }
+  body[data-lang="te"] .vf .cnr { border-width: 5px; border-color: var(--accent); width: 72px; height: 72px; }
+  body[data-lang="ur"] .vf { display: none; }
+  body[data-lang="ur"] .bookframe { display: block; }
+  body:not([data-lang="ur"]) .bookframe { display: none; }
+</style>
+</head>
+<body data-lang="en">
+<div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920">
+
+  <div class="bgfill"><img src="assets/img/hero-blur.jpg" alt="" /></div>
+  <div class="plate" id="plate"><img src="assets/img/hero-portrait.jpg" alt="" /></div>
+  <div class="bgtint" id="bgtint"></div>
+  <div id="orn"></div>
+
+  <!-- S1 hook -->
+  <section class="scene" id="s1" data-start="0" data-duration="3.45" data-first>
+    <div class="logo" style="left:84px; top:206px" id="logo1"></div>
+    <div class="hook-type">
+      <div class="kick" id="kick"></div>
+      <span class="hl"><span class="l1" id="h1"></span></span>
+      <span class="hl"><span class="l2" id="h2"></span></span>
+      <span class="hl"><span class="l3" id="h3"></span></span>
+    </div>
+    <div class="tagline" id="tag"></div>
+  </section>
+
+  <!-- S2 lockup + chips -->
+  <section class="scene" id="s2" data-start="3.27" data-duration="5.47">
+    <div class="lockup">
+      <div id="mark2" style="position:relative"></div>
+      <div class="payoff" id="payoff"></div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <!-- S3 rows -->
+  <section class="scene" id="s3" data-start="8.74" data-duration="4.37">
+    <div class="rows">
+      <div class="roof" id="roof"></div>
+      <div class="row" id="r1" style="top:600px"></div>
+      <div class="row" id="r2" style="top:940px"></div>
+      <div class="row" id="r3" style="top:1280px"></div>
+    </div>
+  </section>
+
+  <!-- S4 CTA -->
+  <section class="scene" id="s4" data-start="13.11" data-duration="6.89">
+    <div class="cta">
+      <div class="outro" id="outro"></div>
+      <div class="phone" id="phone">76619 72758</div>
+      <div class="phonebar" id="phonebar"></div>
+    </div>
+    <div class="meta">
+      <div class="addr" id="addr"></div>
+      <div class="hours" id="hours"></div>
+      <div class="bottom" id="bottom"></div>
+    </div>
+  </section>
+
+  <div class="vf">
+    <div class="cnr tl"></div><div class="cnr tr"></div>
+    <div class="cnr bl"></div><div class="cnr br"></div>
+  </div>
+  <div class="bookframe"></div>
+  <div class="hud">
+    <span class="rec"><span class="dot"></span>REC</span>
+    <span>CAM 01 — KHAMMAM</span>
+  </div>
+  <div class="hudfoot">
+    <span>LIVE VIEW · 1080P</span>
+    <span>MAX WORLD</span>
+  </div>
+</div>
+
+<script src="./vendor/gsap.min.js"></script>
+<script>
+/* ===================== copy, exact per language ===================== */
+const L = {
+  en: {
+    kick: "KHAMMAM — INDERA NAGAR",
+    head: ["SEE", "EVERYTHING.", "MISS NOTHING."],
+    tag: "CC CAMERAS · SYSTEMS · LAPTOPS",
+    payoff: "GENUINE STOCK. BILL &amp; WARRANTY.",
+    roof: "EVERYTHING UNDER ONE ROOF",
+    rows: [
+      ["01", "FREE SITE SURVEY", "Anywhere in Khammam.", "No advance, no obligation."],
+      ["02", "INSTALLED BY OUR MEN", "Neat wiring, phone-viewing app set", "up before we leave."],
+      ["03", "LAPTOPS, SALES &amp; SERVICE", "Honest diagnosis up front.", "Billed properly, fixed right."],
+    ],
+    outro: ["NEED EYES", "ON YOUR SHOP?"],
+    addr: "INDERA NAGAR · NEAR EK MINAR MASJID",
+    hours: "OPEN DAILY — 10 AM TO 8 PM",
+    bottom: "SEE EVERYTHING. MISS NOTHING.",
+  },
+  te: {
+    kick: "ఖమ్మం - ఇందేర నగర్",
+    head: ["అంతా", "కనిపిస్తుంది.", "ఏమీ తప్పదు."],
+    tag: "సీసీ కెమెరాలు - సిస్టమ్స్ - ల్యాప్‌టాప్‌లు",
+    payoff: "అసలైన స్టాక్ - బిల్లు మరియు వారంటీ.",
+    roof: "అన్నీ ఒకే చోట",
+    rows: [
+      ["01", "ఉచిత సైట్ సర్వే", "ఖమ్మంలో ఎక్కడికైనా వస్తాం.", "ముందుగా డబ్బు అక్కర్లేదు."],
+      ["02", "మావాళ్లే ఇన్‌స్టాల్ చేస్తారు", "చక్కటి వైరింగ్, ఫోన్‌లో యాప్", "సెట్ చేసి ఇస్తాం."],
+      ["03", "ల్యాప్‌టాప్ అమ్మకాలు మరియు సర్వీస్", "ముందుగా చెప్పే ఖరీదు.", "సరిగానే బిల్లింగ్."],
+    ],
+    outro: ["మీ షాపుకు", "కళ్ళు కావాలా?"],
+    addr: "ఇందేర నగర్ - ఏక్ మినార్ మసీదు పక్కన",
+    hours: "ప్రతిరోజు - ఉదయం 10 నుండి రాత్రి 8 వరకూ",
+    bottom: "అంతా కనిపిస్తుంది. ఏమీ తప్పదు.",
+  },
+  hi: {
+    kick: "खम्मम - इंदेरा नगर",
+    head: ["सब कुछ", "दिखेगा।", "कुछ भी नहीं छूटेगा।"],
+    tag: "CC कैमरे - सिस्टम - लैपटॉप",
+    payoff: "असली स्टॉक। बिल और वारंटी।",
+    roof: "सब कुछ एक छत के नीचे",
+    rows: [
+      ["01", "मुफ़्त साइट सर्वे", "खम्मम में कहीं भी।", "बिना एडवांस, कोई बाध्यता नहीं।"],
+      ["02", "हमारे लोग इंस्टॉल करते हैं", "साफ़-सुथरी वायरिंग, फ़ोन पर ऐप", "सेट करके देते हैं।"],
+      ["03", "लैपटॉप बिक्री और सर्विस", "पहले ईमानदार जाँच।", "सही बिल, सही काम।"],
+    ],
+    outro: ["आपकी दुकान पर", "नज़र चाहिए?"],
+    addr: "इंदेरा नगर - एक मीनार मस्जिद के पास",
+    hours: "प्रतिदिन - सुबह 10 से रात 8 बजे तक",
+    bottom: "सब कुछ दिखेगा। कुछ भी नहीं छूटेगा।",
+  },
+  ur: {
+    kick: "کھمم - اندرا نگر",
+    head: ["سب کچھ", "دیکھیں۔", "کچھ بھی نہ چھوٹے۔"],
+    tag: "سی سی کیمرے - سسٹم - لیپ ٹاپ",
+    payoff: "اصلی اسٹاک۔ بل اور وارنٹی۔",
+    roof: "سب کچھ ایک چھت تلے",
+    rows: [
+      ["01", "مفت سائٹ سروے", "کھمم میں کہیں بھی۔", "بغیر ایڈوانس، بغیر پابندی۔"],
+      ["02", "ہمارے لوگ نصب کرتے ہیں", "صاف وائرنگ، فون پر ایپ", "سیٹ کر کے چھوڑتے ہیں۔"],
+      ["03", "لیپ ٹاپ خرید و فروخت اور سروس", "پہلے ایمان دار تشخیص۔", "صحیح بل، صحیح کام۔"],
+    ],
+    outro: ["آپ کی دکان پر", "نظر چاہیے؟"],
+    addr: "اندرا نگر - ایک مینار مسجد کے قریب",
+    hours: "روزانہ - صبح 10 سے رات 8 بجے تک",
+    bottom: "سب کچھ دیکھیں۔ کچھ بھی نہ چھوٹے۔",
+  },
+};
+
+const THEME = {
+  en: { bg: "#0e0d0a", accent: "#e30613", dim: "rgba(227,6,19,0.38)",
+        tint: "linear-gradient(180deg, rgba(14,13,10,.92) 0%, rgba(14,13,10,.72) 45%, rgba(14,13,10,.94) 100%)" },
+  te: { bg: "#17110a", accent: "#e3a624", dim: "rgba(227,166,36,0.42)",
+        tint: "linear-gradient(180deg, rgba(23,17,10,.93) 0%, rgba(23,17,10,.74) 45%, rgba(23,17,10,.95) 100%)" },
+  hi: { bg: "#261010", accent: "#f5820b", dim: "rgba(245,130,11,0.42)",
+        tint: "linear-gradient(180deg, rgba(38,16,16,.93) 0%, rgba(38,16,16,.74) 45%, rgba(38,16,16,.95) 100%)" },
+  ur: { bg: "#0f1b13", accent: "#cdb26b", dim: "rgba(205,178,107,0.42)",
+        tint: "linear-gradient(180deg, rgba(15,27,19,.93) 0%, rgba(15,27,19,.74) 45%, rgba(15,27,19,.95) 100%)" },
+};
+
+/* the shop's own symbol, from public/logo/maxworld-symbol.svg */
+const SYMBOL = (w, h) => `
+<svg viewBox="0 0 96 86" width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 74 V12 L25 74 L40 12 V74" fill="none" stroke="#E30613"
+        stroke-width="12" stroke-linejoin="bevel" stroke-linecap="square"/>
+  <path d="M36 12 L50 74 L61 26 L72 74 L86 12" fill="none" stroke="#FAF9F6"
+        stroke-width="12" stroke-linejoin="bevel" stroke-linecap="square"/>
+</svg>`;
+
+/* ===================== build ===================== */
+const lang = (new URLSearchParams(location.search).get("lang") || "en").toLowerCase();
+const c = L[lang] || L.en;
+const th = THEME[lang] || THEME.en;
+document.body.dataset.lang = lang;
+
+const rs = document.documentElement.style;
+rs.setProperty("--accent", th.accent);
+rs.setProperty("--accent-dim", th.dim);
+document.body.style.background = th.bg;
+document.getElementById("bgtint").style.background = th.tint;
+
+if (lang === "te") document.getElementById("orn").innerHTML =
+  `<div class="arcs"><i></i><i></i><i></i><i></i></div>`;
+if (lang === "hi") document.getElementById("orn").innerHTML =
+  `<div class="diya"><i></i><i></i><i></i></div>`;
+
+document.getElementById("logo1").innerHTML =
+  `<span class="sym">${SYMBOL(68, 61)}</span><span class="name"><i>Max</i> World</span>`;
+
+document.getElementById("kick").innerHTML =
+  lang === "te" ? `<span class="dia"></span><span>${c.kick}</span><span class="dia"></span>` : c.kick;
+document.getElementById("h1").innerHTML = c.head[0];
+document.getElementById("h2").innerHTML = c.head[1];
+document.getElementById("h3").innerHTML = c.head[2];
+document.getElementById("tag").innerHTML = c.tag;
+
+document.getElementById("mark2").innerHTML = SYMBOL(300, 269);
+document.getElementById("payoff").innerHTML = c.payoff;
+document.getElementById("chips").innerHTML =
+  ["CP Plus", "Hikvision", "Dahua", "Prama"].map(b => `<span class="chip">${b}</span>`).join("");
+
+document.getElementById("roof").innerHTML = c.roof;
+[["r1",1],["r2",2],["r3",3]].forEach(([id, k]) => {
+  const r = c.rows[k-1];
+  document.getElementById(id).innerHTML =
+    `<div class="num">${r[0]}</div><div class="t1">${r[1]}</div><div class="t2">${r[2]} ${r[3]}</div>`;
+});
+
+document.getElementById("outro").innerHTML = `<div>${c.outro[0]}</div><div>${c.outro[1]}</div>`;
+document.getElementById("addr").innerHTML = c.addr;
+document.getElementById("hours").innerHTML = c.hours;
+document.getElementById("bottom").innerHTML = c.bottom;
+
+/* ===================== timeline ===================== */
+const tl = gsap.timeline({ paused: true });
+document.getElementById("root").dataset.duration = "20";
+const DIP = 0.18;
+
+tl.set("#plate", { opacity: 0.34 }, 0);
+tl.to("#plate", { opacity: 0.62, duration: 0.5, ease: "power2.out" }, 0.2);
+tl.fromTo("#plate img", { scale: 1.2 }, { scale: 1.0, duration: 3.45, ease: "power1.inOut" }, 0);
+
+/* S1 */
+tl.fromTo(".hook-type .hl > span", { yPercent: 108 },
+  { yPercent: 0, duration: 0.5, ease: "expo.out", stagger: 0.4 }, 0.5);
+tl.fromTo("#kick", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.18);
+tl.fromTo("#tag", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 1.9);
+tl.to("#s1", { opacity: 0, duration: DIP, ease: "power1.in" }, 3.27);
+
+/* S2 */
+tl.fromTo("#s2", { opacity: 0 }, { opacity: 1, duration: DIP, ease: "power1.out" }, 3.27);
+tl.to("#plate", { opacity: 0.85, duration: 0.7, ease: "power2.out" }, 3.27);
+tl.to("#plate img", { scale: 1.06, duration: 5.47, ease: "sine.inOut" }, 3.27);
+tl.fromTo("#mark2", { scale: 0.72, opacity: 0, rotate: -8 },
+  { scale: 1, opacity: 1, rotate: 0, duration: 0.72, ease: "expo.out" }, 3.42);
+tl.fromTo("#payoff", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" }, 3.92);
+[4.91, 5.34, 6.00, 6.56].forEach((t, k) => {
+  tl.fromTo(`#chips .chip:nth-child(${k+1})`,
+    { y: -70, opacity: 0, scale: 0.9 },
+    { y: 0, opacity: 1, scale: 1, duration: 0.34, ease: "back.out(2.2)" }, t);
+});
+tl.to("#s2", { opacity: 0, duration: DIP, ease: "power1.in" }, 8.74);
+
+/* S3 */
+tl.fromTo("#s3", { opacity: 0 }, { opacity: 1, duration: DIP, ease: "power1.out" }, 8.74);
+tl.fromTo("#roof", { opacity: 0, x: lang === "ur" ? 40 : -40 },
+  { opacity: 1, x: 0, duration: 0.55, ease: "expo.out" }, 8.86);
+[[9.29,"#r1"],[10.37,"#r2"],[11.46,"#r3"]].forEach(([t, sel]) => {
+  tl.fromTo(`${sel} .num`, { opacity: 0 }, { opacity: 1, duration: 0.28 }, t);
+  tl.fromTo(`${sel} .t1`, { opacity: 0, y: 24, x: lang === "ur" ? 30 : -30 },
+    { opacity: 1, y: 0, x: 0, duration: 0.48, ease: "expo.out" }, t + 0.05);
+  tl.fromTo(`${sel} .t2`, { opacity: 0, y: 18 },
+    { opacity: 1, y: 0, duration: 0.44, ease: "power2.out" }, t + 0.22);
+});
+tl.to("#s3", { opacity: 0, duration: DIP, ease: "power1.in" }, 13.11);
+
+/* S4 */
+tl.fromTo("#s4", { opacity: 0 }, { opacity: 1, duration: DIP, ease: "power1.out" }, 13.11);
+tl.fromTo("#outro div:nth-child(1)", { opacity: 0, y: 30 },
+  { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 13.3);
+tl.fromTo("#outro div:nth-child(2)", { opacity: 0, y: 30 },
+  { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 13.62);
+tl.fromTo("#phone", { scale: 0.86, opacity: 0 },
+  { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.4)" }, 17.47);
+tl.fromTo("#phonebar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 17.62);
+tl.fromTo(".meta > *", { opacity: 0, y: 22 },
+  { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.16 }, 17.9);
+tl.fromTo("#mark2", { rotate: 0 }, { rotate: 2.5, duration: 5.47, ease: "sine.inOut" }, 4.14);
+
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

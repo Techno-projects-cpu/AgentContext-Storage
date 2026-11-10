@@ -33,9 +33,40 @@ frame and a great deal of empty paper; no stock footage, no shaders.
 | 📱 **Start with this** | [`02-zero-vast-3d-explainer-vertical-720p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-720p.mp4) | 1.4 MB |
 | 🎞 Master | [`02-zero-vast-3d-explainer-vertical-1080p.mp4`](works/films/zero-vast/02-zero-vast-3d-explainer-vertical-1080p.mp4) | 3.2 MB |
 
-> **Honest caveat:** nobody has sat and watched these end to end. The gate that
-> ships them is numeric — it proves the frames are not cropped, not silent, not
-> illegible and not frozen. It cannot tell you the edit is good.
+### 03 — Max World localised ads · 20 s, vertical ×4
+
+Four ads for Max World (CC cameras, systems, laptops — Indera Nagar, Khammam),
+one cut pattern, four graphic languages. Telugu, Hindi and Urdu are shaped by a
+real browser (HarfBuzz), so the Nastaliq and the Telugu conjuncts are correct.
+
+**Vertical 1080×1920 is the one to post. Square and wide use a blurred fill, not
+a crop.**
+
+| Language | Post this | Square | Wide |
+|---|---|---|---|
+| **English** | [`03-maxworld-ad-en-vertical-1080p.mp4`](works/films/maxworld/03-maxworld-ad-en-vertical-1080p.mp4) | [square](works/films/maxworld/03-maxworld-ad-en-square-1080.mp4) | [wide](works/films/maxworld/03-maxworld-ad-en-wide-1920x1080.mp4) |
+| **తెలుగు Telugu** | [`03-maxworld-ad-te-vertical-1080p.mp4`](works/films/maxworld/03-maxworld-ad-te-vertical-1080p.mp4) | [square](works/films/maxworld/03-maxworld-ad-te-square-1080.mp4) | [wide](works/films/maxworld/03-maxworld-ad-te-wide-1920x1080.mp4) |
+| **हिन्दी Hindi** | [`03-maxworld-ad-hi-vertical-1080p.mp4`](works/films/maxworld/03-maxworld-ad-hi-vertical-1080p.mp4) | [square](works/films/maxworld/03-maxworld-ad-hi-square-1080.mp4) | [wide](works/films/maxworld/03-maxworld-ad-hi-wide-1920x1080.mp4) |
+| **اردو Urdu** | [`03-maxworld-ad-ur-vertical-1080p.mp4`](works/films/maxworld/03-maxworld-ad-ur-vertical-1080p.mp4) | [square](works/films/maxworld/03-maxworld-ad-ur-square-1080.mp4) | [wide](works/films/maxworld/03-maxworld-ad-ur-wide-1920x1080.mp4) |
+
+Posters: [EN](works/films/maxworld/03-maxworld-ad-en-poster.jpg) ·
+[TE](works/films/maxworld/03-maxworld-ad-te-poster.jpg) ·
+[HI](works/films/maxworld/03-maxworld-ad-hi-poster.jpg) ·
+[UR](works/films/maxworld/03-maxworld-ad-ur-poster.jpg)
+· Share copy: [EN](works/films/maxworld/share-copy.txt) ·
+[TE](works/films/maxworld/share-copy-te.txt) ·
+[HI](works/films/maxworld/share-copy-hi.txt) ·
+[UR](works/films/maxworld/share-copy-ur.txt)
+
+More: [`works/films/maxworld/README.md`](works/films/maxworld/README.md) — a
+copy of the docs that ship with the MaxWorld repo.
+
+> **Honest caveat:** nobody has sat and watched these end to end. For films 01 and
+> 02 the gate that ships them is numeric — it proves the frames are not cropped,
+> not silent, not illegible and not frozen. It cannot tell you the edit is good.
+> For the Max World ads, each was checked by reading stills at 1.17 / 5.0 / 8.3 /
+> 12.3 / 18.3 / 19.9 s in all four languages; the mix measures −17.3 dB RMS and no
+> silent gaps. That is still not the same thing as watching them.
 
 ---
 
