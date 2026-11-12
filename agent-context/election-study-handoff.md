@@ -8,6 +8,10 @@ Start at [`works/study/election-process/README.md`](../works/study/election-proc
 
 Scope is Lok Sabha and State Assembly direct elections; local-body elections and other electoral systems are distinguished. The study pack is text-only, not a film. Do not apply film-specific format/voice questions to it unless the user requests a film.
 
+## Short version
+
+The user found the full pack overwhelming and asked for a few good cheat sheets. Start with [`cheat-sheets/README.md`](../works/study/election-process/cheat-sheets/README.md): four concise sheets on stages, officials, laws and numbers, and voting/counting. Prefer short, manageable study chunks.
+
 ## Maintenance and cautions
 
 - The current-affairs sheet is a snapshot, not a live source. Verify office-holders, results, SIR orders, legislative status and relevant election instructions against current official sources before using them in a competition.

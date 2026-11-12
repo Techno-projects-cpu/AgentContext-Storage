@@ -2,7 +2,11 @@
 
 **Scope:** Direct elections to the Lok Sabha and State Legislative Assemblies, from announcement to result and oath. English explanations, with Telugu key terms. Prepared 12 November 2026. Rules and instructions may change: use the latest ECI notification and applicable law for an actual election.
 
-## Start here
+## Need the short version?
+
+Start with the [four quick cheat sheets](cheat-sheets/README.md), then return to the full pack only when you need more detail.
+
+## Full pack
 
 1. [The full timeline](01-timeline.md) — announcement through oath; nomination, poll and counting in detail.
 2. [Officials and laws](02-officials-laws.md) — duties, articles, Acts and rules.
