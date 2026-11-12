@@ -1,8 +1,8 @@
 # Quiz Session Handoff — ChatGPT
 
 **Prepared by:** ChatGPT  
-**Date:** 12 November 2026  
-**Purpose:** Preserve the active district-level quiz preparation context so another AI assistant can continue without making the student repeat details.
+**Updated:** 12 November 2026, approximately 9:00 PM IST  
+**Purpose:** Preserve the student's district-level quiz preparation context and the completed simulation results so another AI assistant can continue seamlessly.
 
 ## Event and syllabus
 
@@ -13,74 +13,93 @@ The three syllabus areas are:
 2. Indian History & Cultural Heritage
 3. Telangana Cultural Heritage
 
-The student prefers learning through interactive quizzes rather than lengthy passive notes. Keep the preparation focused and manageable; avoid overwhelming them on the eve of the event.
+The student prefers interactive quizzes over lengthy passive notes. Keep preparation focused and manageable; avoid overwhelming them on the eve of the event.
 
-## Active quiz format
+## Study package in this repository
 
-ChatGPT started a **20-question mixed-topic district-level simulation**:
-- One question at a time.
-- Increasing difficulty.
-- Mix all three syllabus areas.
-- Use plausible distractors, chronology, matching-style reasoning and direct recall.
-- After each answer: mark correct/incorrect, briefly explain the fact, update the cumulative score, then give the next question.
-- Do not reveal answers before the student responds.
-- Accept a plain-text answer as well as a selection.
-- The student asked for scoring and explanations.
+Folder: `works/study/nasha-mukt-quiz/`
 
-## Progress so far
+Files:
+- `README.md`
+- `01-drug-free-india.md`
+- `02-indian-history-culture.md`
+- `03-telangana-culture.md`
+- `04-rapid-quiz.md`
+- `05-chatgpt-session-handoff.md` (this file)
 
-| Question | Topic | Student answer | Result | Correct answer / key fact |
+The five study files were previously inspected. Use them as the primary study source. The rapid quiz contains 60 questions, 20 per category.
+
+## Completed 20-question district-level simulation
+
+Format:
+- One question at a time, mixed across all three topics.
+- Increasing difficulty, plausible distractors, and brief explanations after each answer.
+- The student answered all 20 questions.
+
+### Full answer record
+
+| Q | Topic | Student answer | Result | Correct answer / key fact |
 |---|---|---:|---|---|
-| 1 | NMBA expansion | A | Correct | 272 districts (2020) → 372 (2022) → all districts (2023) |
-| 2 | Nalanda | B | Correct | Nalanda flourished as a major learning centre during the Gupta period; traditionally associated with Kumaragupta I in the 5th century CE |
-| 3 | Perini Shivatandavam | A | Incorrect | B — Kakatiya dynasty |
+| 1 | NMBA expansion | A | Correct | 272 vulnerable districts (2020) → 372 (2022) → all districts (2023) |
+| 2 | Nalanda | B | Correct | Nalanda flourished as a major learning centre during the Gupta period; traditionally associated with Kumaragupta I |
+| 3 | Perini Shivatandavam | A | Incorrect | Kakatiya dynasty |
 | 4 | NMBA and NAPDDR | B | Correct | NMBA is a component of NAPDDR |
-| 5 | Kalinga War | C | Correct | C — Ashoka |
-| 6 | Sammakka–Saralamma Jatara | B | Correct | B — Medaram, in Mulugu district |
-| 7 | National drug-law enforcement | B | Correct | B — Narcotics Control Bureau (NCB) |
+| 5 | Kalinga War | C | Correct | Ashoka |
+| 6 | Sammakka–Saralamma Jatara | B | Correct | Medaram, Mulugu district |
+| 7 | National drug-law enforcement | B | Correct | Narcotics Control Bureau (NCB) |
+| 8 | Chronology | A | Correct | INC (1885) → Jallianwala Bagh (1919) → Dandi March (1930) → Quit India (1942) |
+| 9 | Ramappa Temple ruler | A | Incorrect | Ganapati Deva; temple constructed around 1213 CE during his reign |
+| 10 | NCB | B | Correct | NCB coordinates drug-law enforcement and operates under the Ministry of Home Affairs |
+| 11 | Oldest Veda | A | Incorrect | Rigveda |
+| 12 | Thousand Pillar Temple | B | Correct | Kakatiya dynasty; associated with Rudra Deva |
+| 13 | NDPS Act / ministry | B | Accepted — question flawed | The question conflated NCB's parent ministry with the nodal department for NDPS administration. NCB operates under MHA; Department of Revenue, Ministry of Finance, is the nodal department for NDPS administration. The student's B was accepted for the intended NCB–MHA connection. |
+| 14 | Mauryan founder | C | Correct | Chandragupta Maurya |
+| 15 | Telangana floral festival | C | Incorrect | Bathukamma |
+| 16 | MANAS helpline | C | Incorrect | 1933; 14446 is the national de-addiction helpline; 14416 is Tele-MANAS |
+| 17 | Iron Pillar of Delhi | D | Incorrect | Generally associated with Chandragupta II; inscription refers to a king named Chandra |
+| 18 | Ramappa Temple district | A | Incorrect | Mulugu district (Palampet village) |
+| 19 | NAPDDR purpose | B | Correct | Prevention, awareness, treatment and rehabilitation / drug demand reduction |
+| 20 | Rudrama Devi inscription | A | Incorrect | Simulation's intended key was B, Malkapuram inscription. Treat this as a revision point and verify the precise inscription claim against a reliable historical source before presenting it as a high-confidence fact. Allahabad Pillar Inscription is associated with Samudragupta. |
 
-**Current score: 6/7 (as of Question 7).**
+### Final score and corrected category breakdown
 
-## Immediate next step
+**12/20 = 60%.** Question 13 was counted correct because the wording was imprecise and the student answered the intended NCB–MHA connection.
 
-**Question 8 is already on screen and awaiting the student's answer. Do not repeat it unless the student asks.**
+Correct category totals (the earlier conversational final summary misstated these; use this corrected breakdown):
+- **Drug-Free India: 6/7** — Q1, Q4, Q7, Q10, Q13, Q19 correct; Q16 incorrect.
+- **Indian History & Cultural Heritage: 4/7** — Q2, Q5, Q8, Q14 correct.
+- **Telangana Cultural Heritage: 2/6** — Q6 and Q12 correct.
 
-Question 8 — Indian History & Cultural Heritage:
+### Highest-priority revision areas
 
-Arrange these events from earliest to latest:
-1. Formation of the Indian National Congress
-2. Jallianwala Bagh massacre
-3. Dandi March
-4. Quit India Movement
+1. **Drug-Free India:** Distinguish helplines: MANAS 1933 (narcotics reporting), 14446 (de-addiction), Tele-MANAS 14416 (mental health). Know NCB–MHA versus Department of Revenue–Ministry of Finance.
+2. **Indian history:** Vedas, inscriptions, dynasties and rulers; distinguish Ashoka, Samudragupta and Chandragupta II.
+3. **Telangana heritage:** Temple builders/reigns and present-day districts. Ramappa = Ganapati Deva's reign, Palampet in Mulugu district; Thousand Pillar Temple = Rudra Deva; Perini = Kakatiya.
+4. **Festivals:** Bathukamma = floral festival associated with Gauri; Bonalu = Mahakali; Sammakka–Saralamma = Medaram.
 
-Options:
-- A. 1 → 2 → 3 → 4
-- B. 2 → 1 → 3 → 4
-- C. 1 → 3 → 2 → 4
-- D. 1 → 2 → 4 → 3
-
-The student should answer first. Correct sequence is A (1885 → 1919 → 1930 → 1942), but do not disclose it before they answer.
-
-## Useful study facts and distinctions
+## Other useful study facts
 
 - NMBA launched on 15 August 2020 in 272 vulnerable districts; expanded to 372 districts in 2022 and all districts in 2023.
 - NMBA is part of NAPDDR.
-- NCB is the national agency coordinating drug-law enforcement; it is distinct from NMBA's prevention/awareness work.
-- MANAS helpline: 1933 (narcotics-related reporting/support); Tele-MANAS: 14416 (mental health support); do not confuse them.
+- NCB is the national agency coordinating drug-law enforcement and operates under the Ministry of Home Affairs.
+- Department of Revenue, Ministry of Finance, is the nodal department for NDPS Act administration.
 - Perini Shivatandavam is associated with the Kakatiya period.
 - Sammakka–Saralamma Jatara takes place at Medaram, Mulugu district.
 - Nalanda became a major centre of learning in the Gupta period.
 - Kalinga War is the major turning point associated with Ashoka.
-- Be precise with Telangana locations and current district names.
+- Be precise with Telangana's present-day district boundaries and names.
 
-## Continuation instructions for the next AI assistant
+## Continuation instructions
 
-1. Continue from Question 8; preserve the score of 6/7.
-2. After each answer, give concise feedback and the next question, until Question 20.
-3. Keep questions fair, varied and grounded in the supplied study materials. Avoid obscure trivia that is not reasonably in the syllabus.
-4. If a current statistic, government programme detail or recent heritage designation is tested, verify it against a reliable official source before presenting it.
-5. After Question 20, provide the final score, category-wise performance if trackable, and a short revision list based on mistakes.
-6. The student has a quiz the next day. Prioritise recall, confidence and sleep over cramming.
+The 20-question simulation is complete. If the student says to continue, begin a **targeted revision round**, not another recap of the completed test:
+1. Start with Telangana heritage and Indian-history facts where the student missed questions.
+2. Mix in Drug-Free India helpline and institutional distinctions.
+3. Ask one question at a time; wait for the answer; then evaluate briefly and give the next question.
+4. Keep the questions fair and grounded in the supplied study files. Avoid unverified obscure trivia.
+5. After a short round, give a concise last-minute revision sheet and encourage rest rather than endless cramming.
+6. The event is tomorrow, so prioritise recall, confidence and sleep.
+
+The student joked that they have a guessing technique that works around 70% of the time, but has not disclosed it. You can playfully acknowledge the joke without trying to pressure them to reveal it.
 
 ---
 
