@@ -185,3 +185,10 @@ Eenadu series (abandoned) · KIRRAK & CO (finished, superseded, files deleted).
 
 MP4 / MOV / WAV / mix files. Git keeps every binary revision and a free account's LFS
 allowance dies fast. Text only — `.gitignore` already enforces this.
+
+## Other work: election study pack
+
+For the user's district/state-level Indian election quiz and essay preparation,
+see [`election-study-handoff.md`](election-study-handoff.md) and the
+[study pack index](../works/study/election-process/README.md). The pack is
+English with Telugu key terms; refresh dated current affairs before use.
