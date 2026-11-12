@@ -192,3 +192,9 @@ For the user's district/state-level Indian election quiz and essay preparation,
 see [`election-study-handoff.md`](election-study-handoff.md) and the
 [study pack index](../works/study/election-process/README.md). The pack is
 English with Telugu key terms; refresh dated current affairs before use.
+
+## Khammam anti-drug quiz (November 2026)
+
+The earlier election quiz was cancelled. See [the new quiz handoff](nasha-mukt-quiz-handoff.md)
+and [study index](../works/study/nasha-mukt-quiz/README.md) for the poster's
+three-part syllabus, event details and concise-first preparation material.
