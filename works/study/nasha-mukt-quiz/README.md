@@ -14,6 +14,8 @@ English explanations with Telugu key terms. Prepared 12 November 2026 from the p
 
 **[Open the new officials, sports examples and rapid revision guide](05-quiz-day-officials-and-revision.md)** — start here if the quiz is today.
 
+[Previous interactive quiz handoff](05-chatgpt-session-handoff.md) records your 20-question practice results.
+
 ## Original study plan
 
 1. **15 minutes:** learn the ⭐ [last-minute essentials](01-drug-free-india.md#-20-facts-to-learn-first) and the starred facts on the other two sheets.

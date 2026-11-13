@@ -14,6 +14,17 @@
 - **14446** = de-addiction help; **1933** = MANAS drug reporting/support; **14416** = Tele-MANAS mental health; **112 / 108** = emergency / ambulance in Telangana.
 - **WADA** = World Anti-Doping Agency; **NADA** = National Anti-Doping Agency, India. These address prohibited substances and methods **in sport**, not the same job as NCB.
 
+## Your targeted revision from the earlier quiz
+
+I found the ChatGPT handoff in the repository. You scored **12/20** in that practice round; the fastest points to revisit are:
+
+- **Perini → Kakatiya dynasty**; **Bathukamma → flowers**.
+- **Ramappa → Palampet, Mulugu**, built under **Ganapati Deva's reign** by his general **Recharla Rudra**, beginning around **1213**. Question trap: ruler ≠ builder/general. [UNESCO assessment](https://whc.unesco.org/document/189214).
+- **Rigveda → oldest Veda**; Delhi's Iron Pillar inscription names King Chandra, generally identified with **Chandragupta II**. [Ministry of Culture](https://www.indiaculture.gov.in/qutb-minar-and-its-monuments).
+- **1933 → MANAS**, **14446 → de-addiction**, **14416 → mental health**.
+- **NCB → Home Affairs**, while the **Department of Revenue → Ministry of Finance** has narcotics-policy / NDPS-administration responsibilities. Different question, different answer; multiple agencies enforce the Act. [Finance Ministry report](https://dea.gov.in/files/annual_reports_documents/AnnualReport08_09English.pdf).
+- An obscure Rudrama Devi inscription question was flagged as uncertain in the handoff. **Do not memorise its answer as settled** without a reliable source.
+
 ## 2. Who works to make India drug-free?
 
 **Easy memory:** **Ministry plans → district coordinates → officials enforce → doctors treat → community prevents.** It is a collaboration, not a single rigid chain of command.
@@ -22,6 +33,7 @@
 |---|---|---|
 | **Ministry of Social Justice and Empowerment** | సామాజిక న్యాయం మరియు సాధికారత మంత్రిత్వ శాఖ | Leads NMBA: awareness, demand reduction, community outreach and support for de-addiction and rehabilitation. |
 | **NCB and its officers** | మాదక ద్రవ్యాల నియంత్రణ బ్యూరో అధికారులు | Gather intelligence, investigate and coordinate action against illicit narcotics trafficking under applicable law. NCB was established **17 March 1986**. |
+| **Department of Revenue, Ministry of Finance** | కేంద్ర ఆర్థిక మంత్రిత్వ శాఖ | Handles narcotics policy and NDPS-related administration; the Central Bureau of Narcotics under it also has specific regulatory and enforcement roles. |
 | **Ministry of Home Affairs (MHA)** | కేంద్ర హోం మంత్రిత్వ శాఖ | Oversees NCB and national coordination on drug-law enforcement. |
 | **Health ministry / health department** | ఆరోగ్య శాఖ | Helps provide medical treatment and healthcare for people affected by substance use. |
 | **State NMBA committee** | రాష్ట్ర స్థాయి కమిటీ | Helps coordinate the campaign across the state with relevant departments. |

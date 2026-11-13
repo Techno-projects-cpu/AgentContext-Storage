@@ -8,4 +8,4 @@ Key campaign anchors: launched 15 August 2020 by Social Justice and Empowerment 
 
 ## Quiz day update
 
-User says it is now quiz day. Added [`05-quiz-day-officials-and-revision.md`](../works/study/nasha-mukt-quiz/05-quiz-day-officials-and-revision.md), explaining national/state/district anti-drug roles, poster organisers, sourced athlete doping cases without implying addiction, plus quick all-syllabus revision and rapid questions. User mentioned ChatGPT left some context but has not provided it; ask them to paste it if they want it incorporated.
+User says it is now quiz day. Added [`05-quiz-day-officials-and-revision.md`](../works/study/nasha-mukt-quiz/05-quiz-day-officials-and-revision.md), explaining national/state/district anti-drug roles, poster organisers, sourced athlete doping cases without implying addiction, plus quick all-syllabus revision and rapid questions. The repository contains `works/study/nasha-mukt-quiz/05-chatgpt-session-handoff.md`: student scored 12/20, with weaknesses in Telangana heritage, Indian history and helpline distinctions, and prefers one question at a time. The quiz-day guide includes targeted revision informed by it.
