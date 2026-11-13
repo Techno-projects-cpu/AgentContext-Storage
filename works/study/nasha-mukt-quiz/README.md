@@ -12,6 +12,8 @@ English explanations with Telugu key terms. Prepared 12 November 2026 from the p
 
 ## Quiz-day quick revision
 
+**[Open the deep bus master guide](07-deep-bus-master-guide.md)** — an expanded, chunked guide covering all three topics, anti-drug officials, science, law and sport.
+
 **[Open the 90-minute bus-ride workout](06-bus-ride-90-minute-revision.md)** — six short rounds and 70 recall questions. Save it before travelling if internet may be patchy.
 
 **[Open the new officials, sports examples and rapid revision guide](05-quiz-day-officials-and-revision.md)** — start here if the quiz is today.

@@ -13,3 +13,7 @@ User says it is now quiz day. Added [`05-quiz-day-officials-and-revision.md`](..
 ## Bus ride revision
 
 User has a 90-minute bus journey to the quiz and requested more revision. Added `works/study/nasha-mukt-quiz/06-bus-ride-90-minute-revision.md`: six timed, digestible rounds with 70 recall questions, covering campaign, helplines, sport, Indian history and Telangana/Khammam. Encourage offline saving and use targeted, one-at-a-time questions when interacting.
+
+## Deep bus edition
+
+User requested deeper, more knowledgeable material that remains readable for the bus ride, after asking explicitly about source reliability. Added `works/study/nasha-mukt-quiz/07-deep-bus-master-guide.md` with structured sections, recall prompts, officials, NCORD, NDPS, sports cases, history and Telangana, with sourced claims and explicit limits to verification. No claim of a complete fact-by-fact audit.
