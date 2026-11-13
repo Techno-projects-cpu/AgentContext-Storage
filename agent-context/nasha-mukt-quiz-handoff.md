@@ -9,3 +9,7 @@ Key campaign anchors: launched 15 August 2020 by Social Justice and Empowerment 
 ## Quiz day update
 
 User says it is now quiz day. Added [`05-quiz-day-officials-and-revision.md`](../works/study/nasha-mukt-quiz/05-quiz-day-officials-and-revision.md), explaining national/state/district anti-drug roles, poster organisers, sourced athlete doping cases without implying addiction, plus quick all-syllabus revision and rapid questions. The repository contains `works/study/nasha-mukt-quiz/05-chatgpt-session-handoff.md`: student scored 12/20, with weaknesses in Telangana heritage, Indian history and helpline distinctions, and prefers one question at a time. The quiz-day guide includes targeted revision informed by it.
+
+## Bus ride revision
+
+User has a 90-minute bus journey to the quiz and requested more revision. Added `works/study/nasha-mukt-quiz/06-bus-ride-90-minute-revision.md`: six timed, digestible rounds with 70 recall questions, covering campaign, helplines, sport, Indian history and Telangana/Khammam. Encourage offline saving and use targeted, one-at-a-time questions when interacting.
