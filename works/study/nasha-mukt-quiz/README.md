@@ -10,7 +10,11 @@ English explanations with Telugu key terms. Prepared 12 November 2026 from the p
 - **Eligibility on poster:** classes 6–12; each school/college may send 2 teams of 2 students. Students should wear school uniform and bring an exam pad and pen. Lunch provided, according to the poster.
 - **Important:** the poster's registration deadline was **10 November 2026**, already past on 12 November. If you aren't registered, ask your teacher or contact organiser **K. Raju: 8712658842** immediately to check whether late entry is allowed. Don't assume it is.
 
-## Your plan for tonight
+## Quiz-day quick revision
+
+**[Open the new officials, sports examples and rapid revision guide](05-quiz-day-officials-and-revision.md)** — start here if the quiz is today.
+
+## Original study plan
 
 1. **15 minutes:** learn the ⭐ [last-minute essentials](01-drug-free-india.md#-20-facts-to-learn-first) and the starred facts on the other two sheets.
 2. **40 minutes:** [Drug-Free India](01-drug-free-india.md) — campaign, substances, health, laws, help and quiz traps.
