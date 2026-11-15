@@ -73,6 +73,36 @@ copy of the docs that ship with the MaxWorld repo.
 > 12.3 / 18.3 / 19.9 s in all four languages; the mix measures −17.3 dB RMS and no
 > silent gaps. That is still not the same thing as watching them.
 
+### 04 — ZeroVast ad set · static, 8 boards × 2 themes
+
+Ads for **zero-vast.vercel.app**, produced with the
+[claude-ads](https://github.com/AgriciDaniel/claude-ads) skill — brand profile,
+three testable concepts, per-placement copy and a landing message-match check,
+all validated against claude-ads' own JSON contracts.
+
+**[Contact sheet →](works/ads/zero-vast/creative/png/contact-sheet.png)** ·
+[full run notes](works/ads/zero-vast/README.md) ·
+[copy deck](works/ads/zero-vast/creative/copy-deck.md)
+
+| Board | Size |
+|---|---|
+| [speed · feed](works/ads/zero-vast/creative/png/speed-feed-1x1.png) | 1080×1080 |
+| [speed · 4:5](works/ads/zero-vast/creative/png/speed-feed-4x5.png) | 1080×1350 |
+| [speed · story](works/ads/zero-vast/creative/png/speed-story-9x16.png) | 1080×1920 |
+| [speed · landscape](works/ads/zero-vast/creative/png/speed-wide-1.91x1.png) | 1200×628 |
+| [ownership · feed](works/ads/zero-vast/creative/png/ownership-feed-1x1.png) | 1080×1080 |
+| [ownership · landscape](works/ads/zero-vast/creative/png/ownership-wide-1.91x1.png) | 1200×628 |
+| [limits · feed](works/ads/zero-vast/creative/png/limits-feed-1x1.png) | 1080×1080 |
+| [limits · 4:5](works/ads/zero-vast/creative/png/limits-4x5.png) | 1080×1350 |
+
+Two themes: **ink** (shown, uses the live site's own colours and its outlined
+display type) and **paper** (`png/paper/`, the film language).
+
+> **Honest caveat:** these are correct boards, not proven creative. Zero boards
+> have been seen in a real placement, the site's live Core Web Vitals could not be
+> measured from this sandbox, and no ad account data was supplied — so there is no
+> performance claim anywhere in this set.
+
 ---
 
 ## 📁 What is in here
