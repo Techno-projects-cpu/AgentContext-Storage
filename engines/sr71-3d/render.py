@@ -249,11 +249,23 @@ def render_frame(shot, t_abs, W, H, ss):
                             head_size=head_size, alpha=alpha,
                             accent_word="LEAKED" if key == "hook" else None,
                             size_k=TEXT_SCALE.get(key, 1.0))
-    # pins and hot labels
+    # pins and hot labels. Only the MOST RECENT one is drawn: two labels that
+    # share a position overprinted each other into gibberish in v1 of this cut.
     if key in PIN_LABELS:
+        active = None
         for (pin_t, xy, txt, side) in PIN_LABELS[key]:
             if tt >= pin_t:
-                a = ease_out((tt - pin_t) / 0.5)
+                active = (pin_t, xy, txt, side)
+        if active is not None:
+            pin_t, xy, txt, side = active
+            # fade the outgoing label as the next one arrives, not on top of it
+            fade = 1.0
+            for (nxt_t, *_rest) in PIN_LABELS[key]:
+                if nxt_t > pin_t:
+                    fade = 1.0 - ease_io((tt - (nxt_t - 0.45)) / 0.45)
+                    break
+            a = max(0.0, min(1.0, ease_out((tt - pin_t) / 0.5) * fade))
+            if a > 0.01:
                 OV.label_pin(img, (xy[0] * W / 1080, xy[1] * H / 1920), txt,
                              alpha=a, color=OV.ACCENT, side=side)
     if key == "teb_b" and tt > 0.4:

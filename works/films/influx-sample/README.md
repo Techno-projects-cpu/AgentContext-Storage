@@ -106,6 +106,12 @@ things were wrong underneath the paint:
    The fuselage is resampled from 15 stations to ~45 with Catmull-Rom, so there
    are no facets along its length. Wing leading edges and box corners stay sharp.
 
+A third defect only showed up in the final encode: type was fading *out* through
+its RGB channels instead of its alpha channel, so every outgoing caption went
+dull and dark instead of transparent (and two overlapping leader-line labels
+overprinted into gibberish). Both are fixed in `overlay.py` / `render.py`, and the
+master was re-rendered end to end.
+
 Also fixed: the skin expansion is now real geometry (the skin lifts off the frame
 along its own normal, and every seam hoop rides the expanded surface); the frame
 is solved from the subject's projected width instead of a bounding sphere (the

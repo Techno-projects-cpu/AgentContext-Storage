@@ -111,21 +111,24 @@ def draw_text_block(img, at, overline=None, head=None, note=None,
     """
     if alpha <= 0.004:
         return
-    d = ImageDraw.Draw(img)
+    # Fade with a real alpha CHANNEL on a separate layer. Scaling the RGB
+    # channels instead (what this did before) makes type fade to BLACK — which
+    # reads as a smear of dirt rather than a fade.
+    layer = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
     x, y = at
-    a = alpha
+    a = int(round(255 * max(0.0, min(1.0, alpha))))
     max_w = img.size[0] - 2 * (56 + 6)
     if overline:
         f = font("mono", max(10, int(24 * size_k)))
         tr = fit_track(d, overline.upper(), f, max_w)
-        spaced(d, (x, y + 26), overline.upper(), f,
-               tuple(int(c * a) for c in DIM), tracking=tr, anchor=align)
+        spaced(d, (x, y + 26), overline.upper(), f, DIM + (a,),
+               tracking=tr, anchor=align)
         y += int(62 * size_k)
     if head:
         head_size = fit_head_size(d, head, head_size, max_w)
         fh = font("display", head_size)
         lines = head if isinstance(head, list) else [head]
-        # baseline of line n = y + (n+1)*lineH - descender_allowance
         lineH = int(head_size * 1.02)
         for i, ln in enumerate(lines):
             by = y + i * lineH + int(head_size * 0.80)
@@ -136,17 +139,16 @@ def draw_text_block(img, at, overline=None, head=None, note=None,
                     cx = x - d.textlength(ln, font=fh) / 2
                 if before:
                     d.text((cx, by), before, font=fh,
-                           fill=tuple(int(c * a) for c in head_color), anchor="ls")
+                           fill=head_color + (a,), anchor="ls")
                     cx += d.textlength(before, font=fh)
                 d.text((cx, by), accent_word, font=fh,
-                       fill=tuple(int(c * a) for c in accent_color), anchor="ls")
+                       fill=accent_color + (a,), anchor="ls")
                 cx += d.textlength(accent_word, font=fh)
                 if after:
                     d.text((cx, by), after, font=fh,
-                           fill=tuple(int(c * a) for c in head_color), anchor="ls")
+                           fill=head_color + (a,), anchor="ls")
             else:
-                d.text((x, by), ln, font=fh,
-                       fill=tuple(int(c * a) for c in head_color), anchor=align)
+                d.text((x, by), ln, font=fh, fill=head_color + (a,), anchor=align)
         y += lineH * len(lines) + 8
     if note:
         f = font("body", max(12, int(30 * size_k)))
@@ -154,8 +156,9 @@ def draw_text_block(img, at, overline=None, head=None, note=None,
         for para in (note if isinstance(note, list) else [note]):
             for ln in wrap_text(d, para, f, wrap):
                 d.text((x, y + 6), ln, font=f,
-                       fill=tuple(int(c * 0.80 * a) for c in DIM), anchor=align)
+                       fill=tuple(int(c * 0.80) for c in DIM) + (a,), anchor=align)
                 y += int(42 * size_k)
+    img.alpha_composite(layer)
 
 
 def gradient_scrim(img, top_frac=0.52, alpha=0.86, colour=(5, 6, 10)):
