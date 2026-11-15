@@ -1,0 +1,310 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "brand-profile",
+  "run_id": "zv-2026-11-09-01",
+  "created_at": "2026-11-09T12:00:00Z",
+  "brand_name": "NEZAAD Industries",
+  "website_url": "https://zero-vast.vercel.app",
+  "observations": [
+    {
+      "field": "brand_name",
+      "value": "NEZAAD Industries",
+      "evidence_refs": [
+        "index.html: <title>, header wordmark alt text"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "operator",
+      "value": "Nezaad, an independent web developer",
+      "evidence_refs": [
+        "about.html: 'I'm Nezaad. I design, build and maintain websites'"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "location",
+      "value": "Kalluru, Khammam, Telangana",
+      "evidence_refs": [
+        "index.html footer: 'Kalluru, Khammam, Telangana'"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "hero_headline",
+      "value": "Websites built to perform.",
+      "evidence_refs": [
+        "index.html: h1.display"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "positioning",
+      "value": "Hand-written semantic HTML, modern CSS and vanilla JavaScript; no framework by default",
+      "evidence_refs": [
+        "index.html: hero lede",
+        "capabilities.html: 'What I don't do' 02"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "services",
+      "value": [
+        "Marketing & business sites",
+        "Web apps & internal tools",
+        "Redesigns & performance rescue",
+        "Care & maintenance"
+      ],
+      "evidence_refs": [
+        "capabilities.html: section 01"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "measurement_promise",
+      "value": "Core Web Vitals budgets (LCP, CLS, INP) agreed before the build starts",
+      "evidence_refs": [
+        "index.html: hero stat 'Performance first'",
+        "capabilities.html: 05 / Performance"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "accessibility_promise",
+      "value": "WCAG 2.2 AA, keyboard and screen-reader checks",
+      "evidence_refs": [
+        "capabilities.html: 06 / Accessibility"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "process",
+      "value": [
+        "Brief",
+        "Scope",
+        "Build",
+        "Handover"
+      ],
+      "evidence_refs": [
+        "index.html: section 03 / How I work"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "handover_terms",
+      "value": "Source code passed to the client; hosting and domain registered in the client's name and billed directly",
+      "evidence_refs": [
+        "capabilities.html: 'How projects run'"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "revision_policy",
+      "value": "Up to three revision rounds included on every project",
+      "evidence_refs": [
+        "capabilities.html: 'How projects run'"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "stated_limits",
+      "value": [
+        "No templates sold as custom work",
+        "No framework by default",
+        "No work the developer cannot stand behind",
+        "No surprise invoices"
+      ],
+      "evidence_refs": [
+        "capabilities.html: section 03 / What I don't do"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "visual_tokens",
+      "value": {
+        "ink": "#070707",
+        "panel": "#0b0b0b",
+        "paper": "#f3f3f0",
+        "muted": "#a6a6a1"
+      },
+      "evidence_refs": [
+        "assets/styles.css: :root custom properties"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "typography",
+      "value": "System sans stack for body; UI monospace stack for labels",
+      "evidence_refs": [
+        "assets/styles.css: --sans and --mono"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "contact_channels",
+      "value": [
+        "themerchantofdeath2011@gmail.com",
+        "themerchantofdeath2000@gmail.com",
+        "contact.html enquiry form (opens a mail draft, nothing sent server-side)"
+      ],
+      "evidence_refs": [
+        "index.html footer",
+        "README.md: Enquiry flow"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "cta_label",
+      "value": "Start a project",
+      "evidence_refs": [
+        "index.html nav .nav-cta"
+      ],
+      "confidence": "high"
+    },
+    {
+      "field": "missing_offers",
+      "value": [
+        "no prices or price ranges published",
+        "no testimonials published",
+        "no client count, project count or years-in-business figure published",
+        "no named portfolio items published on the site",
+        "no availability dates or lead times published"
+      ],
+      "evidence_refs": [
+        "index.html",
+        "capabilities.html",
+        "about.html",
+        "contact.html"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "inferences": [
+    {
+      "field": "audience",
+      "value": "Small business owners and sole traders in and around Khammam / Telangana who need a site that loads on cheap Android hardware",
+      "evidence_refs": [
+        "about.html: 'Most small businesses do not need a bigger website. They need a faster one'",
+        "index.html: hero lede"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "voice",
+      "value": "Direct, technical, unhyped. Shorter sentences, no superlatives, limits stated before promises",
+      "evidence_refs": [
+        "capabilities.html: section 03",
+        "about.html: 03 / Plain communication"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "primary_objective",
+      "value": "Qualified project enquiries (email or call), not e-commerce sales",
+      "evidence_refs": [
+        "contact.html: mail draft flow",
+        "index.html: 'Start a project' CTA"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "price_sensitivity",
+      "value": "Price is a live objection; the site pre-empts it by removing markup on hosting and by refusing templates",
+      "evidence_refs": [
+        "capabilities.html: 'I do not mark them up'",
+        "04 / Surprise invoices"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "language",
+      "value": "English only; Telugu is the local language but is not used on the site",
+      "evidence_refs": [
+        "all pages: lang=\"en\"",
+        "no Telugu copy in any page"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "visual_style",
+      "value": "Monochrome instrument-panel aesthetic: near-black ground, paper-white type, mono labels, hairline rules, one accent",
+      "evidence_refs": [
+        "assets/styles.css tokens",
+        "index.html: marquee and step numbering"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    },
+    {
+      "field": "competes_on",
+      "value": "Speed, handover of real source code, and plain dealing",
+      "evidence_refs": [
+        "about.html: 01-03 principles",
+        "capabilities.html: 04 / Testing"
+      ],
+      "confidence": "medium",
+      "approval_status": "pending"
+    }
+  ],
+  "source_ids": [
+    "site:index.html",
+    "site:capabilities.html",
+    "site:about.html",
+    "site:contact.html",
+    "site:assets/styles.css",
+    "site:README.md"
+  ],
+  "source_assets_authorized": true,
+  "missing_fields": [
+    "no verified live URL from this environment (vercel.app unreachable); page contents read from the repository that deploys to it",
+    "no prices, so no price-led offer can be tested",
+    "no testimonials or client names, so no social proof can be used",
+    "no analytics or ad account data supplied, so no performance claim is possible",
+    "no confirmation from the owner on the inferences above"
+  ],
+  "status": "partial",
+  "data_lifecycle": {
+    "schema_version": "1.0.0",
+    "lifecycle_id": "zv-ad-run-1",
+    "classification": "public",
+    "retention": {
+      "minimum_seconds": 0,
+      "mode": "operator-defined",
+      "delete_after": null,
+      "purpose": "public website copy and ad creative; no personal data, no credentials, no analytics identifiers handled",
+      "exception_reason": null
+    },
+    "encryption": {
+      "at_rest": "not-applicable",
+      "in_transit": "not-applicable",
+      "evidence_refs": [
+        "source is a public static site read from the owner's repository",
+        "no form submission, no account data, no credentials in this run"
+      ]
+    },
+    "access": {
+      "owner": "NEZAAD Industries",
+      "authorized_roles": [
+        "site owner"
+      ],
+      "access_log_locator": null
+    },
+    "deletion": {
+      "status": "scheduled",
+      "method": "delete the run directory",
+      "verification_required": true,
+      "verification_artifact_locator": null
+    },
+    "incident": {
+      "owner": "NEZAAD Industries",
+      "reporting_channel": "site owner email in the repository footer",
+      "status": "not-triggered",
+      "record_locator": null
+    }
+  }
+}
