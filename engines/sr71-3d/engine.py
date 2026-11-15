@@ -41,6 +41,30 @@ def look_at(eye, target, up=(0, 1, 0)):
     return np.stack([r, u, -f]), eye
 
 
+def face_normals(V, F):
+    n = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]])
+    return n / (np.linalg.norm(n, axis=1, keepdims=True) + 1e-12)
+
+
+def smooth_normals(V, F, crease_deg=42.0):
+    """
+    Per-face-corner normals: the mean of the incident face normals, but only
+    trusted where that mean still points within `crease_deg` of the face's own
+    normal. So a cylinder reads as a smooth tube while a wing's leading edge and
+    a box's corner stay hard. Purely geometric — no UVs, no vertex welding.
+    """
+    fn = face_normals(V, F)
+    nv = np.zeros_like(V)
+    np.add.at(nv, F.ravel(), np.repeat(fn, 3, axis=0))
+    ln = np.linalg.norm(nv, axis=1, keepdims=True)
+    nv = nv / np.maximum(ln, 1e-12)
+    corner = nv[F]                                     # (M,3,3)
+    d = np.sum(corner * fn[:, None, :], axis=2)        # (M,3)
+    keep = d > np.cos(np.radians(crease_deg))
+    out = np.where(keep[..., None], corner, fn[:, None, :])
+    return out / (np.linalg.norm(out, axis=2, keepdims=True) + 1e-12)
+
+
 def cylinder(r=1.0, h=1.0, seg=24, r_top=None, cap=True):
     r_top = r if r_top is None else r_top
     ang = np.linspace(0, 2 * np.pi, seg, endpoint=False)
@@ -124,6 +148,8 @@ class Scene:
         self.exposure = 1.0
         self.bloom_amt = 0.55
         self.glow = None
+        self.smooth = True   # Gouraud-shade across creases; flat if False
+        self.grain_seed = 1234   # per-frame grain: real grain moves, fixed grain freezes
 
     def add(self, mesh, mat):
         V, F = mesh
@@ -167,21 +193,27 @@ class Scene:
             z = -Vc[:, 2]
             x = (Vc[:, 0] * f) / np.maximum(z, 1e-6) * (H / 2) + W / 2
             y = (-Vc[:, 1] * f) / np.maximum(z, 1e-6) * (H / 2) + H / 2
-            n = np.cross(V0[F[:, 1]] - V0[F[:, 0]], V0[F[:, 2]] - V0[F[:, 0]])
-            n = n / (np.linalg.norm(n, axis=1, keepdims=True) + 1e-12)
+            n = face_normals(V0, F)
             cen = V0[F].mean(axis=1)
             view = eye[None, :] - cen
             view = view / (np.linalg.norm(view, axis=1, keepdims=True) + 1e-12)
-            # faces whose normal points away from the camera still rasterise for
-            # closed shells, but they get no key light — correct and cheap
-            col = self._shade(n, view, mat, Ls, z[F].mean(axis=1))
+            if self.smooth:
+                # shade the three corners and interpolate: the hull curves
+                # instead of reading as eight flat plates
+                cn = smooth_normals(V0, F)
+                cv = eye[None, None, :] - V0[F]
+                cv = cv / (np.linalg.norm(cv, axis=2, keepdims=True) + 1e-12)
+                cols = self._shade(cn.reshape(-1, 3), cv.reshape(-1, 3), mat, Ls,
+                                   z[F].reshape(-1)).reshape(len(F), 3, 3)
+            else:
+                cols = self._shade(n, view, mat, Ls, z[F].mean(axis=1))[:, None, :]
             for i in range(len(F)):
                 a, b, c = F[i]
                 za, zb_, zc = z[a], z[b], z[c]
                 if za <= 0.06 or zb_ <= 0.06 or zc <= 0.06:
                     continue
                 self._tri(img, zbuf, x[a], y[a], za, x[b], y[b], zb_, x[c], y[c], zc,
-                          col[i])
+                          cols[i])
 
         img = self._post(img)
         out = Image.fromarray((np.clip(img, 0, 1) * 255).astype(np.uint8))
@@ -200,6 +232,7 @@ class Scene:
         metal = float(mat.get("metal", 0.0))
         rough = float(mat.get("rough", 0.35))
         emit = np.array(mat.get("emit", (0, 0, 0)), float)
+        rim = np.array(mat.get("rim", (0, 0, 0)), float)
         fres = 0.04 + 0.96 * (1 - np.clip(np.sum(n * view, axis=1), 0, 1)) ** 5
         # reflect the view about the normal: what a mirror at this pixel sees
         rvec = 2 * np.sum(n * view, axis=1, keepdims=True) * n - view
@@ -226,6 +259,10 @@ class Scene:
                + spec_col * spec * (0.9 + 2.2 * metal) * (0.15 + 0.85 * fres)[:, None]
                + base[None, :] * 0.05)
         col += emit[None, :]
+        # rim heat: grazing faces (leading edges, chines, panel lips) glow, which
+        # is how a hot airframe actually photographs — the edges go first
+        if rim.any():
+            col += rim[None, :] * (fres ** 2.2)[:, None]
         if self.fog_k > 0:
             k = np.clip((depth - 6.0) * self.fog_k, 0, 0.85)[:, None]
             col = col * (1 - k) + self.fog[None, :] * k
@@ -233,6 +270,8 @@ class Scene:
 
     @staticmethod
     def _tri(img, zbuf, x0, y0, z0, x1, y1, z1, x2, y2, z2, col):
+        """Scanline triangle with a z-buffer. `col` is (3,) flat or (3,3) per-corner.
+        Rasterised in row bands so per-pixel colour maths stays cache-sized."""
         H, W = zbuf.shape
         minx = max(int(np.floor(min(x0, x1, x2))), 0)
         maxx = min(int(np.ceil(max(x0, x1, x2))), W - 1)
@@ -240,25 +279,33 @@ class Scene:
         maxy = min(int(np.ceil(max(y0, y1, y2))), H - 1)
         if minx > maxx or miny > maxy:
             return
-        xs = np.arange(minx, maxx + 1) + 0.5
-        ys = np.arange(miny, maxy + 1) + 0.5
-        px, py = np.meshgrid(xs, ys)
         d = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2)
         if abs(d) < 1e-9:
             return
-        w0 = ((y1 - y2) * (px - x2) + (x2 - x1) * (py - y2)) / d
-        w1 = ((y2 - y0) * (px - x2) + (x0 - x2) * (py - y2)) / d
-        w2 = 1 - w0 - w1
-        inside = (w0 >= 0) & (w1 >= 0) & (w2 >= 0)
-        if not inside.any():
-            return
-        zz = w0 * z0 + w1 * z1 + w2 * z2
-        sub = zbuf[miny:maxy + 1, minx:maxx + 1]
-        m = inside & (zz < sub)
-        if not m.any():
-            return
-        sub[m] = zz[m]
-        img[miny:maxy + 1, minx:maxx + 1][m] = col[None, :]
+        xs = np.arange(minx, maxx + 1) + 0.5
+        flat = col.ndim == 1
+        for yb in range(miny, maxy + 1, 96):
+            ye = min(yb + 95, maxy)
+            ys = np.arange(yb, ye + 1) + 0.5
+            px, py = np.meshgrid(xs, ys)
+            w0 = ((y1 - y2) * (px - x2) + (x2 - x1) * (py - y2)) / d
+            w1 = ((y2 - y0) * (px - x2) + (x0 - x2) * (py - y2)) / d
+            w2 = 1 - w0 - w1
+            inside = (w0 >= 0) & (w1 >= 0) & (w2 >= 0)
+            if not inside.any():
+                continue
+            zz = w0 * z0 + w1 * z1 + w2 * z2
+            sub = zbuf[yb:ye + 1, minx:maxx + 1]
+            m = inside & (zz < sub)
+            if not m.any():
+                continue
+            sub[m] = zz[m]
+            if flat:
+                img[yb:ye + 1, minx:maxx + 1][m] = col[None, :]
+            else:
+                c = (w0[m][:, None] * col[0] + w1[m][:, None] * col[1]
+                     + w2[m][:, None] * col[2])
+                img[yb:ye + 1, minx:maxx + 1][m] = np.clip(c, 0, 40)
 
     def _post(self, img):
         img = img * self.exposure
@@ -281,7 +328,8 @@ class Scene:
         r = np.sqrt(((xx - cx) / cx) ** 2 + ((yy - cy) / cy) ** 2) / 1.414
         vig = np.clip(1 - (r ** 2.2) * 0.85, 0, 1)[..., None]
         img = img * vig
-        # fine grain: fixed seed, so the render reproduces exactly
-        rng = np.random.default_rng(1234)
-        img = img + (rng.standard_normal((H, W, 1)) * 0.006)
+        # fine grain. Deterministic in the frame seed so a re-render reproduces
+        # exactly, but per-frame, because grain that never moves reads as a still.
+        rng = np.random.default_rng(self.grain_seed)
+        img = img + (rng.standard_normal((H, W, 1)) * 0.0055)
         return np.clip(img, 0, 1)

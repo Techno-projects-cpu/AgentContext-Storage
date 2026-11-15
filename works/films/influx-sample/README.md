@@ -73,57 +73,92 @@ is reproducible here without a GPU, which is exactly what the sample film does.
 
 ## 5 · The sample film made here
 
-`01-sr71-leaked-fuel-vertical-1080x1920.mp4` — 48.5 s, vertical, on **why the SR-71 Blackbird leaked
-fuel on the ground**. Same grammar: paradox title, cold state → hot state →
+`sr71-final.mp4` — **51 s**, 1080×1920, 24 fps, on **why the SR-71 Blackbird
+leaked fuel on the ground**. Same grammar: paradox hook, cold state → hot state →
 mechanism → quotable close.
 
-| Beat | Time | What is on screen |
-|---|---|---|
-| Hook | 0 – 4.5 s | Cold, wet close-up under the belly; the type lands: **THE SR-71 LEAKED FUEL.** |
-| 01 Cold | 4.5 – 13 s | Pan along the airframe; panel gaps named; drips fall from the belly |
-| 02 Hot | 13 – 24.5 s | Ember lighting, heat haze; the metal grows, then **IT SEALS ITSELF** |
-| 03 Fuel | 24.5 – 32 s | Macro on two titanium panels; the gap between them is the subject |
-| 04 Ignition | 32 – 40.4 s | TEB injector; the frame goes green |
-| Close | 40.4 – 48.5 s | Slow orbit; **IT DIDN'T LEAK. IT LEAKED BECAUSE IT GREW.** |
+| # | Beat | Time | What is on screen |
+|---|---|---|---|
+| — | Hook | 0 – 5.0 s | Rain of fuel under the belly, pulls back to the whole aircraft: **THE SR-71 LEAKED FUEL.** |
+| 01 | Built loose | 5.0 – 11.0 s | Cold airframe, every panel joint open and glowing blue: **BUILT LOOSE.** |
+| 02 | Skin = tank | 11.0 – 16.8 s | Macro on two titanium panels. The gap between them opens onto the inside of the tank — there was no rubber bladder: **THE SKIN IS THE TANK.** |
+| 03 | The heat | 16.8 – 23.2 s | Ember light, heat haze; the airframe's edges go hot: **THE METAL GROWS.** |
+| 04 | Seals | 23.2 – 30.2 s | The same two panels, closing in real geometry over six seconds, a glowing edge swallowed as they meet: **IT SEALS ITSELF.** |
+| 05 | JP-7 | 30.2 – 36.0 s | The seams shut on the aircraft in flight, no drips: **COOLANT FIRST.** |
+| 06 | TEB | 36.0 – 41.5 s | Green plumes off both exhausts: **IT BURNS GREEN.** |
+| 07 | Close | 41.5 – 51.0 s | Slow orbit, clean silhouette: **IT DIDN'T LEAK.** / it leaked because it grew. |
+
+### v2 — what the first cut got wrong
+
+The first version (48.5 s) was shipped, then re-reviewed frame by frame, and two
+things were wrong underneath the paint:
+
+1. **The mechanism was faked.** The "it seals itself" beat used a static seam
+   mesh: `build_parts` hardcoded `seams = 0.0` in both the cold and hot branches,
+   so the gaps never actually closed. The beat asserted a mechanism it did not
+   show. It now closes real geometry: the panel gap is a parameter of the plate
+   mesh and animates from 0.44 to 0.012 over the beat, with a glowing edge that
+   gets covered as the joint shuts.
+2. **The hull was visibly low-poly** — eight flat sections per ring, hard facet
+   edges, so the aircraft read as a 2004 viewport. The renderer now does
+   crease-aware smoothing: per-corner normals averaged across faces, kept hard
+   where the angle exceeds 42°, with Gouraud interpolation across every triangle.
+   The fuselage is resampled from 15 stations to ~45 with Catmull-Rom, so there
+   are no facets along its length. Wing leading edges and box corners stay sharp.
+
+Also fixed: the skin expansion is now real geometry (the skin lifts off the frame
+along its own normal, and every seam hoop rides the expanded surface); the frame
+is solved from the subject's projected width instead of a bounding sphere (the
+first cut was zoomed so far that parts of the aircraft left the frame); the
+macro beats are framed on measured projections rather than guesses; the camera
+has a continuous slow sweep so no beat measures as a frozen frame; hot skin stays
+black and only its *edges* go ember, instead of the whole hull turning pink.
 
 ### How it is made
 
 No WebGL is available in this container (ANGLE/SwiftShader cannot initialise),
 so `zv3d/engine.py` is a **software 3D renderer written for this**: perspective
-projection, z-buffer triangle rasterisation in NumPy, per-face shading with a
-three-light rig (warm key, cool rim, ember fill), a fake studio environment so
-metal reflects something, bloom, ACES-ish tone map, vignette and grain. The
-aircraft is ~40 primitives in `zv3d/model.py`. Type, HUD and labels are PIL
-layers (`zv3d/overlay.py`); the edit and copy are `zv3d/shots.py`.
+projection, z-buffer triangle rasterisation in NumPy, crease-aware smooth normals
+with Gouraud interpolation, a three-light rig (warm key, cool rim, ember fill),
+a fake studio environment so metal reflects something, a rim-emission term for
+hot edges, bloom, ACES-ish tone map, vignette and per-frame grain. The aircraft
+is ~30 parts in `zv3d/model.py` — a resampled superellipse hull, seam hoops and
+spine seams generated *on* that hull, nacelles, canted tails, delta wing, canopy.
+Type, HUD and leader-line labels are PIL layers (`zv3d/overlay.py`); the edit,
+copy, camera and mechanism are `zv3d/shots.py`.
 
 Every frame is a pure function of time — no clock, no unseeded RNG — so any frame
-can be re-rendered on its own:
+can be re-rendered on its own, and a held shot is precomputed rather than
+re-fitted per frame (a camera that keeps fitting a shrinking object drifts
+backwards and gives the reveal away):
 
 ```
-cd engines/sr71-3d
-python3 render.py --still 12.4 --w 540 --h 960 --ss 1   # one frame
-python3 render.py --out film.mp4 --ss 2                 # the master (71 min at 1080x1920)
-python3 audio.py --dur 48.5 --out /tmp/bed.wav          # the sound bed
+python3 zv3d/render.py --still 27.0 --w 540 --h 960 --ss 1   # one frame
+python3 zv3d/render.py --w 540 --h 960 --ss 1 --fps 12 --out prev.mp4  # preview
+python3 zv3d/render.py --ss 2 --out film.mp4                  # the master
 ```
 
-Measured on the delivered file: 48.500 s, 1080x1920, H.264 + AAC, −16.9 LUFS,
-−1.3 dBTP true peak, no dead frames sampled every 30 frames.
+Measured: 1080×1920 at `--ss 2` is ~3.3 s/frame (1,224 frames ≈ 67 min); the
+540×960 preview is ~2.0 s/frame. Audio is `zv3d/audio.py` — a synthesised bed
+with a low hit on every cut, a riser into the hot beat and a bell on the green
+flash. **No sound library, no ElevenLabs, no Blender, no GPU.**
 
 ### Facts used, and where they come from
 
-Stated by the sources cited in the section below, not invented:
+Stated by the sources cited below, not invented:
 
-- Airframe ~93% titanium; at Mach 3.2 skin runs roughly 460–620 °F, with hot
+- Airframe ~93% titanium; at Mach 3.2 the skin runs roughly 460–620 °F, with hot
   spots above 1,000 °F.
-- Panels were fitted loose **because** the airframe expands several inches when
-  hot; a tightly-fitted cold airframe would buckle.
-- The leak is a consequence of that fit, not a design goal in itself — the tanks
-  sealed once the skin expanded.
-- JP-7 has a flash point around 140 °F; it was so hard to ignite that TEB
+- The wing skin *was* the tank wall — "wet wing" tanks, no rubber bladder — and
+  panels were fitted loose **because** the airframe expands several inches hot;
+  a tightly-fitted cold airframe would buckle.
+- The leak is the consequence of that fit, not a design goal: JP-7 seeped from
+  the cold joints on the ground and the seams closed at speed.
+- JP-7's flash point is around 140 °F; it was so hard to ignite that TEB
   (triethylborane) was injected to start the engines and light the afterburners,
   producing a green flash.
-- Pilots have said the post-takeoff refuelling was about inerting the tanks with
-  nitrogen for Mach >2.6, not about the leak volume.
+- The post-takeoff refuelling was about inerting the tanks with nitrogen for
+  Mach >2.6, **not** about replacing leaked fuel — a myth this film avoids.
 
 Sources: Wikipedia (Lockheed SR-71 Blackbird), 19FortyFive, Simple Flying,
 The War Zone / Air & Space Forces Magazine, NASA historian Peter Merlin via
@@ -132,4 +167,5 @@ secondary reporting.
 > **Honest caveat:** the model is schematic and not to scale, exactly as the
 > channel disclaims about its own. It is not a Lockheed drawing and should not be
 > read as one. I have not watched the finished render end to end; it was checked
-> by inspecting frames at every beat and by measuring the file.
+> by inspecting frames at every beat, by a frame-difference pass that flags
+> frozen frames, and by measuring the file.

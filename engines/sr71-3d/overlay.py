@@ -51,7 +51,7 @@ def easer(t):
     return 1 - (1 - t) ** 5
 
 
-def text_block_size(head, head_size, note=None):
+def text_block_size(head, head_size, note=None, size_k=1.0):
     """Measure a block before drawing it, so nothing overlaps anything."""
     lines = head if isinstance(head, list) else [head]
     h = 0
@@ -104,7 +104,7 @@ def fit_track(d, s, f, max_w, start=5.0):
 
 def draw_text_block(img, at, overline=None, head=None, note=None,
                     align="left", head_size=104, alpha=1.0, accent_word=None,
-                    head_color=PAPER, accent_color=ACCENT):
+                    head_color=PAPER, accent_color=ACCENT, size_k=1.0):
     """
     Draw a block downward from `at` = (x, top). Overline sits above the headline
     by its own measured height, so the two can never collide again.
@@ -116,11 +116,11 @@ def draw_text_block(img, at, overline=None, head=None, note=None,
     a = alpha
     max_w = img.size[0] - 2 * (56 + 6)
     if overline:
-        f = font("mono", 24)
+        f = font("mono", max(10, int(24 * size_k)))
         tr = fit_track(d, overline.upper(), f, max_w)
         spaced(d, (x, y + 26), overline.upper(), f,
                tuple(int(c * a) for c in DIM), tracking=tr, anchor=align)
-        y += 62
+        y += int(62 * size_k)
     if head:
         head_size = fit_head_size(d, head, head_size, max_w)
         fh = font("display", head_size)
@@ -149,13 +149,13 @@ def draw_text_block(img, at, overline=None, head=None, note=None,
                        fill=tuple(int(c * a) for c in head_color), anchor=align)
         y += lineH * len(lines) + 8
     if note:
-        f = font("body", 30)
+        f = font("body", max(12, int(30 * size_k)))
         wrap = img.size[0] - 2 * (56 + 6)
         for para in (note if isinstance(note, list) else [note]):
             for ln in wrap_text(d, para, f, wrap):
                 d.text((x, y + 6), ln, font=f,
                        fill=tuple(int(c * 0.80 * a) for c in DIM), anchor=align)
-                y += 42
+                y += int(42 * size_k)
 
 
 def gradient_scrim(img, top_frac=0.52, alpha=0.86, colour=(5, 6, 10)):
@@ -177,7 +177,7 @@ def gradient_scrim(img, top_frac=0.52, alpha=0.86, colour=(5, 6, 10)):
     img.alpha_composite(scrim)
 
 
-def hud(img, t, shot_idx, shot_name, alpha=1.0):
+def hud(img, t, shot_idx, shot_name, alpha=1.0, total=None, duration=None):
     W, H = img.size
     d = ImageDraw.Draw(img, "RGBA")
     a = int(255 * alpha)
@@ -186,7 +186,8 @@ def hud(img, t, shot_idx, shot_name, alpha=1.0):
     d.line([(1040 - 94, 96), (1040, 96)], fill=(255, 255, 255, 70), width=1)
     spaced(d, (56, 76), "CASE FILE 71", font("mono_b", 24), (255, 255, 255, a),
            tracking=4, anchor="l")
-    spaced(d, (1040, 76), f"{shot_idx + 1:02d} / 11", font("mono", 24),
+    n = total or shot_idx + 1
+    spaced(d, (1040, 76), f"{shot_idx + 1:02d} / {n}", font("mono", 24),
            (150, 160, 180, a), tracking=3, anchor="rs")
     # bottom rule + timecode
     d.line([(56, 1842), (1040, 1842)], fill=(255, 255, 255, 42), width=1)
@@ -196,7 +197,7 @@ def hud(img, t, shot_idx, shot_name, alpha=1.0):
     spaced(d, (1040, 1888), "SR-71 · TITANIUM · JP-7", font("mono", 22),
            (120, 130, 150, a), tracking=2, anchor="rs")
     # progress rail along the very bottom
-    p = min(1.0, t / 48.5)
+    p = min(1.0, t / (duration or 51.0))
     d.line([(0, 1916), (W * p, 1916)], fill=(120, 160, 255, int(180 * alpha)), width=3)
 
 

@@ -23,18 +23,28 @@ sound effects, and sources listed per video.
 
 | Watch | File | Length |
 |---|---|---|
-| ▶ **SR-71 · "It leaked fuel. On purpose."** | [`01-sr71-leaked-fuel-vertical-1080x1920.mp4`](works/films/influx-sample/01-sr71-leaked-fuel-vertical-1080x1920.mp4) · [poster](works/films/influx-sample/01-sr71-leaked-fuel-poster.jpg) | 48.5 s |
+| ▶ **SR-71 · "It leaked fuel. On purpose."** | [`01-sr71-leaked-fuel-vertical-1080x1920.mp4`](works/films/influx-sample/01-sr71-leaked-fuel-vertical-1080x1920.mp4) · [poster](works/films/influx-sample/01-sr71-leaked-fuel-poster.jpg) | 51.0 s |
 
-Beats: cold airframe and dripping panels → ember-lit Mach 3 and the gaps closing
-→ macro on two titanium plates → TEB ignition, green flash → **"It didn't leak.
-It leaked because it grew."** 1080×1920, 24 fps, AAC, −16.9 LUFS, −1.3 dBTP, no
-dead frames.
+Beats: fuel raining off the belly → every joint open and cold → macro on two
+titanium panels, the gap between them opening onto the inside of the tank → the
+airframe's edges going ember at Mach 3 → **the same two panels closing in real
+geometry** while the glowing edge is swallowed → TEB ignition, green plumes →
+**"It didn't leak. It leaked because it grew."** 1080×1920, 24 fps, AAC.
+
+Rebuilt once after review, because the first cut asserted the sealing mechanism
+instead of showing it: the seam gaps were static geometry, and the hull read as
+low-poly. Both are now real — the panel gap is a mesh parameter that animates,
+and the renderer does crease-aware smooth normals with Gouraud interpolation.
 
 The 3D is **real 3D, rasterised on the CPU**: there is no WebGL in this sandbox,
-so [`engines/sr71-3d/`](engines/sr71-3d/) is a NumPy renderer — z-buffer,
-three-light rig, environment reflections, bloom, tone map — plus a PIL type layer
+so [`engines/sr71-3d/`](engines/sr71-3d/) is a NumPy renderer — z-buffer, crease-aware
+smooth normals, three-light rig, environment reflections, rim heat, bloom, tone
+map — plus a PIL type layer
 and a synthesized sound bed. Channel analysis and the full production notes:
 [`works/films/influx-sample/README.md`](works/films/influx-sample/README.md).
+
+**v1 vs v2:** [`01-sr71-v1-vs-v2.jpg`](works/films/influx-sample/01-sr71-v1-vs-v2.jpg)
+puts the first cut next to the rebuild at the same beats.
 
 > **Honest caveat:** the model is schematic and not to scale, which the channel
 > says about its own models too — it is not a Lockheed drawing. Nobody has

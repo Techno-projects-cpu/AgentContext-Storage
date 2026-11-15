@@ -6,9 +6,9 @@ so this rasterises triangles in NumPy instead of faking depth with CSS.
 
 | file | what it is |
 |---|---|
-| `engine.py` | rasteriser: perspective projection, z-buffer, Blinn-Phong + fake studio environment, three-light rig, bloom, ACES-ish tone map, vignette, grain |
-| `model.py` | the subject: ~40 primitives (faceted fuselage, chined body, delta wing, nacelles, canted tails), panel seams, titanium plates, fuel drops |
-| `frame.py` | auto-framing — backs the camera off until the *projected* subject fills the frame, rather than fitting a bounding sphere (which wastes a portrait frame) |
+| `engine.py` | rasteriser: perspective projection, z-buffer, crease-aware smooth normals with Gouraud interpolation, Blinn-Phong + fake studio environment, three-light rig, rim emission for hot edges, bloom, ACES-ish tone map, vignette, per-frame grain |
+| `model.py` | the subject: a Catmull-Rom-resampled superellipse hull, seam hoops and spine seams generated *on* that hull, chine, delta wing, nacelles with spikes and lips, canted tails, canopy, titanium plates with rivets, fuel drops, TEB plumes |
+| `frame.py` | auto-framing — solves distance by bisection so the *projected* subject spans a given fraction of frame WIDTH, then walks the look-at point until it sits where asked; particles are excluded from the fit |
 | `overlay.py` | the flat layer: overline/headline/note stack, HUD, leader-line labels, gradient scrim, heat haze |
 | `shots.py` | the whole edit: one dict per shot, each with a camera rig, an orbit delta and the copy |
 | `render.py` | frame loop → raw RGB → ffmpeg; `--still` renders one frame for inspection |
@@ -21,15 +21,35 @@ timeline state. `--still 12.4` renders the exact frame at 12.4 s, so camera and
 type fixes are checked in a second instead of a render. The whole film was tuned
 this way; the 71-minute master was rendered once.
 
-## Numbers that matter
+## Engine v2 — what changed after the first film
 
-- 1080×1920 at `--ss 2` (2× supersample, downsampled with LANCZOS): **3.7 s/frame**
-- 540×960 at `--ss 1` for previews: **~0.2 s/frame**
-- the full 48.5 s film at 24 fps = 1164 frames = **71 minutes**
+The first cut shipped, then got re-reviewed and rebuilt, because two things were
+wrong *underneath* the look:
 
-If that is too slow: render at `--ss 1` (three times faster, slightly aliased
-edges) or cut the frame rate to 24 only where it matters. Do not drop resolution;
-1080×1920 is the floor for a vertical upload.
+1. **Smoothness.** The hull was 8 sections per ring with hard facet edges; it read
+   as 2004. `engine.py` now averages incident face normals per triangle corner and
+   keeps them hard where the crease exceeds 42°, then interpolates colour across
+   every triangle. The hull itself is resampled from 15 stations to ~45 with
+   Catmull-Rom. Wing leading edges and plate corners stay sharp.
+2. **The mechanism was faked.** The plate gap and the seam gaps are now real
+   parameters of the mesh geometry, driven per shot — so "it seals itself"
+   actually shows the joint closing. Skin expansion lifts the hull along its own
+   normal and every seam rides with it.
+3. **Framing was guessed.** It is now measured: the distance solve is a bisection
+   on projected width, the vertical placement is walked to a target, and a
+   precomputed `hold` keeps the camera still while the mechanism moves — a camera
+   that keeps re-fitting a shrinking object drifts back and gives the reveal away.
+
+## Numbers that matter (measured on 2 vCPU)
+
+- 1080×1920 at `--ss 2` (2× supersample, LANCZOS downsample): **3.3–4.6 s/frame**
+- 1080×1920 at `--ss 1`: **0.9 s/frame**
+- 540×960 at `--ss 1` for previews: **~2.0 s/frame** at 12 fps
+- the 51.0 s film at 24 fps = 1224 frames ≈ **80 minutes**, rendered as eight
+  per-shot segments and concatenated. Two shots were re-rendered at ss 2 when
+  the plate framing changed; that is the cheapest unit of rework.
+- 11 max-render minutes is not a typo either side of these numbers: per-shot
+  segmenting plus `-c copy` concat means a bad beat costs one shot, not the film.
 
 ## Traps this cost, in order
 
