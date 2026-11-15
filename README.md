@@ -10,6 +10,30 @@ needs to pick the work back up.
 **Newest first.** Click a file, then press **Download** — GitHub will not stream an
 MP4 in the browser.
 
+### 00 — ZeroVast × HyperFrames · three films, 1080p · **the newest set**
+
+Three films about **zero-vast.vercel.app**, each written as an HTML composition
+and rendered with [HyperFrames](https://github.com/heygen-com/hyperframes); the
+edit follows the [Brag](https://github.com/latent-spaces/brag) skill's laws
+(15–25 s, hook first, show the real thing, no generic SaaS language, fast in then
+hold). Between them they cover the whole camera kit: pushes, trucks, tilts, rack
+focus, pull-backs, a 3D deck, parallax and type motion.
+
+| # | Film | Length | Poster |
+|---|---|---|---|
+| 1 | [**Site tour** — `01-hyperframes-site-tour-1080p.mp4`](works/films/zerovast-hf/01-hyperframes-site-tour-1080p.mp4) | 25 s | [still](works/films/zerovast-hf/01-hyperframes-site-tour-1080p-poster.jpg) |
+| 2 | [**Camera moves** — `02-hyperframes-camera-moves-1080p.mp4`](works/films/zerovast-hf/02-hyperframes-camera-moves-1080p.mp4) | 22 s | [still](works/films/zerovast-hf/02-hyperframes-camera-moves-1080p-poster.jpg) |
+| 3 | [**Kinetic type** — `03-hyperframes-kinetic-type-1080p.mp4`](works/films/zerovast-hf/03-hyperframes-kinetic-type-1080p.mp4) | 20 s | [still](works/films/zerovast-hf/03-hyperframes-kinetic-type-1080p-poster.jpg) |
+
+All three: 1920×1080 @ 30 fps, AAC audio, −16.3 to −16.7 LUFS, peaks under
+−1 dBTP, no dead frames, and a green HyperFrames gate (lint, runtime, layout,
+motion, contrast) at 0 errors, 0 warnings. Sources, measurements and the defects
+found along the way: [`works/films/zerovast-hf/README.md`](works/films/zerovast-hf/README.md).
+
+> **Honest caveat:** nobody has watched these end to end. The checks are numeric
+> and still-frame; they prove the films are not cropped, silent, illegible or
+> frozen. They cannot tell you the edit is good.
+
 ### 01 — Zero-vast brag film · 24.9 s, vertical
 
 Type-led brand film: one claim per shot, camera pushes, captions and narration

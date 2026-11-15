@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<script src="./vendor/gsap.min.js"></script>
+<style>
+  /* NEZAAD / zero-vast — the site's own instrument-panel language.
+     Tokens are lifted from ZeroVast/assets/styles.css, not invented. */
+  @font-face{font-family:"Display";font-weight:700;font-display:block;
+    src:url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2")}
+  @font-face{font-family:"Display";font-weight:500;font-display:block;
+    src:url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2")}
+  @font-face{font-family:"Text";font-weight:400;font-display:block;
+    src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2")}
+  @font-face{font-family:"Mono";font-weight:500;font-display:block;
+    src:url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2")}
+
+  :root{
+    --ground:#070707; --panel:#0b0b0b; --paper:#f4f3ee; --dim:#a6a6a1;
+    --rule:rgba(255,255,255,.14); --accent:#1b4dff;
+    /* small text cannot carry the full accent: #1b4dff on #070707 is ~2.3:1.
+       This tint is ~7:1 and reads as the same family. */
+    --accent-text:#8ba4ff; --dim:#b4b4ae;
+    --display:"Display",sans-serif; --text:"Text",sans-serif; --mono:"Mono",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ground);
+    color:var(--paper);-webkit-font-smoothing:antialiased}
+  #root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--ground)}
+
+  /* the site's hairline grid, at the site's own rhythm */
+  #grid{position:absolute;inset:0;pointer-events:none;z-index:1;
+    background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 96px)}
+  #grid::after{content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.032) 0 1px,transparent 1px 96px)}
+  #vignette{position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 45%,transparent 42%,rgba(0,0,0,.62) 100%)}
+
+  .scene{position:absolute;inset:0;z-index:10}
+
+  .mono{font-family:var(--mono);font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .kicker{font-family:var(--mono);font-size:22px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-text)}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.035em;line-height:.9}
+  .sub{font-family:var(--text);font-size:32px;line-height:1.44;color:var(--dim)}
+
+  /* ---------- S1 hook: real headline, zoomed in ---------- */
+  #s1-frame{position:absolute;left:50%;top:50%;width:1920px;height:1080px;
+    margin-left:-960px;margin-top:-540px;overflow:hidden}
+
+
+  #s1-copy{position:absolute;left:120px;top:300px;z-index:12;max-width:1280px}
+  #s1-l1{font-size:172px;opacity:0}
+  #s1-l2{font-size:172px;opacity:0}
+  #s1-rule{width:0;height:2px;background:var(--accent);margin:38px 0 30px}
+  #s1-sub{font-size:36px;max-width:980px;opacity:0}
+
+  /* ---------- S1b browser window ---------- */
+  #win{position:absolute;left:110px;top:186px;width:1330px;height:760px;
+    border:1px solid rgba(255,255,255,.18);background:#0b0b0b;overflow:hidden;
+    box-shadow:0 60px 140px rgba(0,0,0,.7);transform-origin:50% 50%}
+  #win-bar{height:56px;display:flex;align-items:center;gap:20px;padding:0 24px;
+    border-bottom:1px solid rgba(255,255,255,.12);background:#101010}
+  #win-bar .dots{display:flex;gap:9px}
+  #win-bar .dots i{width:11px;height:11px;border-radius:50%;background:#2e2e2e;display:block}
+  #win-url{font-family:var(--mono);font-size:17px;letter-spacing:.1em;color:var(--dim);
+    border:1px solid rgba(255,255,255,.1);padding:6px 16px;flex:1}
+  #win-view{position:absolute;left:0;top:56px;right:0;bottom:0;overflow:hidden}
+  #win-img{width:1330px;height:704px;object-fit:cover;object-position:top left;
+    transform-origin:34% 26%}
+  #sc1b-cap{position:absolute;left:1480px;top:300px;width:340px;z-index:14;text-align:left}
+  #sc1b-cap .kicker{display:block;margin-bottom:26px;line-height:1.5}
+  #sc1b-cap .cap-t{font-family:var(--display);font-weight:700;font-size:36px;line-height:1.02;
+    letter-spacing:-.03em;margin-top:22px}
+  #sc1b-cap .cap-t em{font-style:normal;-webkit-text-stroke:1.4px var(--paper);color:transparent}
+
+  /* ---------- S2 the wall of work ---------- */
+  #s2-track{position:absolute;top:0;left:0;width:1920px;height:1080px}
+  #s2-head{position:absolute;left:120px;top:112px;z-index:16}
+  #s2-kicker{font-family:var(--mono);font-size:22px;letter-spacing:.2em;color:var(--accent-text);
+    text-transform:uppercase}
+  #s2-h{font-family:var(--display);font-weight:700;font-size:76px;letter-spacing:-.03em;
+    line-height:.98;margin-top:20px}
+  #s2-h em{font-style:normal;-webkit-text-stroke:1.6px var(--paper);color:transparent}
+  /* the work cards, rebuilt from the real .work-card markup in the site */
+  .card{position:absolute;width:620px;height:470px;border:1px solid var(--rule);
+    background:linear-gradient(160deg,#0d0d0d,#080808);padding:34px 32px;overflow:hidden}
+  .card .idx{font-family:var(--mono);font-size:17px;letter-spacing:.14em;color:var(--accent-text)}
+  .card h3{font-family:var(--display);font-weight:500;font-size:40px;line-height:1.06;
+    letter-spacing:-.02em;margin-top:22px}
+  .card p{font-family:var(--text);font-size:21px;line-height:1.5;color:var(--dim);margin-top:16px}
+  .card .meta{position:absolute;left:32px;right:32px;bottom:26px;display:flex;
+    justify-content:space-between;font-family:var(--mono);font-size:16px;letter-spacing:.1em;
+    color:var(--dim);text-transform:uppercase;border-top:1px solid var(--rule);padding-top:16px}
+  .card .glow{position:absolute;right:-70px;top:-70px;width:200px;height:200px;border-radius:50%;
+    background:radial-gradient(circle,rgba(27,77,255,.5),transparent 70%);opacity:0}
+
+  /* ---------- S3 the stack, in depth ---------- */
+  #s3-stage{position:absolute;inset:0;perspective:1400px;perspective-origin:50% 46%}
+  #s3-deck{position:absolute;inset:0;transform-style:preserve-3d}
+  .layer{position:absolute;left:50%;top:50%;width:1080px;height:200px;margin-left:-540px;
+    margin-top:-100px;border:1px solid rgba(255,255,255,.15);background:#0b0b0b;
+    padding:30px 38px;transform-style:preserve-3d}
+  .layer .n{font-family:var(--mono);font-size:18px;letter-spacing:.18em;color:var(--accent-text)}
+  .layer h3{font-family:var(--display);font-weight:500;font-size:40px;letter-spacing:-.02em;
+    margin-top:10px}
+  .layer .tags{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .layer .tag{font-family:var(--mono);font-size:16px;letter-spacing:.08em;color:var(--dim);
+    border:1px solid var(--rule);padding:7px 13px;text-transform:uppercase}
+  #s3-copy{position:absolute;left:104px;top:300px;z-index:14;width:420px}
+  #s3-copy .k{font-family:var(--mono);font-size:20px;letter-spacing:.2em;color:var(--accent-text);
+    text-transform:uppercase;margin-bottom:22px}
+  #s3-copy .t{font-family:var(--display);font-weight:700;font-size:62px;letter-spacing:-.03em;
+    line-height:.96}
+  #s3-copy .d{font-family:var(--text);font-size:23px;line-height:1.5;color:var(--dim);margin-top:24px}
+  #s3-copy .t em{font-style:normal;-webkit-text-stroke:1.5px var(--paper);color:transparent}
+
+  /* ---------- S4 the limits ---------- */
+  #s4-inner{position:absolute;left:120px;top:0;width:1680px;height:1080px}
+  #s4-kicker{font-family:var(--mono);font-size:22px;letter-spacing:.2em;color:var(--accent-text);
+    text-transform:uppercase;position:absolute;top:150px}
+  #s4-h{position:absolute;top:196px;font-family:var(--display);font-weight:700;font-size:104px;
+    letter-spacing:-.035em;line-height:.94}
+  #s4-h em{font-style:normal;-webkit-text-stroke:2px var(--paper);color:transparent}
+  .limit{position:absolute;left:0;right:0;height:96px;top:var(--top,470px);border-top:1px solid var(--rule);
+    display:flex;align-items:center;gap:34px;opacity:0}
+  .limit .n{font-family:var(--mono);font-size:20px;color:var(--accent-text);letter-spacing:.1em;
+    min-width:64px}
+  .limit .t{font-family:var(--display);font-weight:500;font-size:42px;letter-spacing:-.02em}
+  .limit .bar{flex:1;height:1px;background:var(--rule);transform-origin:left center;
+    transform:scaleX(0)}
+
+  /* ---------- S5 cta ---------- */
+  #s5-mark{position:absolute;left:50%;top:50%;margin-left:-560px;margin-top:-330px;
+    width:1120px;text-align:center}
+  #s5-rule{height:1px;background:var(--rule);margin:0 auto;width:0}
+  #s5-url{font-family:var(--mono);font-size:36px;letter-spacing:.1em;color:var(--paper);
+    margin-top:44px;opacity:0}
+  #s5-h{font-family:var(--display);font-weight:700;font-size:120px;letter-spacing:-.04em;
+    line-height:.92;margin-top:40px}
+  #s5-h em{font-style:normal;-webkit-text-stroke:2px var(--paper);color:transparent}
+  #s5-btn{display:inline-flex;align-items:center;gap:16px;margin-top:56px;padding:22px 34px;
+    background:var(--paper);color:#070707;font-family:var(--mono);font-size:22px;
+    letter-spacing:.14em;text-transform:uppercase}
+  #s5-foot{position:absolute;left:120px;right:120px;bottom:88px;display:flex;
+    justify-content:space-between;align-items:center;border-top:1px solid var(--rule);
+    padding-top:26px}
+
+  /* persistent furniture */
+  #hud{position:absolute;left:0;right:0;top:0;height:96px;z-index:20;display:flex;
+    align-items:center;justify-content:space-between;padding:0 120px;pointer-events:none}
+  #hud .l,#hud .r{font-family:var(--mono);font-size:17px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:14px}
+  #hud .dot{width:9px;height:9px;background:var(--accent)}
+  #prog{position:absolute;left:0;top:0;height:3px;background:var(--accent);width:100%;
+    transform:scaleX(0);transform-origin:left center;z-index:21}
+  #sweep{position:absolute;top:0;bottom:0;width:240px;z-index:15;pointer-events:none;opacity:0;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent)}
+</style>
+</head>
+<body data-motion-blur="on">
+<div id="root" data-composition-id="main" data-start="0" data-duration="25"
+     data-width="1920" data-height="1080">
+
+  <div id="grid"></div>
+
+  <!-- ============ S1 hook ============ -->
+  <div class="scene" id="sc1">
+    <div id="s1-copy">
+      <div class="kicker" id="s1-kicker">Zero-vast · Khammam</div>
+      <h1 id="s1-l1">Hand-written.</h1>
+      <h1 id="s1-l2">No framework debt.</h1>
+      <div id="s1-rule"></div>
+      <p class="sub" id="s1-sub">A page that takes three seconds to appear has already lost the visitor.</p>
+    </div>
+  </div>
+
+  <!-- ============ S1b the real page, in a window ============ -->
+  <div class="scene" id="sc1b">
+    <div id="win" >
+      <div id="win-bar"><span class="dots"><i></i><i></i><i></i></span>
+        <span id="win-url">zero-vast.vercel.app</span></div>
+      <div id="win-view"><img id="win-img" src="assets/img/hero.png" alt=""></div>
+    </div>
+    <div id="sc1b-cap"><span class="kicker">The actual site</span>
+      <div class="cap-t">No screenshots<br>of a mock-up.<br><em>This is it.</em></div></div>
+  </div>
+
+  <!-- ============ S2 work wall ============ -->
+  <div class="scene" id="sc2">
+    <div id="s2-head">
+        <div id="s2-kicker">01 / What gets built</div>
+        <div id="s2-h">Three kinds of work,<br><em>done properly.</em></div>
+    </div>
+    <div id="s2-track">
+      <div class="card" id="c1"><div class="glow" data-glow></div>
+        <div class="idx">01 / 03</div><h3>Marketing &amp;<br>business sites</h3>
+        <p>Landing pages that load on real mobile networks and make the next step obvious.</p>
+        <div class="meta"><span>Landing · Business</span><span>↗</span></div></div>
+      <div class="card" id="c2"><div class="glow" data-glow></div>
+        <div class="idx">02 / 03</div><h3>Web apps &amp;<br>dashboards</h3>
+        <p>Interfaces with real state behind them — forms, tables, filters and roles.</p>
+        <div class="meta"><span>Forms · Tables</span><span>↗</span></div></div>
+      <div class="card" id="c3"><div class="glow" data-glow></div>
+        <div class="idx">03 / 03</div><h3>Redesigns &amp;<br>performance<br>rescue</h3>
+        <p>Audit what exists, rank the problems by impact, rebuild what costs you traffic.</p>
+        <div class="meta"><span>Audit · Vitals</span><span>↗</span></div></div>
+    </div>
+  </div>
+
+  <!-- ============ S3 stack in depth ============ -->
+  <div class="scene" id="sc3">
+    <div id="s3-stage"><div id="s3-deck" data-layout-allow-overlap>
+      <div class="layer" id="L1"><div class="n">01 / Front end</div><h3>Semantic HTML, CSS Grid</h3>
+        <div class="tags"><span class="tag">Grid</span><span class="tag">Custom properties</span><span class="tag">ES modules</span></div></div>
+      <div class="layer" id="L2"><div class="n">02 / Performance</div><h3>Budgets before the first commit</h3>
+        <div class="tags"><span class="tag">LCP</span><span class="tag">CLS</span><span class="tag">INP</span><span class="tag">CDN</span></div></div>
+      <div class="layer" id="L3"><div class="n">03 / Accessibility</div><h3>WCAG 2.2 AA, keyboard first</h3>
+        <div class="tags"><span class="tag">Keyboard</span><span class="tag">ARIA</span><span class="tag">Focus states</span></div></div>
+      <div class="layer" id="L4"><div class="n">04 / Handover</div><h3>Repository, deploy steps, walkthrough</h3>
+        <div class="tags"><span class="tag">Yours outright</span><span class="tag">No lock-in</span></div></div>
+    </div></div>
+    <div id="s3-copy"><div class="k">02 / The stack</div><div class="t">Depth,<br><em>not deck.</em></div><div class="d">Four layers, in the order they decide whether a page is fast.</div></div>
+  </div>
+
+  <!-- ============ S4 limits ============ -->
+  <div class="scene" id="sc4">
+    <div id="s4-inner">
+      <div id="s4-kicker">03 / The limits, stated up front</div>
+      <div id="s4-h">Four things I<br><em>won't do.</em></div>
+      <div class="limit" id="lim1"><span class="n">01</span><span class="t">Sell a template as custom work</span><span class="bar"></span></div>
+      <div class="limit" id="lim2"><span class="n">02</span><span class="t">Add a framework you don't need</span><span class="bar"></span></div>
+      <div class="limit" id="lim3"><span class="n">03</span><span class="t">Ship code I can't explain line by line</span><span class="bar"></span></div>
+      <div class="limit" id="lim4"><span class="n">04</span><span class="t">Invoice for work you didn't approve</span><span class="bar"></span></div>
+    </div>
+  </div>
+
+  <!-- ============ S5 cta ============ -->
+  <div class="scene" id="sc5">
+    <div id="s5-mark">
+      <div class="mono" id="s5-kicker">Zero-vast · Kalluru, Khammam</div>
+      <div id="s5-rule"></div>
+      <h1 id="s5-h">Websites built<br><em>to perform.</em></h1>
+      <div id="s5-url">zero-vast.vercel.app</div>
+      <div id="s5-btn">Start a project <span>↗</span></div>
+    </div>
+    <div id="s5-foot">
+      <span class="mono">Hand-written in Telangana</span>
+      <span class="mono" id="s5-sign">01 / 05</span>
+    </div>
+  </div>
+
+  <div id="sweep"></div>
+  <div id="vignette"></div>
+  <div id="hud">
+    <span class="l"><i class="dot"></i>NEZAAD Industries</span>
+    <span class="r">Zero-vast · Site tour</span>
+  </div>
+  <div id="prog"></div>
+
+  <audio id="bed" src="assets/music/bed.mp3" preload="auto" data-start="0"
+         data-volume="0.88" data-fade-in="0.6" data-fade-out="1.8"></audio>
+  <audio id="sfx-drop1" src="assets/sfx/drop.ogg" preload="auto" data-start="0.02" data-volume="0.72"></audio>
+  <audio id="sfx-drop2" src="assets/sfx/drop.ogg" preload="auto" data-start="3.36" data-volume="0.72"></audio>
+  <audio id="sfx-click" src="assets/sfx/click2.ogg" preload="auto" data-start="8.14" data-volume="0.72"></audio>
+  <audio id="sfx-bong" src="assets/sfx/bong.ogg" preload="auto" data-start="13.06" data-volume="0.72"></audio>
+  <audio id="sfx-impact" src="assets/sfx/impact.ogg" preload="auto" data-start="22.16" data-volume="0.72"></audio>
+</div>
+
+<script>
+/* ===========================================================================
+   One paused timeline. Nothing here reads the clock, so every frame is a
+   function of timeline time and the render is identical every run.
+
+   Camera system (all on wrappers, never dual-written with CSS transforms):
+     S1  slow push-in on the real hero, with the copy riding a shallower
+         parallax so the type moves against the page.
+     S2  lateral truck across a wall of cards, cards at three depths, each
+         card pushed in on its own beat (punch-in), then a whip to S3.
+     S3  true 3D deck: four planes on translateZ, camera racks focus while
+         the deck rotates through them.
+     S4  vertical drift on the list while the rules draw out from the left.
+     S5  pull-back from a tight crop to the full mark, landing dead still.
+   =========================================================================== */
+const tl = gsap.timeline({ paused: true });
+
+/* ---------- furniture: progress rail + one travelling light sweep ---------- */
+tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 25, ease: "none" }, 0);
+tl.fromTo("#sweep", { x: -300, opacity: 0 },
+  { opacity: 1, duration: 0.5, ease: "power2.out" }, 0);
+tl.fromTo("#sweep", { x: -300 }, { x: 1980, duration: 2.4, ease: "power2.inOut" }, 0);
+tl.to("#sweep", { opacity: 0, duration: 0.6, ease: "power2.in" }, 1.9);
+
+/* ===================== S1 0.00 – 3.90 : the hook ===================== */
+tl.fromTo("#sc1", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0);
+
+tl.fromTo("#s1-kicker", { opacity: 0, y: 14 },
+  { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 0.18);
+/* per-word blur-in, 0.067 s apart: the motion is the arrival, the line lands still */
+tl.fromTo("#s1-l1", { opacity: 0, filter: "blur(10px)", y: 22 },
+  { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.42, ease: "power4.out" }, 0.44);
+tl.fromTo("#s1-l2", { opacity: 0, filter: "blur(10px)", y: 22 },
+  { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.42, ease: "power4.out" }, 0.74);
+tl.fromTo("#s1-rule", { width: 0 }, { width: 560, duration: 0.5, ease: "power3.out" }, 1.02);
+tl.fromTo("#s1-sub", { opacity: 0, y: 16 },
+  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.16);
+
+/* the copy parallaxes against the photograph: the page pushes, the type drifts */
+tl.fromTo("#s1-copy", { y: 0 }, { y: -54, duration: 3.4, ease: "power1.inOut" }, 0.5);
+
+/* S1 leaves on a blur-out, word by word, not a plain fade */
+tl.to("#s1-copy", { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.30, ease: "power2.in" }, 2.94);
+tl.to("#sc1", { opacity: 0, duration: 0.30, ease: "power2.in" }, 3.00);
+
+/* ===================== S1b 3.30 – 7.60 : the real page in a window ===================== */
+tl.fromTo("#sc1b", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.30);
+/* the window arrives slightly large and settles — a match cut, not a slide */
+tl.fromTo("#win", { scale: 1.06, opacity: 0, y: 26 },
+  { scale: 1, opacity: 1, y: 0, duration: 0.62, ease: "power3.out" }, 3.34);
+/* then the camera pushes into the real page itself */
+tl.fromTo("#win-img", { scale: 1.0, x: 0, y: 0 },
+  { scale: 1.18, x: -40, y: -30, duration: 4.0, ease: "power1.inOut" }, 3.60);
+tl.fromTo("#sc1b-cap .kicker", { opacity: 0, x: 14 },
+  { opacity: 1, x: 0, duration: 0.4, ease: "power4.out" }, 7.80);
+tl.fromTo("#sc1b-cap .cap-t", { opacity: 0, y: 24, filter: "blur(8px)" },
+  { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, 4.24);
+tl.to("#sc1b", { opacity: 0, duration: 0.3, ease: "power2.in" }, 7.26);
+
+/* ===================== S2 7.60 – 13.00 : the wall ===================== */
+tl.fromTo("#sc2", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power2.out" }, 7.60);
+/* truck: the whole wall slides left while the camera holds; cards closer to the
+   lens travel further, so the wall reads as depth rather than a flat scroller */
+tl.fromTo("#s2-track", { x: 0 }, { x: -420, duration: 5.4, ease: "power2.inOut" }, 7.60);
+
+tl.fromTo("#s2-kicker", { opacity: 0, x: -18 },
+  { opacity: 1, x: 0, duration: 0.4, ease: "power4.out" }, 7.68);
+tl.fromTo("#s2-h", { opacity: 0, y: 26, filter: "blur(8px)" },
+  { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 7.80);
+
+const cards = [
+  { id: "#c1", x: 120,  y: 448, z: 0.0, at: 8.12 },
+  { id: "#c2", x: 800,  y: 500, z: 0.6, at: 8.32 },
+  { id: "#c3", x: 1480, y: 436, z: 0.3, at: 8.52 },
+];
+cards.forEach(({ id, x, y, z, at }) => {
+  gsap.set(id, { left: x, top: y });
+  /* arrive slow, leave clean: long-tailed ease on the landing */
+  tl.fromTo(id, { opacity: 0, y: 62, scale: 0.965 },
+    { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power4.out" }, at);
+});
+/* each card punches in once, on its own beat — 6 px of travel, nothing more */
+tl.to("#c1", { scale: 1.045, duration: 0.34, ease: "power2.out" }, 9.56);
+tl.to("#c1", { scale: 1, duration: 0.5, ease: "power2.inOut" }, 9.90);
+tl.to("#c2", { scale: 1.05, duration: 0.34, ease: "power2.out" }, 10.32);
+tl.to("#c2", { scale: 1, duration: 0.5, ease: "power2.inOut" }, 10.66);
+tl.to("#c3", { scale: 1.05, duration: 0.34, ease: "power2.out" }, 11.12);
+tl.to("#c3", { scale: 1, duration: 0.5, ease: "power2.inOut" }, 11.46);
+/* the accent glow lights on the card that is being punched, one at a time */
+tl.fromTo("#c1 [data-glow]", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 9.60);
+tl.to("#c1 [data-glow]", { opacity: 0.18, duration: 0.5 }, 9.94);
+tl.fromTo("#c2 [data-glow]", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 10.36);
+tl.to("#c2 [data-glow]", { opacity: 0.18, duration: 0.5 }, 10.70);
+tl.fromTo("#c3 [data-glow]", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 11.16);
+
+/* whip out: a fast horizontal smear, then the deck arrives blurred and sharpens */
+tl.to("#sc2", { x: -120, duration: 0.28, ease: "power3.in" }, 12.66);
+tl.to("#sc2", { opacity: 0, duration: 0.18, ease: "power2.in" }, 12.80);
+
+/* ===================== S3 13.00 – 17.60 : the stack in depth ===================== */
+tl.fromTo("#sc3", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 13.00);
+
+gsap.set("#s3-deck", { transformOrigin: "50% 46%", x: 330 });
+/* camera racks back, then the deck rotates to face each plane */
+tl.fromTo("#s3-deck", { rotateX: 26, rotateZ: -7, z: -420, scale: 0.86 },
+  { rotateX: 14, rotateZ: -3, z: -120, scale: 1, duration: 1.5, ease: "power2.out" }, 13.04);
+
+const layers = [
+  /* stacked deeper and further apart in screen Y, so no plane ever sits wholly
+     behind the one in front of it — a card you cannot read is not a card. */
+  /* pitch (204px) is wider than a plane is tall (196px), so every plane clears
+     the one in front and nothing gets clipped — depth without occlusion. */
+  { id: "#L1", z: -700, y: -312, at: 10.52 },
+  { id: "#L2", z: -470, y: -104, at: 10.86 },
+  { id: "#L3", z: -240, y: 104,  at: 11.20 },
+  { id: "#L4", z: -10,  y: 312,  at: 11.54 },
+];
+layers.forEach(({ id, z, y, at }) => {
+  gsap.set(id, { z, y });
+  tl.fromTo(id, { opacity: 0, filter: "blur(12px)" },
+    { opacity: 1, filter: "blur(0px)", duration: 0.62, ease: "power3.out" }, at);
+});
+/* the deck turns through its planes: a slow orbit, 3-5 degrees a second */
+tl.fromTo("#s3-deck", { rotateX: 14, rotateZ: -3 },
+  { rotateX: 6, rotateZ: 4, duration: 3.0, ease: "power1.inOut" }, 14.90);
+tl.fromTo("#s3-deck", { z: -120 }, { z: 60, duration: 3.0, ease: "power1.inOut" }, 14.90);
+
+tl.fromTo("#s3-copy .k", { opacity: 0, x: -14 },
+  { opacity: 1, x: 0, duration: 0.4, ease: "power4.out" }, 14.80);
+tl.fromTo("#s3-copy .t", { opacity: 0, y: 30, filter: "blur(9px)" },
+  { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power4.out" }, 15.00);
+tl.fromTo("#s3-copy .d", { opacity: 0, y: 14 },
+  { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 15.26);
+
+/* pull back and dissolve: exits are 40-50% shorter than their entrances */
+tl.to("#sc3", { opacity: 0, duration: 0.34, ease: "power2.in" }, 17.36);
+
+/* ===================== S4 17.60 – 20.90 : the limits ===================== */
+tl.fromTo("#sc4", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 17.60);
+tl.fromTo("#s4-kicker", { opacity: 0, x: -16 },
+  { opacity: 1, x: 0, duration: 0.4, ease: "power4.out" }, 17.68);
+tl.fromTo("#s4-h", { opacity: 0, y: 30, filter: "blur(10px)" },
+  { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, 17.80);
+
+const lims = ["#lim1", "#lim2", "#lim3", "#lim4"];
+const limTops = [462, 558, 654, 750];
+lims.forEach((id, i) => {
+  gsap.set(id, { "--top": limTops[i] + "px" });
+  const at = 16.10 + i * 0.20;            // 40-80 ms stagger between list items
+  tl.fromTo(id, { opacity: 0, y: 26 },
+    { opacity: 1, y: 0, duration: 0.46, ease: "power4.out" }, at);
+  tl.fromTo(`${id} .bar`, { scaleX: 0 },
+    { scaleX: 1, duration: 0.55, ease: "power3.out" }, at + 0.10);
+});
+/* vertical drift: the list slides up while the rules finish drawing */
+tl.fromTo("#s4-inner", { y: 0 }, { y: -46, duration: 3.6, ease: "power1.inOut" }, 17.90);
+tl.to("#sc4", { opacity: 0, duration: 0.30, ease: "power2.in" }, 20.60);
+
+/* ===================== S5 20.90 – 25.00 : the mark ===================== */
+tl.fromTo("#sc5", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 20.90);
+/* pull-back: a tight crop opens to the whole mark, then holds dead still */
+tl.fromTo("#s5-mark", { scale: 1.22, y: 26 },
+  { scale: 1, y: 0, duration: 1.1, ease: "power3.out" }, 20.92);
+tl.fromTo("#s5-kicker", { opacity: 0, y: 12 },
+  { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 21.08);
+tl.fromTo("#s5-rule", { width: 0 }, { width: 1120, duration: 0.6, ease: "power3.out" }, 21.22);
+tl.fromTo("#s5-h", { opacity: 0, filter: "blur(12px)", y: 26 },
+  { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.62, ease: "power4.out" }, 21.36);
+tl.fromTo("#s5-url", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 22.02);
+tl.fromTo("#s5-btn", { opacity: 0, y: 18, scale: 0.98 },
+  { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.4)" }, 22.20);
+tl.fromTo("#s5-foot", { opacity: 0 }, { opacity: 1, duration: 0.45 }, 22.40);
+/* the mark holds still to the end; the only motion left is the rail */
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

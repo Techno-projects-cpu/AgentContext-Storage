@@ -1,0 +1,20 @@
+ZeroVast — three HyperFrames films
+==================================
+
+Zero-vast.vercel.app · hand-written HTML, CSS and vanilla JavaScript.
+Kalluru, Khammam, Telangana. Start a project: themerchantofdeath2011@gmail.com
+
+01 · SITE TOUR — 25 s
+Hand-written. No framework debt.
+A page that takes three seconds to appear has already lost the visitor.
+
+02 · CAMERA MOVES — 22 s
+Six camera moves. One real page.
+Push in, tilt, truck, rack focus, pull back — over the actual site, not a mock-up.
+
+03 · KINETIC TYPE — 20 s
+Websites built to perform.
+The site's own sentences, set at full frame. Speed is part of the brief.
+
+Every frame is real: the plates are captures of the live page, the type is the
+page's own copy, and no claim appears in these films that the site does not make.
