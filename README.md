@@ -10,7 +10,38 @@ needs to pick the work back up.
 **Newest first.** Click a file, then press **Download** — GitHub will not stream an
 MP4 in the browser.
 
-### 00 — ZeroVast × HyperFrames · three films, 1080p · **the newest set**
+### 00a — SR-71 · vertical 3D short · **the newest thing here**
+
+A sample built to a real YouTube channel's format: [**Influx
+Picture**](https://youtube.com/@influxpicture), who do one counter-intuitive
+mechanical fact per vertical Short over a schematic 3D model. Short version of
+what I learned: **the title is the paradox, the first two seconds state the
+contradiction, one mechanism per video, a schematic (not photoreal) 3D model
+carries it, labels name the parts, and the close is a quotable sentence.** The
+channel declares its own stack in its descriptions — schematic animation, library
+sound effects, and sources listed per video.
+
+| Watch | File | Length |
+|---|---|---|
+| ▶ **SR-71 · "It leaked fuel. On purpose."** | [`01-sr71-leaked-fuel-vertical-1080x1920.mp4`](works/films/influx-sample/01-sr71-leaked-fuel-vertical-1080x1920.mp4) · [poster](works/films/influx-sample/01-sr71-leaked-fuel-poster.jpg) | 48.5 s |
+
+Beats: cold airframe and dripping panels → ember-lit Mach 3 and the gaps closing
+→ macro on two titanium plates → TEB ignition, green flash → **"It didn't leak.
+It leaked because it grew."** 1080×1920, 24 fps, AAC, −16.9 LUFS, −1.3 dBTP, no
+dead frames.
+
+The 3D is **real 3D, rasterised on the CPU**: there is no WebGL in this sandbox,
+so [`engines/sr71-3d/`](engines/sr71-3d/) is a NumPy renderer — z-buffer,
+three-light rig, environment reflections, bloom, tone map — plus a PIL type layer
+and a synthesized sound bed. Channel analysis and the full production notes:
+[`works/films/influx-sample/README.md`](works/films/influx-sample/README.md).
+
+> **Honest caveat:** the model is schematic and not to scale, which the channel
+> says about its own models too — it is not a Lockheed drawing. Nobody has
+> watched this end to end; it was checked frame by frame at every beat and
+> measured numerically.
+
+### 00b — ZeroVast × HyperFrames · three films, 1080p
 
 Three films about **zero-vast.vercel.app**, each written as an HTML composition
 and rendered with [HyperFrames](https://github.com/heygen-com/hyperframes); the
@@ -25,9 +56,9 @@ focus, pull-backs, a 3D deck, parallax and type motion.
 | 2 | [**Camera moves** — `02-hyperframes-camera-moves-1080p.mp4`](works/films/zerovast-hf/02-hyperframes-camera-moves-1080p.mp4) | 22 s | [still](works/films/zerovast-hf/02-hyperframes-camera-moves-1080p-poster.jpg) |
 | 3 | [**Kinetic type** — `03-hyperframes-kinetic-type-1080p.mp4`](works/films/zerovast-hf/03-hyperframes-kinetic-type-1080p.mp4) | 20 s | [still](works/films/zerovast-hf/03-hyperframes-kinetic-type-1080p-poster.jpg) |
 
-All three: 1920×1080 @ 30 fps, AAC audio, −16.3 to −16.7 LUFS, peaks under
-−1 dBTP, no dead frames, and a green HyperFrames gate (lint, runtime, layout,
-motion, contrast) at 0 errors, 0 warnings. Sources, measurements and the defects
+All three: 1920×1080 @ 30 fps, AAC audio, −16.0 to −16.2 LUFS, peaks under
+−1 dBTP, no dead frames beyond the tail fades, and a green HyperFrames gate
+(lint, runtime, layout, motion, contrast) at 0 errors, 0 warnings. Sources, measurements and the defects
 found along the way: [`works/films/zerovast-hf/README.md`](works/films/zerovast-hf/README.md).
 
 > **Honest caveat:** nobody has watched these end to end. The checks are numeric
@@ -135,7 +166,8 @@ display type) and **paper** (`png/paper/`, the film language).
 works/          ← the things you actually look at: videos, slides, images
    films/       ← finished videos, named like 01-<brand>-<type>-<format>
 agent-context/  ← notes for the next agent (and you)
-engines/        ← the video engines: brag (and whatever comes next)
+engines/        ← the video engines: brag, hyperframes, sr71-3d (and whatever
+                   comes next)
 tooling/        ← the plumbing: bootstrap, render, QC. You never need to read this.
 ```
 
