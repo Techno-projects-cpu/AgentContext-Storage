@@ -1,0 +1,214 @@
+{
+ "title": "The City That Reversed Its River",
+ "takes": [
+  {
+   "take": "T01_open",
+   "lines": [
+    {
+     "id": 1,
+     "text": "In 1900, Chicago dumped its sewage into the river.",
+     "spoken": "In nineteen hundred, Chicago dumped its sewage into the river.",
+     "hero": "the map: the city, the river, the lake",
+     "typed": "",
+     "gap_after": 0.25
+    },
+    {
+     "id": 2,
+     "text": "And the river ran into the lake it drank from.",
+     "spoken": "And the river ran straight into the lake it drank from.",
+     "hero": "the short arrow into the lake",
+     "typed": "",
+     "gap_after": 0.5
+    }
+   ]
+  },
+  {
+   "take": "T02_turn",
+   "lines": [
+    {
+     "id": 3,
+     "text": "So engineers made the river run the other way.",
+     "spoken": "So engineers made the river run the other way.",
+     "hero": "the arrow turns around",
+     "typed": "",
+     "gap_after": 0.35
+    },
+    {
+     "id": 4,
+     "text": "They cut a canal, twenty eight miles long.",
+     "spoken": "They cut a canal, twenty eight miles long.",
+     "hero": "the canal draws from the river west",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 5,
+     "text": "It crossed the low ridge between the Great Lakes and the Mississippi.",
+     "spoken": "It crossed the low ridge between the Great Lakes and the Mississippi.",
+     "hero": "the ridge, and the two watersheds",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 6,
+     "text": "Twelve miles west of the lake, that ridge is eight feet high.",
+     "spoken": "Twelve miles west of the lake, that ridge is only eight feet high.",
+     "hero": "the section drawing: eight feet",
+     "typed": "",
+     "gap_after": 0.45
+    }
+   ]
+  },
+  {
+   "take": "T03_dig",
+   "lines": [
+    {
+     "id": 7,
+     "text": "It took eight years, and forty two million cubic yards of rock and clay.",
+     "spoken": "It took eight years, and forty two million cubic yards of rock and clay.",
+     "hero": "counters under the canal",
+     "typed": "",
+     "gap_after": 0.25
+    },
+    {
+     "id": 8,
+     "text": "More earth moved than the Panama Canal.",
+     "spoken": "More earth moved here, than in the Panama Canal.",
+     "hero": "stamp: MORE THAN PANAMA",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 9,
+     "text": "The crews who dug it went on to dig Panama.",
+     "spoken": "The crews who dug it, went on to dig Panama.",
+     "hero": "the tools, and the note",
+     "typed": "",
+     "gap_after": 0.55
+    }
+   ]
+  },
+  {
+   "take": "T04_dawn",
+   "lines": [
+    {
+     "id": 10,
+     "text": "On January 2, 1900, at dawn, they broke the last dam at Kedzie Avenue.",
+     "spoken": "On January second, nineteen hundred, at dawn, they broke the last dam at Kedzie Avenue.",
+     "hero": "the document: the morning report",
+     "typed": "",
+     "gap_after": 0.25
+    },
+    {
+     "id": 11,
+     "text": "Before a court could stop them.",
+     "spoken": "Before a court could stop them.",
+     "hero": "stamp: BEFORE THE COURT",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 12,
+     "text": "By the end of the month, the river ran backwards.",
+     "spoken": "By the end of the month, the river ran backwards.",
+     "hero": "the river, reversed",
+     "typed": "IT WORKED",
+     "gap_after": 0.6
+    }
+   ]
+  },
+  {
+   "take": "T05_law",
+   "lines": [
+    {
+     "id": 13,
+     "text": "Missouri sued the same month.",
+     "spoken": "Missouri sued the same month.",
+     "hero": "MISSOURI fills red on the map",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 14,
+     "text": "The case ran six years, to the Supreme Court.",
+     "spoken": "The case ran six years, to the Supreme Court.",
+     "hero": "the case file lands",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 15,
+     "text": "In 1906 the Court ruled for Chicago. It left the question open.",
+     "spoken": "In nineteen oh six, the Court ruled for Chicago. It left the question open.",
+     "hero": "the opinion, stamped 1906",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 16,
+     "text": "Holmes wrote that the rivers' fate should not be settled at one blow.",
+     "spoken": "Holmes wrote that the fate of the rivers should not be settled at one blow.",
+     "hero": "the quoted line, underlined",
+     "typed": "",
+     "gap_after": 0.3
+    },
+    {
+     "id": 17,
+     "text": "But the downriver towns were right. The canal was too small, and the waste was untreated.",
+     "spoken": "But the downriver towns were right. The canal was too small, and the waste was untreated.",
+     "hero": "stamp: NOT TREATED",
+     "typed": "",
+     "gap_after": 0.55
+    }
+   ]
+  },
+  {
+   "take": "T06_close",
+   "lines": [
+    {
+     "id": 18,
+     "text": "The river still runs backwards.",
+     "spoken": "The river still runs backwards today.",
+     "hero": "pull back: the river and the map",
+     "typed": "",
+     "gap_after": 0.35
+    },
+    {
+     "id": 19,
+     "text": "The canal still carries Chicago's waste.",
+     "spoken": "The canal still carries Chicago's waste.",
+     "hero": "the route to the Mississippi",
+     "typed": "",
+     "gap_after": 0.35
+    },
+    {
+     "id": 20,
+     "text": "Electric barriers stand in it now, to keep the Asian carp out of the lake.",
+     "spoken": "Electric barriers stand in it now, to keep the Asian carp out of the lake.",
+     "hero": "the barrier mark, on the canal",
+     "typed": "",
+     "gap_after": 0.5
+    },
+    {
+     "id": 21,
+     "text": "A city solved its problem by moving it three hundred and fifty miles downstream.",
+     "spoken": "A city solved its problem, by moving it three hundred and fifty miles downstream.",
+     "hero": "the whole wall",
+     "typed": ""
+    }
+   ]
+  }
+ ],
+ "fact_notes": [
+  "Lake Michigan was Chicago's drinking water and its sewer: sewage went into the river and the river ran into the lake, causing cholera and typhoid outbreaks. Source: WTTW Chicago Stories, 'The Race to Reverse the River'; City Cast Chicago.",
+  "The subcontinental divide sits about 12 miles west of the lake shore and the ridge is roughly 8 feet high. Source: Chicago Public Library timeline; WTTW.",
+  "Canal: 28 miles, dug 1892-1900, roughly 42 million cubic yards of rock and soil. Source: WTTW; City Cast Chicago; WTTW 'Reversal of the Chicago River'.",
+  "More earth moved than the Panama Canal; the methods became the Chicago School of earthmoving and its veterans worked on Panama. Source: Britannica; WTTW; Matt Rickard.",
+  "January 2, 1900: Sanitary District trustees went out at dawn to the last earthen dam near Kedzie Avenue and broke it, partly to get ahead of the courts. Source: WTTW; Chicago Daily Tribune via Connecting the Windy City; Chicago Tribune.",
+  "The controlling works at Lockport opened January 17, 1900 (the 'end of the month' line is an allowance for that). Source: Connecting the Windy City citing the Tribune; Chicago Public Library.",
+  "Missouri filed in the US Supreme Court in January 1900; Missouri v. Illinois decided February 19, 1906, 9-0 for Illinois, Holmes writing. Source: Justia (200 U.S. 496); Ballotpedia.",
+  "The canal discharged sewage untreated; treatment plants came only after the 1930 Supreme Court ruling, and downriver complaints that the rivers could not self-purify proved correct. Source: Britannica; We're History; contemporary Supreme Court record.",
+  "The reversal persists; the canal is still the Chicago area's outflow, roughly 350 miles from Chicago to the Mississippi (the 1906 record cites 357 miles).",
+  "The canal is still the Chicago area's outflow; an electric barrier in the channel is the front line against Asian carp reaching Lake Michigan. Sources: USGS / US Army Corps of Engineers reporting on the Chicago Sanitary and Ship Canal barrier."
+ ]
+}

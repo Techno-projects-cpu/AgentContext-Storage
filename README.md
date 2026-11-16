@@ -23,6 +23,7 @@ sound effects, and sources listed per video.
 
 | Watch | File | Length |
 |---|---|---|
+| ▶ **The City That Reversed Its River** · Chicago, 1900 | [`preview_540.mp4`](works/films/chicago-river/preview_540.mp4) | 1:24 |
 | ▶ **SR-71 · "It leaked fuel. On purpose."** | [`01-sr71-leaked-fuel-vertical-1080x1920.mp4`](works/films/influx-sample/01-sr71-leaked-fuel-vertical-1080x1920.mp4) · [poster](works/films/influx-sample/01-sr71-leaked-fuel-poster.jpg) | 51.0 s |
 
 Beats: fuel raining off the belly → every joint open and cold → macro on two
@@ -64,6 +65,19 @@ It works in this container even though there is no `libEGL`/`libGL` and no
 ffprobe: Skia's GL symbols are stubbed, ffmpeg comes from `imageio-ffmpeg` and
 ffprobe from npm's `ffprobe-static`. A 28.6 s 720×1280 draft rendered in 117 s.
 Notes and caveats: [`skills/cinematic-skill/README.md`](skills/cinematic-skill/README.md).
+
+### The City That Reversed Its River (80 s documentary)
+
+Chicago dumped its sewage into the river, and the river ran into the lake the city drank from — so
+Chicago cut a canal 28 miles west and made the river run the other way. Made with the
+[`cinematic-skill`](skills/cinematic-skill/README.md) engine (one camera, one board, every hit on a
+spoken word), on a printed map sheet built from local Natural Earth data: the lake, the canal, the
+eight-foot divide, the dam broken by hand at dawn on 2 January 1900, *Missouri v. Illinois* in 1906,
+and the electric carp barriers that stand in the same channel today.
+
+82 s, 720×1280, 21 lines, 47 synthesised sound cues, mastered to −15 LUFS. The full project —
+script with per-line sources, beat table, scene, and the two map builders — is in
+[`works/films/chicago-river/`](works/films/chicago-river/README.md).
 
 ### 00b — ZeroVast × HyperFrames · three films, 1080p
 
