@@ -4,6 +4,8 @@
 
 **Purpose:** Understand the ideas, choose your own examples, and write in your own voice. The two essays below are examples, not claims that this is the only correct answer. Follow your competition's own rules on outside help and originality.
 
+**Want to learn more?** Read the [deep study and ideas companion](deep-study-and-ideas.md) for detailed explanations, examples, trade-offs, recall questions and sources.
+
 ## 1. The big picture
 
 **Viksit Bharat** means *developed India*. The year **2047** marks 100 years since India became independent in 1947. Development is not only about wealth, tall buildings or technology: it also means clean water, education, honest institutions, good jobs, health and opportunities for people across the country.
