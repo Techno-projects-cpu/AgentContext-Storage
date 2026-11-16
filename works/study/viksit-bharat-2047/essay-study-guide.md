@@ -10,12 +10,12 @@
 
 Your central message could be: **India will progress when its people are educated, healthy, skilled and able to contribute.**
 
-You have six original ideas; combine science and manufacturing to make five:
+You have seven original ideas; combine science, self-reliance and environmentally responsible industrial production to make five:
 
 1. Honest government and knowledgeable leadership.
 2. Clean and reliable water for all.
 3. Education and freedom to develop one's talents.
-4. Science, innovation and responsible self-reliance.
+4. Science, self-reliance and environmentally responsible industrial growth.
 5. Dignified work and support for people who cannot work.
 
 ## 2. Learn the five ideas
@@ -49,15 +49,17 @@ You have six original ideas; combine science and manufacturing to make five:
 
 **Ask yourself:** What would you choose to study or practise if resources were no barrier?
 
-### 4. Science, innovation and self-reliance
+### 4. Science, self-reliance and greener industry
 
 - **Problem:** Countries need research, technology and resilient supply chains to solve problems and create opportunities.
 - **Your solution:** Support scientists, labs, inventors, startups and skilled manufacturing; develop technologies for health, farming, energy and education.
-- **Your personal point:** Encourage Indian production of important goods and search for practical local alternatives.
+- **Your personal point:** Increase Indian industrial production and make more important goods locally, while protecting and restoring the environment for people and other living organisms.
+- **Ways to act:** Encourage energy-efficient factories and cleaner energy; reduce air pollution and greenhouse-gas emissions; treat industrial wastewater; reduce, reuse and safely recycle materials; protect forests, wetlands and wildlife habitats. Enforce environmental rules and monitor pollution.
+- **Important trade-off:** Factories and clean-energy projects still use land, water and materials. Assess each project, prevent and reduce harm first, and restore damaged habitats where possible—planting trees alone does not undo all pollution or replace every ecosystem. Workers and local communities need a fair transition as industries change.
 - **Important nuance:** Self-reliance does not require stopping all imports. Trade and international collaboration can be useful, and some materials or technologies may still need to be imported.
-- **Useful words:** innovation, research, manufacturing, self-reliance.
+- **Useful words:** innovation, sustainable manufacturing, biodiversity (the variety of life), pollution prevention, self-reliance.
 
-**Ask yourself:** Which invention would you like India to develop, and whom would it help?
+**Ask yourself:** How could an Indian factory produce more while using less water and energy and protecting nearby living things?
 
 ### 5. Dignified work and social support
 
@@ -83,7 +85,7 @@ Handwriting size and margins vary, so **one A4 sheet has no fixed word limit**. 
 ### Before you write
 
 - Can you explain each idea without looking at the page?
-- Have you kept **five** points by combining innovation and manufacturing?
+- Have you kept **five** points by combining innovation, manufacturing and environmental protection?
 - Did you say **“I will”**, as the poster asks?
 - Have you avoided claiming that all river water reaching the sea is wasted?
 - Have you kept your promises realistic and included people's well-being?
@@ -101,7 +103,7 @@ Second, I would work to ensure safe drinking water for every family. Rainwater h
 
 Third, I would invest in education that builds strong foundations and allows children to develop their interests. A talented child should have access to quality sports coaching, scientific learning or artistic training regardless of family income.
 
-Fourth, I would support scientific research, innovation and Indian manufacturing. Our scientists and inventors should have opportunities to develop useful technologies, while India trades and cooperates with other countries when needed.
+Fourth, I would support research and increase Indian manufacturing responsibly. Cleaner energy, efficient factories and proper waste treatment can reduce pollution, while protecting habitats and wildlife. India can also trade and cooperate with other countries when needed.
 
 Finally, I would help create dignified jobs through skill training and support for businesses. Workers deserve fair wages, safe conditions and reasonable hours; people who cannot work deserve support.
 
@@ -119,7 +121,7 @@ Second, I would work to bring clean drinking water to every home. We can collect
 
 Third, I would invest in children. Every child should receive a good education and have the opportunity to explore their talents. If a child loves sports, their family's income should not decide whether they can train.
 
-Fourth, I would invest in science and Indian manufacturing. I want our researchers to invent solutions to real problems and our industries to make more essential products. Being self-reliant also means knowing when cooperation and imports are useful.
+Fourth, I would invest in science and increase Indian industrial production without ignoring nature. Factories should use energy efficiently, treat their waste and protect nearby habitats. I want India to make more essential products while cooperating and importing when useful.
 
 Fifth, I would help people find dignified work. Training, fair wages and safe workplaces can give people independence. No one should be forced to work beyond their ability, and those unable to work deserve support.
 
@@ -127,6 +129,6 @@ My dream is a Viksit Bharat where every person has the chance to learn, contribu
 
 ## 6. Quick recall: five words
 
-**Honesty → Water → Education → Innovation → Jobs**
+**Honesty → Water → Education → Clean industry and innovation → Jobs**
 
 Remember the ideas, then make the sentences your own.
