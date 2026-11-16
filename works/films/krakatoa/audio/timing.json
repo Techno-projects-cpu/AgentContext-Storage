@@ -1,0 +1,197 @@
+{
+  "total_duration": 111.804,
+  "lead_in": 0.9,
+  "tail_out": 3.4,
+  "tempo": 1.0,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "T01_strait",
+      "caption": "On the 27th of August, 1883, an island in the Sunda Strait began to come apart.",
+      "vo": "On the twenty seventh of August, eighteen eighty three, an island in the Sunda Strait began to come apart.",
+      "start": 0.9,
+      "end": 6.674,
+      "duration": 5.774
+    },
+    {
+      "id": 2,
+      "scene": "T01_strait",
+      "caption": "The third blast, at 10:02 that morning, is the loudest sound in recorded history.",
+      "vo": "The third blast, at two minutes past ten that morning, is the loudest sound in recorded history.",
+      "start": 7.124,
+      "end": 12.82,
+      "duration": 5.697
+    },
+    {
+      "id": 3,
+      "scene": "T01_strait",
+      "caption": "Forty miles away, the pressure broke men's eardrums.",
+      "vo": "Forty miles away, the pressure broke men's eardrums.",
+      "start": 13.22,
+      "end": 16.258,
+      "duration": 3.038
+    },
+    {
+      "id": 4,
+      "scene": "T01_strait",
+      "caption": "A hundred miles off, at Batavia, a gasometer jumped off its trace.",
+      "vo": "A hundred miles off, at Batavia, a gasometer jumped off its trace.",
+      "start": 16.608,
+      "end": 20.847,
+      "duration": 4.239
+    },
+    {
+      "id": 5,
+      "scene": "T02_wall",
+      "caption": "Inside the strait, it did not arrive as sound at all. It arrived as a wall of air.",
+      "vo": "Inside the strait, it did not arrive as sound at all. It arrived as a wall of air.",
+      "start": 21.947,
+      "end": 26.998,
+      "duration": 5.052
+    },
+    {
+      "id": 6,
+      "scene": "T03_sea",
+      "caption": "Then the sea came.",
+      "vo": "Then the sea came.",
+      "start": 27.498,
+      "end": 28.596,
+      "duration": 1.097
+    },
+    {
+      "id": 7,
+      "scene": "T03_sea",
+      "caption": "Waves ran a hundred feet high into the towns of the strait.",
+      "vo": "Waves ran a hundred feet high into the towns of the strait.",
+      "start": 29.196,
+      "end": 32.476,
+      "duration": 3.281
+    },
+    {
+      "id": 8,
+      "scene": "T03_sea",
+      "caption": "36,417 people died. Most of them were drowned, not burned.",
+      "vo": "Thirty six thousand four hundred and seventeen people died. Most of them were drowned, not burned.",
+      "start": 32.876,
+      "end": 40.109,
+      "duration": 7.233
+    },
+    {
+      "id": 9,
+      "scene": "T03_sea",
+      "caption": "On Sebesi, eight miles away, three thousand people lived. None survived.",
+      "vo": "On Sebesi, eight miles away, three thousand people lived. None survived.",
+      "start": 40.609,
+      "end": 45.858,
+      "duration": 5.249
+    },
+    {
+      "id": 10,
+      "scene": "T03_sea",
+      "caption": "Two thirds of the island fell into the sea, and left a caldera.",
+      "vo": "Two thirds of the island fell into the sea, and left a caldera.",
+      "start": 46.458,
+      "end": 50.291,
+      "duration": 3.833
+    },
+    {
+      "id": 11,
+      "scene": "T04_wave",
+      "caption": "A Dutch gunboat, the Berouw, was carried two miles inland.",
+      "vo": "A Dutch gunboat, the Berouw, was carried two miles inland.",
+      "start": 50.791,
+      "end": 54.631,
+      "duration": 3.84
+    },
+    {
+      "id": 12,
+      "scene": "T04_wave",
+      "caption": "Nearly three thousand miles away, a harbour master heard what he took for heavy guns.",
+      "vo": "Nearly three thousand miles away, a harbour master heard what he took for heavy guns.",
+      "start": 55.631,
+      "end": 61.476,
+      "duration": 5.845
+    },
+    {
+      "id": 13,
+      "scene": "T04_wave",
+      "caption": "The air wave kept going. Barographs in London and Washington picked it up.",
+      "vo": "The air wave kept going. Barographs in London and Washington picked it up.",
+      "start": 62.376,
+      "end": 66.459,
+      "duration": 4.083
+    },
+    {
+      "id": 14,
+      "scene": "T04_wave",
+      "caption": "Stations logged it seven times in five days, as it ran round the planet and came back the other way.",
+      "vo": "Stations logged it seven times in five days, as it ran round the planet and came back the other way.",
+      "start": 66.909,
+      "end": 72.519,
+      "duration": 5.61
+    },
+    {
+      "id": 15,
+      "scene": "T04_wave",
+      "caption": "The ash went higher, fifty miles up, and the sunsets went red.",
+      "vo": "The ash went higher, fifty miles up, and the sunsets went red.",
+      "start": 73.419,
+      "end": 77.582,
+      "duration": 4.163
+    },
+    {
+      "id": 16,
+      "scene": "T05_sky",
+      "caption": "In London, an artist named William Ashcroft sat on the Thames and sketched them, thousands of times.",
+      "vo": "In London, an artist named William Ashcroft sat on the Thames and sketched them, thousands of times.",
+      "start": 78.182,
+      "end": 84.274,
+      "duration": 6.092
+    },
+    {
+      "id": 17,
+      "scene": "T05_sky",
+      "caption": "New York sent fire engines to a fire that was the sky.",
+      "vo": "New York sent fire engines to a fire that was the sky.",
+      "start": 84.724,
+      "end": 87.88,
+      "duration": 3.156
+    },
+    {
+      "id": 18,
+      "scene": "T05_sky",
+      "caption": "The planet cooled by half a degree, and did not warm back for five years.",
+      "vo": "The planet cooled by half a degree, and did not warm back for five years.",
+      "start": 88.48,
+      "end": 92.463,
+      "duration": 3.983
+    },
+    {
+      "id": 19,
+      "scene": "T05_sky",
+      "caption": "Krakatoa was the first disaster the telegraph carried round the world in a day.",
+      "vo": "Krakatoa was the first disaster the telegraph carried round the world in a day.",
+      "start": 93.063,
+      "end": 97.302,
+      "duration": 4.239
+    },
+    {
+      "id": 20,
+      "scene": "T06_close",
+      "caption": "And in 1927, out of the same water, Anak Krakatau rose.",
+      "vo": "And in nineteen twenty seven, out of the same water, Anak Krakatau rose.",
+      "start": 98.302,
+      "end": 103.278,
+      "duration": 4.976
+    },
+    {
+      "id": 21,
+      "scene": "T06_close",
+      "caption": "The loudest thing we have ever heard was an island, dying.",
+      "vo": "The loudest thing we have ever heard was an island, dying.",
+      "start": 104.178,
+      "end": 108.404,
+      "duration": 4.226
+    }
+  ]
+}
