@@ -1,0 +1,161 @@
+{
+ "duration": 115.157,
+ "cues": [
+  {
+   "type": "shimmer",
+   "t": 5.168,
+   "gain": 0.5
+  },
+  {
+   "type": "whoosh",
+   "t": 10.851,
+   "gain": 0.4
+  },
+  {
+   "type": "boom",
+   "t": 16.582,
+   "gain": 0.55
+  },
+  {
+   "type": "impact",
+   "t": 21.313,
+   "gain": 0.35
+  },
+  {
+   "type": "tick",
+   "t": 27.892,
+   "gain": 0.6
+  },
+  {
+   "type": "shimmer",
+   "t": 33.571,
+   "gain": 0.7
+  },
+  {
+   "type": "pop",
+   "t": 39.899,
+   "gain": 0.5
+  },
+  {
+   "type": "tick",
+   "t": 46.627,
+   "gain": 0.35
+  },
+  {
+   "type": "drop",
+   "t": 52.556,
+   "gain": 0.55
+  },
+  {
+   "type": "tick",
+   "t": 56.284,
+   "gain": 0.55
+  },
+  {
+   "type": "drop",
+   "t": 56.884,
+   "gain": 0.55
+  },
+  {
+   "type": "tick",
+   "t": 57.684,
+   "gain": 0.55
+  },
+  {
+   "type": "drop",
+   "t": 60.813,
+   "gain": 0.45
+  },
+  {
+   "type": "tick",
+   "t": 61.113,
+   "gain": 0.45
+  },
+  {
+   "type": "drop",
+   "t": 61.413,
+   "gain": 0.45
+  },
+  {
+   "type": "tick",
+   "t": 61.713,
+   "gain": 0.45
+  },
+  {
+   "type": "drop",
+   "t": 62.013,
+   "gain": 0.45
+  },
+  {
+   "type": "tick",
+   "t": 62.313,
+   "gain": 0.45
+  },
+  {
+   "type": "drop",
+   "t": 62.613,
+   "gain": 0.45
+  },
+  {
+   "type": "riser",
+   "t": 68.32,
+   "gain": 0.5
+  },
+  {
+   "type": "tick",
+   "t": 68.77,
+   "gain": 0.45
+  },
+  {
+   "type": "drop",
+   "t": 69.03,
+   "gain": 0.45
+  },
+  {
+   "type": "tick",
+   "t": 69.29,
+   "gain": 0.45
+  },
+  {
+   "type": "drop",
+   "t": 69.55,
+   "gain": 0.45
+  },
+  {
+   "type": "shimmer",
+   "t": 73.499,
+   "gain": 0.55
+  },
+  {
+   "type": "pop",
+   "t": 77.228,
+   "gain": 0.45
+  },
+  {
+   "type": "shimmer",
+   "t": 80.356,
+   "gain": 0.6
+  },
+  {
+   "type": "whoosh",
+   "t": 83.585,
+   "gain": 0.55
+  },
+  {
+   "type": "stamp",
+   "t": 87.514,
+   "gain": 0.5
+  },
+  {
+   "type": "impact",
+   "t": 93.392,
+   "gain": 0.45
+  },
+  {
+   "type": "shimmer",
+   "t": 101.8,
+   "gain": 0.45
+  }
+ ],
+ "room_tone": []
+}
