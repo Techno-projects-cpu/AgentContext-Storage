@@ -4,6 +4,8 @@ A learning companion for your essay. Understand the ideas, then choose a few and
 
 **Your original essay guide and two samples:** [essay-study-guide.md](essay-study-guide.md)
 
+**Go deeper:** [Advanced knowledge workbook](advanced-knowledge-workbook.md) — extra science, economics, worked examples, policy trade-offs and self-test.
+
 ## Start here: the 2-minute map
 
 Remember five connected pillars: **Honesty → Water → Education → Clean industry and innovation → Dignified jobs.**
