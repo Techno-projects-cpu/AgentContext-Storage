@@ -13,8 +13,8 @@ camera over one board, every stamp, pin, counter and underline landing on the na
 | Picture | 720 x 1280, 30 fps, 2,513 frames, H.264 |
 | Voice | one narrator, six section takes, split into 21 timed lines |
 | Sound | 47 synthesised cues, mastered to -15 LUFS |
-| Master | `out/final.mp4` (98.7 MB, crf 20) — rendered in the sandbox, not committed |
-| Preview | `preview_540.mp4` (11 MB) — the same film at 540 x 960 |
+| Master | `final.mp4` (98.7 MB, crf 20) — rendered here; kept out of Git, ask if you want a copy delivered |
+| Preview | `preview_540.mp4` (11 MB) — the same film at 540 x 960, committed |
 
 ## The script
 
@@ -42,10 +42,13 @@ zoom, and the spotlight is kept wider than the frame so the map never goes black
 
 ## Rebuild
 
+The checked-in `assets/prep/` already holds the projected sheet, so a rebuild can skip the two
+builders; they need the atlas files unpacked from npm (`us-atlas`, `world-atlas`,
+`@geo-maps/earth-rivers-10m`, `@geo-maps/earth-lakes-10m`) into `assets/data/`.
+
 ```bash
-python3 tools/build_map.py                     # states, rivers, frame (needs the atlas files)
+python3 tools/build_map.py                     # states, rivers, frame
 python3 tools/lake.py                          # Great Lakes rings
-python3 /path/to/cinematic-film/scripts/make_map.py ... # not used: this sheet is custom
 python3 /path/to/cinematic-film/scripts/make_beats.py --project .
 python3 /path/to/cinematic-film/scripts/split_takes.py --project .   # audio/takes/*.wav
 python3 /path/to/cinematic-film/scripts/build_narration.py --project .
