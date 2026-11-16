@@ -51,6 +51,20 @@ puts the first cut next to the rebuild at the same beats.
 > watched this end to end; it was checked frame by frame at every beat and
 > measured numerically.
 
+### 00aa — Tools worth knowing: `cinematic-skill`
+
+Found and **run** here, not just linked: [**Moh4696/cinematic-skill**](https://github.com/Moh4696/cinematic-skill)
+(509★, MIT, by exploraX) builds narrated films entirely from code — one
+continuous camera over one designed world of photos, maps and cards, with every
+stamp and counter landing on the narrator's spoken word. It is the packaged
+version of what the SR-71 short does by hand, plus the sound, captions and SRT
+that were manual there.
+
+It works in this container even though there is no `libEGL`/`libGL` and no
+ffprobe: Skia's GL symbols are stubbed, ffmpeg comes from `imageio-ffmpeg` and
+ffprobe from npm's `ffprobe-static`. A 28.6 s 720×1280 draft rendered in 117 s.
+Notes and caveats: [`skills/cinematic-skill/README.md`](skills/cinematic-skill/README.md).
+
 ### 00b — ZeroVast × HyperFrames · three films, 1080p
 
 Three films about **zero-vast.vercel.app**, each written as an HTML composition
