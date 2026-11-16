@@ -26,7 +26,8 @@ def run(cmd):
 
 
 def duration(p):
-    return float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(p)]).strip())
+    out = run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(p)]).strip()
+    return 0.0 if out in ("", "N/A") else float(out)
 
 
 def main():
@@ -48,10 +49,12 @@ def main():
                     if p.exists()), None)
         if src is None:
             sys.exit(f"missing line clip for seg {sid} in {adir/'lines'}")
-        run(["ffmpeg", "-y", "-v", "error", "-i", str(src), "-af", TRIM, "-ar", "48000", "-ac", "1",
-             str(work / f"raw{sid:02d}.wav")])
+        # a silent placeholder (before its line is recorded) keeps its full length: no trim
+        silent = (adir / "lines" / f"seg{sid:02d}.silent").exists()
+        run(["ffmpeg", "-y", "-v", "error", "-i", str(src), "-af", "anull" if silent else TRIM,
+             "-ar", "48000", "-ac", "1", str(work / f"raw{sid:02d}.wav")])
 
-    raw = sum(duration(work / f"raw{s['id']:02d}.wav") for s in segments)
+    raw = sum(duration(work / f"raw{s['id']:02d}.wav") for s in segments) or 1.0
     fixed = a.lead + a.tail + sum(s["gap_after"] for s in segments[:-1])
     tempo = 1.0 if a.target <= 0 else raw / (a.target - fixed)
     if not TEMPO_LIMITS[0] <= tempo <= TEMPO_LIMITS[1]:
