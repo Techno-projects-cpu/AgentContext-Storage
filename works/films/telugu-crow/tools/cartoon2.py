@@ -293,7 +293,7 @@ def tree(c, x, y, h, a=1.0, sway=0.0, bare=1.0, rgb=LEAF_DARK):
 
 # ------------------------------------------------------------------ the crow
 def crow(c, x, y, s, a=1.0, look=1, flap=0.0, head=0.0, beak=0.0, blink=0.0, tilt=0.0, bob=0.0,
-         tail=0.0, wing_open=0.0, body=(46, 48, 68), wing=(32, 34, 52), beak_rgb=(250, 186, 82),
+         tail=0.0, wing_open=0.0, body=(34, 44, 62), wing=(22, 30, 46), beak_rgb=(250, 186, 82),
          leg=0.0, crest=0.0, throat=0.0):
     """A cartoon crow, side view, facing +x (look=-1 mirrors it). s = body length in screen px.
 
@@ -309,6 +309,11 @@ def crow(c, x, y, s, a=1.0, look=1, flap=0.0, head=0.0, beak=0.0, blink=0.0, til
     c.translate(x, y + bob)
     c.rotate(math.degrees(tilt))
     c.scale(look, 1)
+    # ---- contact shadow, soft and small: a hard disc under a perched bird reads as a hole
+    if a > 0.02:
+        for kk in (1.0, 0.72, 0.46):
+            c.drawOval(skia.Rect.MakeXYWH(-s * 0.26 * kk, s * 0.44, s * 0.52 * kk, s * 0.085 * kk),
+                       P(mul(CRACK, 0.5), 0.12 * a))
 
     def fe(pts):
         return [(px * s, py * s) for px, py in pts]
@@ -442,6 +447,24 @@ def pot(c, x, y, w, h, level=0.0, a=1.0, stones=0, ripple=0.0, seed=7, water=Tru
                                        _colors([(*CLAY_HI, int(255 * a)), (*CLAY_LO, int(255 * a))]),
                                        [0.0, 1.0])
     c.drawPath(body(0), skia.Paint(AntiAlias=True, Shader=g))
+    # the turned-away flank, in three flat passes (cel shading, so it belongs with the cut-out cast)
+    c.save()
+    c.clipPath(body(0), skia.ClipOp.kIntersect, True)
+    side = skia.Path()
+    side.moveTo(x - w * 0.52, y)
+    side.lineTo(x - w * 0.16, y)
+    side.lineTo(x - w * 0.22, y + h)
+    side.lineTo(x - w * 0.44, y + h)
+    side.close()
+    c.drawPath(side, P(mul(CLAY_LO, 0.80), 0.75 * a))
+    lit = skia.Path()                       # warm rim where the sun catches the right flank
+    lit.moveTo(x + w * 0.50, y)
+    lit.lineTo(x + w * 0.30, y)
+    lit.lineTo(x + w * 0.36, y + h)
+    lit.lineTo(x + w * 0.46, y + h)
+    lit.close()
+    c.drawPath(lit, P(mix(CLAY_HI, (255, 236, 196), 0.5), 0.55 * a))
+    c.restore()
     # painted bands (they curve with the pot, so the pot reads as round)
     c.save()
     c.clipPath(body(0), skia.ClipOp.kIntersect, True)
@@ -498,6 +521,7 @@ def lizard(c, x, y, s, a=1.0, look=-1, wig=0.0, blink=0.0, mouth=0.0, tail=0.0, 
     c.translate(x, y)
     c.rotate(math.degrees(tilt))
     c.scale(look, 1)
+    c.drawOval(skia.Rect.MakeXYWH(-s * 0.34, s * 0.10, s * 0.70, s * 0.12), P((150, 104, 70), 0.26 * a))
     green = (118, 186, 118)
     dark = (86, 148, 96)
     # tail: a curve that whips

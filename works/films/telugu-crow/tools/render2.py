@@ -23,7 +23,7 @@ import sys
 import time
 
 HERE = pathlib.Path(__file__).resolve().parent
-ENGINE = pathlib.Path(os.environ.get("CF_ENGINE", "/tmp/cs/skills/cinematic-film/scripts"))
+ENGINE = pathlib.Path(os.environ.get("CF_ENGINE", "/tmp/cs/skills/cinematic-film/skills/cinematic-film/scripts"))
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ENGINE))
 
@@ -49,6 +49,8 @@ def make(project, size):
     doc = Doc(project)
     film = load_scene(project).build_film(doc)
     r = Renderer(film, w, h, doc)
+    r._root = project
+    r.attach(project)
     # cards lay themselves out in 1080-px design units and need to know how the frame is scaled
     film.render_scale, film.frame_w, film.frame_h = r.s, w, h
     return film, r, doc

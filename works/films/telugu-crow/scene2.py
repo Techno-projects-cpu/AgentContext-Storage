@@ -23,6 +23,8 @@ import skia
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "tools"))
 import cartoon2 as K                                                        # noqa: E402
+import ambient as AMB                                                       # noqa: E402
+from ambient import AmbientField, AmbientPot, AmbientQuiz                    # noqa: E402
 import ty                                                                   # noqa: E402
 
 from engine import Film, Item, clamp, ease_in_out, ease_out_back, ease_out_cubic, paint, ramp  # noqa: E402
@@ -788,6 +790,10 @@ def build_film(doc):
 
     for st in (FieldStage(film, doc), PotStage(film, doc), QuizStage(film, doc)):
         film.add(st)
+    # the sets are painted pages now, so the motion that used to live in the vector stage has to be
+    # drawn on top: shimmer off the ground, dust in the air, grass that sways
+    for amb in (AmbientField(film, doc), AmbientPot(film, doc), AmbientQuiz(film, doc)):
+        film.add(amb)
     pot = PotActor(film, doc, drops)
     film.add(pot)
     film.add(PebblePile(film, doc, drops))
