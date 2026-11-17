@@ -1,0 +1,19 @@
+# Khammam anti-drug quiz handoff
+
+Updated 12 November 2026. The previous election quiz was cancelled. The user has a new Khammam district-level quiz on 13 November 2026 and shared its poster. The syllabus is three parts: Drug Free India/Nasha Mukt Bharat; Indian History & Cultural Heritage; Telangana Cultural Heritage. Medium is English and Telugu. The user asked for a huge list of everything to learn, but previously found an unstructured long election pack overwhelming: prioritize a short first-pass list and provide depth in readable chunks.
+
+The study index is [`works/study/nasha-mukt-quiz/README.md`](../works/study/nasha-mukt-quiz/README.md), linking three topic sheets with starred essentials and a 60-question rapid quiz. The poster says 10 a.m.–3 p.m., TCV Kalyana Mandapam, Naidupet Bypass Road, Khammam, classes 6–12, two teams per institution of two students each, school uniform, exam pad and pen. Its registration deadline was 10 November, already past as of 12 November: advise checking with organiser if not registered, not assume eligibility for late registration. The poster provides organiser contact numbers in the index.
+
+Key campaign anchors: launched 15 August 2020 by Social Justice and Empowerment in 272 districts; expanded nationally 15 August 2023; helplines 14446 (de-addiction), 1933 (narcotics MANAS), 14416 (mental-health Tele-MANAS), 112/108 (emergency). Treat substance use with medical accuracy and compassion. Cite reliable sources; distinguish dated reported outreach from people treated, and update volatile facts. UNESCO inscribed Sarnath in 2026 and Ramappa in 2021. Do not claim the poster's broad syllabus predicts actual questions.
+
+## Quiz day update
+
+User says it is now quiz day. Added [`05-quiz-day-officials-and-revision.md`](../works/study/nasha-mukt-quiz/05-quiz-day-officials-and-revision.md), explaining national/state/district anti-drug roles, poster organisers, sourced athlete doping cases without implying addiction, plus quick all-syllabus revision and rapid questions. The repository contains `works/study/nasha-mukt-quiz/05-chatgpt-session-handoff.md`: student scored 12/20, with weaknesses in Telangana heritage, Indian history and helpline distinctions, and prefers one question at a time. The quiz-day guide includes targeted revision informed by it.
+
+## Bus ride revision
+
+User has a 90-minute bus journey to the quiz and requested more revision. Added `works/study/nasha-mukt-quiz/06-bus-ride-90-minute-revision.md`: six timed, digestible rounds with 70 recall questions, covering campaign, helplines, sport, Indian history and Telangana/Khammam. Encourage offline saving and use targeted, one-at-a-time questions when interacting.
+
+## Deep bus edition
+
+User requested deeper, more knowledgeable material that remains readable for the bus ride, after asking explicitly about source reliability. Added `works/study/nasha-mukt-quiz/07-deep-bus-master-guide.md` with structured sections, recall prompts, officials, NCORD, NDPS, sports cases, history and Telangana, with sourced claims and explicit limits to verification. No claim of a complete fact-by-fact audit.
