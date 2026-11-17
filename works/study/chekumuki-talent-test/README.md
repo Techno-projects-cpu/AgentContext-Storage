@@ -21,6 +21,11 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [03 — Easy maths and reasoning](03-easy-maths-and-reasoning.md): small steps and worked examples; no Olympiad-level maths.
 - [04 — Science GK, India, space and scientific thinking](04-gk-space-and-scientific-thinking.md): durable facts, scientist–contribution matches and evidence skills.
 - [05 — Original practice MCQs](05-practice-mcq.md): 60 questions with answer explanations, not official past-paper questions.
+- [06 — Deep science master guide](06-deep-science-master-guide.md): more demanding concepts, exceptions and everyday applications.
+- [07 — Challenge practice](07-challenge-practice.md): 45 additional reasoning-focused MCQs with explanations.
+- [08 — Extra science GK](08-science-gk-daily-life.md): India, scientists, geography, technology and everyday 'why' questions.
+
+**Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
 ## Flexible plan
 
