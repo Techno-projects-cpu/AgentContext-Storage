@@ -27,7 +27,10 @@ def run(cmd):
 
 def duration(p):
     out = run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(p)]).strip()
-    return 0.0 if out in ("", "N/A") else float(out)
+    try:
+        return float(out)
+    except ValueError:
+        return None
 
 
 def main():
@@ -51,10 +54,17 @@ def main():
             sys.exit(f"missing line clip for seg {sid} in {adir/'lines'}")
         # a silent placeholder (before its line is recorded) keeps its full length: no trim
         silent = (adir / "lines" / f"seg{sid:02d}.silent").exists()
+        raw_out = work / f"raw{sid:02d}.wav"
         run(["ffmpeg", "-y", "-v", "error", "-i", str(src), "-af", "anull" if silent else TRIM,
-             "-ar", "48000", "-ac", "1", str(work / f"raw{sid:02d}.wav")])
+             "-ar", "48000", "-ac", "1", str(raw_out)])
+        # the trimmer can eat a whole short take (a clip that opens on a plosive and ends on a
+        # consonant leaves nothing). Never let that become a 0.0 s line: fall back to the raw take.
+        if silent is False and (duration(raw_out) in (None, "N/A") or float(duration(raw_out) or 0) < 0.25):
+            print(f"seg{sid:02d}: trim produced nothing usable, keeping the untrimmed take")
+            run(["ffmpeg", "-y", "-v", "error", "-i", str(src), "-af", "anull",
+                 "-ar", "48000", "-ac", "1", str(raw_out)])
 
-    raw = sum(duration(work / f"raw{s['id']:02d}.wav") for s in segments) or 1.0
+    raw = sum(duration(work / f"raw{s['id']:02d}.wav") or 0.0 for s in segments) or 1.0
     fixed = a.lead + a.tail + sum(s["gap_after"] for s in segments[:-1])
     tempo = 1.0 if a.target <= 0 else raw / (a.target - fixed)
     if not TEMPO_LIMITS[0] <= tempo <= TEMPO_LIMITS[1]:

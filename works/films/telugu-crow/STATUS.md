@@ -2,6 +2,16 @@
 
 ## What is finished (verified this session)
 
+- **One set per cut.** Each stage declares a `window` (field/set up to the caw at `L(20)+0.1`, pot,
+  quiz from `L(20)+0.1` to `L(23)-0.35`), and every stage span is clipped to it — two sets can no
+  longer be on screen together, which is what made the quiz look like it was standing in the pot.
+- **Text never pops on top of the previous set.** The quiz card and its chips start on the cut.
+- **Pebble pile** is a real mound of 150 back-to-front stones over a packed mass (it used to be a
+  string of identical pearls); the pot, the lizard and the crow all leave on the cut.
+- **Splash crowns** replace the numeral tally, which was fighting the rising water for the same pixels.
+- `build_narration_local.py` no longer turns a short take into a 0.0 s line when the trimmer empties
+  it — it falls back to the untrimmed take (that bug silently dropped line 13).
+
 - **Shot list instead of one drifting camera.** `scene2.py` now has `shots = [...]` with hard cuts at
   beat boundaries (`L(n)`) and *one* motivated move inside each shot (push under the title, pull back
   at the reveal, slow push through the stone sequence). No more panning between unrelated setups.

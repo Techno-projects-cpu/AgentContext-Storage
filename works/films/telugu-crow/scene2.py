@@ -146,6 +146,7 @@ class Stage(Item):
 
     z = 0
     name = "stage"
+    window = None               # (t_start, t_end) this set owns; None = whatever the script says
 
     def __init__(self, film, doc):
         super().__init__(-50, None, self.z, sfx=False)
@@ -156,6 +157,11 @@ class Stage(Item):
             if s.get("stage") in mine:
                 self.spans.append((s["start"] - 0.45, s["end"] + 0.45))
         self.spans = merge_spans(self.spans)
+        # ...and every set is clipped to the part of the film it owns, so two sets can never be
+        # on screen at once. The cut is the audible one: the caw ends, the question card begins.
+        if self.window is not None:
+            w0, w1 = self.window(doc.L, doc.timing["total_duration"])
+            self.spans = [(max(a, w0), min(b, w1)) for a, b in self.spans if max(a, w0) < min(b, w1)]
 
     def active(self, t):
         return any(a <= t <= b for a, b in self.spans)
@@ -219,10 +225,20 @@ class QuizStage(Stage):
 
     name = "quiz"
     z = 8
+    window = staticmethod(lambda L, total: (L(20) + 0.10, L(23) - 0.35))
 
     def paint(self, c, res, t):
         K.sky(c, t, hot=0.12, cool=0.42, horizon=HORIZON)
         K.sun(c, 872, 300, 86, t=t, hot=0.0, rays=True)
+        # a curtain of sky behind the card, so the quiz reads as one composed frame instead of
+        # words floating over a gradient
+        # stages paint in WORLD space, so the veil has to cover the whole world box -- a rect in
+        # design coordinates lands wherever the camera happens to be and reads as a grey slab
+        veil = K.P((255, 246, 226), 1.0)
+        veil.setShader(skia.GradientShader.MakeLinear(
+            [skia.Point(0, HORIZON + 60), skia.Point(0, HORIZON - 940)],
+            [skia.ColorSetARGB(104, 255, 246, 226), skia.ColorSetARGB(0, 255, 246, 226)]))
+        c.drawRect(skia.Rect.MakeXYWH(K.WX0, K.WY0, K.WW, K.WH), veil)
         K.hills(c, HORIZON + 2, dry=0.35)
         K.ground(c, HORIZON, dry=0.72, cracks=True, seed=17)
         for i, (x, y, h) in enumerate(((120, 1790, 76), (952, 1830, 68))):
@@ -290,8 +306,9 @@ class PotActor(Item):
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        vis = ramp(t, L(4) + 0.25, 0.8) * (1 - ramp(t, L(19) + 0.35, 0.5))
-        if vis <= 0.01:
+        vis = ramp(t, L(4) + 0.25, 0.8) * (1 - ramp(t, L(20) - 0.20, 0.35))
+        # and it leaves with its set: on the quiz set there is no pot
+        if t > L(20) + 0.4 or vis <= 0.01:
             return
         K.pot(c, POT["x"], POT["top"], POT["w"], POT["h"], level=self.level(t), a=vis,
               stones=self.stones(t), ripple=(t * 0.7) % 1.0, wobble=t * 1.6)
@@ -308,16 +325,33 @@ class PebblePile(Item):
 
     def draw(self, c, res, t):
         taken = sum(1 for td in self.drops if t >= td - 0.05)
+        # a real mound: tall in the middle and narrow at the top, so the pebbles read as a heap of
+        # rubble you could pick stones off. Painted back-to-front, so each stone covers the last.
         rng = np.random.default_rng(21)
-        x0, y0 = 252, 1560          # in the lower-left of every pot framing
-        for i in range(34 - taken * 2):
-            dx = rng.uniform(-190, 190)
-            dy = -rng.uniform(0, 58) - abs(dx) * 0.14
-            r = rng.uniform(16, 30) * (1 - abs(dx) / 520)
-            if r < 4:
-                continue
-            K.blob(c, x0 + dx, y0 + dy, r, r * 0.86, (128, 120, 114), 0.95)
-            K.blob(c, x0 + dx - r * 0.2, y0 + dy - r * 0.25, r * 0.55, r * 0.40, (176, 166, 156), 0.8)
+        base_y, half_w, height = 1582, 172, 150
+        # the mass of the pile first, so the stones sit ON something instead of floating as gravel
+        for k in range(16):
+            u = k / 15.0
+            w = half_w * (1 - u) ** 0.62
+            K.blob(c, 246, base_y - u * height + 10, max(14.0, w), 26 - 8 * u,
+                   (104, 98, 94), 0.98)
+        n = 150 - taken * 9
+        stones = []
+        for _ in range(max(0, n)):
+            u = rng.uniform(0, 1) ** 0.72          # more stones near the ground than at the tip
+            w = half_w * (1 - u) ** 0.62           # the cone narrows as it rises
+            dx = rng.uniform(-1, 1) * w
+            yy = base_y - u * height + rng.uniform(-8, 8)
+            r = (30 - 13 * u) * rng.uniform(0.80, 1.05)
+            stones.append((yy, dx, max(9.0, r)))
+        stones.sort()
+        for yy, dx, r in stones:
+            g = rng.uniform(-1, 1)
+            base = (118 + 14 * g, 111 + 12 * g, 106 + 14 * g)
+            K.blob(c, 246 + dx, yy, r, r * 0.80, tuple(int(v) for v in base), 0.98)
+            K.blob(c, 246 + dx + r * 0.22, yy - r * 0.24, r * 0.50, r * 0.34,
+                   (192 + int(10 * g), 184, 174), 0.9)
+            K.blob(c, 246 + dx - r * 0.14, yy + r * 0.36, r * 0.80, r * 0.22, (86, 80, 78), 0.30)
 
 
 class LizardActor(Item):
@@ -331,7 +365,7 @@ class LizardActor(Item):
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        vis = ramp(t, L(9) - 0.3, 0.4) * (1 - ramp(t, L(20) - 0.25, 0.4))
+        vis = ramp(t, L(9) - 0.3, 0.4) * (1 - ramp(t, L(20) - 0.30, 0.35))
         if vis <= 0.01:
             return
         talk = L(9) <= t <= E(10)
@@ -517,6 +551,42 @@ class BubbleCards(Card):
             c.restore()
 
 
+class SplashPops(Item):
+    """One splash crown where every stone hits the water, so each stone reads as its own beat."""
+
+    z = 63
+
+    def __init__(self, film, doc, drops, pot):
+        super().__init__(-2, None, 63, sfx=False)
+        self.drops = sorted(drops)
+        self.pot = pot
+
+    def draw(self, c, res, t):
+        for k, td in enumerate(self.drops):
+            u = (t - td) / 0.5
+            if not 0.0 <= u <= 1.0:
+                continue
+            a = (1 - u) ** 1.4
+            # the water surface moves up with every stone that has already landed
+            lv = self.pot.level(td - 0.02)
+            y = POT["top"] + POT["h"] - 34 - lv * (POT["h"] - 96)
+            x = POT["x"] + (18 if k % 2 else -16)
+            c.save()
+            c.translate(x, y)
+            r = 22 + 92 * u
+            c.drawOval(skia.Rect.MakeXYWH(-r, -r * 0.26, r * 2, r * 0.52),
+                       paint((255, 255, 255), 0.5 * a, stroke=4))
+            c.drawOval(skia.Rect.MakeXYWH(-r * 0.55, -r * 0.15, r * 1.1, r * 0.3),
+                       paint((255, 255, 255), 0.3 * a, stroke=3))
+            # the crown of droplets that jumps up and falls back
+            for j in range(6):
+                ang = -2.55 + j * 0.42
+                dx = math.cos(ang) * (18 + 34 * u)
+                dy = math.sin(ang) * (26 + 52 * u) + 120 * u * u
+                c.drawCircle(dx, dy, max(2.0, 8 - 6 * u), paint((236, 250, 255), 0.85 * a))
+            c.restore()
+
+
 class CountCard(Card):
     """Telugu numerals ౧ ౨ ౩ popped on every stone, stacked up the left of the pot."""
 
@@ -531,18 +601,19 @@ class CountCard(Card):
             return
         if not (self.drops[0] - 0.1 <= t <= self.drops[-1] + 1.1):
             return
-        nums = "౧౨౩౪౫౬౭౮౯౧౦౧౧౧౨౧౩౧౪౧౫"
+        nums = ["౧", "౨", "౩", "౪", "౫", "౬", "౭", "౮", "౯", "౧౦", "౧౧", "౧౨", "౧౩", "౧౪", "౧౫"]
         self.screen(c, t)
-        for i, td in enumerate(self.drops[:16]):
+        for i, td in enumerate(self.drops[:15]):
             u = ramp(t, td - 0.04, 0.30)
             if u <= 0:
                 continue
-            a = u * (1 - ramp(t, td + 0.85, 0.45))
+            a = u * (1 - ramp(t, td + 0.95, 0.45))
             if a <= 0.01:
                 continue
-            ln = self.layout(nums[i], 128)
-            xx = 392 + (i // 8) * 148
-            yy = 1186 - (i % 8) * 116
+            ln = self.layout(nums[i], 112)
+            # a running tally climbing the pot's left wall, kept clear of the water line
+            xx = 330 + (i // 8) * 132
+            yy = 1240 - (i % 8) * 100
             k = ease_out_back(u, 2.4) * (1 + 0.14 * hit(t, td, 0.22))
             c.save()
             c.translate(xx + 54 * (1 - ease_out_cubic(u)), yy)
@@ -589,26 +660,31 @@ QTEXT = "కాకి ఏం చేసింది?"      # the on-screen questi
 
 
 class QuizCard(Card):
-    """The question, two answer chips, then the right one lights up when the film says the moral."""
+    """The question, two answer chips, then the right one lights up -- all of it timed to the cut.
+
+    The quiz only exists after the hard cut onto the quiz set: before that the same card would be
+    floating over the pot, which is exactly the sloppiness that used to read as "bad animation".
+    """
 
     z = 64
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        if not (L(20) - 0.18 <= t <= min(E(22) + 1.3, L(23) - 0.45)):
+        t_cut = L(21) - 0.30                      # the cut onto the quiz set
+        if not (t_cut <= t <= min(E(22) + 0.9, L(23) - 0.50)):
             return
         self.screen(c, t)
+        u = ramp(t, t_cut + 0.05, 0.45)
         q = self.layout(QTEXT, 66)
-        u = ramp(t, self.doc.q_at - 0.35, 0.45)
         c.save()
-        c.translate(540, 548 - (1 - ease_out_cubic(u)) * 30)
+        c.translate(540, 548 - (1 - ease_out_cubic(u)) * 34)
         k = ease_out_back(u, 2.2)
         c.scale(k, k)
-        K.plaque(c, 0, 0, 840, 168, a=u)
-        ty.draw(c, q, 0, 22, rgb=K.INK, a=u, align="center")
+        K.plaque(c, 0, 0, 860, 172, a=u)
+        ty.draw(c, q, 0, 23, rgb=K.INK, a=u, align="center")
         c.restore()
-        chips = [("రాళ్ళు వేసింది", self.doc.chip_at, 730),
-                 ("నిద్రపోయింది", self.doc.chip_at + 0.55, 878)]
+        chips = [("రాళ్ళు వేసింది", t_cut + 0.30, 730),
+                 ("నిద్రపోయింది", t_cut + 0.85, 878)]
         for text, t0, y in chips:
             uu = ramp(t, t0, 0.36)
             if uu <= 0:
@@ -712,7 +788,8 @@ def build_film(doc):
 
     for st in (FieldStage(film, doc), PotStage(film, doc), QuizStage(film, doc)):
         film.add(st)
-    film.add(PotActor(film, doc, drops))
+    pot = PotActor(film, doc, drops)
+    film.add(pot)
     film.add(PebblePile(film, doc, drops))
     crow = film.add(CrowActor(film, doc))
     film.add(LizardActor(film, doc))
@@ -721,7 +798,8 @@ def build_film(doc):
     film.add(TitleCard(film, doc))
     film.add(CaptionCard(film, doc))
     film.add(BubbleCards(film, doc))
-    film.add(CountCard(film, doc, drops))
+    # no numeral tally: it fought the water for the same pixels. A splash on every stone instead.
+    film.add(SplashPops(film, doc, drops, pot))
     film.add(QuizCard(film, doc))
     film.add(EndCard(film, doc))
 
@@ -730,16 +808,17 @@ def build_film(doc):
                         (E(19) + 0.1, 0), (E(19) + 0.3, 1), (duration, 1)])
     crow.key("x", [(0, -520), (E(1), -120), (L(2) + 0.3, 300), (L(3), 470), (E(3), 300),
                    (L(4) - 0.15, 430), (E(4) + 0.15, 548), (L(5) - 0.1, 548), (E(18) + 0.2, 548),
-                   (L(19) - 0.1, 560), (E(19) + 0.1, 360), (L(19) + 0.5, 700), (L(20), 420),
-                   (E(20), 420), (L(21) + 0.4, 300), (duration, 300)])
+                   (L(19) - 0.1, 560), (E(19) + 0.1, 360), (L(19) + 0.5, 700), (L(20), 470),
+                   (E(20), 470), (L(21) + 0.4, 300), (duration, 300)])
     rim = POT["top"] - 0.46 * 300 + 16
     crow.key("y", [(0, 560), (E(1), 660), (L(2) + 0.3, 1240), (L(3), 1300), (L(4) - 0.15, 980),
                    (E(4), 980), (L(5) - 0.1, rim + 14), (E(18) + 0.2, rim + 14), (L(19), 1000), (E(19) + 0.2, 300),
-                   (L(19) + 0.5, 940), (L(20) + 0.10, 1400), (E(20), 1400), (L(21), 1400), (duration, 1400)])
+                   (L(19) + 0.5, 940), (L(19) + 0.9, 1252), (L(20) + 0.10, 1252), (E(20), 1252),
+                   (L(21) - 0.15, 1252), (duration, 1252)])
     crow.key("s", [(0, 250), (E(1), 300), (L(2) + 0.3, 330), (L(3), 330), (L(4) - 0.15, 260),
                    (E(4), 270), (L(5) - 0.1, 330), (L(6), 350), (E(7), 360), (L(8), 330),
                    (E(10), 320), (L(11), 300), (E(18) + 0.2, 300), (L(19), 250), (E(19), 300),
-                   (L(20), 290), (E(20), 290), (L(21), 280), (duration, 280)])
+                   (L(20), 290), (E(20), 290), (L(21), 200), (duration, 200)])
     crow.key("flap", [(0, 0.6), (L(2) + 0.1, 0.6), (L(2) + 0.4, 0), (L(19) - 0.3, 0), (L(19) - 0.05, 0.8),
                       (E(19) + 0.2, 0.2), (E(19) + 0.35, 0), (duration, 0)])
     crow.key("wing_open", [(0, 1.0), (L(2) + 0.4, 0.0), (L(19) - 0.35, 0.0), (L(19) - 0.05, 1.0),
@@ -750,7 +829,7 @@ def build_film(doc):
     crow.key("alpha", [(0, 1), (L(9) - 0.25, 1), (L(9), 0.0), (L(11) - 0.15, 0.0), (L(11) + 0.1, 1),
                        (L(19) - 0.1, 1), (E(19) + 0.1, 0.0), (L(20) - 0.1, 0.0),
                        (L(19) + 0.35, 0.0), (L(20) + 0.10, 1.0), (E(20), 1.0),
-                       (L(21) - 0.20, 0.0), (duration, 0.0)])
+                       (L(21) - 0.25, 1.0), (L(21) - 0.10, 0.0), (duration, 0.0)])
     # small acting beats: lean in to strain, hop of surprise, nod of satisfaction
     crow.key("tilt", [(0, 0), (L(6), 0), (L(6) + 0.5, 0.16), (E(7), 0.16), (E(7) + 0.3, 0.0),
                       (E(18), 0.0), (E(18) + 0.25, -0.14), (E(18) + 0.8, 0.0), (duration, 0.0)])
