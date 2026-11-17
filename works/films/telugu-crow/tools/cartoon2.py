@@ -167,9 +167,9 @@ def sky(c, t, hot=0.55, cool=0.0, a=1.0, horizon=1178.0):
     lo = mix(mix(SKY_LOW, SKY_HOT, hot * 0.75), (240, 248, 250), cool)
     g = skia.GradientShader.MakeLinear(
         [skia.Point(0, horizon - 1900), skia.Point(0, horizon + 20)],
-        _colors([(*top, int(255 * a)), (*mid, int(255 * a)), (*lo, int(255 * a)),
-                 (*mix(lo, (255, 250, 238), 0.5), int(255 * a))]),
-        [0.0, 0.62, 0.94, 1.0])
+        _colors([(*top, int(255 * a)), (*mid, int(255 * a)), (*mix(mid, lo, 0.5), int(255 * a)),
+                 (*lo, int(255 * a))]),
+        [0.0, 0.55, 0.86, 1.0])
     c.drawRect(rect(WX0, horizon - 1300, WW, 1340), skia.Paint(AntiAlias=True, Shader=g))
     # the heat is a wash at the horizon, not a filter: it keeps the sun readable
     if hot > 0.01:
@@ -221,6 +221,7 @@ def cloud(c, x, y, w, a=1.0, rgb=(255, 250, 244), shade=(226, 220, 224)):
 def hills(c, y, a=1.0, dry=0.0, scroll=0.0):
     far = mix(HILL_FAR, (206, 190, 140), dry)
     near = mix(HILL, (176, 156, 104), dry)
+    rim = mix((255, 232, 176), (255, 214, 150), 0.4)
     for ox, h, wd, col in ((-240, 210, 640, far), (250, 250, 720, far), (700, 180, 560, far)):
         p = skia.Path()
         p.moveTo(ox + scroll * 0.16 - wd / 2, y)
@@ -228,6 +229,7 @@ def hills(c, y, a=1.0, dry=0.0, scroll=0.0):
                   ox + scroll * 0.16 + wd / 2, y)
         p.close()
         c.drawPath(p, P(col, a))
+        c.drawPath(p, LN(mix(col, rim, 0.55), 0.55 * a, 7))
     for ox, h, wd in ((90, 150, 700), (620, 190, 720), (-420, 130, 620)):
         p = skia.Path()
         p.moveTo(ox + scroll * 0.3 - wd / 2, y)
@@ -235,6 +237,7 @@ def hills(c, y, a=1.0, dry=0.0, scroll=0.0):
                   ox + scroll * 0.3 + wd / 2, y)
         p.close()
         c.drawPath(p, P(near, a))
+        c.drawPath(p, LN(mix(near, rim, 0.5), 0.5 * a, 8))
 
 
 def ground(c, y, dry=0.8, a=1.0, cracks=True, seed=3):

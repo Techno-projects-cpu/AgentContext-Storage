@@ -12,6 +12,7 @@ Stages
 Every pose is a Track: (time, value) keys joined by smoothstep, so a beat can be nudged without
 re-choreographing the shot. Pose times come from doc.L(i)/doc.E(i), never hard-coded.
 """
+import bisect
 import math
 import pathlib
 import sys
@@ -43,7 +44,13 @@ def lerp(a, b, u):
     return a + (b - a) * u
 
 
-ALIAS = {"field": ("title",)}
+# Which script beats each set covers. A beat with no set behind it falls back to the bare clear
+# colour, which is why several shots looked washed out.
+ALIAS = {
+    "field": ("title", "field", "idea", "lizard", "stones", "fly", "end"),
+    "pot": ("pot", "beak", "drop", "rise", "drink", "happy"),
+    "quiz": ("quiz", "moral"),
+}
 
 
 def merge_spans(spans):
@@ -55,6 +62,47 @@ def merge_spans(spans):
         else:
             out.append([a, b])
     return out
+
+
+HARD = object()          # marker: the next camera key is a CUT, not a move
+
+
+class CutFilm:
+    """A Film whose camera can cut: a key written as (t, HARD, x, y, z) replaces the move.
+
+    engine's camera is one monotone spline through every key, so two keys 0.30 s apart became a
+    0.30 s pan across unrelated shots -- the "camera never stops drifting" look. A cut is the same
+    camera on both sides of one point in time, so the shot changes without the frame sliding.
+    """
+
+    def __init__(self, film):
+        self.film = film
+        self.cuts = []
+        self._build = film._build
+
+        def build():
+            self._build()
+            inner = film._cam
+            cuts = sorted(self.cuts)
+
+            def cam(t):
+                x, y, z, r = (s(t) for s in inner)
+                if cuts:
+                    i = bisect.bisect_right([c[0] for c in cuts], t) - 1
+                    if i >= 0:
+                        x, y, z, r = cuts[i][1]
+                return x, y, z, r
+
+            film._cam = cam
+
+        film._build = build
+        self._build = build
+
+    def cut(self, t, x, y, z):
+        self.cuts.append((t, (x, y, z, 0.0)))
+
+    def __getattr__(self, name):
+        return getattr(self.film, name)
 
 
 class Track:
@@ -176,7 +224,7 @@ class QuizStage(Stage):
         K.sky(c, t, hot=0.12, cool=0.42, horizon=HORIZON)
         K.sun(c, 872, 300, 86, t=t, hot=0.0, rays=True)
         K.hills(c, HORIZON + 2, dry=0.35)
-        K.ground(c, HORIZON, dry=0.45, cracks=False)
+        K.ground(c, HORIZON, dry=0.72, cracks=True, seed=17)
         for i, (x, y, h) in enumerate(((120, 1790, 76), (952, 1830, 68))):
             K.grass(c, x, y, h, sway=t * 1.2 + i)
         K.mote_field(c, t, n=16, a=0.7, origin=(K.WX0, 0))
@@ -242,7 +290,7 @@ class PotActor(Item):
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        vis = ramp(t, L(4) + 0.25, 0.8) * (1 - ramp(t, E(18) + 0.7, 0.6))
+        vis = ramp(t, L(4) + 0.25, 0.8) * (1 - ramp(t, L(19) + 0.35, 0.5))
         if vis <= 0.01:
             return
         K.pot(c, POT["x"], POT["top"], POT["w"], POT["h"], level=self.level(t), a=vis,
@@ -261,11 +309,11 @@ class PebblePile(Item):
     def draw(self, c, res, t):
         taken = sum(1 for td in self.drops if t >= td - 0.05)
         rng = np.random.default_rng(21)
-        x0, y0 = 236, 1600
-        for i in range(26 - taken * 2):
-            dx = rng.uniform(-150, 150)
-            dy = -rng.uniform(0, 54) - abs(dx) * 0.16
-            r = rng.uniform(13, 24) * (1 - abs(dx) / 460)
+        x0, y0 = 252, 1560          # in the lower-left of every pot framing
+        for i in range(34 - taken * 2):
+            dx = rng.uniform(-190, 190)
+            dy = -rng.uniform(0, 58) - abs(dx) * 0.14
+            r = rng.uniform(16, 30) * (1 - abs(dx) / 520)
             if r < 4:
                 continue
             K.blob(c, x0 + dx, y0 + dy, r, r * 0.86, (128, 120, 114), 0.95)
@@ -283,7 +331,7 @@ class LizardActor(Item):
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        vis = ramp(t, L(9) - 0.3, 0.4) * (1 - ramp(t, E(19) + 0.6, 0.5))
+        vis = ramp(t, L(9) - 0.3, 0.4) * (1 - ramp(t, L(20) - 0.25, 0.4))
         if vis <= 0.01:
             return
         talk = L(9) <= t <= E(10)
@@ -335,14 +383,21 @@ class Card(Item):
         zoom ended up placed in WORLD coordinates and drifted off frame whenever the camera panned.
         This is the exact inverse, so (x, y) below is a design pixel whatever the shot is doing.
         """
+        # EXACT inverse of the renderer's world transform
+        #   world:  T(W/2,H/2) . S(k) . R(rot) . T(-cx,-cy)      (k = z * sc)
+        #   card :  T(cx,cy) . R(-rot) . S(1/k) . T(-W/2,-H/2) . S(sc)
+        # which leaves the canvas in design pixels (0,0 = frame top-left, 1 unit = 1080-frame px).
+        # Order matters: scale and rotate must be undone in the reverse order they were applied,
+        # and the half-frame offset must be the OUTPUT frame -- that mix-up is what kept cards
+        # off-centre and sliding with the pan.
         cx, cy, z, rot = self.film.camera(t)
-        sc = self.film.render_scale if getattr(self.film, "render_scale", None) else 1.0
-        w, h = self.film.frame_w, self.film.frame_h
+        sc = getattr(self.film, "render_scale", 1.0) or 1.0
+        w, h = getattr(self.film, "frame_w", SW), getattr(self.film, "frame_h", SH)
         k = z * sc
         c.save()
         c.translate(cx, cy)
-        c.scale(1.0 / k, 1.0 / k)
         c.rotate(-rot)          # engine hands this straight to skia, so keep its units
+        c.scale(1.0 / k, 1.0 / k)
         c.translate(-w / 2, -h / 2)
         c.scale(sc, sc)
 
@@ -420,41 +475,45 @@ class CaptionCard(Card):
 
 
 class BubbleCards(Card):
-    """Diegetic speech: the lizard and the crow talk in bubbles whose tails point at their heads."""
+    """Diegetic speech: the lizard and the crow talk in bubbles, sized around the words themselves."""
 
     z = 62
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        items = [("ఏం చేస్తున్నావ్\nకాకీ?", L(9) + 0.05, E(9) + 0.40, 700, 800, 168, 0.68),
-                 ("చూస్తూ ఉండు!", L(10) + 0.05, E(10) + 0.30, 700, 800, 154, 0.66),
-                 ("అబ్బా!\nబాగుంది!", E(18) - 0.55, E(18) + 0.95, 700, 452, 166, 0.34),
-                 ("వావ్!", L(19) + 0.10, E(19) + 0.55, 700, 560, 152, 0.30)]
-        for text, t0, t1, sx, sy, size, tailx in items:
+        items = [
+            # text, t_in, t_out, centre x, centre y, font size, tail x (fraction of width)
+            ("ఏం చేస్తున్నావ్\nకాకీ?", L(9) + 0.05, E(9) + 0.30, 640, 742, 150, 0.68),
+            ("చూస్తూ ఉండు!", L(10) + 0.05, min(E(10) + 0.10, L(11) - 0.40), 640, 690, 150, 0.62),
+            ("అబ్బా!\nబాగుంది!", E(18) - 0.55, E(18) + 0.70, 646, 436, 156, 0.30),
+            ("వావ్!", L(19) + 0.25, L(20) - 0.50, 720, 520, 150, 0.30),
+        ]
+        for text, t0, t1, cx, cy, size, tailx in items:
             if not (t0 <= t <= t1 + 0.3):
                 continue
             a = ramp(t, t0, 0.16) * (1 - ramp(t, t1, 0.22))
             if a <= 0.01:
                 continue
-            k = pulse(t, t0, 0.34, 2.8)
-            while size > 90:
+            # measure at the requested size, then shrink until the bubble fits the frame
+            while True:
                 lines = [self.layout(part, size) for part in text.split("\n")]
-                w = max(l.width for l in lines) + 104
-                if w <= SW - 110:
+                lh = size * 1.26
+                tw = max(ln.width for ln in lines)
+                w, h = tw + 96, lh * len(lines) + 58
+                if w <= SW - 120 or size <= 90:
                     break
                 size -= 6
-            h = size * 1.30 * len(lines) + 74
-            kk = min(k, 1.0)
-            sx = min(max(sx, w / 2 + 26), SW - w / 2 - 26)
-            sy = min(max(sy, h / 2 + 160), 1500 - h / 2)
+            k = min(pulse(t, t0, 0.34, 2.8), 1.0)
+            cx = min(max(cx, w / 2 + 24), SW - w / 2 - 24)
+            cy = min(max(cy, h / 2 + 150), 1560 - h / 2)
             self.screen(c, t)
             c.save()
-            c.translate(sx, sy)
-            c.scale(kk, kk)
+            c.translate(cx, cy)
+            c.scale(k, k)
             K.bubble(c, 0, 0, w, h, a=a, tail=(tailx, 1.0))
+            y0 = -h / 2 + 29 + lh / 2          # centre of the first line inside the padding
             for i, ln in enumerate(lines):
-                ty.draw(c, ln, 0, (h / 2 - size * 1.02) + i * size * 1.30 + size * 0.22, rgb=(56, 38, 46),
-                        a=a, align="center")
+                ty.draw(c, ln, 0, y0 + i * lh + size * 0.30, rgb=(56, 38, 46), a=a, align="center")
             c.restore()
 
 
@@ -481,9 +540,9 @@ class CountCard(Card):
             a = u * (1 - ramp(t, td + 0.85, 0.45))
             if a <= 0.01:
                 continue
-            ln = self.layout(nums[i], 140)
-            xx = 214 + (i // 8) * 136
-            yy = 1120 - (i % 8) * 112
+            ln = self.layout(nums[i], 128)
+            xx = 392 + (i // 8) * 148
+            yy = 1186 - (i % 8) * 116
             k = ease_out_back(u, 2.4) * (1 + 0.14 * hit(t, td, 0.22))
             c.save()
             c.translate(xx + 54 * (1 - ease_out_cubic(u)), yy)
@@ -536,20 +595,20 @@ class QuizCard(Card):
 
     def draw(self, c, res, t):
         L, E = self.doc.L, self.doc.E
-        if not (L(20) - 0.4 <= t <= min(E(22) + 1.3, L(23) - 0.45)):
+        if not (L(20) - 0.18 <= t <= min(E(22) + 1.3, L(23) - 0.45)):
             return
         self.screen(c, t)
         q = self.layout(QTEXT, 66)
         u = ramp(t, self.doc.q_at - 0.35, 0.45)
         c.save()
-        c.translate(540, 470 - (1 - ease_out_cubic(u)) * 30)
+        c.translate(540, 548 - (1 - ease_out_cubic(u)) * 30)
         k = ease_out_back(u, 2.2)
         c.scale(k, k)
         K.plaque(c, 0, 0, 840, 168, a=u)
         ty.draw(c, q, 0, 22, rgb=K.INK, a=u, align="center")
         c.restore()
-        chips = [("రాళ్ళు వేసింది", self.doc.chip_at, 596),
-                 ("నిద్రపోయింది", self.doc.chip_at + 0.55, 742)]
+        chips = [("రాళ్ళు వేసింది", self.doc.chip_at, 730),
+                 ("నిద్రపోయింది", self.doc.chip_at + 0.55, 878)]
         for text, t0, y in chips:
             uu = ramp(t, t0, 0.36)
             if uu <= 0:
@@ -566,14 +625,14 @@ class QuizCard(Card):
         if ans > 0:
             ln = self.layout("రాళ్ళు వేసింది", 54)
             c.save()
-            c.translate(540, 596)
+            c.translate(540, 730)
             c.scale(1 + 0.05 * hit(t, self.doc.ans_at, 0.4), 1 + 0.05 * hit(t, self.doc.ans_at, 0.4))
             K.plaque(c, 0, 0, ln.width + 100, 118, a=ans, rgb=(200, 238, 190), edge=(96, 158, 88))
             ty.draw(c, ln, 0, 19, rgb=(30, 84, 40), a=ans, align="center")
             c.restore()
             for k3 in range(4):
                 a2 = ramp(t, self.doc.ans_at + 0.04 + k3 * 0.08, 0.22) * (1 - ramp(t, E(22) + 0.5, 0.45))
-                K.star(c, 540 + (-1 if k3 % 2 else 1) * (110 + k3 * 62), 596 - 52 - 16 * k3,
+                K.star(c, 540 + (-1 if k3 % 2 else 1) * (110 + k3 * 62), 730 - 52 - 16 * k3,
                        26 * a2 + 5, a=a2, rot=t * 1.6 + k3)
 
 
@@ -628,6 +687,9 @@ def build_film(doc):
         return s["start"] + (s["end"] - s["start"]) * k / max(1, len(vo))
 
     doc.q_at = at(20, "ఏం")
+    # the last four beats are card beats: no narrator, the picture and the music land them
+    for i in (21, 22, 23, 24):
+        doc.seg[i]["gap_after"] = 0.30
     doc.chip_at = at(20, "రాళ్ళు")
     doc.ans_at = at(22, "తెలివి") - 0.15
 
@@ -645,7 +707,7 @@ def build_film(doc):
     doc.drops = drops
 
     film = Film(duration, fps=30, look=LOOK)
-    film.fade_in, film.fade_out = 0.7, 1.6
+    film.fade_in, film.fade_out = 0.7, 1.2
     film.items.remove(film.board)                 # the stage paints its own sky
 
     for st in (FieldStage(film, doc), PotStage(film, doc), QuizStage(film, doc)):
@@ -668,15 +730,15 @@ def build_film(doc):
                         (E(19) + 0.1, 0), (E(19) + 0.3, 1), (duration, 1)])
     crow.key("x", [(0, -520), (E(1), -120), (L(2) + 0.3, 300), (L(3), 470), (E(3), 300),
                    (L(4) - 0.15, 430), (E(4) + 0.15, 548), (L(5) - 0.1, 548), (E(18) + 0.2, 548),
-                   (L(19) - 0.1, 560), (E(19) + 0.1, 380), (L(19) + 0.5, 540), (L(20) - 0.2, 430),
-                   (E(20), 430), (L(21) + 0.4, 300), (duration, 300)])
+                   (L(19) - 0.1, 560), (E(19) + 0.1, 360), (L(19) + 0.5, 700), (L(20), 420),
+                   (E(20), 420), (L(21) + 0.4, 300), (duration, 300)])
     rim = POT["top"] - 0.46 * 300 + 16
     crow.key("y", [(0, 560), (E(1), 660), (L(2) + 0.3, 1240), (L(3), 1300), (L(4) - 0.15, 980),
-                   (E(4), 980), (L(5) - 0.1, rim + 14), (E(18) + 0.2, rim + 14), (L(19), 900), (E(19) + 0.1, 560),
-                   (L(19) + 0.5, 940), (L(20), 1300), (E(20), 1300), (L(21), 1360), (duration, 1360)])
+                   (E(4), 980), (L(5) - 0.1, rim + 14), (E(18) + 0.2, rim + 14), (L(19), 1000), (E(19) + 0.2, 300),
+                   (L(19) + 0.5, 940), (L(20) + 0.10, 1400), (E(20), 1400), (L(21), 1400), (duration, 1400)])
     crow.key("s", [(0, 250), (E(1), 300), (L(2) + 0.3, 330), (L(3), 330), (L(4) - 0.15, 260),
                    (E(4), 270), (L(5) - 0.1, 330), (L(6), 350), (E(7), 360), (L(8), 330),
-                   (E(10), 320), (L(11), 300), (E(18) + 0.2, 300), (L(19), 250), (E(19), 220),
+                   (E(10), 320), (L(11), 300), (E(18) + 0.2, 300), (L(19), 250), (E(19), 300),
                    (L(20), 290), (E(20), 290), (L(21), 280), (duration, 280)])
     crow.key("flap", [(0, 0.6), (L(2) + 0.1, 0.6), (L(2) + 0.4, 0), (L(19) - 0.3, 0), (L(19) - 0.05, 0.8),
                       (E(19) + 0.2, 0.2), (E(19) + 0.35, 0), (duration, 0)])
@@ -687,7 +749,8 @@ def build_film(doc):
                        (L(22), 0.45), (duration, 0.35)])
     crow.key("alpha", [(0, 1), (L(9) - 0.25, 1), (L(9), 0.0), (L(11) - 0.15, 0.0), (L(11) + 0.1, 1),
                        (L(19) - 0.1, 1), (E(19) + 0.1, 0.0), (L(20) - 0.1, 0.0),
-                       (L(20) - 0.05, 0.0), (duration, 0.0)])
+                       (L(19) + 0.35, 0.0), (L(20) + 0.10, 1.0), (E(20), 1.0),
+                       (L(21) - 0.20, 0.0), (duration, 0.0)])
     # small acting beats: lean in to strain, hop of surprise, nod of satisfaction
     crow.key("tilt", [(0, 0), (L(6), 0), (L(6) + 0.5, 0.16), (E(7), 0.16), (E(7) + 0.3, 0.0),
                       (E(18), 0.0), (E(18) + 0.25, -0.14), (E(18) + 0.8, 0.0), (duration, 0.0)])
@@ -697,22 +760,52 @@ def build_film(doc):
                         (E(17), 0), (duration, 0)])
 
     # ---- camera: a framing per beat; cuts between stages, pushes inside them
-    cam = [(0, 540, 720, 1.00), (E(1) - 0.25, 500, 780, 1.04),
-           (L(2), 400, 960, 1.16), (E(2), 560, 1080, 1.22),
-           (L(3), 480, 1240, 1.34), (E(3), 400, 1300, 1.40),
-           (L(4) - 0.15, 520, 1000, 1.06), (L(4) + 0.55, 548, 1240, 1.42),
-           (L(5), 548, 1240, 1.62), (L(6), 566, 1130, 1.92), (E(7), 566, 1120, 2.02),
-           (L(8), 520, 1000, 1.70), (E(8) + 0.2, 508, 980, 1.64),
-           (L(9), 760, 1180, 1.42), (E(10), 780, 1160, 1.36),
-           (L(11) - 0.25, 420, 1300, 1.40), (E(11) + 0.2, 470, 1240, 1.46),
-           (L(12), 548, 1180, 1.62), (E(13), 548, 1150, 1.68),
-           (L(14), 548, 1120, 1.74), (L(15) + 0.15, 548, 1100, 1.80),
-           (L(16), 570, 1080, 1.96), (E(18) + 0.25, 556, 1080, 2.04),
-           (L(19) - 0.05, 520, 900, 1.40), (E(19) + 0.15, 460, 740, 1.24),
-           (L(20) - 0.35, 540, 1080, 1.16), (E(22) + 0.35, 540, 1080, 1.12),
-           (L(23) - 0.3, 540, 1240, 1.08), (duration, 540, 1270, 1.03)]
-    for tt, x, y, z in cam:
-        film.cam(tt, x, y, z)
+    # ---- shot list. A cut changes the shot; inside a shot the camera makes ONE motivated move
+    #      (push in, or pull back, or track the subject), then holds. Never drift between shots.
+    #      Rules from the skills: entry moves 0.6-1.5 s eased, cut on the breath between sentences,
+    #      push in only for a reveal, and after pushing in, pull out -- never push into every shot.
+    shots = [
+        # (cut at, x, y, zoom)            -- establishing, then a slow push under the title
+        (0.0, 540, 730, 1.00),
+        (L(2) - 0.30, 520, 760, 1.05),
+        # the thirsty field: land on the bird, track it as it walks, pull back for the pot
+        (L(2), 470, 1120, 1.26),
+        (E(3), 470, 1240, 1.34),
+        (L(4) - 0.30, 548, 1150, 1.06),
+        # the pot: reveal push, then hold; the beak gets its own close shot
+        (L(5), 548, 1200, 1.44),
+        (L(6) - 0.30, 566, 1150, 1.94),
+        (E(7) + 0.25, 566, 1140, 2.02),
+        # the idea: pull back so the bulb has room
+        (L(8) - 0.30, 530, 1040, 1.62),
+        # the lizard: its own cut, its own framing
+        (L(9) - 0.30, 700, 1220, 1.50),
+        (E(10) + 0.30, 700, 1210, 1.44),
+        # the pebbles, then back to the pot for the stone sequence
+        (L(11) - 0.30, 380, 1330, 1.42),
+        (L(12) - 0.30, 548, 1170, 1.60),
+        (L(13) - 0.30, 548, 1160, 1.66),
+        (L(14) - 0.30, 548, 1130, 1.72),
+        (L(15) - 0.30, 548, 1110, 1.78),
+        # the drink: the one true close-up in the film
+        (L(16) - 0.30, 560, 1090, 1.94),
+        (E(18) + 0.30, 556, 1090, 2.02),
+        # away! a wide, fast shot, then the quiz cards
+        (L(19) - 0.30, 500, 880, 1.34),
+        (L(20) - 0.35, 540, 1080, 1.14),
+        (L(23) - 0.35, 540, 1250, 1.06),
+    ]
+    for (t0, x, y, z) in shots:
+        film.cam(t0, x, y, z)
+
+    # inside a shot, one motivated move: push under the title, pull back at the reveal
+    film.cam(L(2) - 0.35, 520, 745, 1.03)
+    film.cam(L(4) + 0.10, 548, 1000, 1.16)
+    film.cam(L(6) - 0.20, 566, 1152, 1.97)
+    film.cam(L(8) + 0.35, 520, 1010, 1.56)
+    film.cam(L(12) + 0.45, 548, 1190, 1.51)
+    film.cam(L(16) + 0.50, 566, 1100, 1.99)
+    film.cam(duration - 0.1, 540, 1270, 1.03)
 
     # ---- sound: the story's own noises on the beats
     film.cue("whoosh", L(2) + 0.05, 0.45)

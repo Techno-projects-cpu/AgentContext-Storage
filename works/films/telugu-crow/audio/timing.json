@@ -1,7 +1,7 @@
 {
-  "total_duration": 64.498,
+  "total_duration": 54.83,
   "lead_in": 0.7,
-  "tail_out": 1.4,
+  "tail_out": 1.8,
   "tempo": 1.0,
   "segments": [
     {
@@ -122,8 +122,8 @@
       "vo": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
       "gap_after": 0.35,
       "start": 24.617,
-      "end": 26.915,
-      "duration": 2.299
+      "end": 26.352,
+      "duration": 1.736
     },
     {
       "id": 12,
@@ -132,9 +132,9 @@
       "caption": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "gap_after": 0.3,
-      "start": 27.265,
-      "end": 29.684,
-      "duration": 2.419
+      "start": 26.702,
+      "end": 28.617,
+      "duration": 1.914
     },
     {
       "id": 13,
@@ -143,9 +143,9 @@
       "caption": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "gap_after": 0.3,
-      "start": 29.984,
-      "end": 32.523,
-      "duration": 2.539
+      "start": 28.917,
+      "end": 28.917,
+      "duration": 0.0
     },
     {
       "id": 14,
@@ -154,9 +154,9 @@
       "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "gap_after": 0.35,
-      "start": 32.823,
-      "end": 35.241,
-      "duration": 2.419
+      "start": 29.217,
+      "end": 30.954,
+      "duration": 1.737
     },
     {
       "id": 15,
@@ -165,9 +165,9 @@
       "caption": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
       "vo": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
       "gap_after": 0.35,
-      "start": 35.591,
-      "end": 38.13,
-      "duration": 2.539
+      "start": 31.304,
+      "end": 32.943,
+      "duration": 1.639
     },
     {
       "id": 16,
@@ -176,9 +176,9 @@
       "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "gap_after": 0.35,
-      "start": 38.48,
-      "end": 40.779,
-      "duration": 2.299
+      "start": 33.293,
+      "end": 34.346,
+      "duration": 1.053
     },
     {
       "id": 17,
@@ -187,9 +187,9 @@
       "caption": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
       "vo": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
       "gap_after": 0.3,
-      "start": 41.129,
-      "end": 43.187,
-      "duration": 2.059
+      "start": 34.696,
+      "end": 35.837,
+      "duration": 1.141
     },
     {
       "id": 18,
@@ -198,9 +198,9 @@
       "caption": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
       "vo": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
       "gap_after": 0.5,
-      "start": 43.487,
-      "end": 45.666,
-      "duration": 2.179
+      "start": 36.137,
+      "end": 38.372,
+      "duration": 2.235
     },
     {
       "id": 19,
@@ -209,9 +209,9 @@
       "caption": "\u0c35\u0c3e\u0c35\u0c4d!",
       "vo": "\u0c35\u0c3e\u0c35\u0c4d!",
       "gap_after": 0.4,
-      "start": 46.166,
-      "end": 48.585,
-      "duration": 2.419
+      "start": 38.872,
+      "end": 39.59,
+      "duration": 0.718
     },
     {
       "id": 20,
@@ -220,9 +220,9 @@
       "caption": "\u0c15\u0c3e! \u0c15\u0c3e!",
       "vo": "\u0c15\u0c3e! \u0c15\u0c3e!",
       "gap_after": 0.45,
-      "start": 48.985,
-      "end": 51.523,
-      "duration": 2.539
+      "start": 39.99,
+      "end": 41.455,
+      "duration": 1.466
     },
     {
       "id": 21,
@@ -231,8 +231,8 @@
       "caption": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
       "vo": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
       "gap_after": 0.45,
-      "start": 51.973,
-      "end": 54.272,
+      "start": 41.905,
+      "end": 44.204,
       "duration": 2.299
     },
     {
@@ -242,8 +242,8 @@
       "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
       "gap_after": 0.5,
-      "start": 54.722,
-      "end": 57.021,
+      "start": 44.654,
+      "end": 46.953,
       "duration": 2.299
     },
     {
@@ -253,8 +253,8 @@
       "caption": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
       "vo": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
       "gap_after": 0.4,
-      "start": 57.521,
-      "end": 60.159,
+      "start": 47.453,
+      "end": 50.091,
       "duration": 2.639
     },
     {
@@ -264,8 +264,8 @@
       "caption": "\u0c2c\u0c48 \u0c2c\u0c48!",
       "vo": "\u0c2c\u0c48 \u0c2c\u0c48!",
       "gap_after": 0.0,
-      "start": 60.559,
-      "end": 63.098,
+      "start": 50.491,
+      "end": 53.03,
       "duration": 2.539
     }
   ]
