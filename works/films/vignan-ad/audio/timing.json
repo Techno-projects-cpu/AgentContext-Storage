@@ -1,5 +1,5 @@
 {
-  "total_duration": 28.522,
+  "total_duration": 26.62,
   "lead_in": 0.75,
   "tail_out": 1.9,
   "segments": [
@@ -11,8 +11,8 @@
       "vo": "Your question paper is right here.",
       "gap_after": 0.34,
       "start": 0.75,
-      "end": 3.058,
-      "duration": 2.308
+      "end": 2.51,
+      "duration": 1.76
     },
     {
       "id": 2,
@@ -21,9 +21,9 @@
       "caption": "So is your textbook. All of it.",
       "vo": "So is your textbook. All of it.",
       "gap_after": 0.32,
-      "start": 3.398,
-      "end": 6.09,
-      "duration": 2.692
+      "start": 2.85,
+      "end": 4.73,
+      "duration": 1.88
     },
     {
       "id": 3,
@@ -32,9 +32,9 @@
       "caption": "So just ask it.",
       "vo": "So just ask it.",
       "gap_after": 0.32,
-      "start": 6.41,
-      "end": 7.948,
-      "duration": 1.538
+      "start": 5.05,
+      "end": 6.44,
+      "duration": 1.39
     },
     {
       "id": 4,
@@ -43,9 +43,9 @@
       "caption": "Every answer cites the page.",
       "vo": "Every answer cites the page.",
       "gap_after": 0.34,
-      "start": 8.268,
-      "end": 10.192,
-      "duration": 1.923
+      "start": 6.76,
+      "end": 8.42,
+      "duration": 1.66
     },
     {
       "id": 5,
@@ -54,9 +54,9 @@
       "caption": "Read the page. Or take the quiz.",
       "vo": "Read the page. Or take the quiz.",
       "gap_after": 0.32,
-      "start": 10.532,
-      "end": 13.224,
-      "duration": 2.692
+      "start": 8.76,
+      "end": 11.53,
+      "duration": 2.77
     },
     {
       "id": 6,
@@ -65,9 +65,9 @@
       "caption": "Or sit a full exam practice.",
       "vo": "Or sit a full exam practice.",
       "gap_after": 0.32,
-      "start": 13.544,
-      "end": 15.852,
-      "duration": 2.308
+      "start": 11.85,
+      "end": 13.63,
+      "duration": 1.78
     },
     {
       "id": 7,
@@ -76,9 +76,9 @@
       "caption": "Then switch the data off.",
       "vo": "Then switch the data off.",
       "gap_after": 0.32,
-      "start": 16.172,
-      "end": 18.095,
-      "duration": 1.923
+      "start": 13.95,
+      "end": 15.75,
+      "duration": 1.8
     },
     {
       "id": 8,
@@ -87,9 +87,9 @@
       "caption": "No key. No download. The book stays here.",
       "vo": "No key. No download. The book stays here.",
       "gap_after": 0.34,
-      "start": 18.415,
-      "end": 21.492,
-      "duration": 3.077
+      "start": 16.07,
+      "end": 19.69,
+      "duration": 3.62
     },
     {
       "id": 9,
@@ -98,9 +98,9 @@
       "caption": "Built by a student, for INSPIRE MANAK.",
       "vo": "Built by a student. For INSPIRE MANAK.",
       "gap_after": 0.36,
-      "start": 21.832,
-      "end": 24.524,
-      "duration": 2.692
+      "start": 20.03,
+      "end": 22.38,
+      "duration": 2.35
     },
     {
       "id": 10,
@@ -109,9 +109,9 @@
       "caption": "Your books. Your edge.",
       "vo": "Your books. Your edge.",
       "gap_after": 0.2,
-      "start": 24.884,
-      "end": 26.422,
-      "duration": 1.538
+      "start": 22.74,
+      "end": 24.72,
+      "duration": 1.98
     }
   ]
 }

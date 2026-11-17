@@ -161,7 +161,7 @@ def ask_card(c, t, k, a, w=760, h=560, answer_at=0.9):
     c.restore()
 
 
-def page_reader(c, t, k, a, w=700, h=800):
+def page_reader(c, t, k, a, w=700, h=800, t0=0.0):
     """the page itself, opened at the cited number, with the cited line lit"""
     c.save()
     c.scale(k, k)
@@ -180,7 +180,7 @@ def page_reader(c, t, k, a, w=700, h=800):
                      ("same acceleration, g, whatever their mass.", False),
                      ("A heavy stone and a light feather dropped together", True),
                      ("land together in a vacuum.", True)):
-        u = ramp(t, 0.15 + 0.12 * (y / 60), 0.4)
+        u = ramp(t, t0 + 0.15 + 0.12 * (y / 60), 0.4)
         if hi:
             c.drawRect(skia.Rect.MakeXYWH(-w / 2 + 30, y - 30, w - 62, 42), P(MINT, 0.18 * a * u))
         ty.draw(c, ty.layout(text, str(FK.UI), 25), -w / 2 + 40, y, rgb=(60, 54, 50), a=a * 0.95, align="left")
@@ -414,7 +414,7 @@ class OfflineBadge(ScreenCard):
         self.screen(c, t)
         k = pop(t, t0, 0.4, 2.6)
         c.save()
-        c.translate(300, 640)
+        c.translate(300, 452)
         c.scale(k, k)
         # signal bars, then the slash
         for i in range(4):
@@ -427,9 +427,9 @@ class OfflineBadge(ScreenCard):
         ua = ramp(t, t0 + 0.18, 0.4)
         if ua > 0:
             ln = ty.layout("NO DATA", str(FK.LABEL_B), 54)
-            ty.draw(c, ln, 540, 500, rgb=(250, 246, 236), a=ua * a, align="center")
+            ty.draw(c, ln, 540, 452, rgb=(250, 246, 236), a=ua * a, align="center")
             ln2 = ty.layout("STILL WORKING", str(FK.LABEL_B), 46)
-            ty.draw(c, ln2, 540, 562, rgb=MINT, a=ua * a, align="center")
+            ty.draw(c, ln2, 540, 514, rgb=MINT, a=ua * a, align="center")
         c.restore()
 
 
@@ -475,19 +475,19 @@ def build_film(doc):
                   [(L(1) + 0.25, C_PAGES - 0.55, 540, 900, 1.0, 1.0)], z=22, enter=0.5, out=0.24, drift=3))
     # 2-4. the app answering, and the page it cites
     film.add(Prop(film, doc, lambda c, t, k, a: ask_card(c, t, k, a),
-                  [(C_PAGES + 0.12, C_DESK - 0.55, 540, 860, 1.0, 1.0)], z=24, enter=0.5, out=0.24, drift=4))
-    film.add(Prop(film, doc, lambda c, t, k, a: page_reader(c, t, k, a),
-                  [(L(4) + 0.25, C_DESK - 0.55, 700, 980, 0.72, 1.0)], z=25, enter=0.5, out=0.24, drift=2, spin=1.2))
+                  [(C_PAGES + 0.12, L(4) + 0.74, 540, 860, 1.0, 1.0)], z=24, enter=0.5, out=0.16, drift=4))
+    film.add(Prop(film, doc, lambda c, t, k, a: page_reader(c, t, k, a, t0=L(4) + 0.92),
+                  [(L(4) + 0.92, C_DESK - 0.40, 640, 980, 0.78, 1.0)], z=25, enter=0.45, out=0.22, drift=2, spin=1.2))
     # 5-6. the drill: quiz, exam clock, flashcards
     film.add(Prop(film, doc, lambda c, t, k, a: quiz_card(c, t, k, a),
                   [(C_DESK + 0.12, L(6) - 0.45, 500, 860, 0.94, 1.0)], z=25, enter=0.5, out=0.24, drift=3))
     film.add(Prop(film, doc, lambda c, t, k, a: exam_hud(c, t, k, a),
-                  [(L(6) + 0.15, C_OFF - 0.55, 430, 1330, 0.95, 1.0)], z=26, enter=0.5, out=0.24, drift=3))
+                  [(L(6) + 0.15, C_OFF - 0.55, 560, 1300, 0.95, 1.0)], z=26, enter=0.5, out=0.24, drift=3))
     film.add(Prop(film, doc, lambda c, t, k, a: page_fan(c, t, k, a),
-                  [(L(5) + 1.15, L(6) - 0.45, 730, 700, 0.62, 1.0)], z=24, enter=0.55, out=0.24, drift=2, spin=2))
+                  [(L(6) + 0.60, C_OFF - 0.55, 300, 900, 0.62, 1.0)], z=24, enter=0.55, out=0.24, drift=2, spin=2))
     # 7-8. offline: the phone with the radio off, and the badge
     film.add(Prop(film, doc, lambda c, t, k, a: offline_phone(c, t, k, a),
-                  [(C_OFF + 0.10, C_MAP - 0.55, 540, 940, 1.0, 1.0)], z=22, enter=0.55, out=0.24, drift=4))
+                  [(C_OFF + 0.10, C_MAP - 0.55, 540, 1090, 0.95, 1.0)], z=22, enter=0.55, out=0.24, drift=4))
     film.add(OfflineBadge(film, doc))
     # 9. the story of the build: the roadmap sheet
     film.add(Prop(film, doc, lambda c, t, k, a: dev_card(c, t, k, a),

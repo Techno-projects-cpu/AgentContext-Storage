@@ -163,7 +163,7 @@ class Stage(Item):
     name = "stage"
     plate = None
     is_stage = True
-    pad = 0.55             # how far past a beat the set stays up (so entrances have a floor)
+    pad = 0.22             # how far past a beat the set stays up; must stay under the cut offsets
 
     def __init__(self, film, doc):
         super().__init__(-50, None, self.z, sfx=False)

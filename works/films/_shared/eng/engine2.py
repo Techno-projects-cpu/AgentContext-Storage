@@ -91,10 +91,7 @@ class Renderer2(Renderer):
         return super().frame(n)
 
     def _stage_at(self, t):
-        for it in self.items:
-            if getattr(it, "is_stage", False) and it.active(t):
-                return it
-        return None
+        return self.stage_at(t)
 
     def _surface(self):
         info = skia.ImageInfo.Make(self.W, self.H, skia.ColorType.kRGBA_8888_ColorType,
@@ -109,11 +106,20 @@ class Renderer2(Renderer):
     # which painted page is the room in? the stage itself says so (`plate = "desk"`); a beat that
     # falls outside every stage simply has no paint behind it.
     def stage_at(self, t):
-        """the stage live at t: the first one in the list whose span covers this moment"""
+        """The set live at t.
+
+        Pads make two neighbouring sets' spans overlap for a moment. The one that started most
+        recently is the one the last cut went to, so it owns the frame -- otherwise a plate can flip
+        to the NEXT set a quarter-second before its cut, which reads as a jump.
+        """
+        best, start = None, -1e9
         for it in self.items:
-            if getattr(it, "is_stage", False) and it.visible(t):
-                return it
-        return None
+            if not getattr(it, "is_stage", False):
+                continue
+            for a, b in getattr(it, "spans", ()):
+                if a <= t <= b and a >= start:
+                    best, start = it, a
+        return best
 
     def paint_plate(self, c, t):
         """the set: a gouache page, blitted in world space under the cut-outs"""
