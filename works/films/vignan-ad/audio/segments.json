@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "voice_note": "one bright, honest student; quick, warm, a little proud at the end",
+  "segments": [
+    {"id": 1, "scene": "study", "stage": "study", "caption": "Your question paper is right here.", "vo": "Your question paper is right here.", "gap_after": 0.34},
+    {"id": 2, "scene": "pages", "stage": "pages", "caption": "So is your textbook. All of it.", "vo": "So is your textbook. All of it.", "gap_after": 0.32},
+    {"id": 3, "scene": "pages", "stage": "pages", "caption": "So just ask it.", "vo": "So just ask it.", "gap_after": 0.32},
+    {"id": 4, "scene": "pages", "stage": "pages", "caption": "Every answer cites the page.", "vo": "Every answer cites the page.", "gap_after": 0.34},
+    {"id": 5, "scene": "desk", "stage": "study", "caption": "Read the page. Or take the quiz.", "vo": "Read the page. Or take the quiz.", "gap_after": 0.32},
+    {"id": 6, "scene": "desk", "stage": "study", "caption": "Or sit a full exam practice.", "vo": "Or sit a full exam practice.", "gap_after": 0.32},
+    {"id": 7, "scene": "off", "stage": "study", "caption": "Then switch the data off.", "vo": "Then switch the data off.", "gap_after": 0.32},
+    {"id": 8, "scene": "off", "stage": "study", "caption": "No key. No download. The book stays here.", "vo": "No key. No download. The book stays here.", "gap_after": 0.34},
+    {"id": 9, "scene": "map", "stage": "map", "caption": "Built by a student, for INSPIRE MANAK.", "vo": "Built by a student. For INSPIRE MANAK.", "gap_after": 0.36},
+    {"id": 10, "scene": "end", "stage": "end", "caption": "Your books. Your edge.", "vo": "Your books. Your edge.", "gap_after": 0.20}
+  ]
+}

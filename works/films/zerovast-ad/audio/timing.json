@@ -1,0 +1,106 @@
+{
+  "total_duration": 29.53,
+  "lead_in": 0.75,
+  "tail_out": 1.9,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "open",
+      "stage": "dusk",
+      "caption": "Your site is the handshake.",
+      "vo": "Your website is the first handshake.",
+      "gap_after": 0.42,
+      "start": 0.75,
+      "end": 2.45,
+      "duration": 1.7
+    },
+    {
+      "id": 2,
+      "scene": "open",
+      "stage": "dusk",
+      "caption": "Most are somebody else's template.",
+      "vo": "Most of them are somebody else's template.",
+      "gap_after": 0.38,
+      "start": 2.87,
+      "end": 5.14,
+      "duration": 2.27
+    },
+    {
+      "id": 3,
+      "scene": "desk",
+      "stage": "desk",
+      "caption": "So I write it by hand.",
+      "vo": "So I write it by hand.",
+      "gap_after": 0.36,
+      "start": 5.52,
+      "end": 6.74,
+      "duration": 1.22
+    },
+    {
+      "id": 4,
+      "scene": "desk",
+      "stage": "desk",
+      "caption": "No page builders. No framework tax.",
+      "vo": "No page builders. No framework tax.",
+      "gap_after": 0.4,
+      "start": 7.1,
+      "end": 10.02,
+      "duration": 2.92
+    },
+    {
+      "id": 5,
+      "scene": "glass",
+      "stage": "glass",
+      "caption": "Fast on a cheap phone.",
+      "vo": "Fast on a cheap phone, on a weak network.",
+      "gap_after": 0.34,
+      "start": 10.42,
+      "end": 14.04,
+      "duration": 3.62
+    },
+    {
+      "id": 6,
+      "scene": "glass",
+      "stage": "glass",
+      "caption": "Speed budgets, set before the first line.",
+      "vo": "Speed budgets, set before the first line.",
+      "gap_after": 0.36,
+      "start": 14.38,
+      "end": 17.4,
+      "duration": 3.02
+    },
+    {
+      "id": 7,
+      "scene": "glass",
+      "stage": "glass",
+      "caption": "Accessible by default.",
+      "vo": "Accessible by default. Double A.",
+      "gap_after": 0.4,
+      "start": 17.76,
+      "end": 20.53,
+      "duration": 2.77
+    },
+    {
+      "id": 8,
+      "scene": "hand",
+      "stage": "dusk",
+      "caption": "The code is yours.",
+      "vo": "You get the code, the deploy, all of it.",
+      "gap_after": 0.44,
+      "start": 20.93,
+      "end": 24.06,
+      "duration": 3.13
+    },
+    {
+      "id": 9,
+      "scene": "end",
+      "stage": "end",
+      "caption": "Websites built to perform.",
+      "vo": "Zero Vast. Websites built to perform.",
+      "gap_after": 0.3,
+      "start": 24.5,
+      "end": 27.63,
+      "duration": 3.13
+    }
+  ]
+}

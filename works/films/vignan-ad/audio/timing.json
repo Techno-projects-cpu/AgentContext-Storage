@@ -1,0 +1,117 @@
+{
+  "total_duration": 28.522,
+  "lead_in": 0.75,
+  "tail_out": 1.9,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "study",
+      "stage": "study",
+      "caption": "Your question paper is right here.",
+      "vo": "Your question paper is right here.",
+      "gap_after": 0.34,
+      "start": 0.75,
+      "end": 3.058,
+      "duration": 2.308
+    },
+    {
+      "id": 2,
+      "scene": "pages",
+      "stage": "pages",
+      "caption": "So is your textbook. All of it.",
+      "vo": "So is your textbook. All of it.",
+      "gap_after": 0.32,
+      "start": 3.398,
+      "end": 6.09,
+      "duration": 2.692
+    },
+    {
+      "id": 3,
+      "scene": "pages",
+      "stage": "pages",
+      "caption": "So just ask it.",
+      "vo": "So just ask it.",
+      "gap_after": 0.32,
+      "start": 6.41,
+      "end": 7.948,
+      "duration": 1.538
+    },
+    {
+      "id": 4,
+      "scene": "pages",
+      "stage": "pages",
+      "caption": "Every answer cites the page.",
+      "vo": "Every answer cites the page.",
+      "gap_after": 0.34,
+      "start": 8.268,
+      "end": 10.192,
+      "duration": 1.923
+    },
+    {
+      "id": 5,
+      "scene": "desk",
+      "stage": "study",
+      "caption": "Read the page. Or take the quiz.",
+      "vo": "Read the page. Or take the quiz.",
+      "gap_after": 0.32,
+      "start": 10.532,
+      "end": 13.224,
+      "duration": 2.692
+    },
+    {
+      "id": 6,
+      "scene": "desk",
+      "stage": "study",
+      "caption": "Or sit a full exam practice.",
+      "vo": "Or sit a full exam practice.",
+      "gap_after": 0.32,
+      "start": 13.544,
+      "end": 15.852,
+      "duration": 2.308
+    },
+    {
+      "id": 7,
+      "scene": "off",
+      "stage": "study",
+      "caption": "Then switch the data off.",
+      "vo": "Then switch the data off.",
+      "gap_after": 0.32,
+      "start": 16.172,
+      "end": 18.095,
+      "duration": 1.923
+    },
+    {
+      "id": 8,
+      "scene": "off",
+      "stage": "study",
+      "caption": "No key. No download. The book stays here.",
+      "vo": "No key. No download. The book stays here.",
+      "gap_after": 0.34,
+      "start": 18.415,
+      "end": 21.492,
+      "duration": 3.077
+    },
+    {
+      "id": 9,
+      "scene": "map",
+      "stage": "map",
+      "caption": "Built by a student, for INSPIRE MANAK.",
+      "vo": "Built by a student. For INSPIRE MANAK.",
+      "gap_after": 0.36,
+      "start": 21.832,
+      "end": 24.524,
+      "duration": 2.692
+    },
+    {
+      "id": 10,
+      "scene": "end",
+      "stage": "end",
+      "caption": "Your books. Your edge.",
+      "vo": "Your books. Your edge.",
+      "gap_after": 0.2,
+      "start": 24.884,
+      "end": 26.422,
+      "duration": 1.538
+    }
+  ]
+}
