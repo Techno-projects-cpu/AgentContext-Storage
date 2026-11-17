@@ -850,11 +850,20 @@ class TitleCard(Card):
 
 
 class CaptionCard(Card):
+    """Two caption registers: a quiet band for a line that reads as narration, and a big outlined
+    "shout" for a two or three word line (అదిగో! ఒక కుండ!) — short lines are the film's punchlines,
+    so they get the cartoon treatment and their own pop."""
+
+    SHOUT = {4, 5, 7, 9, 11, 13, 15, 17, 18, 19, 20, 22, 24}
+
     def paint(self, c, t, sc):
         for s in self.doc.timing["segments"]:
             if s["id"] in (1, 24):
                 continue
             if not (s["start"] - 0.14 <= t <= s["end"] + 0.36):
+                continue
+            if s["id"] in self.SHOUT:
+                self.shout(c, t, sc, s)
                 continue
             u = ramp(t, s["start"] - 0.14, 0.26)
             a = u * (1 - ramp(t, s["end"] + 0.06, 0.30))
@@ -877,6 +886,23 @@ class CaptionCard(Card):
             ty.draw(c, ln, bw / 2, bh * 0.72 + size * 0.30, rgb=INK, a=a, align="center",
                     rgb_word=lambda wi, col: ORANGE if wi <= cur else col)
             c.restore()
+
+
+    def shout(self, c, t, sc, s):
+        u = clamp((t - (s["start"] - 0.10)) / 0.30)
+        a = u * (1 - clamp((t - (s["end"] + 0.10)) / 0.28))
+        if a <= 0.01:
+            return
+        size = ty.fit(s["caption"], str(BOLD), 82, 940)
+        ln = ty.layout(s["caption"], str(BOLD), size)
+        pop = ease_out_back(u, 3.0)
+        c.save()
+        c.translate(*sc.p(540, 1655))
+        c.rotate(0.05 * math.sin(t * 6) * (1 - u))
+        c.scale(sc.i * pop, sc.i * pop)
+        ty.draw(c, ln, 0, 0, rgb=(255, 252, 240), a=a, align="center",
+                outline=(212, 96, 40), ow=15, shadow=(90, 44, 26))
+        c.restore()
 
 
 class BubbleCards(Card):
