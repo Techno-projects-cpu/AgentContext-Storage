@@ -74,8 +74,11 @@ def main():
         run(["ffmpeg", "-y", "-v", "error", "-i", str(work / f"raw{seg['id']:02d}.wav"), "-af", f"atempo={tempo:.6f}",
              "-ar", "48000", "-ac", "1", str(dst)])
         d = duration(dst)
-        timeline.append({"id": seg["id"], "scene": seg["scene"], "caption": seg["caption"], "vo": seg["vo"],
-                         "start": round(cursor, 3), "end": round(cursor + d, 3), "duration": round(d, 3)})
+        # carry EVERY key of the script through, not just the four that used to be copied: the film
+        # reads `stage` (which set is on screen) and `gap_after` from here
+        row = {k: v for k, v in seg.items() if k not in ("start", "end", "duration")}
+        row.update({"start": round(cursor, 3), "end": round(cursor + d, 3), "duration": round(d, 3)})
+        timeline.append(row)
         parts.append(dst); cursor += d
         if i < len(segments) - 1:
             parts.append(silence(seg["gap_after"], f"g{seg['id']}")); cursor += seg["gap_after"]

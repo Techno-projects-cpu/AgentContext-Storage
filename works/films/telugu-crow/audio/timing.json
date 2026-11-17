@@ -1,224 +1,272 @@
 {
-  "total_duration": 98.039,
-  "lead_in": 1.8,
-  "tail_out": 3.8,
+  "total_duration": 64.498,
+  "lead_in": 0.7,
+  "tail_out": 1.4,
   "tempo": 1.0,
   "segments": [
     {
       "id": 1,
       "scene": "title",
+      "stage": "title",
       "caption": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e?",
-      "vo": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c2e\u0c40\u0c15\u0c41 \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e? \u0c15\u0c3e\u0c15\u0c3f \u0c15\u0c25!",
-      "start": 1.8,
-      "end": 5.971,
-      "duration": 4.171
+      "vo": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e?",
+      "gap_after": 0.5,
+      "start": 0.7,
+      "end": 3.039,
+      "duration": 2.339
     },
     {
       "id": 2,
-      "scene": "forest",
-      "caption": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c32\u0c47\u0c35\u0c41.",
-      "vo": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c05\u0c21\u0c35\u0c3f\u0c32\u0c4b \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
-      "start": 6.421,
-      "end": 11.815,
-      "duration": 5.394
+      "scene": "field",
+      "stage": "field",
+      "caption": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
+      "vo": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
+      "gap_after": 0.45,
+      "start": 3.539,
+      "end": 5.577,
+      "duration": 2.039
     },
     {
       "id": 3,
-      "scene": "forest",
+      "scene": "field",
+      "stage": "field",
       "caption": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f.",
       "vo": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f.",
-      "start": 12.315,
-      "end": 21.377,
-      "duration": 9.061
+      "gap_after": 0.4,
+      "start": 6.027,
+      "end": 7.826,
+      "duration": 1.799
     },
     {
       "id": 4,
-      "scene": "pot_far",
+      "scene": "field",
+      "stage": "field",
       "caption": "\u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
       "vo": "\u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
-      "start": 21.877,
-      "end": 22.81,
-      "duration": 0.933
+      "gap_after": 0.45,
+      "start": 8.226,
+      "end": 10.405,
+      "duration": 2.179
     },
     {
       "id": 5,
-      "scene": "pot_close",
-      "caption": "\u0c15\u0c3e\u0c28\u0c40 \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c15\u0c3f\u0c02\u0c26.",
+      "scene": "pot",
+      "stage": "pot",
+      "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c1a\u0c3e\u0c32\u0c3e \u0c15\u0c3f\u0c02\u0c26 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f.",
       "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c1a\u0c3e\u0c32\u0c3e \u0c15\u0c3f\u0c02\u0c26 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f.",
-      "start": 23.41,
-      "end": 24.792,
-      "duration": 1.382
+      "gap_after": 0.4,
+      "start": 10.855,
+      "end": 12.433,
+      "duration": 1.579
     },
     {
       "id": 6,
       "scene": "beak",
-      "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f. \u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
-      "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f. \u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
-      "start": 25.292,
-      "end": 27.857,
-      "duration": 2.564
+      "stage": "beak",
+      "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f...",
+      "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f...",
+      "gap_after": 0.3,
+      "start": 12.833,
+      "end": 14.892,
+      "duration": 2.059
     },
     {
       "id": 7,
-      "scene": "idea",
-      "caption": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
-      "vo": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
-      "start": 28.457,
-      "end": 31.49,
-      "duration": 3.033
+      "scene": "beak",
+      "stage": "beak",
+      "caption": "\u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
+      "vo": "\u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
+      "gap_after": 0.4,
+      "start": 15.192,
+      "end": 17.311,
+      "duration": 2.119
     },
     {
       "id": 8,
-      "scene": "lizard",
-      "caption": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
-      "vo": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
-      "start": 32.04,
-      "end": 34.84,
-      "duration": 2.8
+      "scene": "idea",
+      "stage": "field",
+      "caption": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
+      "vo": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
+      "gap_after": 0.4,
+      "start": 17.711,
+      "end": 19.829,
+      "duration": 2.119
     },
     {
       "id": 9,
       "scene": "lizard",
-      "caption": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
-      "vo": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
-      "start": 35.34,
-      "end": 36.221,
-      "duration": 0.881
+      "stage": "lizard",
+      "caption": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
+      "vo": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
+      "gap_after": 0.35,
+      "start": 20.229,
+      "end": 21.808,
+      "duration": 1.579
     },
     {
       "id": 10,
-      "scene": "stones",
-      "caption": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f!",
-      "vo": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f!",
-      "start": 36.771,
-      "end": 41.664,
-      "duration": 4.892
+      "scene": "lizard",
+      "stage": "lizard",
+      "caption": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
+      "vo": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
+      "gap_after": 0.4,
+      "start": 22.158,
+      "end": 24.217,
+      "duration": 2.059
     },
     {
       "id": 11,
-      "scene": "drop1",
-      "caption": "\u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
-      "vo": "\u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
-      "start": 42.164,
-      "end": 45.663,
-      "duration": 3.5
+      "scene": "stones",
+      "stage": "field",
+      "caption": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
+      "vo": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
+      "gap_after": 0.35,
+      "start": 24.617,
+      "end": 26.915,
+      "duration": 2.299
     },
     {
       "id": 12,
-      "scene": "drop_many",
+      "scene": "drop",
+      "stage": "pot",
       "caption": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
-      "start": 46.113,
-      "end": 47.206,
-      "duration": 1.092
+      "gap_after": 0.3,
+      "start": 27.265,
+      "end": 29.684,
+      "duration": 2.419
     },
     {
       "id": 13,
-      "scene": "rising",
+      "scene": "drop",
+      "stage": "pot",
       "caption": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
-      "start": 47.656,
-      "end": 49.308,
-      "duration": 1.652
+      "gap_after": 0.3,
+      "start": 29.984,
+      "end": 32.523,
+      "duration": 2.539
     },
     {
       "id": 14,
-      "scene": "rising",
+      "scene": "rise",
+      "stage": "pot",
       "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
-      "start": 49.808,
-      "end": 52.494,
-      "duration": 2.686
+      "gap_after": 0.35,
+      "start": 32.823,
+      "end": 35.241,
+      "duration": 2.419
     },
     {
       "id": 15,
-      "scene": "water_up",
+      "scene": "rise",
+      "stage": "pot",
       "caption": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
       "vo": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
-      "start": 52.994,
-      "end": 53.49,
-      "duration": 0.496
+      "gap_after": 0.35,
+      "start": 35.591,
+      "end": 38.13,
+      "duration": 2.539
     },
     {
       "id": 16,
       "scene": "drink",
+      "stage": "pot",
       "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
-      "start": 53.99,
-      "end": 56.969,
-      "duration": 2.979
+      "gap_after": 0.35,
+      "start": 38.48,
+      "end": 40.779,
+      "duration": 2.299
     },
     {
       "id": 17,
       "scene": "drink",
+      "stage": "pot",
       "caption": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
       "vo": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
-      "start": 57.519,
-      "end": 58.967,
-      "duration": 1.448
+      "gap_after": 0.3,
+      "start": 41.129,
+      "end": 43.187,
+      "duration": 2.059
     },
     {
       "id": 18,
-      "scene": "lizard2",
+      "scene": "happy",
+      "stage": "pot",
       "caption": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
       "vo": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
-      "start": 59.517,
-      "end": 68.557,
-      "duration": 9.04
+      "gap_after": 0.5,
+      "start": 43.487,
+      "end": 45.666,
+      "duration": 2.179
     },
     {
       "id": 19,
       "scene": "fly",
+      "stage": "field",
       "caption": "\u0c35\u0c3e\u0c35\u0c4d!",
       "vo": "\u0c35\u0c3e\u0c35\u0c4d!",
-      "start": 69.107,
-      "end": 72.566,
-      "duration": 3.459
+      "gap_after": 0.4,
+      "start": 46.166,
+      "end": 48.585,
+      "duration": 2.419
     },
     {
       "id": 20,
       "scene": "quiz",
+      "stage": "quiz",
       "caption": "\u0c15\u0c3e! \u0c15\u0c3e!",
       "vo": "\u0c15\u0c3e! \u0c15\u0c3e!",
-      "start": 73.116,
-      "end": 76.494,
-      "duration": 3.379
+      "gap_after": 0.45,
+      "start": 48.985,
+      "end": 51.523,
+      "duration": 2.539
     },
     {
       "id": 21,
-      "scene": "moral",
+      "scene": "quiz",
+      "stage": "quiz",
       "caption": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
       "vo": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
-      "start": 77.194,
-      "end": 81.373,
-      "duration": 4.179
+      "gap_after": 0.45,
+      "start": 51.973,
+      "end": 54.272,
+      "duration": 2.299
     },
     {
       "id": 22,
       "scene": "moral",
+      "stage": "quiz",
       "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
-      "start": 81.873,
-      "end": 85.362,
-      "duration": 3.489
+      "gap_after": 0.5,
+      "start": 54.722,
+      "end": 57.021,
+      "duration": 2.299
     },
     {
       "id": 23,
       "scene": "end",
+      "stage": "end",
       "caption": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
       "vo": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
-      "start": 85.912,
-      "end": 89.29,
-      "duration": 3.379
+      "gap_after": 0.4,
+      "start": 57.521,
+      "end": 60.159,
+      "duration": 2.639
     },
     {
       "id": 24,
       "scene": "end",
+      "stage": "end",
       "caption": "\u0c2c\u0c48 \u0c2c\u0c48!",
       "vo": "\u0c2c\u0c48 \u0c2c\u0c48!",
-      "start": 89.89,
-      "end": 94.239,
-      "duration": 4.349
+      "gap_after": 0.0,
+      "start": 60.559,
+      "end": 63.098,
+      "duration": 2.539
     }
   ]
 }

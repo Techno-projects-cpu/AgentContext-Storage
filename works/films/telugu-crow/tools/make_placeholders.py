@@ -22,6 +22,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", required=True)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--cps", type=float, default=CPS, help="reading pace, Telugu chars per second")
     a = ap.parse_args()
     proj = pathlib.Path(a.project)
     lines = proj / "audio" / "lines"
@@ -35,7 +36,7 @@ def main():
             continue
         # reading pace, plus room for the beat the picture holds on that line (a stone landing, a
         # gasp), so the silent cut is not faster than the voiced one will be
-        dur = max(1.8, len(s["caption"]) / CPS) + HOLD.get(sid, 0.0)
+        dur = max(1.6, len(s["caption"]) / a.cps) + HOLD.get(sid, 0.0) * 0.6
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=48000:cl=mono",
                         "-t", f"{dur:.2f}", str(live)], check=True)
         silent.touch()
