@@ -908,6 +908,9 @@ class BubbleCards(Card):
 
 
 class CountCard(Card):
+    """Telugu numerals counting the stones, and a comic "టప్!" on each landing: the onomatopoeia is
+    what makes the stone beat funny for a child, and it keeps working with the sound off."""
+
     def paint(self, c, t, sc):
         L, E = self.doc.L, self.doc.E
         if not (L(11) - 0.3 <= t <= L(15) + 1.0):
@@ -924,25 +927,69 @@ class CountCard(Card):
             c.scale(sc.i * pop, sc.i * pop)
             ty.draw(c, ln, 0, 0, rgb=(255, 250, 236), a=a, align="center", outline=(214, 100, 46), ow=12)
             c.restore()
+            # the plop itself, thrown out of the pot's mouth and drifting up
+            tp = ty.layout("టప్!", str(BOLD), 66)
+            lift = (t - td) * 60
+            c.save()
+            c.translate(*sc.p(430 + (i % 2) * 40, 1180 - lift))
+            c.rotate((-0.10 if i % 2 else 0.08) + 0.05 * math.sin(t * 9))
+            c.scale(sc.i * pop, sc.i * pop)
+            aa = a * (1 - ramp(t, td + 0.55, 0.45))
+            ty.draw(c, tp, 0, 0, rgb=(255, 252, 244), a=aa, align="center", outline=(206, 92, 44), ow=11)
+            c.restore()
 
 
 class QuizCard(Card):
+    """The question, then two answer cards a child can shout at, then the tick."""
+
     def paint(self, c, t, sc):
         L, E = self.doc.L, self.doc.E
-        a = smooth(L(20), L(20) + 0.4, t) * (1 - smooth(E(20) + 0.2, E(20) + 0.8, t))
+        a = smooth(L(20), L(20) + 0.4, t) * (1 - smooth(E(20) + 0.6, E(20) + 1.2, t))
         if a <= 0.01:
             return
-        l1 = ty.layout("కాకి బలంగా ఉందా?", str(BOLD), 64)
-        l2 = ty.layout("తెలివిగా ఉందా?", str(BOLD), 64)
+        l1 = ty.layout("కాకి బలంగా ఉందా?", str(BOLD), 62)
+        l2 = ty.layout("లేక తెలివిగా ఉందా?", str(BOLD), 62)
         for i, ln in enumerate((l1, l2)):
-            u = clamp((t - (L(20) + 0.3 + i * 0.45)) / 0.4)
+            u = clamp((t - (L(20) + 0.2 + i * 0.40)) / 0.40)
             if u <= 0:
                 continue
             c.save()
-            c.translate(*sc.p(540, 560 + i * 118))
+            c.translate(*sc.p(540, 480 + i * 104))
             c.scale(sc.i * ease_out_back(u, 2.4), sc.i * ease_out_back(u, 2.4))
             ty.draw(c, ln, 0, 0, rgb=(255, 252, 244), a=a, align="center", outline=(206, 92, 52), ow=13)
             c.restore()
+        # two answer cards
+        picked = smooth(E(20) - 1.4, E(20) - 0.7, t)
+        for i, (word, col) in enumerate((("బలం", (196, 186, 172)), ("తెలివి", (240, 150, 60)))):
+            u = clamp((t - (L(20) + 1.5 + i * 0.22)) / 0.36)
+            if u <= 0:
+                continue
+            dim = (1.0 - 0.55 * picked) if i == 0 else 1.0
+            c.save()
+            c.translate(*sc.p(300 + i * 480, 800))
+            c.scale(sc.i * ease_out_back(u, 2.2), sc.i * ease_out_back(u, 2.2))
+            r = skia.Rect.MakeXYWH(-190, -86, 380, 172)
+            c.drawRRect(skia.RRect.MakeRectXY(r.makeOffset(0, 10), 42, 42), K.P((60, 34, 26), 0.18 * a))
+            c.drawRRect(skia.RRect.MakeRectXY(r, 42, 42), K.P(col, (0.97 if i == 1 else 0.85) * a * dim))
+            c.drawRRect(skia.RRect.MakeRectXY(r, 42, 42), K.line((255, 250, 240), 0.8 * a, 6))
+            ty.draw(c, ty.layout(word, str(BOLD), 78), 0, 26, rgb=(255, 252, 244),
+                    a=a * dim, align="center", outline=(150, 70, 34), ow=9)
+            c.restore()
+        # the tick lands on తెలివి
+        if picked > 0.02:
+            u = ease_out_back(clamp(picked * 1.6), 2.6)
+            c.save()
+            c.translate(*sc.p(780, 800))
+            c.scale(sc.i * u, sc.i * u)
+            tick = skia.Path()
+            tick.moveTo(-52, 4); tick.lineTo(-12, 44); tick.lineTo(58, -46)
+            tp = K.line((40, 150, 72), a, 24)
+            c.drawPath(tick, tp)
+            c.restore()
+            cap = ty.layout("సరైన సమాధానం!", str(BOLD), 44)
+            ca = a * ramp(t, E(20) - 1.0, 0.35)
+            ty.draw(c, cap, *sc.p(540, 960), rgb=(255, 252, 244), a=ca, align="center",
+                    outline=(40, 140, 70), ow=9)
 
 
 class EndCard(Card):

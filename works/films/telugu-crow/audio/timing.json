@@ -1,5 +1,5 @@
 {
-  "total_duration": 92.188,
+  "total_duration": 96.766,
   "lead_in": 1.8,
   "tail_out": 3.8,
   "tempo": 1.0,
@@ -10,25 +10,25 @@
       "caption": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e?",
       "vo": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c2e\u0c40\u0c15\u0c41 \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e? \u0c15\u0c3e\u0c15\u0c3f \u0c15\u0c25!",
       "start": 1.8,
-      "end": 5.009,
-      "duration": 3.209
+      "end": 5.971,
+      "duration": 4.171
     },
     {
       "id": 2,
       "scene": "forest",
       "caption": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21.",
       "vo": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c05\u0c21\u0c35\u0c3f\u0c32\u0c4b \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
-      "start": 5.459,
-      "end": 7.237,
-      "duration": 1.779
+      "start": 6.421,
+      "end": 11.815,
+      "duration": 5.394
     },
     {
       "id": 3,
       "scene": "forest",
       "caption": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f.",
       "vo": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f. \u0c0e\u0c17\u0c41\u0c30\u0c41\u0c24\u0c42, \u0c0e\u0c17\u0c41\u0c30\u0c41\u0c24\u0c42, \u0c1a\u0c3e\u0c32\u0c3e \u0c05\u0c32\u0c38\u0c3f\u0c2a\u0c4b\u0c2f\u0c3f\u0c02\u0c26\u0c3f.",
-      "start": 7.737,
-      "end": 10.026,
+      "start": 12.315,
+      "end": 14.604,
       "duration": 2.289
     },
     {
@@ -36,8 +36,8 @@
       "scene": "pot_far",
       "caption": "\u0c05\u0c15\u0c38\u0c4d\u0c2e\u0c3e\u0c24\u0c4d\u0c24\u0c41\u0c17\u0c3e \u2014 \u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
       "vo": "\u0c05\u0c15\u0c38\u0c4d\u0c2e\u0c3e\u0c24\u0c4d\u0c24\u0c41\u0c17\u0c3e... \u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c15\u0c3f\u0c02\u0c26 \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
-      "start": 10.526,
-      "end": 13.815,
+      "start": 15.104,
+      "end": 18.393,
       "duration": 3.289
     },
     {
@@ -45,8 +45,8 @@
       "scene": "pot_close",
       "caption": "\u0c15\u0c3e\u0c28\u0c40 \u0c15\u0c41\u0c02\u0c21 \u0c1a\u0c3e\u0c32\u0c3e \u0c2a\u0c4a\u0c21\u0c35\u0c41.",
       "vo": "\u0c15\u0c3e\u0c28\u0c40 \u0c15\u0c41\u0c02\u0c21 \u0c1a\u0c3e\u0c32\u0c3e \u0c2a\u0c4a\u0c21\u0c35\u0c41. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c05\u0c21\u0c41\u0c17\u0c41\u0c28, \u0c1a\u0c3e\u0c32\u0c3e \u0c15\u0c3f\u0c02\u0c26.",
-      "start": 14.415,
-      "end": 16.193,
+      "start": 18.993,
+      "end": 20.771,
       "duration": 1.779
     },
     {
@@ -54,8 +54,8 @@
       "scene": "beak",
       "caption": "\u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f... \u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f... \u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41! \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c1f\u0c15\u0c4d\u0c15\u0c41\u0c28 \u0c15\u0c41\u0c02\u0c21\u0c15\u0c41 \u0c24\u0c17\u0c3f\u0c32\u0c3f\u0c02\u0c26\u0c3f.",
-      "start": 16.693,
-      "end": 19.552,
+      "start": 21.271,
+      "end": 24.13,
       "duration": 2.859
     },
     {
@@ -63,8 +63,8 @@
       "scene": "idea",
       "caption": "\u201c\u0c28\u0c3e\u0c15\u0c41 \u0c12\u0c15 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!\u201d",
       "vo": "\u0c05\u0c26\u0c3f \u0c24\u0c32 \u0c17\u0c1f\u0c4d\u0c1f\u0c3f\u0c17\u0c3e \u0c2a\u0c02\u0c15\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f. \u0c13\u0c39\u0c4b... \u0c28\u0c3e\u0c15\u0c41 \u0c12\u0c15 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
-      "start": 20.152,
-      "end": 22.951,
+      "start": 24.73,
+      "end": 27.529,
       "duration": 2.799
     },
     {
@@ -72,8 +72,8 @@
       "scene": "lizard",
       "caption": "\u201c\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?\u201d \u2014 \u0c2c\u0c32\u0c4d\u0c32\u0c3f",
       "vo": "\u0c2a\u0c15\u0c4d\u0c15\u0c28 \u0c12\u0c15 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c2c\u0c32\u0c4d\u0c32\u0c3f \u0c15\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c35\u0c3f \u0c1a\u0c47\u0c38\u0c3f \u0c05\u0c21\u0c3f\u0c17\u0c3f\u0c02\u0c26\u0c3f. \u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
-      "start": 23.501,
-      "end": 26.759,
+      "start": 28.079,
+      "end": 31.337,
       "duration": 3.259
     },
     {
@@ -81,8 +81,8 @@
       "scene": "lizard",
       "caption": "\u201c\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!\u201d",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c28\u0c35\u0c4d\u0c35\u0c3f\u0c02\u0c26\u0c3f. \u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
-      "start": 27.259,
-      "end": 29.038,
+      "start": 31.837,
+      "end": 33.616,
       "duration": 1.779
     },
     {
@@ -90,8 +90,8 @@
       "scene": "stones",
       "caption": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
       "vo": "\u0c1a\u0c41\u0c1f\u0c4d\u0c1f\u0c42 \u0c1a\u0c42\u0c38\u0c3f\u0c02\u0c26\u0c3f. \u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f!",
-      "start": 29.588,
-      "end": 32.677,
+      "start": 34.166,
+      "end": 37.255,
       "duration": 3.089
     },
     {
@@ -99,8 +99,8 @@
       "scene": "drop1",
       "caption": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f... \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f \u0c24\u0c40\u0c38\u0c41\u0c15\u0c41\u0c28\u0c3f, \u0c15\u0c41\u0c02\u0c21\u0c32\u0c4b \u0c35\u0c47\u0c38\u0c3f\u0c02\u0c26\u0c3f. \u0c1f\u0c2a\u0c4d!",
-      "start": 33.177,
-      "end": 36.155,
+      "start": 37.755,
+      "end": 40.733,
       "duration": 2.979
     },
     {
@@ -108,8 +108,8 @@
       "scene": "drop_many",
       "caption": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d! \u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d! \u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
-      "start": 36.605,
-      "end": 40.364,
+      "start": 41.183,
+      "end": 44.942,
       "duration": 3.759
     },
     {
@@ -117,8 +117,8 @@
       "scene": "rising",
       "caption": "\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c47\u0c30\u0c41\u0c15\u0c41\u0c2a\u0c4b\u0c2f\u0c3e\u0c2f\u0c3f...",
       "vo": "\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c47\u0c30\u0c41\u0c15\u0c41\u0c2a\u0c4b\u0c2f\u0c3e\u0c2f\u0c3f. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2e\u0c46\u0c32\u0c4d\u0c32\u0c17\u0c3e \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
-      "start": 40.814,
-      "end": 44.193,
+      "start": 45.392,
+      "end": 48.771,
       "duration": 3.379
     },
     {
@@ -126,8 +126,8 @@
       "scene": "rising",
       "caption": "\u0c07\u0c02\u0c15\u0c3e! \u0c07\u0c02\u0c15\u0c3e! \u0c1f\u0c2a\u0c4d \u0c1f\u0c2a\u0c4d \u0c1f\u0c2a\u0c4d!",
       "vo": "\u0c07\u0c02\u0c15\u0c3e! \u0c07\u0c02\u0c15\u0c3e! \u0c1f\u0c2a\u0c4d \u0c1f\u0c2a\u0c4d \u0c1f\u0c2a\u0c4d!",
-      "start": 44.693,
-      "end": 47.921,
+      "start": 49.271,
+      "end": 52.499,
       "duration": 3.229
     },
     {
@@ -135,8 +135,8 @@
       "scene": "water_up",
       "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
       "vo": "\u0c05\u0c32\u0c3e \u0c05\u0c32\u0c3e... \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c17\u0c4d\u0c17\u0c30\u0c15\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
-      "start": 48.421,
-      "end": 51.8,
+      "start": 52.999,
+      "end": 56.378,
       "duration": 3.379
     },
     {
@@ -144,8 +144,8 @@
       "scene": "drink",
       "caption": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d \u0c24\u0c3e\u0c17\u0c3f\u0c02\u0c26\u0c3f.",
-      "start": 52.3,
-      "end": 55.279,
+      "start": 56.878,
+      "end": 59.857,
       "duration": 2.979
     },
     {
@@ -153,8 +153,8 @@
       "scene": "drink",
       "caption": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c0e\u0c02\u0c24 \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
       "vo": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c0e\u0c02\u0c24 \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
-      "start": 55.829,
-      "end": 58.407,
+      "start": 60.407,
+      "end": 62.985,
       "duration": 2.579
     },
     {
@@ -162,8 +162,8 @@
       "scene": "lizard2",
       "caption": "\u0c2c\u0c32\u0c4d\u0c32\u0c3f \u0c28\u0c4b\u0c30\u0c41 \u0c24\u0c46\u0c30\u0c3f\u0c1a\u0c3f \u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c4b\u0c02\u0c26\u0c3f: \u201c\u0c35\u0c3e\u0c35\u0c4d!\u201d",
       "vo": "\u0c2c\u0c32\u0c4d\u0c32\u0c3f \u0c28\u0c4b\u0c30\u0c41 \u0c24\u0c46\u0c30\u0c3f\u0c1a\u0c3f \u0c1a\u0c42\u0c38\u0c3f\u0c02\u0c26\u0c3f. \u0c35\u0c3e\u0c35\u0c4d!",
-      "start": 58.957,
-      "end": 62.706,
+      "start": 63.535,
+      "end": 67.284,
       "duration": 3.749
     },
     {
@@ -171,8 +171,8 @@
       "scene": "fly",
       "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c38\u0c02\u0c24\u0c4b\u0c37\u0c02\u0c17\u0c3e \u0c0e\u0c17\u0c3f\u0c30\u0c3f\u0c2a\u0c4b\u0c2f\u0c3f\u0c02\u0c26\u0c3f.",
       "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c38\u0c02\u0c24\u0c4b\u0c37\u0c02\u0c17\u0c3e \u0c0e\u0c17\u0c3f\u0c30\u0c3f\u0c2a\u0c4b\u0c2f\u0c3f\u0c02\u0c26\u0c3f. \u0c15\u0c3e! \u0c15\u0c3e!",
-      "start": 63.256,
-      "end": 66.715,
+      "start": 67.834,
+      "end": 71.293,
       "duration": 3.459
     },
     {
@@ -180,8 +180,8 @@
       "scene": "quiz",
       "caption": "\u0c07\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f...",
       "vo": "\u0c07\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f. \u0c15\u0c3e\u0c15\u0c3f \u0c2c\u0c32\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c26\u0c3e? \u0c32\u0c47\u0c15 \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f\u0c17\u0c3e \u0c09\u0c02\u0c26\u0c3e?",
-      "start": 67.265,
-      "end": 70.643,
+      "start": 71.843,
+      "end": 75.221,
       "duration": 3.379
     },
     {
@@ -189,8 +189,8 @@
       "scene": "moral",
       "caption": "\u0c2a\u0c46\u0c26\u0c4d\u0c26 \u0c2c\u0c32\u0c02 \u0c05\u0c15\u0c4d\u0c15\u0c30\u0c4d\u0c32\u0c47\u0c26\u0c41. \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c06\u0c32\u0c4b\u0c1a\u0c28 \u0c1a\u0c3e\u0c32\u0c41!",
       "vo": "\u0c2a\u0c46\u0c26\u0c4d\u0c26 \u0c2c\u0c32\u0c02 \u0c05\u0c15\u0c4d\u0c15\u0c30\u0c4d\u0c32\u0c47\u0c26\u0c41. \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c06\u0c32\u0c4b\u0c1a\u0c28 \u0c1a\u0c3e\u0c32\u0c41!",
-      "start": 71.343,
-      "end": 75.522,
+      "start": 75.921,
+      "end": 80.1,
       "duration": 4.179
     },
     {
@@ -198,8 +198,8 @@
       "scene": "moral",
       "caption": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f \u0c2a\u0c28\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41.",
       "vo": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c06\u0c32\u0c4b\u0c1a\u0c28 \u0c09\u0c02\u0c1f\u0c47, \u0c0f \u0c2a\u0c28\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41.",
-      "start": 76.022,
-      "end": 79.511,
+      "start": 80.6,
+      "end": 84.089,
       "duration": 3.489
     },
     {
@@ -207,8 +207,8 @@
       "scene": "end",
       "caption": "\u0c2e\u0c40\u0c15\u0c41 \u0c15\u0c25 \u0c28\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3e?",
       "vo": "\u0c2e\u0c40\u0c15\u0c41 \u0c08 \u0c15\u0c25 \u0c28\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3e? \u0c2e\u0c40 \u0c38\u0c4d\u0c28\u0c47\u0c39\u0c3f\u0c24\u0c41\u0c32\u0c15\u0c41 \u0c15\u0c42\u0c21\u0c3e \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
-      "start": 80.061,
-      "end": 83.439,
+      "start": 84.639,
+      "end": 88.017,
       "duration": 3.379
     },
     {
@@ -216,8 +216,8 @@
       "scene": "end",
       "caption": "\u0c07\u0c26\u0c3f \u0c2a\u0c3e\u0c24 \u0c15\u0c25. \u0c15\u0c3e\u0c28\u0c40 \u0c2a\u0c4d\u0c30\u0c24\u0c3f \u0c30\u0c4b\u0c1c\u0c41 \u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c26\u0c3f!",
       "vo": "\u0c07\u0c26\u0c3f \u0c12\u0c15 \u0c2a\u0c3e\u0c24 \u0c15\u0c25. \u0c15\u0c3e\u0c28\u0c40 \u0c2a\u0c4d\u0c30\u0c24\u0c3f \u0c30\u0c4b\u0c1c\u0c41 \u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c17\u0c3e \u0c05\u0c28\u0c3f\u0c2a\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f. \u0c2c\u0c48 \u0c2c\u0c48!",
-      "start": 84.039,
-      "end": 88.388,
+      "start": 88.617,
+      "end": 92.966,
       "duration": 4.349
     }
   ]
