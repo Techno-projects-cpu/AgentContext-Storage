@@ -854,7 +854,7 @@ class CaptionCard(Card):
     "shout" for a two or three word line (అదిగో! ఒక కుండ!) — short lines are the film's punchlines,
     so they get the cartoon treatment and their own pop."""
 
-    SHOUT = {4, 5, 7, 9, 11, 13, 15, 17, 18, 19, 20, 22, 24}
+    SHOUT = {4, 5, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24}
 
     def paint(self, c, t, sc):
         for s in self.doc.timing["segments"]:
