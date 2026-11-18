@@ -1,0 +1,30 @@
+{
+ "lang": "te",
+ "voice_note": "warm storyteller for children, short lines, playful",
+ "segments": [
+  { "id": 1,  "scene": "title",     "caption": "హాయ్ పిల్లలూ!",                     "vo": "హాయ్ పిల్లలూ!",                     "gap_after": 0.45 },
+  { "id": 2,  "scene": "forest",    "caption": "చాలా ఎండ.",                          "vo": "చాలా ఎండ.",                          "gap_after": 0.45 },
+  { "id": 3,  "scene": "forest",    "caption": "నీళ్ళు లేవు.",                        "vo": "అడవిలో నీళ్ళు లేవు.",                 "gap_after": 0.45 },
+  { "id": 4,  "scene": "pot_far",   "caption": "ఒక కాకి దాహంతో.",                   "vo": "ఒక కాకి దాహంతో.",                    "gap_after": 0.55 },
+  { "id": 5,  "scene": "pot_close", "caption": "అదిగో! ఒక కుండ!",                   "vo": "అదిగో! ఒక కుండ!",                    "gap_after": 0.55 },
+  { "id": 6,  "scene": "beak",      "caption": "కానీ నీళ్ళు కింద.",                  "vo": "కానీ నీళ్ళు కింద.",                   "gap_after": 0.5 },
+  { "id": 7,  "scene": "idea",      "caption": "ముక్కు చేరలేదు!",                   "vo": "ముక్కు చేరలేదు!",                    "gap_after": 0.55 },
+  { "id": 8,  "scene": "lizard",    "caption": "నాకు ఐడియా వచ్చింది!",              "vo": "నాకు ఐడియా వచ్చింది!",               "gap_after": 0.55 },
+  { "id": 9,  "scene": "lizard",    "caption": "“ఏం చేస్తున్నావ్?”",                 "vo": "ఏం చేస్తున్నావ్?",                    "gap_after": 0.45 },
+  { "id": 10, "scene": "stones",    "caption": "“చూస్తూ ఉండు!”",                     "vo": "చూస్తూ ఉండు!",                       "gap_after": 0.5 },
+  { "id": 11, "scene": "drop1",     "caption": "గులకరాళ్ళు!",                        "vo": "గులకరాళ్ళు!",                        "gap_after": 0.5 },
+  { "id": 12, "scene": "drop_many", "caption": "ఒక రాయి. టప్!",                      "vo": "ఒక రాయి. టప్!",                      "gap_after": 0.45 },
+  { "id": 13, "scene": "rising",    "caption": "ఇంకో రాయి. టప్!",                   "vo": "ఇంకో రాయి. టప్!",                    "gap_after": 0.45 },
+  { "id": 14, "scene": "rising",    "caption": "నీళ్ళు పైకి వచ్చాయి!",               "vo": "నీళ్ళు పైకి వచ్చాయి!",               "gap_after": 0.5 },
+  { "id": 15, "scene": "water_up",  "caption": "పైకి! పైకి!",                        "vo": "పైకి! పైకి!",                        "gap_after": 0.5 },
+  { "id": 16, "scene": "drink",     "caption": "నీళ్ళు వచ్చాయి!",                    "vo": "నీళ్ళు వచ్చాయి!",                    "gap_after": 0.5 },
+  { "id": 17, "scene": "drink",     "caption": "గ్లక్, గ్లక్!",                      "vo": "గ్లక్, గ్లక్!",                      "gap_after": 0.55 },
+  { "id": 18, "scene": "lizard2",   "caption": "అబ్బా! బాగుంది!",                    "vo": "అబ్బా! బాగుంది!",                    "gap_after": 0.5 },
+  { "id": 19, "scene": "fly",       "caption": "“వావ్!” — బల్లి",                     "vo": "వావ్!",                              "gap_after": 0.5 },
+  { "id": 20, "scene": "quiz",      "caption": "కా! కా!",                            "vo": "కా! కా!",                            "gap_after": 0.5 },
+  { "id": 21, "scene": "moral",     "caption": "మీరు చెప్పండి...",                   "vo": "మీరు చెప్పండి.",                     "gap_after": 0.6 },
+  { "id": 22, "scene": "moral",     "caption": "కాకి తెలివి!",                       "vo": "కాకి తెలివి!",                       "gap_after": 0.5 },
+  { "id": 23, "scene": "end",       "caption": "ఓపిక ఉంటే, ఏదీ అసాధ్యం కాదు!",       "vo": "ఓపిక ఉంటే, ఏదీ అసాధ్యం కాదు!",       "gap_after": 0.6 },
+  { "id": 24, "scene": "end",       "caption": "బై బై!",                             "vo": "బై బై!",                              "gap_after": 0.0 }
+ ]
+}

@@ -1,0 +1,233 @@
+[
+ {
+  "id": 1,
+  "take": "T01_strait",
+  "start": 0.0,
+  "end": 6.243,
+  "speech_s": 5.55,
+  "letters": 85,
+  "lps": 15.32,
+  "text": "On the 27th of August, 1883, an island in the Sunda Strait began to come apart.",
+  "flag": false
+ },
+ {
+  "id": 2,
+  "take": "T01_strait",
+  "start": 6.243,
+  "end": 12.423,
+  "speech_s": 4.97,
+  "letters": 77,
+  "lps": 15.48,
+  "text": "The third blast, at 10:02 that morning, is the loudest sound in recorded history.",
+  "flag": false
+ },
+ {
+  "id": 3,
+  "take": "T01_strait",
+  "start": 12.423,
+  "end": 16.041,
+  "speech_s": 2.75,
+  "letters": 42,
+  "lps": 15.26,
+  "text": "Forty miles away, the pressure broke men's eardrums.",
+  "flag": false
+ },
+ {
+  "id": 4,
+  "take": "T01_strait",
+  "start": 16.041,
+  "end": 20.736,
+  "speech_s": 3.67,
+  "letters": 52,
+  "lps": 14.19,
+  "text": "A hundred miles off, at Batavia, a gasometer jumped off its trace.",
+  "flag": false
+ },
+ {
+  "id": 5,
+  "take": "T02_wall",
+  "start": 0.0,
+  "end": 5.255,
+  "speech_s": 4.16,
+  "letters": 62,
+  "lps": 14.89,
+  "text": "Inside the strait, it did not arrive as sound at all. It arrived as a wall of air.",
+  "flag": false
+ },
+ {
+  "id": 6,
+  "take": "T03_sea",
+  "start": 0.113,
+  "end": 1.552,
+  "speech_s": 1.09,
+  "letters": 14,
+  "lps": 12.82,
+  "text": "Then the sea came.",
+  "flag": false
+ },
+ {
+  "id": 7,
+  "take": "T03_sea",
+  "start": 1.552,
+  "end": 5.484,
+  "speech_s": 3.29,
+  "letters": 47,
+  "lps": 14.3,
+  "text": "Waves ran a hundred feet high into the towns of the strait.",
+  "flag": false
+ },
+ {
+  "id": 8,
+  "take": "T03_sea",
+  "start": 5.484,
+  "end": 13.321,
+  "speech_s": 5.7,
+  "letters": 80,
+  "lps": 14.03,
+  "text": "36,417 people died. Most of them were drowned, not burned.",
+  "flag": false
+ },
+ {
+  "id": 9,
+  "take": "T03_sea",
+  "start": 13.321,
+  "end": 19.028,
+  "speech_s": 4.12,
+  "letters": 58,
+  "lps": 14.08,
+  "text": "On Sebesi, eight miles away, three thousand people lived. None survived.",
+  "flag": false
+ },
+ {
+  "id": 10,
+  "take": "T03_sea",
+  "start": 19.028,
+  "end": 23.093,
+  "speech_s": 3.4,
+  "letters": 49,
+  "lps": 14.4,
+  "text": "Two thirds of the island fell into the sea, and left a caldera.",
+  "flag": false
+ },
+ {
+  "id": 11,
+  "take": "T04_wave",
+  "start": 0.0,
+  "end": 4.44,
+  "speech_s": 3.38,
+  "letters": 46,
+  "lps": 13.6,
+  "text": "A Dutch gunboat, the Berouw, was carried two miles inland.",
+  "flag": false
+ },
+ {
+  "id": 12,
+  "take": "T04_wave",
+  "start": 4.44,
+  "end": 11.107,
+  "speech_s": 4.78,
+  "letters": 69,
+  "lps": 14.42,
+  "text": "Nearly three thousand miles away, a harbour master heard what he took for heavy guns.",
+  "flag": false
+ },
+ {
+  "id": 13,
+  "take": "T04_wave",
+  "start": 11.107,
+  "end": 15.894,
+  "speech_s": 3.6,
+  "letters": 60,
+  "lps": 16.67,
+  "text": "The air wave kept going. Barographs in London and Washington picked it up.",
+  "flag": false
+ },
+ {
+  "id": 14,
+  "take": "T04_wave",
+  "start": 15.894,
+  "end": 22.205,
+  "speech_s": 5.34,
+  "letters": 79,
+  "lps": 14.8,
+  "text": "Stations logged it seven times in five days, as it ran round the planet and came back the other way.",
+  "flag": false
+ },
+ {
+  "id": 15,
+  "take": "T04_wave",
+  "start": 22.205,
+  "end": 26.777,
+  "speech_s": 3.61,
+  "letters": 48,
+  "lps": 13.31,
+  "text": "The ash went higher, fifty miles up, and the sunsets went red.",
+  "flag": false
+ },
+ {
+  "id": 16,
+  "take": "T05_sky",
+  "start": 0.0,
+  "end": 6.463,
+  "speech_s": 5.52,
+  "letters": 81,
+  "lps": 14.67,
+  "text": "In London, an artist named William Ashcroft sat on the Thames and sketched them, thousands of times.",
+  "flag": false
+ },
+ {
+  "id": 17,
+  "take": "T05_sky",
+  "start": 6.463,
+  "end": 10.022,
+  "speech_s": 3.16,
+  "letters": 42,
+  "lps": 13.3,
+  "text": "New York sent fire engines to a fire that was the sky.",
+  "flag": false
+ },
+ {
+  "id": 18,
+  "take": "T05_sky",
+  "start": 10.022,
+  "end": 14.347,
+  "speech_s": 3.72,
+  "letters": 57,
+  "lps": 15.33,
+  "text": "The planet cooled by half a degree, and did not warm back for five years.",
+  "flag": false
+ },
+ {
+  "id": 19,
+  "take": "T05_sky",
+  "start": 14.347,
+  "end": 18.796,
+  "speech_s": 4.24,
+  "letters": 65,
+  "lps": 15.33,
+  "text": "Krakatoa was the first disaster the telegraph carried round the world in a day.",
+  "flag": false
+ },
+ {
+  "id": 20,
+  "take": "T06_close",
+  "start": 0.0,
+  "end": 5.577,
+  "speech_s": 4.49,
+  "letters": 57,
+  "lps": 12.7,
+  "text": "And in 1927, out of the same water, Anak Krakatau rose.",
+  "flag": false
+ },
+ {
+  "id": 21,
+  "take": "T06_close",
+  "start": 5.577,
+  "end": 10.286,
+  "speech_s": 3.29,
+  "letters": 46,
+  "lps": 13.99,
+  "text": "The loudest thing we have ever heard was an island, dying.",
+  "flag": false
+ }
+]

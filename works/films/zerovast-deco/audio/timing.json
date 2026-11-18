@@ -1,0 +1,62 @@
+{
+ "total_duration": 23.0,
+ "segments": [
+  {
+   "id": 0,
+   "start": 0.0,
+   "end": 2.62,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 1,
+   "start": 2.62,
+   "end": 5.82,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 2,
+   "start": 5.82,
+   "end": 8.62,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 3,
+   "start": 8.62,
+   "end": 11.42,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 4,
+   "start": 11.42,
+   "end": 14.22,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 5,
+   "start": 14.22,
+   "end": 17.02,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 6,
+   "start": 17.02,
+   "end": 19.42,
+   "vo": "",
+   "stage": null
+  },
+  {
+   "id": 7,
+   "start": 19.42,
+   "end": 23.0,
+   "vo": "",
+   "stage": null
+  }
+ ],
+ "note": "No voiceover: this sheet is the shot list; every cut is a hit in audio/score.wav."
+}

@@ -1,0 +1,12 @@
+{
+ "grade": "sepia",
+ "photos": [
+  {
+   "id": "P_LITHO",
+   "file": "lithograph_1883.jpg",
+   "kind": "color",
+   "note": "View of Krakatoa during the eruption, 1883. Chromolithograph published in the Royal Society report (1888). Public domain."
+  }
+ ],
+ "note": "P_ASCROFT is drawn in scene.py (SunsetPlate, after the Chelsea sketches), so no file is needed."
+}

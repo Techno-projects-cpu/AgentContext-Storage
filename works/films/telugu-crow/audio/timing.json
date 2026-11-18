@@ -1,0 +1,272 @@
+{
+  "total_duration": 54.996,
+  "lead_in": 0.7,
+  "tail_out": 1.8,
+  "tempo": 1.0,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "title",
+      "stage": "title",
+      "caption": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e?",
+      "vo": "\u0c39\u0c3e\u0c2f\u0c4d \u0c2a\u0c3f\u0c32\u0c4d\u0c32\u0c32\u0c42! \u0c12\u0c15 \u0c15\u0c25 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c3e\u0c32\u0c3e?",
+      "gap_after": 0.5,
+      "start": 0.7,
+      "end": 3.061,
+      "duration": 2.361
+    },
+    {
+      "id": 2,
+      "scene": "field",
+      "stage": "field",
+      "caption": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
+      "vo": "\u0c1a\u0c3e\u0c32\u0c3e \u0c1a\u0c3e\u0c32\u0c3e \u0c0e\u0c02\u0c21. \u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c0e\u0c15\u0c4d\u0c15\u0c21\u0c3e \u0c32\u0c47\u0c35\u0c41.",
+      "gap_after": 0.45,
+      "start": 3.561,
+      "end": 6.377,
+      "duration": 2.816
+    },
+    {
+      "id": 3,
+      "scene": "field",
+      "stage": "field",
+      "caption": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f.",
+      "vo": "\u0c12\u0c15 \u0c15\u0c3e\u0c15\u0c3f \u0c26\u0c3e\u0c39\u0c02\u0c24\u0c4b \u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c21\u0c3f\u0c2a\u0c4b\u0c24\u0c4b\u0c02\u0c26\u0c3f.",
+      "gap_after": 0.4,
+      "start": 6.827,
+      "end": 9.397,
+      "duration": 2.57
+    },
+    {
+      "id": 4,
+      "scene": "field",
+      "stage": "field",
+      "caption": "\u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
+      "vo": "\u0c05\u0c26\u0c3f\u0c17\u0c4b! \u0c12\u0c15 \u0c15\u0c41\u0c02\u0c21!",
+      "gap_after": 0.45,
+      "start": 9.797,
+      "end": 11.417,
+      "duration": 1.62
+    },
+    {
+      "id": 5,
+      "scene": "pot",
+      "stage": "pot",
+      "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c1a\u0c3e\u0c32\u0c3e \u0c15\u0c3f\u0c02\u0c26 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f.",
+      "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c1a\u0c3e\u0c32\u0c3e \u0c15\u0c3f\u0c02\u0c26 \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f.",
+      "gap_after": 0.4,
+      "start": 11.867,
+      "end": 14.164,
+      "duration": 2.297
+    },
+    {
+      "id": 6,
+      "scene": "beak",
+      "stage": "beak",
+      "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f...",
+      "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c2e\u0c41\u0c15\u0c4d\u0c15\u0c41 \u0c26\u0c3f\u0c02\u0c1a\u0c3f\u0c02\u0c26\u0c3f...",
+      "gap_after": 0.3,
+      "start": 14.564,
+      "end": 15.905,
+      "duration": 1.341
+    },
+    {
+      "id": 7,
+      "scene": "beak",
+      "stage": "beak",
+      "caption": "\u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
+      "vo": "\u0c1a\u0c47\u0c30\u0c32\u0c47\u0c26\u0c41!",
+      "gap_after": 0.4,
+      "start": 16.205,
+      "end": 17.045,
+      "duration": 0.84
+    },
+    {
+      "id": 8,
+      "scene": "idea",
+      "stage": "field",
+      "caption": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
+      "vo": "\u0c28\u0c3e\u0c15\u0c41 \u0c10\u0c21\u0c3f\u0c2f\u0c3e \u0c35\u0c1a\u0c4d\u0c1a\u0c3f\u0c02\u0c26\u0c3f!",
+      "gap_after": 0.4,
+      "start": 17.445,
+      "end": 18.823,
+      "duration": 1.378
+    },
+    {
+      "id": 9,
+      "scene": "lizard",
+      "stage": "lizard",
+      "caption": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
+      "vo": "\u0c0f\u0c02 \u0c1a\u0c47\u0c38\u0c4d\u0c24\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c4d \u0c15\u0c3e\u0c15\u0c40?",
+      "gap_after": 0.35,
+      "start": 19.223,
+      "end": 20.612,
+      "duration": 1.389
+    },
+    {
+      "id": 10,
+      "scene": "lizard",
+      "stage": "lizard",
+      "caption": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
+      "vo": "\u0c1a\u0c42\u0c38\u0c4d\u0c24\u0c42 \u0c09\u0c02\u0c21\u0c41!",
+      "gap_after": 0.4,
+      "start": 20.962,
+      "end": 21.834,
+      "duration": 0.872
+    },
+    {
+      "id": 11,
+      "scene": "stones",
+      "stage": "field",
+      "caption": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
+      "vo": "\u0c2a\u0c15\u0c4d\u0c15\u0c28\u0c47 \u0c17\u0c41\u0c32\u0c15\u0c30\u0c3e\u0c33\u0c4d\u0c33\u0c41!",
+      "gap_after": 0.35,
+      "start": 22.234,
+      "end": 23.97,
+      "duration": 1.736
+    },
+    {
+      "id": 12,
+      "scene": "drop",
+      "stage": "pot",
+      "caption": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
+      "vo": "\u0c12\u0c15 \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
+      "gap_after": 0.3,
+      "start": 24.32,
+      "end": 26.234,
+      "duration": 1.914
+    },
+    {
+      "id": 13,
+      "scene": "drop",
+      "stage": "pot",
+      "caption": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
+      "vo": "\u0c07\u0c02\u0c15\u0c4b \u0c30\u0c3e\u0c2f\u0c3f. \u0c1f\u0c2a\u0c4d!",
+      "gap_after": 0.3,
+      "start": 26.534,
+      "end": 28.633,
+      "duration": 2.099
+    },
+    {
+      "id": 14,
+      "scene": "rise",
+      "stage": "pot",
+      "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
+      "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c2a\u0c48\u0c15\u0c3f \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
+      "gap_after": 0.35,
+      "start": 28.933,
+      "end": 30.67,
+      "duration": 1.737
+    },
+    {
+      "id": 15,
+      "scene": "rise",
+      "stage": "pot",
+      "caption": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
+      "vo": "\u0c2a\u0c48\u0c15\u0c3f! \u0c2a\u0c48\u0c15\u0c3f!",
+      "gap_after": 0.35,
+      "start": 31.02,
+      "end": 32.658,
+      "duration": 1.639
+    },
+    {
+      "id": 16,
+      "scene": "drink",
+      "stage": "pot",
+      "caption": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
+      "vo": "\u0c28\u0c40\u0c33\u0c4d\u0c33\u0c41 \u0c35\u0c1a\u0c4d\u0c1a\u0c3e\u0c2f\u0c3f!",
+      "gap_after": 0.35,
+      "start": 33.008,
+      "end": 34.061,
+      "duration": 1.053
+    },
+    {
+      "id": 17,
+      "scene": "drink",
+      "stage": "pot",
+      "caption": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
+      "vo": "\u0c17\u0c4d\u0c32\u0c15\u0c4d, \u0c17\u0c4d\u0c32\u0c15\u0c4d!",
+      "gap_after": 0.3,
+      "start": 34.411,
+      "end": 35.552,
+      "duration": 1.141
+    },
+    {
+      "id": 18,
+      "scene": "happy",
+      "stage": "pot",
+      "caption": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
+      "vo": "\u0c05\u0c2c\u0c4d\u0c2c\u0c3e! \u0c2c\u0c3e\u0c17\u0c41\u0c02\u0c26\u0c3f!",
+      "gap_after": 0.5,
+      "start": 35.852,
+      "end": 38.088,
+      "duration": 2.235
+    },
+    {
+      "id": 19,
+      "scene": "fly",
+      "stage": "field",
+      "caption": "\u0c35\u0c3e\u0c35\u0c4d!",
+      "vo": "\u0c35\u0c3e\u0c35\u0c4d!",
+      "gap_after": 0.4,
+      "start": 38.588,
+      "end": 39.305,
+      "duration": 0.718
+    },
+    {
+      "id": 20,
+      "scene": "quiz",
+      "stage": "quiz",
+      "caption": "\u0c15\u0c3e! \u0c15\u0c3e!",
+      "vo": "\u0c15\u0c3e! \u0c15\u0c3e!",
+      "gap_after": 0.45,
+      "start": 39.705,
+      "end": 41.171,
+      "duration": 1.466
+    },
+    {
+      "id": 21,
+      "scene": "quiz",
+      "stage": "quiz",
+      "caption": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
+      "vo": "\u0c2e\u0c40\u0c30\u0c41 \u0c1a\u0c46\u0c2a\u0c4d\u0c2a\u0c02\u0c21\u0c3f.",
+      "gap_after": 0.45,
+      "start": 41.621,
+      "end": 43.92,
+      "duration": 2.299
+    },
+    {
+      "id": 22,
+      "scene": "moral",
+      "stage": "quiz",
+      "caption": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
+      "vo": "\u0c15\u0c3e\u0c15\u0c3f \u0c24\u0c46\u0c32\u0c3f\u0c35\u0c3f!",
+      "gap_after": 0.5,
+      "start": 44.37,
+      "end": 46.668,
+      "duration": 2.299
+    },
+    {
+      "id": 23,
+      "scene": "end",
+      "stage": "end",
+      "caption": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
+      "vo": "\u0c13\u0c2a\u0c3f\u0c15 \u0c09\u0c02\u0c1f\u0c47, \u0c0f\u0c26\u0c40 \u0c05\u0c38\u0c3e\u0c27\u0c4d\u0c2f\u0c02 \u0c15\u0c3e\u0c26\u0c41!",
+      "gap_after": 0.4,
+      "start": 47.168,
+      "end": 50.257,
+      "duration": 3.089
+    },
+    {
+      "id": 24,
+      "scene": "end",
+      "stage": "end",
+      "caption": "\u0c2c\u0c48 \u0c2c\u0c48!",
+      "vo": "\u0c2c\u0c48 \u0c2c\u0c48!",
+      "gap_after": 0.0,
+      "start": 50.657,
+      "end": 53.196,
+      "duration": 2.539
+    }
+  ]
+}

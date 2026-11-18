@@ -1,0 +1,14 @@
+{
+ "maps": [{
+  "name": "us",
+  "source": "assets/data/us-states.json",
+  "object": "states",
+  "projection": {"type": "albers", "lon0": -96, "lat0": 37.5, "p1": 29.5, "p2": 45.5},
+  "drop": ["Alaska", "Hawaii", "Puerto Rico", "Guam", "American Samoa", "United States Virgin Islands", "Commonwealth of the Northern Mariana Islands"],
+  "neighbors": {"source": "assets/data/world-countries.json", "object": "countries",
+                "keep": ["Canada", "Mexico", "Cuba", "Bahamas"], "dark": ["Canada", "Mexico"], "clip": [-135, 14, -55, 58]},
+  "places": {"Chicago": [41.88, -87.63], "Lockport": [41.59, -88.06], "St. Louis": [38.63, -90.20],
+             "Kedzie": [41.83, -87.71], "Rockford": [42.27, -89.09],
+             "Des Plaines": [41.28, -87.90], "Cairo": [37.00, -89.18]}
+ }]
+}

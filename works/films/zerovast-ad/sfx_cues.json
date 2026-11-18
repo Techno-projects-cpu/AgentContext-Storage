@@ -1,0 +1,86 @@
+{
+ "duration": 29.53,
+ "cues": [
+  {
+   "type": "whoosh",
+   "t": 1.25,
+   "gain": 0.4
+  },
+  {
+   "type": "stamp",
+   "t": 3.42,
+   "gain": 0.45
+  },
+  {
+   "type": "whoosh",
+   "t": 5.22,
+   "gain": 0.45
+  },
+  {
+   "type": "tick",
+   "t": 5.92,
+   "gain": 0.5
+  },
+  {
+   "type": "whoosh",
+   "t": 10.17,
+   "gain": 0.4
+  },
+  {
+   "type": "tick",
+   "t": 14.53,
+   "gain": 0.4
+  },
+  {
+   "type": "tick",
+   "t": 14.65,
+   "gain": 0.4
+  },
+  {
+   "type": "tick",
+   "t": 14.77,
+   "gain": 0.4
+  },
+  {
+   "type": "pop",
+   "t": 17.94,
+   "gain": 0.35
+  },
+  {
+   "type": "pop",
+   "t": 18.12,
+   "gain": 0.35
+  },
+  {
+   "type": "pop",
+   "t": 18.3,
+   "gain": 0.35
+  },
+  {
+   "type": "pop",
+   "t": 18.48,
+   "gain": 0.35
+  },
+  {
+   "type": "whoosh",
+   "t": 20.63,
+   "gain": 0.4
+  },
+  {
+   "type": "whoosh",
+   "t": 23.867,
+   "gain": 0.65
+  },
+  {
+   "type": "impact",
+   "t": 24.15,
+   "gain": 0.45
+  },
+  {
+   "type": "shimmer",
+   "t": 25.0,
+   "gain": 0.5
+  }
+ ],
+ "room_tone": []
+}

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<script src="./vendor/gsap.min.js"></script>
+<style>
+  /* Film 02 — the camera film.
+     Unlike film 01 (type-led), this one never shows a designed card: every
+     shot is the real page, and the only thing the film adds is the camera.
+     Tokens are the site's own. */
+  @font-face{font-family:"Display";font-weight:700;font-display:block;
+    src:url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2")}
+  @font-face{font-family:"Display";font-weight:500;font-display:block;
+    src:url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2")}
+  @font-face{font-family:"Mono";font-weight:500;font-display:block;
+    src:url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2")}
+  @font-face{font-family:"Text";font-weight:400;font-display:block;
+    src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2")}
+
+  :root{
+    --ground:#070707; --paper:#f4f3ee; --dim:#b4b4ae;
+    --rule:rgba(255,255,255,.16); --accent:#1b4dff; --accent-text:#8ba4ff;
+    --display:"Display",sans-serif; --text:"Text",sans-serif; --mono:"Mono",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ground);
+    color:var(--paper);-webkit-font-smoothing:antialiased}
+  #root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--ground)}
+
+  /* every shot is a frame that clips a much larger photograph, so the camera can
+     move inside it without ever showing an edge */
+  .shot{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+  .plate{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+  .plate img{display:block}
+  /* grade: the site is near-black, so ungraded trucks read as frozen frames */
+  .plate.g-lift img{filter:brightness(1.85) contrast(1.06) saturate(1.05)}
+  .plate.g-lift2 img{filter:brightness(2.15) contrast(1.02) saturate(1.08)}
+
+  /* letterbox: the film reads as footage, not as slides */
+  #bar-top,#bar-bot{position:absolute;left:0;right:0;height:0;background:#000;z-index:40;
+    pointer-events:none}
+
+  .cap{position:absolute;z-index:30;max-width:780px;opacity:0;padding:36px 40px}
+  .cap::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:rgba(7,7,7,.90);border:1px solid rgba(255,255,255,.12);
+    -webkit-backdrop-filter:blur(22px) saturate(.7);backdrop-filter:blur(22px) saturate(.7)}
+  .cap::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent);z-index:-1}
+  .cap .k{font-family:var(--mono);font-size:20px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-text)}
+  .cap .t{font-family:var(--display);font-weight:700;font-size:64px;line-height:.98;overflow-wrap:normal;hyphens:none;
+    letter-spacing:-.035em;margin-top:18px}
+  .cap .t em{font-style:normal;-webkit-text-stroke:1.6px var(--paper);color:transparent;
+    display:block}
+  .cap .d{font-family:var(--text);font-size:24px;line-height:1.5;color:var(--dim);margin-top:20px}
+
+  /* shot 1 names the film */
+  #title-line{position:absolute;right:96px;top:390px;z-index:32;width:560px;
+    padding:42px 46px}
+  #title-line::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:rgba(7,7,7,.88);border:1px solid rgba(255,255,255,.12);
+    -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+  #title-line::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent);z-index:-1}
+  #title-line .k{font-family:var(--mono);font-size:20px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-text);margin-bottom:22px}
+  #title-line .t{font-family:var(--display);font-weight:700;font-size:72px;letter-spacing:-.04em;
+    line-height:.94}
+  #title-line .t em{font-style:normal;-webkit-text-stroke:2px var(--paper);color:transparent}
+
+  #hud{position:absolute;left:0;right:0;top:0;height:92px;z-index:44;display:flex;
+    align-items:center;justify-content:space-between;padding:0 120px;pointer-events:none}
+  #hud span{font-family:var(--mono);font-size:16px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dim);display:flex;align-items:center;gap:12px}
+  #hud i{width:8px;height:8px;background:var(--accent);display:block}
+  #prog{position:absolute;left:0;top:0;height:2px;background:var(--accent);width:100%;
+    transform:scaleX(0);transform-origin:left center;z-index:45}
+  /* frame corners, like a viewfinder, drawn not photographed */
+  .corner{position:absolute;width:30px;height:30px;border:2px solid rgba(255,255,255,.28);z-index:43}
+  .corner.tl{left:56px;top:56px;border-right:0;border-bottom:0}
+  .corner.tr{right:56px;top:56px;border-left:0;border-bottom:0}
+</style>
+</head>
+<body data-motion-blur="on">
+<div id="root" data-composition-id="main" data-start="0" data-duration="22"
+     data-width="1920" data-height="1080">
+
+  <!-- ===== shot 1: drift across the hero ===== -->
+  <div class="shot" id="sh1">
+    <div class="plate" id="p1"><img src="assets/img/hero.png" width="1920" height="1002" alt=""></div>
+    <div id="title-line">
+      <div class="k">Zero-vast · a camera test, sort of</div>
+      <div class="t" id="tl-t">Six camera moves.<br><em>One real page.</em></div>
+    </div>
+  </div>
+
+  <!-- ===== shot 2: push into the work grid ===== -->
+  <div class="shot" id="sh2">
+    <div class="plate g-lift" id="p2"><img src="assets/img/work.png" width="1240" height="471" alt=""></div>
+    <div class="cap" id="cap2" style="left:120px;top:150px">
+      <div class="k">02 / Push in</div>
+      <div class="t">Three kinds of work,<br><em>all of them shipped.</em></div>
+    </div>
+  </div>
+
+  <!-- ===== shot 3: tilt down the stack list ===== -->
+  <div class="shot" id="sh3">
+    <div class="plate g-lift" id="p3"><img src="assets/img/stack.png" width="1240" height="703" alt=""></div>
+    <div class="cap" id="cap3" style="right:120px;top:150px">
+      <div class="k">03 / Tilt</div>
+      <div class="t">The stack,<br><em>top to bottom.</em></div>
+    </div>
+  </div>
+
+  <!-- ===== shot 4: truck across the four steps ===== -->
+  <div class="shot" id="sh4">
+    <div class="plate g-lift2" id="p4"><img src="assets/img/steps.png" alt=""></div>
+    <div class="cap" id="cap4" style="right:110px;top:180px">
+      <div class="k">04 / Truck</div>
+      <div class="t">Brief. Scope.<br><em>Build. Handover.</em></div>
+    </div>
+  </div>
+
+  <!-- ===== shot 5: rack focus on the limits ===== -->
+  <div class="shot" id="sh5">
+    <div class="plate g-lift" id="p5"><img src="assets/img/limits.png" width="1240" height="420" alt=""></div>
+    <div class="cap" id="cap5" style="left:110px;bottom:140px">
+      <div class="k">05 / Rack focus</div>
+      <div class="t">What I won't do,<br><em>in writing.</em></div>
+    </div>
+  </div>
+
+  <!-- ===== shot 6: pull back to the whole mark ===== -->
+  <div class="shot" id="sh6">
+    <div class="plate g-lift" id="p6"><img src="assets/img/capshead.png" width="1920" height="813" alt=""></div>
+    <div class="cap" id="cap6" style="right:96px;bottom:120px;width:660px">
+      <div class="k">06 / Pull back</div>
+      <div class="t" style="font-size:52px;white-space:nowrap">zero-vast.vercel.app</div>
+      <div class="d">Hand-written in Kalluru, Khammam.</div>
+    </div>
+  </div>
+
+  <div id="bar-top"></div><div id="bar-bot"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div id="hud"><span><i></i>NEZAAD</span><span id="hud-shot">SHOT 01 / 06</span></div>
+  <div id="prog"></div>
+
+  <audio id="bed" src="assets/music/bed.mp3" preload="auto" data-start="0"
+         data-volume="0.88" data-fade-in="0.5" data-fade-out="1.6"></audio>
+  <audio id="s1" src="assets/sfx/whoosh.ogg" preload="auto" data-start="3.72" data-volume="0.72"></audio>
+  <audio id="s2" src="assets/sfx/click1.ogg" preload="auto" data-start="7.32" data-volume="0.72"></audio>
+  <audio id="s3" src="assets/sfx/click3.ogg" preload="auto" data-start="10.86" data-volume="0.72"></audio>
+  <audio id="s4" src="assets/sfx/bong.ogg" preload="auto" data-start="14.32" data-volume="0.72"></audio>
+  <audio id="s5" src="assets/sfx/impact.ogg" preload="auto" data-start="19.60" data-volume="0.72"></audio>
+</div>
+
+<script>
+/* ===========================================================================
+   Camera rig. Each shot's plate is positioned and scaled by ONE keyframed
+   tween on x/y/scale — the same object a real camera dolly would drive — and
+   the shots cut on the beat. Nothing is tweened twice, so no frame fights.
+   =========================================================================== */
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 22, ease: "none" }, 0);
+
+/* letterbox bars slide in at the start and hold: this is footage, framed */
+tl.fromTo("#bar-top", { height: 0 }, { height: 62, duration: 0.6, ease: "power3.out" }, 0);
+tl.fromTo("#bar-bot", { height: 0 }, { height: 62, duration: 0.6, ease: "power3.out" }, 0);
+
+/* ---- shot 1 · 0.00-3.70 · slow drift across the hero, no cut ---- */
+gsap.set("#p1", { x: -40, y: -30, scale: 1.12 });
+tl.to("#p1", { x: 30, y: -6, scale: 1.20, duration: 3.7, ease: "power1.inOut" }, 0);
+tl.fromTo("#title-line", { opacity: 0, x: 40 },
+  { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" }, 0.30);
+tl.fromTo("#tl-t", { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.5, ease: "power2.out" }, 0.34);
+
+/* ---- shot 2 · 3.70-7.30 · push in on the work cards ---- */
+gsap.set("#sh2", { opacity: 0 });
+gsap.set("#p2", { x: 300, y: -330, scale: 2.30 });
+tl.to("#sh1", { opacity: 0, duration: 0.24, ease: "power2.in" }, 3.70);
+tl.to("#sh2", { opacity: 1, duration: 0.24, ease: "power2.out" }, 3.72);
+/* 1.0 → 1.42 is a real push: the crop tightens on the middle card */
+tl.to("#p2", { x: -240, y: -330, scale: 2.55, duration: 3.6, ease: "power2.inOut" }, 3.72);
+tl.fromTo("#cap2", { opacity: 0, x: -30 },
+  { opacity: 1, x: 0, duration: 0.55, ease: "power4.out" }, 4.12);
+tl.to("#cap2", { opacity: 0, duration: 0.3, ease: "power2.in" }, 6.90);
+tl.to("#sh2", { opacity: 0, duration: 0.24, ease: "power2.in" }, 7.06);
+
+/* ---- shot 3 · 7.30-10.85 · tilt down the stack, the page rides up ---- */
+gsap.set("#sh3", { opacity: 0 });
+gsap.set("#p3", { x: 24, y: -40, scale: 1.66 });
+tl.to("#sh3", { opacity: 1, duration: 0.24, ease: "power2.out" }, 7.32);
+tl.to("#p3", { x: 24, y: -330, scale: 1.60, duration: 3.5, ease: "power1.inOut" }, 7.32);
+tl.fromTo("#cap3", { opacity: 0, y: 26 },
+  { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, 7.70);
+tl.to("#cap3", { opacity: 0, duration: 0.3, ease: "power2.in" }, 10.44);
+tl.to("#sh3", { opacity: 0, duration: 0.24, ease: "power2.in" }, 10.60);
+
+/* ---- shot 4 · 10.85-14.30 · truck sideways across the four steps ---- */
+gsap.set("#sh4", { opacity: 0 });
+gsap.set("#p4", { x: 340, y: 40, scale: 1.92 });
+tl.to("#sh4", { opacity: 1, duration: 0.24, ease: "power2.out" }, 10.86);
+tl.to("#p4", { x: -420, y: 40, scale: 1.92, duration: 3.4, ease: "power2.inOut" }, 10.86);
+tl.fromTo("#cap4", { opacity: 0, x: 26 },
+  { opacity: 1, x: 0, duration: 0.55, ease: "power4.out" }, 11.24);
+tl.to("#cap4", { opacity: 0, duration: 0.3, ease: "power2.in" }, 13.86);
+tl.to("#sh4", { opacity: 0, duration: 0.24, ease: "power2.in" }, 14.04);
+
+/* ---- shot 5 · 14.30-17.90 · rack focus: the plate softens, the type sharpens ---- */
+gsap.set("#sh5", { opacity: 0 });
+gsap.set("#p5", { x: 24, y: 120, scale: 1.92, filter: "blur(7px)" });
+tl.to("#sh5", { opacity: 1, duration: 0.26, ease: "power2.out" }, 14.32);
+tl.to("#p5", { filter: "blur(0px)", duration: 0.9, ease: "power2.out" }, 14.44);
+tl.to("#p5", { scale: 2.06, x: -20, duration: 3.4, ease: "power1.inOut" }, 14.40);
+tl.fromTo("#cap5", { opacity: 0, y: 22 },
+  { opacity: 1, y: 0, duration: 0.55, ease: "power4.out" }, 14.72);
+tl.to("#cap5", { opacity: 0, duration: 0.3, ease: "power2.in" }, 17.48);
+tl.to("#sh5", { opacity: 0, duration: 0.24, ease: "power2.in" }, 17.62);
+
+/* ---- shot 6 · 17.90-22.00 · pull back onto the whole page, and land ---- */
+gsap.set("#sh6", { opacity: 0 });
+gsap.set("#p6", { x: 0, y: -40, scale: 1.44 });
+tl.to("#sh6", { opacity: 1, duration: 0.3, ease: "power2.out" }, 17.92);
+tl.to("#p6", { x: 0, y: 0, scale: 1.0, duration: 2.2, ease: "power3.out" }, 17.94);
+tl.fromTo("#cap6", { opacity: 0, y: 26 },
+  { opacity: 1, y: 0, duration: 0.6, ease: "power4.out" }, 18.55);
+
+/* shot counter in the HUD: furniture that tells you where you are */
+const shots = [[0,"01"],[3.70,"02"],[7.30,"03"],[10.85,"04"],[14.30,"05"],[17.90,"06"]];
+shots.forEach(([t, n]) => {
+  tl.call(() => { document.getElementById("hud-shot").textContent = `SHOT ${n} / 06`; }, null, t);
+});
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

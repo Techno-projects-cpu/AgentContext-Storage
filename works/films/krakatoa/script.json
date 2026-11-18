@@ -1,0 +1,205 @@
+{
+ "title": "The Loudest Sound",
+ "subtitle": "Krakatoa, 27 August 1883",
+ "facts_note": "Sources: Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888); Smithsonian GVP; USGS. The 1888 report is careful: sound 'certainly' at Ceylon (~2,000 mi) and 'probably' at Rodrigues (~3,000 mi, 4,830 km) - the film says what the harbour master heard, and calls it nearly 3,000 miles. There is no reliable decibel figure: the nearest gauge was driven off its chart, and 194 dB is the ceiling for a sound wave in air, so popular '310 dB' numbers are not used here.",
+ "takes": [
+  {
+   "take": "T01_strait",
+   "lines": [
+    {
+     "id": 1,
+     "text": "On the 27th of August, 1883, an island in the Sunda Strait began to come apart.",
+     "spoken": "On the twenty seventh of August, eighteen eighty three, an island in the Sunda Strait began to come apart.",
+     "hero": "the strait map: the island in the channel between Java and Sumatra",
+     "typed": "",
+     "gap_after": 0.45
+    },
+    {
+     "id": 2,
+     "text": "The third blast, at 10:02 that morning, is the loudest sound in recorded history.",
+     "spoken": "The third blast, at two minutes past ten that morning, is the loudest sound in recorded history.",
+     "hero": "1883 lithograph of the column, and the time",
+     "typed": "10:02",
+     "gap_after": 0.4
+    },
+    {
+     "id": 3,
+     "text": "Forty miles away, the pressure broke men's eardrums.",
+     "spoken": "Forty miles away, the pressure broke men's eardrums.",
+     "hero": "distance ring at 40 miles, ship Norham Castle",
+     "typed": "",
+     "gap_after": 0.35
+    },
+    {
+     "id": 4,
+     "text": "A hundred miles off, at Batavia, a gasometer jumped off its trace.",
+     "spoken": "A hundred miles off, at Batavia, a gasometer jumped off its trace.",
+     "hero": "Batavia on the map, the barograph card",
+     "typed": "",
+     "gap_after": 1.1
+    }
+   ]
+  },
+  {
+   "take": "T02_wall",
+   "lines": [
+    {
+     "id": 5,
+     "text": "Inside the strait, it did not arrive as sound at all. It arrived as a wall of air.",
+     "spoken": "Inside the strait, it did not arrive as sound at all. It arrived as a wall of air.",
+     "hero": "the shock ring crossing the strait, ships",
+     "typed": "",
+     "gap_after": 0.5
+    }
+   ]
+  },
+  {
+   "take": "T03_sea",
+   "lines": [
+    {
+     "id": 6,
+     "text": "Then the sea came.",
+     "spoken": "Then the sea came.",
+     "hero": "the strait map, the coastlines",
+     "typed": "",
+     "gap_after": 0.6
+    },
+    {
+     "id": 7,
+     "text": "Waves ran a hundred feet high into the towns of the strait.",
+     "spoken": "Waves ran a hundred feet high into the towns of the strait.",
+     "hero": "wave height bar against houses",
+     "typed": "100 FT",
+     "gap_after": 0.4
+    },
+    {
+     "id": 8,
+     "text": "36,417 people died. Most of them were drowned, not burned.",
+     "spoken": "Thirty six thousand four hundred and seventeen people died. Most of them were drowned, not burned.",
+     "hero": "the counter, over the Java coast",
+     "typed": "36,417",
+     "gap_after": 0.5
+    },
+    {
+     "id": 9,
+     "text": "On Sebesi, eight miles away, three thousand people lived. None survived.",
+     "spoken": "On Sebesi, eight miles away, three thousand people lived. None survived.",
+     "hero": "Sebesi island, crossed out",
+     "typed": "NO SURVIVORS",
+     "gap_after": 0.6
+    },
+    {
+     "id": 10,
+     "text": "Two thirds of the island fell into the sea, and left a caldera.",
+     "spoken": "Two thirds of the island fell into the sea, and left a caldera.",
+     "hero": "the before/after island outline",
+     "typed": "TWO THIRDS",
+     "gap_after": 0.5
+    }
+   ]
+  },
+  {
+   "take": "T04_wave",
+   "lines": [
+    {
+     "id": 11,
+     "text": "A Dutch gunboat, the Berouw, was carried two miles inland.",
+     "spoken": "A Dutch gunboat, the Berouw, was carried two miles inland.",
+     "hero": "the inland arrow, the wreck card",
+     "typed": "",
+     "gap_after": 1.0
+    },
+    {
+     "id": 12,
+     "text": "Nearly three thousand miles away, a harbour master heard what he took for heavy guns.",
+     "spoken": "Nearly three thousand miles away, a harbour master heard what he took for heavy guns.",
+     "hero": "Rodrigues on the ring sheet, 4,830 km",
+     "typed": "",
+     "gap_after": 0.9
+    },
+    {
+     "id": 13,
+     "text": "The air wave kept going. Barographs in London and Washington picked it up.",
+     "spoken": "The air wave kept going. Barographs in London and Washington picked it up.",
+     "hero": "the world map, wave leaves Krakatoa",
+     "typed": "",
+     "gap_after": 0.45
+    },
+    {
+     "id": 14,
+     "text": "Stations logged it seven times in five days, as it ran round the planet and came back the other way.",
+     "spoken": "Stations logged it seven times in five days, as it ran round the planet and came back the other way.",
+     "hero": "the track with seven passes, the ticker",
+     "typed": "7 PASSES",
+     "gap_after": 0.9
+    },
+    {
+     "id": 15,
+     "text": "The ash went higher, fifty miles up, and the sunsets went red.",
+     "spoken": "The ash went higher, fifty miles up, and the sunsets went red.",
+     "hero": "the stratosphere column, the sky turning",
+     "typed": "50 MI",
+     "gap_after": 0.6
+    }
+   ]
+  },
+  {
+   "take": "T05_sky",
+   "lines": [
+    {
+     "id": 16,
+     "text": "In London, an artist named William Ashcroft sat on the Thames and sketched them, thousands of times.",
+     "spoken": "In London, an artist named William Ashcroft sat on the Thames and sketched them, thousands of times.",
+     "hero": "the Ashcroft plate pinned over London",
+     "typed": "",
+     "gap_after": 0.45
+    },
+    {
+     "id": 17,
+     "text": "New York sent fire engines to a fire that was the sky.",
+     "spoken": "New York sent fire engines to a fire that was the sky.",
+     "hero": "New York, the fire-brigade note",
+     "typed": "",
+     "gap_after": 0.6
+    },
+    {
+     "id": 18,
+     "text": "The planet cooled by half a degree, and did not warm back for five years.",
+     "spoken": "The planet cooled by half a degree, and did not warm back for five years.",
+     "hero": "the temperature ledger",
+     "typed": "-0.5 C",
+     "gap_after": 0.6
+    },
+    {
+     "id": 19,
+     "text": "Krakatoa was the first disaster the telegraph carried round the world in a day.",
+     "spoken": "Krakatoa was the first disaster the telegraph carried round the world in a day.",
+     "hero": "the wire and the dateline",
+     "typed": "",
+     "gap_after": 1.0
+    }
+   ]
+  },
+  {
+   "take": "T06_close",
+   "lines": [
+    {
+     "id": 20,
+     "text": "And in 1927, out of the same water, Anak Krakatau rose.",
+     "spoken": "And in nineteen twenty seven, out of the same water, Anak Krakatau rose.",
+     "hero": "the caldera, the new cone rising",
+     "typed": "1927",
+     "gap_after": 0.9
+    },
+    {
+     "id": 21,
+     "text": "The loudest thing we have ever heard was an island, dying.",
+     "spoken": "The loudest thing we have ever heard was an island, dying.",
+     "hero": "the pull-back: the whole sheet",
+     "typed": "",
+     "gap_after": 0.0
+    }
+   ]
+  }
+ ]
+}
