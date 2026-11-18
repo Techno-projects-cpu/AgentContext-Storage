@@ -8,6 +8,8 @@
 | 4 | `zerovast-deco` | 23.0 s | 1930s airbrushed poster | the poster paints itself; camera walks into it | music only |
 | 5 | *(vignan-ad, separate client)* | 26.6 s | gouache, page-cited answers | staged cuts | voice + score |
 
+Contact sheet of the four ZeroVast cuts: `_shared/series_review.png`.
+
 Rules held by all of them:
 
 * Nothing invented. Every on-screen claim is on `zero-vast.vercel.app`; the address is on the end card.
