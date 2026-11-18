@@ -313,9 +313,12 @@ class Words(FK.ScreenCard):
                     mku = clamp((lu - 0.24) / 0.42)
                     if wd is not None and mku > 0:
                         x0 = {"left": 0.0, "center": -ln.width / 2, "right": -ln.width}[align]
-                        bx = x0 + wd.x - sz[li] * 0.04
-                        c.drawRect(skia.Rect.MakeXYWH(bx, -msz * 0.30, (wd.w + sz[li] * 0.08) * mku, msz * 0.34),
-                                   P(VERM, 0.58 * a))
+                        bx = x0 + wd.x - sz[li] * 0.05
+                        # the bar sits across the LOWER HALF of the x-height (the baseline is y=0),
+                        # which is where a highlighter actually lands; lower and it reads as an
+                        # underline that missed the word, higher and it crosses the letters
+                        c.drawRect(skia.Rect.MakeXYWH(bx, -sz[li] * 0.30, (wd.w + sz[li] * 0.10) * mku,
+                                                      sz[li] * 0.27), P(VERM, 0.62 * a))
                 elif 0 <= mk < nw and nw > 1:
                     acc = 0 if rgb == CREAM else 1
                 ty.draw(c, ln, 0, 0, rgb=rgb, a=la, align=align, a_word=a_word,
