@@ -23,12 +23,25 @@ fi
 PY=$(command -v python3 || true)
 [[ -x ${PY:-} ]] || PY=/tmp/venv/bin/python
 
-# a 16:9 frame in a 9:16 slot: the whole frame, sharp, over a blurred copy of itself
+# REFRAME=fit  (default) keeps the WHOLE frame, 1080 wide, over a blurred fill of itself.
+#              Nothing can be cropped off, which matters because the framing of the source is
+#              unknown until the file lands.
+# REFRAME=crop fills the frame with a 9:16 centre slice, for footage that is already tight on
+#              one person.
+CREDIT=assets/credit.png
+[[ -f $CREDIT ]] || { "$PY" tools/credit_overlay.py >/dev/null; }
+if [[ ${REFRAME:-fit} == crop ]]; then
+  FG="crop=ih*9/16:ih,scale=1080:1920[fg2]"
+else
+  FG="scale=1080:-2[fg2]"
+fi
+
 VF="split=2[bg][fg];\
 [bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,gblur=sigma=28,\
 eq=brightness=-0.10[bg2];\
-[fg]crop=ih*9/16:ih,scale=1080:1920[fg2];\
-[bg2][fg2]overlay=(W-w)/2:(H-h)/2"
+[fg]${FG};\
+[bg2][fg2]overlay=(W-w)/2:(H-h)*0.40[frame];\
+[frame][1:v]overlay=0:0[out]"
 
 segs() {  # print "start end" for a clip id
   "$PY" - "$1" <<'PY'
@@ -45,8 +58,8 @@ cut() {
   len=$("$PY" -c "print(round(float('$b') - float('$a'), 1))")
   echo "== clip $id  ${a}s -> ${b}s  (${len}s)"
   mkdir -p shorts
-  "$FF" -nostdin -hide_banner -loglevel error -ss "$a" -to "$b" -i "$SRC" \
-    -filter_complex "$VF" -map 0:a? \
+  "$FF" -nostdin -hide_banner -loglevel error -ss "$a" -to "$b" -i "$SRC" -i "$CREDIT" \
+    -filter_complex "$VF" -map "[out]" -map 0:a? \
     -c:v libx264 -profile:v high -crf 19 -preset medium -pix_fmt yuv420p -r "$FR" \
     -c:a aac -b:a 192k -ar 48000 -movflags +faststart "shorts/clip-$id.mp4"
   echo "   shorts/clip-$id.mp4"

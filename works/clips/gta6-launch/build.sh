@@ -76,6 +76,11 @@ echo "== preview crops"
 echo "== render 1080x1920"
 "$PY" "$SKILL/scripts/make_shorts.py" clips.json --transcript work/transcript.json --out shorts/
 
+# 4b ---------------------------------------------------------------- credit
+echo "== burning the source credit into every clip"
+"$PY" tools/credit_overlay.py >/dev/null
+tools/burn_credit.sh shorts/clip-*.mp4
+
 # 5 ----------------------------------------------------------------- review
 echo "== review page"
 "$PY" tools/review.py

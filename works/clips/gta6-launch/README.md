@@ -23,9 +23,19 @@ cd works/clips/gta6-launch
 
 `./cut.sh` is the full thing. `./capture.sh` exists because a machine that can download the video
 often has nothing else on it: it needs ffmpeg and nothing more, uses the hand-checked seconds in
-`candidates.json` (`capture.final`), and writes `shorts/clip-01..05.mp4` at 1080×1920 with the full
-16:9 frame sharp over a blurred fill of itself. It skips the burned-in captions; running `./build.sh`
-afterwards adds those once there is a transcript.
+`candidates.json` (`capture.final`), and writes `shorts/clip-01..05.mp4` at 1080×1920. It skips the
+burned-in captions; running `./build.sh` afterwards adds those once there is a transcript.
+
+**Framing.** `REFRAME=fit` (the default) keeps the *whole* source frame, 1080 wide, over a blurred
+fill of itself — nothing can be cropped off, which matters because nobody knows where the host is
+standing until the file lands. `REFRAME=crop` fills the frame with a 9:16 centre slice instead, for
+footage that is already tight on one person. Both were rendered and eyeballed here.
+
+**Credit is burned into the picture, not just the caption.** `assets/credit.png` is a pill reading
+`CLIP: MRWHOSETHEBOSS` + `youtu.be/NrF4mkTmuTU`, composited into every frame of every clip by both
+`capture.sh` and `build.sh` (via `tools/burn_credit.sh`). It sits above the platform caption zone
+and survives re-uploads, stitches, and anyone who copies the file without the caption text.
+Re-running the burn is a no-op: the container carries a `credit:Mrwhosetheboss` marker.
 
 If a download site is the only way you can get the file (right-click → Save video, or any
 downloader), that is fine: drop the `.mp4` in this folder as `source.mp4` and run `./cut.sh`.
@@ -60,7 +70,11 @@ Everything except the download also runs here, if the file is copied in — `./b
 | `build.sh` | probe → transcribe → snap → render → review, the skill's own pipeline, nothing bespoke |
 | `tools/to_clips.py` | matches the written start/end *sentences* back onto real word timings (fuzzy, stop-word-insensitive; refuses to guess below threshold) |
 | `tools/review.py` | builds `review.html` and audits `candidates.json` against the skill's rubric (`--check` exits non-zero on a failure) |
+| `assets/credit.png` | the burned-in source credit pill |
+| `tools/burn_credit.sh` | composites the credit into finished clips, idempotently |
+| `tools/credit_overlay.py` | renders the credit pill |
 | `shorts/` | outputs: `clip-01.mp4 … clip-05.mp4`, `contact-sheet.jpg`, `manifest.json` |
+| `_verify/` | proof frames: `fit-framing.jpg` (16:9 preserved), `credit-burned.jpg`, `engine-proof.jpg` |
 
 ## The five
 
