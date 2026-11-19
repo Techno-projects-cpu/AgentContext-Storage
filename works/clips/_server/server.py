@@ -109,6 +109,52 @@ def run_pack(pack_key, src):
         STATE["job"] = "failed"
 
 
+def run_supaclip(pack_key, src):
+    """Render through SupaClip's renderer, one file per moment, then burn the credit in.
+
+    SupaClip's EDL is built to stitch everything into one short; posting wants separate
+    files, so each moment gets its own catalog+EDL render."""
+    d = PACKS[pack_key]["dir"]
+    STATE["job"] = "cutting"
+    STATE["clips"] = []
+    shorts = os.path.join(d, "shorts")
+    if os.path.isdir(shorts):
+        for f in os.listdir(shorts):
+            if f.endswith(".mp4"):
+                os.remove(os.path.join(shorts, f))
+    try:
+        sheet = json.load(open(os.path.join(d, "candidates.json"), encoding="utf-8"))
+        final = sheet.get("capture", {}).get("final", {})
+        ids = [c["id"] for c in sheet["candidates"] if c["id"] in final]
+        if not ids:
+            STATE["job"] = "needs-moments"
+            log("no moments recorded yet: pick timestamps on the page")
+            return
+        for cid in ids:
+            log(f"SupaClip: rendering clip {cid}")
+            r = subprocess.run([env()["PY"], os.path.join(d, "tools", "supaclip_render.py"),
+                                "--source", src, "--clip", cid, "--out", shorts],
+                               cwd=d, env=env(), capture_output=True, text=True, timeout=3600)
+            if r.returncode != 0:
+                log(f"clip {cid} failed: " + ((r.stderr or "").strip().splitlines() or ["?"])[-1][:200])
+        # rename to the pack's clip-NN.mp4 convention and stamp the credit
+        for cid in ids:
+            for f in os.listdir(shorts):
+                if f.startswith("supaclip-") and cid in f and f.endswith(".mp4"):
+                    os.replace(os.path.join(shorts, f), os.path.join(shorts, f"clip-{cid}.mp4"))
+        log("burning the credit into every frame")
+        subprocess.run(["bash", os.path.join(d, "tools", "burn_credit.sh")] +
+                       [os.path.join(shorts, f"clip-{cid}.mp4") for cid in ids],
+                       cwd=d, env=env(), capture_output=True, text=True)
+        found = sorted(os.listdir(shorts)) if os.path.isdir(shorts) else []
+        STATE["clips"] = [{"name": f, "pack": pack_key} for f in found if f.endswith(".mp4")]
+        STATE["job"] = "done" if STATE["clips"] else "failed"
+        log(f"done: {len(STATE['clips'])} clip(s) via SupaClip, credited")
+    except Exception as e:
+        log(f"supaclip error: {e}")
+        STATE["job"] = "failed"
+
+
 def cut_timestamps(pack_key, src, moments):
     """Cut specific moments for the speed pack, then re-list the outputs."""
     d = PACKS[pack_key]["dir"]
@@ -147,6 +193,11 @@ PAGE = r"""<!doctype html>
  .drop b{display:block;font-size:19px;margin-bottom:6px}
  .drop small{color:var(--mute)}
  input[type=file]{display:none}
+ .pick{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+ .pick label{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+   border-radius:12px;padding:12px 14px;cursor:pointer;flex:1;min-width:240px}
+ .pick label:has(input:checked){border-color:var(--y);box-shadow:0 0 0 2px #fff6cc inset}
+ .pick b{display:block;font-size:15px} .pick small{color:var(--mute);font-size:13px}
  .bar{height:8px;background:#e8e4da;border-radius:99px;overflow:hidden;margin:18px 0 6px;display:none}
  .bar i{display:block;height:100%;width:0;background:var(--y);transition:width .2s}
  .status{font:13px/1.6 ui-monospace,monospace;color:#55504a;white-space:pre-wrap;
@@ -175,6 +226,13 @@ PAGE = r"""<!doctype html>
   <h1>Drop the video. Take the clips.</h1>
   <p class="sub">Five vertical clips for Mrwhosetheboss's GTA retrospective, or timestamped cuts
   for Speed's stream. Credit is burned in. Nothing is posted anywhere.</p>
+
+  <div class="pick">
+    <label><input type="radio" name="engine" value="own" checked>
+      <span><b>Fast cut</b><small>ffmpeg, credit burned in, ~1 min</small></span></label>
+    <label><input type="radio" name="engine" value="supaclip">
+      <span><b>SupaClip</b><small>its styled on-screen text, reframe and transitions</small></span></label>
+  </div>
 
   <div class="drop" id="drop">
     <b>Drag the .mp4 here</b>
@@ -221,7 +279,8 @@ async function poll(){
 async function send(f){
   bar.style.display='block';
   const xhr = new XMLHttpRequest();
-  xhr.open('POST','api/upload');
+  const engine = (document.querySelector('input[name=engine]:checked')||{}).value || 'own';
+  xhr.open('POST','api/upload?engine='+engine);
   xhr.upload.onprogress = e => {
     if(e.lengthComputable){
       const p = Math.round(e.loaded/e.total*100);
@@ -323,6 +382,8 @@ class H(BaseHTTPRequestHandler):
 
     def do_POST(self):
         u = urlparse(self.path)
+        q = parse_qs(u.query)
+        engine = (q.get("engine") or ["own"])[0]
         if u.path == "/api/upload":
             length = int(self.headers.get("Content-Length") or 0)
             if length <= 0 or length > MAX_BYTES:
@@ -345,7 +406,9 @@ class H(BaseHTTPRequestHandler):
             pack = which_pack(dur)
             log(f"duration {dur/60:.1f} min -> {pack} pack")
             STATE["file"] = name
-            if pack:
+            if pack and engine == "supaclip":
+                threading.Thread(target=run_supaclip, args=(pack, dest), daemon=True).start()
+            elif pack:
                 threading.Thread(target=run_pack, args=(pack, dest), daemon=True).start()
             else:
                 STATE["job"] = "failed"

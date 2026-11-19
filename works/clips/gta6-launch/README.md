@@ -133,3 +133,19 @@ python3 -m venv /tmp/venv && /tmp/venv/bin/pip install numpy pillow skia-python 
 # ffmpeg is taken from imageio-ffmpeg 0.6.0 (a plain ffprobe does not exist there; a thin one
 # reading `ffmpeg -i` output is enough for these scripts)
 ```
+
+## SupaClip engine
+
+`tools/supaclip_render.py` drives [uditdc/supaclip](https://github.com/uditdc/supaclip) (vendored at
+`skills/supaclip/`). It builds SupaClip's catalog directly from `candidates.json` — skipping the VLM
+step, which is the only part that needs a model — then hands an EDL to SupaClip's own renderer:
+
+```bash
+pip install -e /path/to/supaclip         # once
+python3 tools/supaclip_render.py --source video.mp4            # all moments
+python3 tools/supaclip_render.py --source video.mp4 --clip 04  # just one
+```
+
+Gives you SupaClip's styled on-screen text (`yellow_punch`), 9:16 reframe and transitions, with
+`"audio": []` so there is no voiceover. Verified: five clips, 18.8–41.0 s, 1080×1920, credit burned
+in afterwards. In the drop page it is the **SupaClip** option next to **Fast cut**.

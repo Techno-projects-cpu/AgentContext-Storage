@@ -11,7 +11,8 @@
   },
   "style": {
     "accent": "#E8312A",
-    "note": "GTA cover-grid red. One accent, white on black, nothing else."
+    "note": "GTA cover-grid red. One accent, white on black, nothing else.",
+    "fps": 30
   },
   "candidates": [
     {
