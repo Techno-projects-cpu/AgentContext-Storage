@@ -1,0 +1,7 @@
+
+.vendor/
+*.mp4
+*.mkv
+*.webm
+work/
+shorts/*.mp4

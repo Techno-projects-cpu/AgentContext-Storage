@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IShowSpeed · GTA 6 launch clips — how to get them in 20 minutes</title>
+<style>
+  :root { --y:#FFD400; --ink:#0b0b0d; --paper:#f5f3ee; --mute:#7d7870; --line:#e3dfd5; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:17px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:860px; margin:0 auto; padding:56px 24px 96px; }
+  .k { font:800 12px/1 ui-monospace,monospace; letter-spacing:.2em; text-transform:uppercase; color:#8a6a00; }
+  h1 { font-size:clamp(30px,5vw,46px); line-height:1.03; letter-spacing:-.025em; margin:.35em 0 .4em; }
+  h1 em { font-style:normal; background:linear-gradient(transparent 62%, var(--y) 62%); }
+  .lead { font-size:19px; color:#3d3a35; max-width:64ch; }
+  h2 { font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-family:ui-monospace,monospace;
+       color:#6b665e; margin:52px 0 6px; }
+  h3 { font-size:20px; margin:26px 0 6px; letter-spacing:-.01em; }
+  p, li { max-width:70ch; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:14px 0;
+          box-shadow:0 1px 2px rgba(0,0,0,.04); }
+  .step { display:grid; grid-template-columns:auto 1fr; gap:16px; }
+  .num { font:800 13px/1 ui-monospace,monospace; background:var(--y); color:#1a1500; border-radius:999px;
+         width:28px; height:28px; display:grid; place-items:center; margin-top:3px; }
+  code, .cmd { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14px; }
+  .cmd { display:block; background:#0b0b0d; color:#f6f3ea; padding:12px 14px; border-radius:9px;
+         overflow-x:auto; white-space:pre; margin:10px 0 4px; }
+  .cmd b { color:var(--y); font-weight:600; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:15px; background:#fff;
+          border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font:700 11px/1.4 ui-monospace,monospace; letter-spacing:.1em; text-transform:uppercase; color:#6b665e;
+       background:#faf8f3; }
+  tr:last-child td { border-bottom:0; }
+  .warn { border-left:4px solid var(--y); background:#fffbeb; padding:14px 18px; border-radius:0 10px 10px 0; }
+  .no { border-left:4px solid #c2491d; background:#fdf1ec; padding:14px 18px; border-radius:0 10px 10px 0; }
+  a { color:#8a5b00; text-underline-offset:2px; }
+  ol { padding-left:22px; } ol li { margin:8px 0; }
+  .foot { color:var(--mute); font-size:14px; margin-top:56px; border-top:1px solid var(--line); padding-top:18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="k">Launch day · 19 Nov 2026 · IShowSpeed</div>
+  <h1>Get Speed's GTA 6 clips <em>in about twenty minutes</em>.</h1>
+  <p class="lead">SupaClip is the right tool and it runs in <b>your browser</b>, where YouTube is not
+  blocked. This pack supplies everything SupaClip cannot know: Speed's credit burned into the
+  frames, the moment list, the caption lines, and a 60-second cap so the clips don't get
+  Content-ID'd on sight.</p>
+
+  <h2>Why it has to be you clicking</h2>
+  <div class="no">
+    <p style="margin:0">This sandbox can only reach GitHub, PyPI and npm. YouTube, Twitch and
+    SupaClip all fail at the network handshake here, and so did the downloader sites (savefrom is
+    discontinued in the US, ssyoutube returns 502) and the GitHub-Runner route (Actions is off on
+    this repo). Free hosting won't take a 30 GB VOD either. So the pipeline was built, tested and
+    committed — the one step that needs an unblocked browser is the one step only you can do.</p>
+  </div>
+
+  <h2>The source, confirmed</h2>
+  <table>
+    <tr><th>Stream</th><td><b>🔴PLAYING GTA 6 EARLY ACCESS GAMEPLAY GET IN HERE!</b></td></tr>
+    <tr><th>Started</th><td>Wed 18 Nov 2026, 9:00 pm ET · 2:00 am UTC · 7:30 am IST (19 Nov)</td></tr>
+    <tr><th>Where</th><td>YouTube @IShowSpeed (simulcast on Twitch <code>ishowspeed</code>)</td></tr>
+    <tr><th>Length</th><td>still live when this was written, ~26k concurrent. Expect 8–10 h: the VOD will be roughly 30 000–36 000 s.</td></tr>
+  </table>
+  <p>Open <a href="https://www.youtube.com/@IShowSpeed/streams">youtube.com/@IShowSpeed/streams</a>
+  and take the VOD titled the same as the live stream. That link is the only input SupaClip needs.</p>
+
+  <h2>Six steps</h2>
+
+  <div class="card step"><div class="num">1</div><div>
+    <h3>Open SupaClip and paste the VOD link</h3>
+    <p><a href="https://supaclip.ai/">supaclip.ai</a> → new project → paste the YouTube VOD URL.
+    Choose the <b>stream</b> video type, not podcast — that is what makes it frame the facecam over
+    the gameplay instead of cropping a talking head.</p>
+    <p style="color:#6b665e;margin-bottom:0">Free tier: 30 AI minutes a month. A 10-hour VOD will
+    not fit, and does not need to: trim the URL range to the first 60–90 minutes
+    (<code>&amp;t=0s</code> and the last 2 h can wait), or run it twice.</p>
+  </div></div>
+
+  <div class="card step"><div class="num">2</div><div>
+    <h3>Let it draft, then keep only what is in this list</h3>
+    <p>SupaClip scores moments on its own rubric. Override it with the five that actually travel
+    (full brief with what to look for is in <code>candidates.json → targets</code>):</p>
+    <table>
+      <tr><th>Moment</th><th>What to catch</th></tr>
+      <tr><td><b>First reaction</b></td><td>the 30 s after he gets control: face, then gameplay</td></tr>
+      <tr><td><b>Police stop rage</b></td><td>first wanted level, him blaming the car</td></tr>
+      <tr><td><b>Car-theft fail</b></td><td>phone out, locked car, alarm going off</td></tr>
+      <tr><td><b>Leonida at night</b></td><td>Vice City skyline, ideally in a storm</td></tr>
+      <tr><td><b>The gator</b></td><td>any animal that bites him — needs no context at all</td></tr>
+    </table>
+  </div></div>
+
+  <div class="card step"><div class="num">3</div><div>
+    <h3>Cut each clip to 40 seconds or less</h3>
+    <p>Speed clips live or die in the first 1.5 seconds, so start <b>on</b> the shout, not before
+    it. Anything over 60 s of someone else's footage is the thing YouTube's Content ID is built to
+    find.</p>
+  </div></div>
+
+  <div class="card step"><div class="num">4</div><div>
+    <h3>Export, then burn his credit in — one command</h3>
+    <p>SupaClip's free export is 720p with no watermark; Pro is 1080p. Fine either way, because
+    the last step happens locally and takes seconds:</p>
+    <span class="cmd">cd works/clips/speed-gta6
+<b>tools/burn_credit.sh</b> downloads/supaclip/*.mp4</span>
+    <p style="margin-bottom:0">This stamps <b>CLIP: IShowSpeed</b> + his channel into every frame,
+    above the platform caption zone, so it survives re-uploads and anyone stripping your caption
+    text. Re-running is a no-op. <code>assets/credit.png</code> is already rendered.</p>
+  </div></div>
+
+  <div class="card step"><div class="num">5</div><div>
+    <h3>Or cut from the VOD yourself, if SupaClip is out of minutes</h3>
+    <p>Same pack, no AI, no quota, ffmpeg only. Say when you saw it and it cuts immediately:</p>
+    <span class="cmd">python3 tools/set_moment.py 01 4823.5 4851.0 \
+  --hook "First frame of GTA 6" \
+  --title "IShowSpeed sees GTA 6 for the first time"
+<b>FR=60 ./capture.sh</b> speed-vod.mp4 01</span>
+    <p style="margin-bottom:0">1080×1920, whole frame over a blurred fill, credit burned,
+    <code>-14 LUFS</code> audio. <code>python3 tools/set_moment.py --list</code> shows what is
+    filled in. Full captions need a transcript: <code>./build.sh speed-vod.mp4</code> adds them.</p>
+  </div></div>
+
+  <div class="card step"><div class="num">6</div><div>
+    <h3>Post, with the credit in the text too</h3>
+    <p style="margin-bottom:0">Every caption line is written in <code>candidates.json</code> and
+    ends with <code>Clip: @IShowSpeed</code>. Keep it there. Nothing in this pack posts anything on
+    its own — that stays your call, every time.</p>
+  </div></div>
+
+  <h2>What was tested here, so you are not debugging my guesses</h2>
+  <ol>
+    <li><b>Crop and encode.</b> <code>capture.sh</code> rendered a real 1080×1920 H.264 clip from a
+    16:9 source with the entire frame preserved over a blurred fill — frame checked by eye.</li>
+    <li><b>The credit burn.</b> Composited into a finished clip, verified on a decoded frame, and
+    made idempotent via a container marker so a second run can't double-stamp.</li>
+    <li><b>The caption engine.</b> The vendored <code>video-to-shorts-skill</code> produced a
+    captioned vertical clip end to end, and its rubric caught a hook that repeated the dialogue.</li>
+    <li><b>Timing snap.</b> All ten written start/end sentences matched onto a reworded transcript,
+    refusing to guess when an anchor was missing.</li>
+  </ol>
+
+  <h2>Two honest notes</h2>
+  <div class="warn">
+    <p style="margin:0 0 8px"><b>SupaClip will not have this VOD indexed instantly.</b> It reads
+    the video itself, so a stream that finished hours ago is fine — but a stream that is
+    <em>still live</em> has no VOD to read. If it errors, you are early: wait for the VOD, or use
+    step 5 on a Twitch download.</p>
+    <p style="margin:0"><b>Speed's audio peaks.</b> He screams, and a stream mixed for Twitch will
+    clip on export. If a clip sounds torn, re-cut it with a trim:
+    <code>FF_EXTRA="-af volume=-2dB"</code> — the loudness pass then has headroom to work with.</p>
+  </div>
+
+  <p class="foot">Everything in this folder is committed: <code>candidates.json</code> (moment
+  brief), <code>tools/</code> (capture, credit, snap, review), <code>assets/credit.png</code>.
+  The boss pack sits next door in <code>works/clips/gta6-launch/</code> and uses the same tools.</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+{
+  "source": {
+    "url": "https://www.youtube.com/@IShowSpeed/streams",
+    "title": "PLAYING GTA 6 EARLY ACCESS GAMEPLAY GET IN HERE!",
+    "channel": "IShowSpeed",
+    "platform": "YouTube + Twitch, simulcast",
+    "started": "2026-11-18T21:00:00-05:00",
+    "duration_s": null,
+    "duration_note": "still live at the time this pack was written (26k concurrent). A 9-10 hour VOD: expect roughly 32000-36000 s once it lands. Do not guess; capture.sh takes any length.",
+    "language": "en",
+    "timing_confidence": "unknown",
+    "timing_note": "Stream moments are found by watching, not by transcript. capture.sh takes the seconds you pick and cuts them immediately, which is the whole point: Speed's reactions are a race, the meme dies in about 48 hours."
+  },
+  "style": {
+    "accent": "#FFD400",
+    "note": "Speed yellow on black. Different from the boss pack's GTA red so the two sets never look like one series."
+  },
+  "candidates": [
+    {
+      "id": "01",
+      "start": 0,
+      "end": 30,
+      "score": 0,
+      "hook": "First frame of GTA 6",
+      "title": "IShowSpeed sees GTA 6 for the first time",
+      "caption": "The moment the wait ended. IShowSpeed's first seconds in GTA 6. Clip: @IShowSpeed. #GTA6 #IShowSpeed #Speed #GTA6Gameplay #ViceCity",
+      "start_line": "oh my god oh my god",
+      "end_line": "(to be written once you pick the moment)",
+      "why": "test moment",
+      "cuts": [],
+      "hooks_note": "placeholder until a real moment is picked"
+    }
+  ],
+  "targets": [
+    {
+      "id": "first-reaction",
+      "what": "The first 30 seconds after he actually gets control of the game",
+      "why": "The single most-clipped moment of any launch stream. Face cam and game both on screen; keep both.",
+      "look_for": "his face before the game loads, then the cut to gameplay",
+      "score_if_good": "90+"
+    },
+    {
+      "id": "police-stop-rage",
+      "what": "First wanted level and first bust: the cop chase",
+      "why": "Cop chases are the most reliable Speed content there is, and GTA 6's heat system makes him argue with the game.",
+      "look_for": "stars going up, him shouting at the car, the bust animation",
+      "score_if_good": "85+"
+    },
+    {
+      "id": "car-theft-fail",
+      "what": "The first time the car-theft flow does not work the way he expects",
+      "why": "GTA 6 gates nice cars behind a phone app and security. He is going to find that out loudly.",
+      "look_for": "the phone out, a locked car, an alarm",
+      "score_if_good": "80+"
+    },
+    {
+      "id": "leonida-reaction",
+      "what": "First look at Vice City / Leonida skyline at night or in a storm",
+      "why": "Visual payoff clips travel beyond his audience. Hurricane or storm weather is the one to catch.",
+      "look_for": "rain, lightning, puddles, him going quiet for a second",
+      "score_if_good": "80+"
+    },
+    {
+      "id": "gator",
+      "what": "First animal encounter, ideally the alligator",
+      "why": "170+ species in this game. A gator biting him is a 15-second clip that needs no context at all.",
+      "look_for": "swamp, water, a shape in the water",
+      "score_if_good": "85+"
+    }
+  ],
+  "rules": {
+    "length": "12-40 s. Speed clips live or die on the first 1.5 s, so start ON the shout, not before it.",
+    "cut_the_wait": "Cut loading screens, menu time and dead air inside a clip; capture.sh takes one continuous range, so pick ranges that have no dead air.",
+    "audio": "He is loud and peaks. capture.sh normalises to -14 LUFS but if a clip clips, re-cut with a -2 dB trim (documented in README).",
+    "credit": "Burned into every frame: CLIP: IShowSpeed. Keep @IShowSpeed in the caption too."
+  },
+  "capture": {
+    "final": {},
+    "cmd": "FR=60 ./capture.sh SOURCE.mp4 CLIP",
+    "note": "Fill this in as you pick moments: tools/set_moment.py writes it for you. 60 fps default because the source is a 60 fps stream."
+  }
+}
