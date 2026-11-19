@@ -98,5 +98,36 @@
       "ref": "The alligator / wildlife story",
       "why": "Funniest moment in the video, but it only lands with the host being bitten on camera and runs long."
     }
-  ]
+  ],
+  "capture": {
+    "final": {
+      "01": {
+        "start": 12.0,
+        "end": 47.6,
+        "note": "cold open; keep the 'awful / crashed / boring' triplet, it is the setup"
+      },
+      "02": {
+        "start": 96.6,
+        "end": 137.6,
+        "note": "end on 'just muck around inside and see what happened'"
+      },
+      "03": {
+        "start": 261.4,
+        "end": 297.4,
+        "note": "end on 'a couple of city blocks at a time'"
+      },
+      "04": {
+        "start": 1264.6,
+        "end": 1283.4,
+        "note": "starts after the sponsor read; do not reach back past 1250"
+      },
+      "05": {
+        "start": 1467.4,
+        "end": 1500.4,
+        "note": "end on 'still inside the search zone'"
+      }
+    },
+    "cmd": "FR=30 bash capture.sh SOURCE.mp4 CLIP",
+    "note": "Hand-checked seconds for capture.sh, which cuts and encodes one clip per invocation. Verify each start frame before posting."
+  }
 }

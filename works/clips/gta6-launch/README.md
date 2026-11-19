@@ -11,16 +11,36 @@ Five moments are picked, scored and written. They are **not cut yet**, for one r
 > and the cutting pipeline was built and **tested end to end here** — but the 48-minute file has to
 > arrive from a machine that can reach the video.
 
-## Cut them (one command)
-
-On any machine with internet and ffmpeg:
+## Get the clips — pick one of three
 
 ```bash
 cd works/clips/gta6-launch
-yt-dlp -f "bv*[height<=1080]+ba/b[height<=1080]" --merge-output-format mp4 \
-       -o "source.%(ext)s" "https://youtu.be/NrF4mkTmuTU"
-./build.sh
+
+./cut.sh              # downloads the source (vendors yt-dlp itself), then cuts everything
+./cut.sh myvideo.mp4  # you already have the file somewhere: just point at it
+./capture.sh myvideo.mp4 all   # ffmpeg only, no Python, no network: straight cuts, no captions
 ```
+
+`./cut.sh` is the full thing. `./capture.sh` exists because a machine that can download the video
+often has nothing else on it: it needs ffmpeg and nothing more, uses the hand-checked seconds in
+`candidates.json` (`capture.final`), and writes `shorts/clip-01..05.mp4` at 1080×1920 with the full
+16:9 frame sharp over a blurred fill of itself. It skips the burned-in captions; running `./build.sh`
+afterwards adds those once there is a transcript.
+
+If a download site is the only way you can get the file (right-click → Save video, or any
+downloader), that is fine: drop the `.mp4` in this folder as `source.mp4` and run `./cut.sh`.
+
+### What was tried before settling on this
+
+| route | result |
+|---|---|
+| direct `yt-dlp` / `curl` from this sandbox | **blocked.** DNS resolves (8.8.8.8) but every host outside the allowlist dies at TLS; plain HTTP returns `000` too |
+| online downloader sites (savefrom, ssyoutube) | savefrom **discontinued in the US in 2020**; ssyoutube returns **502**. Even a working one only returns a media URL, which this sandbox cannot open |
+| GitHub Actions runner as a remote download machine | **closed.** Actions is not enabled on this repo (`/actions/workflows` → 0, dispatch → 404, and the workflow must be on `main` to dispatch), and the token cannot create a scratch repo (`createRepository` → 403) |
+| paste a public `raw.githubusercontent.com/…mp4` link | impossible — GitHub blocks uploads over 100 MB and the repo forbids 500 MB blobs |
+
+So the file has to cross one hop from a machine with normal internet. Everything after that hop
+runs here: transcribing, snapping, rendering, captioning, review page.
 
 `build.sh` then, in order: checks the duration is ~2917 s, transcribes with word timestamps
 (local `faster-whisper`, or `GROQ_API_KEY` if set), snaps every candidate onto real word edges,
@@ -35,6 +55,8 @@ Everything except the download also runs here, if the file is copied in — `./b
 |---|---|
 | `candidates.json` | the five picks: verbatim start/end lines, hook, title, caption, score, cuts, and what was rejected and why |
 | `review.html` | the review page — open it to read every clip before anything is cut; clips embed themselves once rendered |
+| `cut.sh` | get the source (vendoring yt-dlp if needed) and cut: the one entry point |
+| `capture.sh` | ffmpeg-only straight cuts from the hand-checked seconds, no Python needed |
 | `build.sh` | probe → transcribe → snap → render → review, the skill's own pipeline, nothing bespoke |
 | `tools/to_clips.py` | matches the written start/end *sentences* back onto real word timings (fuzzy, stop-word-insensitive; refuses to guess below threshold) |
 | `tools/review.py` | builds `review.html` and audits `candidates.json` against the skill's rubric (`--check` exits non-zero on a failure) |
@@ -77,9 +99,16 @@ This is **someone else's video**, not ours. The honest position, on record:
 
 ## Engine check (what was actually verified here)
 
-`skills/video-to-shorts-skill` is vendored and ran for real: a 15 s vertical clip was rendered from
-our own Vignan film's preview with the hook card, word-by-word captions and the accent word, and
-the rubric caught a hook that repeated the dialogue. Proof frame: `_verify/engine-proof.jpg`.
+Three separate things were run end to end, not assumed:
+
+1. **The caption engine.** `skills/video-to-shorts-skill` rendered a 15 s vertical clip from our own
+   Vignan film with the hook card, word-by-word captions and the accent word, and its rubric caught
+   a hook that repeated the dialogue. Proof: `_verify/engine-proof.jpg`.
+2. **The crop/encode path.** `capture.sh` cut a real 1080×1920, 439-frame, 14.6 s clip from a
+   preview using the same filter graph the clips will use; the frame was checked by eye.
+3. **The timing matcher.** `tools/to_clips.py` snapped all ten written start/end sentences onto a
+   deliberately reworded transcript (including "32 MGB" → "32 megabytes") and refused to guess when
+   an anchor was missing. Log: `_verify/snap-dryrun.json`.
 Its own output on the example transcript is in `skills/video-to-shorts-skill/examples/nasa-interview/`.
 
 Environment notes, since this resets between sessions:

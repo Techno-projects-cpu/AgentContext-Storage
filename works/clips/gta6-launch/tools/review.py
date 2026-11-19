@@ -108,7 +108,13 @@ def page(cand, notes):
     for c in cand["candidates"]:
         data, path = media(c["id"])
         if data:
-            video = (f'<video controls playsinline preload="metadata" poster="">'
+            cover = os.path.join(ROOT, "shorts", f"clip-{c['id']}-cover.jpg")
+            poster = ""
+            if os.path.exists(cover):
+                with open(cover, "rb") as f:
+                    poster = (' poster="data:image/jpeg;base64,'
+                              + base64.b64encode(f.read()).decode() + '"')
+            video = (f'<video controls playsinline preload="metadata"{poster}>'
                      f'<source src="{data}" type="video/mp4"></video>')
         else:
             video = ('<div class="pending"><span>not cut yet</span>'
