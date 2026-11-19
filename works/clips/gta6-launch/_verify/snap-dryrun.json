@@ -1,0 +1,68 @@
+{
+ "video": "source.mp4",
+ "style": {
+  "accent": "#E8312A"
+ },
+ "clips": [
+  {
+   "id": "01",
+   "start": 12.45,
+   "end": 47.49,
+   "hook": "A glitch saved Grand Theft Auto",
+   "title": "How a bug saved GTA and led to GTA 6",
+   "caption": "GTA was nearly cancelled in 1995. Then a bug made the police ram you off the road, and that accident became the sandbox every GTA is built on. 30 years later, GTA 6. Clip: Mrwhosetheboss. #GTA6 #GTA #RockstarGames #gamedev #retrogaming",
+   "reframe": "auto",
+   "snap": false,
+   "cuts": []
+  },
+  {
+   "id": "02",
+   "start": 96.95,
+   "end": 137.35,
+   "hook": "Missions were never the point",
+   "title": "The GTA bug that created the wanted system",
+   "caption": "GTA's cops were coded to pull you over. A route-finding bug made them ram you instead, and that mistake became the wanted system and the whole sandbox idea. Clip: Mrwhosetheboss. #GTA #gamedev #Rockstar #GTA6 #gaminghistory",
+   "reframe": "auto",
+   "snap": false,
+   "cuts": [
+    [
+     123.5,
+     127.0
+    ]
+   ]
+  },
+  {
+   "id": "03",
+   "start": 261.95,
+   "end": 297.35,
+   "hook": "The 68 MB problem behind GTA 3",
+   "title": "How GTA 3 fit a whole city in 32MB",
+   "caption": "The PS2 had 32MB of memory. Liberty City in 3D needed about 100. Rockstar loaded a bubble around the player instead of the city, and 3D open worlds were never the same. Clip: Mrwhosetheboss. #GTA3 #gamedev #PS2 #Rockstar #leveldesign",
+   "reframe": "auto",
+   "snap": false,
+   "cuts": []
+  },
+  {
+   "id": "04",
+   "start": 1264.95,
+   "end": 1283.35,
+   "hook": "The leak did not matter",
+   "title": "GTA 6's trailer broke YouTube anyway",
+   "caption": "90 videos of GTA 6 leaked in 2022. A year later a 90-second trailer still became the most watched trailer in YouTube history, nearly doubling Avengers Endgame. Clip: Mrwhosetheboss. #GTA6 #Rockstar #gaming",
+   "reframe": "auto",
+   "snap": false,
+   "cuts": []
+  },
+  {
+   "id": "05",
+   "start": 1467.95,
+   "end": 1500.35,
+   "hook": "Heat that remembers you",
+   "title": "What GTA 6's wanted stars actually mean",
+   "caption": "GTA 6's wanted stars are not a countdown. Solid means they can see you, flashing means they lost you, hollow means they are still guessing, red means you slipped the zone. Clip: Mrwhosetheboss. #GTA6 #gamingtips #Rockstar #openworld",
+   "reframe": "auto",
+   "snap": false,
+   "cuts": []
+  }
+ ]
+}
