@@ -24,11 +24,20 @@
       "hook": "First frame of GTA 6",
       "title": "IShowSpeed sees GTA 6 for the first time",
       "caption": "The moment the wait ended. IShowSpeed's first seconds in GTA 6. Clip: @IShowSpeed. #GTA6 #IShowSpeed #Speed #GTA6Gameplay #ViceCity",
-      "start_line": "oh my god oh my god",
+      "start_line": "(to be written once you pick the moment)",
       "end_line": "(to be written once you pick the moment)",
       "why": "test moment",
       "cuts": [],
       "hooks_note": "placeholder until a real moment is picked"
+    },
+    {
+      "id": "02",
+      "cuts": [],
+      "start": 0,
+      "end": 30,
+      "hook": "test moment",
+      "start_line": "(to be written once you pick the moment)",
+      "end_line": "(to be written once you pick the moment)"
     }
   ],
   "targets": [
