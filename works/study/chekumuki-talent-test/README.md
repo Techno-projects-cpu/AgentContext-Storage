@@ -28,6 +28,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [10 — More knowledge and reasoning](10-more-knowledge-and-reasoning.md): deeper science, everyday applications, approachable maths and 30 new explained MCQs.
 - [11 — Fast, deep knowledge cards](11-fast-deep-knowledge-cards.md): 70 short explanations, easy maths and a 20-question self-test.
 - [12 — Electricity from zero](12-electricity-from-zero.md): beginner-friendly volts, current, resistance, watts, energy, circuits and 20 practice questions.
+- [13 — Sports current affairs](13-sports-current-affairs.md): recent Olympics, Paralympics, Asian and Commonwealth Games, World Cups and a 20-question quiz; dated 12 November 2026.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
