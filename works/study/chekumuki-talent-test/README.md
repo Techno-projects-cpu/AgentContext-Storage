@@ -25,6 +25,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [07 — Challenge practice](07-challenge-practice.md): 45 additional reasoning-focused MCQs with explanations.
 - [08 — Extra science GK](08-science-gk-daily-life.md): India, scientists, geography, technology and everyday 'why' questions.
 - [09 — Deep connections and self-test](09-deep-connections-and-test.md): scientific reasoning, science, easy maths and 16 explained questions.
+- [10 — More knowledge and reasoning](10-more-knowledge-and-reasoning.md): deeper science, everyday applications, approachable maths and 30 new explained MCQs.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
