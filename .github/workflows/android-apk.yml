@@ -61,3 +61,33 @@ jobs:
           path: out/*.apk
           if-no-files-found: error
           retention-days: 90
+
+  # Pushes the built APK into the repo so it can be downloaded with one click,
+  # without a GitHub login and without unzipping an artifact.
+  publish-apk:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download the built APK
+        uses: actions/download-artifact@v4
+        with:
+          name: namaz-azan-apk
+          path: /tmp/apk
+
+      - name: Commit the APK
+        run: |
+          mkdir -p works/apps/namaz-azan/release
+          cp /tmp/apk/app-release.apk works/apps/namaz-azan/release/namaz-azan-1.0.0.apk
+          ls -la works/apps/namaz-azan/release/
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f works/apps/namaz-azan/release/namaz-azan-1.0.0.apk
+          git commit -m "release: Namaz & Azan 1.0.0 APK [skip ci]" || exit 0
+          git push
