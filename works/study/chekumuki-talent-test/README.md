@@ -1,6 +1,6 @@
 # Chekumuki Talent Test: Your Science & GK Pack
 
-Congratulations on winning the **school level**! This pack helps you prepare for the next stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
+Congratulations on winning the **mandal level**! This pack helps you prepare for the district stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
 
 ## First: what to check with your teacher
 
@@ -29,6 +29,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [11 — Fast, deep knowledge cards](11-fast-deep-knowledge-cards.md): 70 short explanations, easy maths and a 20-question self-test.
 - [12 — Electricity from zero](12-electricity-from-zero.md): beginner-friendly volts, current, resistance, watts, energy, circuits and 20 practice questions.
 - [13 — Sports current affairs](13-sports-current-affairs.md): recent Olympics, Paralympics, Asian and Commonwealth Games, World Cups and a 20-question quiz; dated 12 November 2026.
+- [14 — District “heavy sword” challenge](14-district-heavy-sword-challenge.md): a balanced one-week plan, deeper reasoning and 40 original explained questions.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
