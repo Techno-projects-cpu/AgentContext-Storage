@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Namaz &amp; Azan</string>
+    <string name="channel_azan">Azan</string>
+    <string name="channel_azan_desc">Plays at each prayer time</string>
+    <string name="channel_reminder">Prayer reminders</string>
+    <string name="channel_reminder_desc">Quiet reminders for prayer times</string>
+    <string name="azan_title">It is time for %1$s</string>
+    <string name="azan_body">حَيَّ عَلَى الصَّلَاة · Hayya \'ala-s-salah</string>
+</resources>

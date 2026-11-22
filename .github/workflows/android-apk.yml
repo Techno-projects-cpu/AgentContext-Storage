@@ -1,0 +1,74 @@
+name: Build Namaz & Azan APK
+
+# Produces an installable APK and a downloadable bundle.
+# Runs on GitHub's free runners (public repo), which ship with a full Android SDK.
+on:
+  push:
+    paths:
+      - "works/apps/namaz-azan/**"
+      - ".github/workflows/android-apk.yml"
+  pull_request:
+    paths:
+      - "works/apps/namaz-azan/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Create a throwaway signing key
+        # Lets the release APK install directly, and proves the release build works.
+        run: |
+          keytool -genkeypair -v \
+            -keystore "$RUNNER_TEMP/namaz.jks" \
+            -storepass namazazan -keypass namazazan \
+            -alias namaz -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Namaz Azan, OU=Local, O=Local, L=Guntur, S=Andhra Pradesh, C=IN"
+          echo "NAMAZ_KEYSTORE=$RUNNER_TEMP/namaz.jks" >> "$GITHUB_ENV"
+
+      - name: Unit tests (prayer time accuracy)
+        working-directory: works/apps/namaz-azan
+        run: gradle --no-daemon testDebugUnitTest
+
+      - name: Build APK
+        working-directory: works/apps/namaz-azan
+        run: gradle --no-daemon assembleRelease
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p out
+          cp works/apps/namaz-azan/app/build/outputs/apk/release/*.apk out/ 2>/dev/null || true
+          ls -la out/
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: namaz-azan-apk
+          path: out/*.apk
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload test report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: works/apps/namaz-azan/app/build/reports/tests/**
+          retention-days: 14
