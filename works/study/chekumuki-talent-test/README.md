@@ -1,6 +1,6 @@
 # Chekumuki Talent Test: Your Science & GK Pack
 
-Congratulations on winning the **school level**! This pack helps you prepare for the next stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
+Congratulations on winning the **mandal level**! This pack helps you prepare for the district stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
 
 ## First: what to check with your teacher
 
@@ -25,6 +25,15 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [07 — Challenge practice](07-challenge-practice.md): 45 additional reasoning-focused MCQs with explanations.
 - [08 — Extra science GK](08-science-gk-daily-life.md): India, scientists, geography, technology and everyday 'why' questions.
 - [09 — Deep connections and self-test](09-deep-connections-and-test.md): scientific reasoning, science, easy maths and 16 explained questions.
+- [10 — More knowledge and reasoning](10-more-knowledge-and-reasoning.md): deeper science, everyday applications, approachable maths and 30 new explained MCQs.
+- [11 — Fast, deep knowledge cards](11-fast-deep-knowledge-cards.md): 70 short explanations, easy maths and a 20-question self-test.
+- [12 — Electricity from zero](12-electricity-from-zero.md): beginner-friendly volts, current, resistance, watts, energy, circuits and 20 practice questions.
+- [13 — Sports current affairs](13-sports-current-affairs.md): recent Olympics, Paralympics, Asian and Commonwealth Games, World Cups and a 20-question quiz; dated 12 November 2026.
+- [14 — District “heavy sword” challenge](14-district-heavy-sword-challenge.md): a balanced one-week plan, deeper reasoning and 40 original explained questions.
+- [15 — Past-paper investigation](15-past-paper-investigation.md): district-format sources, past-paper links and a transparent analysis of accessible question fragments and limitations.
+- [16 — Your mandal paper analysis and district quiz](16-mandal-paper-analysis-and-district-quiz.md): format, topic map, quiz practice and source limitations.
+- [17 — Practice paper A](17-district-practice-paper-a.md) and [18 — Practice paper B](18-district-practice-paper-b.md): original 40-question papers modelled on the photographed mandal format, with explanations.
+- [10-paper heavy-sword workout](paper-workout/README.md): exact supplied school and mandal photographs, partial non-official checks, and 10 mixed 40-question papers with answer sheets.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
