@@ -51,7 +51,7 @@ jobs:
       - name: Unit tests (prayer time accuracy)
         id: test
         working-directory: works/apps/namaz-azan
-        run: gradle --no-daemon testDebugUnitTest 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG" || exit 1
+        run: gradle --no-daemon testDebugUnitTest --info 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG" || exit 1
 
       - name: Build APK
         id: apk
