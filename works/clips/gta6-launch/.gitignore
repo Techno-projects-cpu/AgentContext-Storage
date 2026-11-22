@@ -1,0 +1,8 @@
+
+# private yt-dlp sidecar, never committed
+.vendor/
+source.mp4
+source.mkv
+source.webm
+work/
+shorts/*.mp4

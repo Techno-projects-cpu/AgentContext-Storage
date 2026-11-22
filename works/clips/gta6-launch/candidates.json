@@ -1,0 +1,134 @@
+{
+  "source": {
+    "url": "https://youtu.be/NrF4mkTmuTU",
+    "title": "I Tested Every Single GTA",
+    "channel": "Mrwhosetheboss",
+    "duration_s": 2917,
+    "uploaded": "2026-11-19",
+    "language": "en",
+    "timing_confidence": "approximate",
+    "timing_note": "Timings were read off a line-broken public transcript, not word timestamps, so every start/end is +/-2 s. build.sh re-derives exact word timings from the source file and snaps every clip to the nearest sentence edge before rendering."
+  },
+  "style": {
+    "accent": "#E8312A",
+    "note": "GTA cover-grid red. One accent, white on black, nothing else.",
+    "fps": 30
+  },
+  "candidates": [
+    {
+      "id": "01",
+      "start": 12.5,
+      "end": 47.5,
+      "score": 92,
+      "hook": "A glitch saved Grand Theft Auto",
+      "title": "How a bug saved GTA and led to GTA 6",
+      "caption": "GTA was nearly cancelled in 1995. Then a bug made the police ram you off the road, and that accident became the sandbox every GTA is built on. 30 years later, GTA 6. Clip: Mrwhosetheboss. #GTA6 #GTA #RockstarGames #gamedev #retrogaming",
+      "start_line": "The driving was awful. The game crashed constantly, and worst of all, it was just boring",
+      "end_line": "this complete accident set off a chain reaction that 30 years later gave us the most hyped game in history, GTA 6",
+      "why": "Opens on a complete, self-contained setup and resolves on the line the whole launch day is about. No sponsor, no music bed, no gameplay reaction. Strongest clip in the set.",
+      "cuts": []
+    },
+    {
+      "id": "02",
+      "start": 97,
+      "end": 137,
+      "score": 88,
+      "hook": "Missions were never the point",
+      "title": "The GTA bug that created the wanted system",
+      "caption": "GTA's cops were coded to pull you over. A route-finding bug made them ram you instead, and that mistake became the wanted system and the whole sandbox idea. Clip: Mrwhosetheboss. #GTA #gamedev #Rockstar #GTA6 #gaminghistory",
+      "start_line": "See, the cops were coded to pull you over when they caught up with you",
+      "end_line": "the real fun was giving people a giant sandbox and allowing them to just muck around inside and see what happened",
+      "why": "Bug, turn, consequence. Explains why every GTA since feels the way it does, which is exactly the argument the source video is making.",
+      "cuts": [
+        [
+          123.5,
+          127.0
+        ]
+      ]
+    },
+    {
+      "id": "03",
+      "start": 262,
+      "end": 297,
+      "score": 84,
+      "hook": "The 68 MB problem behind GTA 3",
+      "title": "How GTA 3 fit a whole city in 32MB",
+      "caption": "The PS2 had 32MB of memory. Liberty City in 3D needed about 100. Rockstar loaded a bubble around the player instead of the city, and 3D open worlds were never the same. Clip: Mrwhosetheboss. #GTA3 #gamedev #PS2 #Rockstar #leveldesign",
+      "start_line": "To give you an idea, this extremely powerful PS2 console had 32 MGB of memory",
+      "end_line": "The console is only ever holding a couple of city blocks at a time",
+      "why": "Numbers a stranger can hold in their head, then the trick that closed the gap. Reads as engineering, not nostalgia, so it travels outside the GTA audience.",
+      "cuts": []
+    },
+    {
+      "id": "04",
+      "start": 1265,
+      "end": 1283,
+      "score": 80,
+      "hook": "The leak did not matter",
+      "title": "GTA 6's trailer broke YouTube anyway",
+      "caption": "90 videos of GTA 6 leaked in 2022. A year later a 90-second trailer still became the most watched trailer in YouTube history, nearly doubling Avengers Endgame. Clip: Mrwhosetheboss. #GTA6 #Rockstar #gaming",
+      "start_line": "Someone, this guy hacked Rockstar's servers and leaked 90 videos of their game in 2022",
+      "end_line": "it became the most watched trailer in YouTube history, almost doubling the view count of Avengers Endgame",
+      "why": "Two hard numbers and a reversal in 18 seconds. Shortest and most postable of the set, and it is squarely about the game launching today.",
+      "cuts": []
+    },
+    {
+      "id": "05",
+      "start": 1468,
+      "end": 1500,
+      "score": 84,
+      "hook": "Heat that remembers you",
+      "title": "What GTA 6's wanted stars actually mean",
+      "caption": "GTA 6's wanted stars are not a countdown. Solid means they can see you, flashing means they lost you, hollow means they are still guessing, red means you slipped the zone. Clip: Mrwhosetheboss. #GTA6 #gamingtips #Rockstar #openworld",
+      "start_line": "And the now up to six wanted stars tell you more than just how dead the police want you",
+      "end_line": "red means you've technically escaped, but you're still inside the search zone",
+      "why": "The most useful detail in the video for someone who has not played yet: four star states, each with its own meaning, then the thesis that the police only know what a witness saw. Ends on a clean idea.",
+      "cuts": []
+    }
+  ],
+  "rejected": [
+    {
+      "ref": "xTool M2 sponsor read",
+      "why": "Runs roughly 1160-1250. No clip may start before 1250 and run into it; 04 starts at 1265 for exactly that reason."
+    },
+    {
+      "ref": "Max Clifford marketing beat",
+      "why": "Strong story, but the names (Clifford, DMA Design) need setup a stranger does not have inside 45 s."
+    },
+    {
+      "ref": "The alligator / wildlife story",
+      "why": "Funniest moment in the video, but it only lands with the host being bitten on camera and runs long."
+    }
+  ],
+  "capture": {
+    "final": {
+      "01": {
+        "start": 12.0,
+        "end": 47.6,
+        "note": "cold open; keep the 'awful / crashed / boring' triplet, it is the setup"
+      },
+      "02": {
+        "start": 96.6,
+        "end": 137.6,
+        "note": "end on 'just muck around inside and see what happened'"
+      },
+      "03": {
+        "start": 261.4,
+        "end": 297.4,
+        "note": "end on 'a couple of city blocks at a time'"
+      },
+      "04": {
+        "start": 1264.6,
+        "end": 1283.4,
+        "note": "starts after the sponsor read; do not reach back past 1250"
+      },
+      "05": {
+        "start": 1467.4,
+        "end": 1500.4,
+        "note": "end on 'still inside the search zone'"
+      }
+    },
+    "cmd": "FR=30 bash capture.sh SOURCE.mp4 CLIP",
+    "note": "Hand-checked seconds for capture.sh, which cuts and encodes one clip per invocation. Verify each start frame before posting."
+  }
+}
