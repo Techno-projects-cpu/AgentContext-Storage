@@ -28,6 +28,15 @@ Each paper is original preparation, **not an official JVV district question pape
 9. [Paper 09 — Heavy-sword mixed challenge](practice-09.md)
 10. [Paper 10 — Heavy-sword mixed challenge](practice-10.md)
 
+### Extra-heavy papers and oral training
+
+- [Paper 11 — Hidden conditions](practice-11.md)
+- [Paper 12 — Reason, don't guess](practice-12.md)
+- [Paper 13 — District simulation](practice-13.md)
+- [Heavy-sword oral quiz — 24 questions](14-heavy-sword-oral-quiz.md)
+
+Papers 11–13 each contain 40 questions with their own explained answer sheet, including more multi-step questions and assertion–reason traps. They are independent practice, not an official district format. Some foundational concepts intentionally recur so you can test them in new settings.
+
 Use a blank sheet for answers. Cover the explanation section until you finish; if using a screen, stop before “Answer sheet and explanations.” Every paper contains its own key and short reasoning for all 40 positions. Each paper is text-only: revisit the actual photographs for diagram and image practice, and use [quiz/visual rehearsal](../16-mandal-paper-analysis-and-district-quiz.md) too.
 
 ## A practical week
