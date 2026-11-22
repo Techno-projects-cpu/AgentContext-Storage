@@ -51,18 +51,19 @@ jobs:
       - name: Unit tests (prayer time accuracy)
         id: test
         working-directory: works/apps/namaz-azan
-        run: gradle --no-daemon testDebugUnitTest 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG"
+        run: gradle --no-daemon testDebugUnitTest 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG" || exit 1
 
       - name: Build APK
         id: apk
         working-directory: works/apps/namaz-azan
-        run: gradle --no-daemon assembleRelease 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG"
+        run: gradle --no-daemon assembleRelease 2>&1 | tee -a "$GITHUB_WORKSPACE/$LOG" || exit 1
 
       - name: Collect artifacts
         run: |
           mkdir -p out
           cp works/apps/namaz-azan/app/build/outputs/apk/release/*.apk out/ 2>/dev/null || true
           ls -la out/ | tee -a "$LOG"
+          test -n "$(ls -A out)" || { echo "NO APK PRODUCED" | tee -a "$LOG"; exit 1; }
 
       - name: Upload APK
         if: always()

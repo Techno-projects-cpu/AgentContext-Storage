@@ -9,3 +9,6 @@ captures/
 keystore/
 *.jks
 *.keystore
+
+# The azan tone is app content, not a build artifact: do not let the root rule drop it.
+!app/src/main/res/raw/azan_chime.ogg

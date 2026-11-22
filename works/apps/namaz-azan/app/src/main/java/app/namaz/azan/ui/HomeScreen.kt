@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -131,13 +130,13 @@ fun HomeScreen(
                         )
                         state.nextAzan?.let {
                             Row(verticalAlignment = Alignment.CenterVertically) {
-                                Icon(
-                                    Icons.Filled.NotificationsActive,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(14.dp),
-                                    tint = MaterialTheme.colorScheme.primary
+                                Box(
+                                    Modifier
+                                        .size(6.dp)
+                                        .clip(CircleShape)
+                                        .background(MaterialTheme.colorScheme.primary)
                                 )
-                                Spacer(Modifier.width(4.dp))
+                                Spacer(Modifier.width(6.dp))
                                 Text(
                                     "Azan ${it.time}",
                                     style = MaterialTheme.typography.labelMedium,
