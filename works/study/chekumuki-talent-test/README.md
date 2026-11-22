@@ -30,6 +30,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [12 — Electricity from zero](12-electricity-from-zero.md): beginner-friendly volts, current, resistance, watts, energy, circuits and 20 practice questions.
 - [13 — Sports current affairs](13-sports-current-affairs.md): recent Olympics, Paralympics, Asian and Commonwealth Games, World Cups and a 20-question quiz; dated 12 November 2026.
 - [14 — District “heavy sword” challenge](14-district-heavy-sword-challenge.md): a balanced one-week plan, deeper reasoning and 40 original explained questions.
+- [15 — Past-paper investigation](15-past-paper-investigation.md): district-format sources, past-paper links and a transparent analysis of accessible question fragments and limitations.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
