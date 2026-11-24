@@ -1,0 +1,5 @@
+# the root .gitignore excludes *.mp4 — the deliverable must be exempt
+!04-duable-kinetic-1080x1920.mp4
+source/__pycache__/
+source/_bed.wav
+still-*.png
