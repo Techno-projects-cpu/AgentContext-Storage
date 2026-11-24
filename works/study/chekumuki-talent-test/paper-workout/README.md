@@ -13,6 +13,13 @@ Your school- and mandal-level photographs both show **40 marks, 60 minutes, 28 M
 
 The seven image files are **unmodified copies of your supplied photographs**. They retain handwritten marks and the original image angles; they are not clean typed copies. The official answer keys were not provided. The independent checks are **partial and not official**; unclear or questionable questions are flagged rather than invented. If you send the official keys or clearer photos, the original-paper checks can be completed.
 
+## Newly found old paper
+
+- [Analysis of the user-linked old paper and selected worked checks](../19-old-paper-link-analysis.md)
+- [New 40-MCQ old-paper-style model with explained key](model-old-paper-style-01.md)
+
+The Drive link produced a partly corrupted text extraction; the paper's precise year and level are unverified and the PDF itself is not stored here. The model is original, unofficial practice; its suggested time is not an official rule.
+
 ## Calibrated to your actual papers
 
 - [Comparison and paper analysis](paper-analysis-calibration.md)
