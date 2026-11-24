@@ -13,6 +13,14 @@ Your school- and mandal-level photographs both show **40 marks, 60 minutes, 28 M
 
 The seven image files are **unmodified copies of your supplied photographs**. They retain handwritten marks and the original image angles; they are not clean typed copies. The official answer keys were not provided. The independent checks are **partial and not official**; unclear or questionable questions are flagged rather than invented. If you send the official keys or clearer photos, the original-paper checks can be completed.
 
+## Expedition papers: inspired by your new finds
+
+- [Your 2024 school-level paper: analysis and source](../20-2024-school-paper-expedition.md)
+- [Expedition Paper A — 2024 school-style mix](model-expedition-2024-style.md)
+- [Expedition Paper B — Old-paper mixed challenge](model-expedition-mixed-challenge.md)
+
+Each new original model has 40 MCQs and its own explained answer sheet. These approximate the styles of the linked papers, not official district or CCMB test formats. They use written visual descriptions rather than reproducing the source figures.
+
 ## Newly found old paper
 
 - [Analysis of the user-linked old paper and selected worked checks](../19-old-paper-link-analysis.md)
