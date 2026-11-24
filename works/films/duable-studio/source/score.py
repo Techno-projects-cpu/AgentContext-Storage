@@ -169,19 +169,19 @@ def room(dry, wet=0.30, seconds=2.0, seed=7):
 
 
 # ------------------------------------------------------------------ the score
+# The story in harmony. Seven sections on the seven cuts, so the music turns
+# where the film turns. It opens unresolved (A minor, no third in the bass), turns
+# warmer as the studio answers, and lands on the same chord it started on — the
+# bookend, in music.
 SECTIONS = [
-    # (start, end, chord notes as MIDI, density of the arpeggio in seconds,
-    #  'pad' weight, 'sub' weight, bells?)
-    (0.0, 3.2, [57, 60, 64, 71], 0.40, 0.30, 0.00, False),   # Am9
-    (3.2, 5.4, [53, 57, 60, 64], 0.20, 0.34, 0.55, False),   # Fmaj7
-    (5.4, 7.6, [55, 59, 62, 64], 0.20, 0.34, 0.55, False),   # G6
-    (7.6, 9.4, [50, 53, 57, 60], 0.20, 0.36, 0.60, True),    # Dm7
-    (9.4, 11.2, [52, 55, 59, 62], 0.20, 0.36, 0.60, True),   # Em7
-    (11.2, 13.5, [48, 52, 55, 59], 0.20, 0.38, 0.62, True),  # Cmaj7
-    (13.5, 14.6, [45, 48, 52, 55], 0.20, 0.36, 0.62, False),  # Am7
-    (14.6, 15.6, [41, 45, 48, 52], 0.20, 0.36, 0.62, False),  # Fmaj7
-    (15.6, 17.8, [43, 47, 50, 55], 0.40, 0.34, 0.50, False),  # G
-    (17.8, 20.4, [45, 52, 57, 64, 71], 0.55, 0.42, 0.45, True),  # Am9, resolve
+    # (start, end, chord as MIDI, arpeggio step, pad weight, sub weight, bells)
+    (0.0, 2.8, [57, 60, 64, 71], 0.44, 0.26, 0.10, False),    # Am9     — alone
+    (2.8, 6.6, [53, 57, 60, 64], 0.26, 0.32, 0.34, False),    # Fmaj7   — an answer
+    (6.6, 9.9, [55, 58, 62, 65], 0.26, 0.32, 0.36, False),    # G7      — the catalogue
+    (9.9, 13.6, [52, 55, 59, 62], 0.24, 0.34, 0.40, True),    # Em7     — the lift
+    (13.6, 17.2, [48, 52, 55, 59], 0.24, 0.36, 0.42, True),   # Cmaj7   — the answer
+    (17.2, 20.8, [50, 53, 57, 60], 0.22, 0.36, 0.44, True),   # Dm7     — four ways
+    (20.8, 24.8, [45, 52, 57, 64], 0.48, 0.40, 0.40, True),   # Am(add9) — home
 ]
 
 # the motif: root, fifth, ninth, third — the same four intervals all the way
@@ -189,7 +189,7 @@ SECTIONS = [
 MOTIF = [0, 2, 3, 1]
 
 
-def build(dur=20.4, tail=1.2):
+def build(dur=24.8, tail=1.2):
     total = dur + tail
     n = int(total * SR)
     dry = np.zeros((n, 2))
@@ -287,7 +287,7 @@ def write(path, stereo):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="score.wav")
-    ap.add_argument("--dur", type=float, default=20.4)
+    ap.add_argument("--dur", type=float, default=24.8)
     a = ap.parse_args()
     mix = build(a.dur)
     write(a.out, mix)

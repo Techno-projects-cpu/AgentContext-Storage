@@ -13,7 +13,7 @@ Nothing here assumes the assets are good. It measures them:
   * the master is limited to -1.0 dBTP-ish and normalised to -14 LUFS, which is
     where Instagram / TikTok actually put a vertical film
 
-    python3 mix.py --out ../audio-mix.wav --dur 20.4
+    python3 mix.py --out ../audio-mix.wav --dur 25.4
 """
 import argparse
 import glob
@@ -29,12 +29,17 @@ from score import SR
 
 # where each line lands in the film, and how loud it should sit.
 # The picture cuts are 0, 3.2, 7.6, 11.2, 15.6.
+# The story, one line per beat. The cuts are 0 / 2.9 / 6.8 / 10.2 / 14.0 / 17.8 /
+# 21.4. Each line starts a beat AFTER its cut, so the picture lands first and the
+# voice then says what we are looking at — the reverse reads as a slideshow.
 VO = [
-    ("01.wav", 0.55),    # statement
-    ("02.wav", 3.95),    # the 24 names
-    ("03.wav", 7.95),    # the object
-    ("04.wav", 11.55),   # four ways in
-    ("05.wav", 15.90),   # close
+    ("01.wav", 0.60),    # "I need a thing made."
+    ("02.wav", 3.40),    # every service starts with a sentence like that
+    ("03.wav", 7.35),    # twenty-four services, four categories
+    ("04.wav", 10.65),   # one of them is yours
+    ("05.wav", 14.30),   # they said: make the story and visuals feel connected
+    ("06.wav", 17.95),   # design. automate. edit. position.
+    ("07.wav", 21.55),   # duable. a studio with a service for that.
 ]
 VO_LEVEL_DB = -16.0      # speech loudness relative to full scale (LUFS-ish target)
 BED_LEVEL_DB = -27.0     # score alone, before ducking
@@ -95,7 +100,7 @@ def plate(x, wet=0.13, seconds=0.85):
     return x * (1 - wet) + w * wet
 
 
-def build(dur=20.4, here=None):
+def build(dur=24.8, here=None):
     here = here or os.path.join(os.path.dirname(os.path.abspath(__file__)), "vo")
     n = int(dur * SR)
     voice = np.zeros(n)
@@ -247,7 +252,7 @@ def lufs_approx(x):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="audio-mix.wav")
-    ap.add_argument("--dur", type=float, default=20.4)
+    ap.add_argument("--dur", type=float, default=24.8)
     a = ap.parse_args()
     mix, voice, bed, _ = build(a.dur)
     score.write(a.out, np.stack([mix, mix], 1))

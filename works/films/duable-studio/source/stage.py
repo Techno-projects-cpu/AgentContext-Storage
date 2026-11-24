@@ -30,15 +30,24 @@ PAPER_B = (0.910, 0.898, 0.859)        # 232,229,219
 def box(sx, sy, sz, bevel=0.10):
     """A beveled slab. 8 corners pulled in, 24 faces out — cheap and it catches
     light on the chamfer, which is what stops it reading as a cube of clay."""
-    core = np.array([[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+    unit = np.array([[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
                      [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]], float)
-    core *= np.array([sx, sy, sz]) / 2 * (1 - bevel)
-    shell = core + core * (bevel * 2.0)
+    half = np.array([sx, sy, sz]) / 2
+    # The two shells must share the SAME sign per axis, only differ in size:
+    # the outer box is the true size, the inner one is pulled in by the bevel.
+    # (Scaling the inner one outward — core + core*2*bevel — scaled from the
+    #  origin instead, so on a thin slab it spawned a second floating plate and
+    #  the hero plate read as a green card with a flap.)
+    core = unit * half * (1 - bevel)
+    shell = unit * half
     V = np.vstack([core, shell])
     F = [[0, 2, 1], [0, 3, 2], [4, 5, 6], [4, 6, 7],
          [8, 10, 9], [8, 11, 10], [12, 13, 14], [12, 14, 15]]
+    # The bridge from the inner shell to the outer one. Its partner vertex is
+    # `+8`, NOT `+4`: +4 is the inner box's opposite face, so bridging to it drew
+    # a thin flap floating clear of every plate.
     for a, b in [(0, 1), (1, 2), (2, 3), (3, 0)]:
-        F += [[a, b, 4 + b], [a, 4 + b, 4 + a]]
+        F += [[a, b, b + 8], [a, b + 8, a + 8]]
     return V, np.array(F, np.int64)
 
 
@@ -190,20 +199,47 @@ def build(t, S):
     if callable(drop):
         drop = drop(t)
 
+    # ONE PLATE LIFTS OUT OF THE STACK.
+    # The story's hinge: twenty-four plates, and one of them is your answer. It
+    # rises out of its slot, turns broadside and comes toward the viewer, while
+    # the other twenty-three quieten down. `lift_u` runs 0..1.
+    lift = S.get("lift")                 # (col, row) or None
+    lu = S.get("lift_u", 0.0)
+    if callable(lu):
+        lu = lu(t)
+    lu = max(0.0, min(1.0, lu))
+    le = lu * lu * (3 - 2 * lu)
+    # the twenty-three that stay behind lose their lustre, not their legibility
+    dimmed = INK_SOFT if le > 0.02 else None
+
+    only = S.get("only")            # render just this (col,row) — a hero plate
     positions, rots = plate_positions(t, layout)
     for i, ((c, r, n), p, rr) in enumerate(zip(stack_index(), positions, rots)):
+        if only is not None and (c, r) != only:
+            continue
         # each plate rises into its slot on a small stagger, then floats
         k = np.clip((drop - i * 0.012) / 0.55, 0.0, 1.0)
         e = 1 - (1 - k) ** 3
         y = p[1] - (1 - e) * 3.2
         breathe = math.sin(t * 1.1 + i * 0.7) * 0.018
         roll = math.sin(t * 0.7 + i * 0.9) * 0.05
-        V, F = box(PX, PY, PZ, bevel=0.07)
-        V = xf(V, rot_xyz(ax=rr[0] + roll * 0.3, az=roll), (p[0], y + breathe, p[2]))
         hot = S.get("hot")
-        mat = INK
-        if hot is not None and hot(c, r, t):
+        chosen = bool(hot is not None and hot(c, r, t))
+
+        V, F = box(PX, PY, PZ, bevel=0.07)
+        if chosen and lift is not None:
+            # straight up out of its own column. It keeps its stacking pose: a
+            # plate that turns broadside mid-rise reads as a card appearing, and
+            # at these angles a broadside plate is nearly edge-on anyway.
+            tx, ty, tz = S.get("lift_to", (p[0], p[1] + 1.9, 0.0))
+            p = (p[0] + (tx - p[0]) * le, p[1] + (ty - p[1]) * le, p[2] + (tz - p[2]) * le)
+            yaw = S.get("lift_yaw", 0.0) * le
+            V = xf(V, rot_xyz(ax=rr[0], ay=yaw, az=roll * 0.20 + le * 0.22),
+                   (p[0], p[1], p[2]))
             mat = ACCENT
+        else:
+            V = xf(V, rot_xyz(ax=rr[0] + roll * 0.3, az=roll), (p[0], y + breathe, p[2]))
+            mat = (dimmed or INK) if not chosen else INK
         parts.append((V, F, mat))
 
     for extra in S.get("extra", []):
@@ -224,9 +260,12 @@ def render(t, S, W, H, ss=1):
     sc.glow = None
     for V, F, mat in parts:
         sc.add((V, F), mat)
-    eye, ctr = frame_camera(parts, S["az"](t), S["el"](t), S["fill"](t),
-                            fov=S.get("fov", 30.0), W=W, H=H,
-                            yshift=S.get("yshift", 0.10))
+    if S.get("eye") is not None and S.get("ctr") is not None:
+        eye, ctr = S["eye"], S["ctr"]      # locked: solved once, held for the shot
+    else:
+        eye, ctr = frame_camera(parts, S["az"](t), S["el"](t), S["fill"](t),
+                                fov=S.get("fov", 30.0), W=W, H=H,
+                                yshift=S.get("yshift", 0.10))
     sc.set_camera(eye, ctr, fov=S.get("fov", 30.0))
     return sc.render()
 
@@ -248,3 +287,66 @@ def flatten(img):
     ground = out.mean(axis=2) >= float(paper.mean()) * 0.955
     out[ground] = 255
     return out.astype(np.uint8)
+
+
+def content_window(images, pad=0.05):
+    """The stable crop window for a shot's 3D plate.
+
+    A frame solved by projected WIDTH leaves a multi-column subject floating in a
+    mostly-empty canvas (measured: the stacks occupied the top third of an
+    820x760 render). Cropping per frame is not an option — the bbox changes as the
+    subject turns, so the crop would rescale every frame and the object would
+    appear to pump. So: measure the bbox at the extremes of the shot, take the
+    union, and use that ONE window for every frame.
+    """
+    boxes = []
+    for img in images:
+        a = np.asarray(img).mean(axis=2)
+        ys, xs = np.where(a < 250)
+        if len(xs):
+            boxes.append((xs.min(), ys.min(), xs.max(), ys.max()))
+    if not boxes:
+        h, w = np.asarray(images[0]).shape[:2]
+        return 0, 0, w, h
+    x0 = min(b[0] for b in boxes); y0 = min(b[1] for b in boxes)
+    x1 = max(b[2] for b in boxes); y1 = max(b[3] for b in boxes)
+    m = pad * max(1, max(x1 - x0, y1 - y0))
+    h, w = np.asarray(images[0]).shape[:2]
+    return (int(max(0, x0 - m)), int(max(0, y0 - m)),
+            int(min(w, x1 + m + 1)), int(min(h, y1 + m + 1)))
+
+
+def place_window(c, arr, win, cx, cy, max_w, max_h, scale=1.0, blend="multiply"):
+    """Draw a flattened plate cropped to `win`, FITTED into a box at (cx, cy).
+
+    Fitting matters: the crop's pixel size is whatever the shot's content window
+    happened to be, so drawing it at raw size made the object's on-screen scale
+    an accident of the render resolution.
+    """
+    import kit as K
+    x0, y0, x1, y1 = win
+    sub = np.asarray(arr)[y0:y1, x0:x1]
+    h, w = sub.shape[:2]
+    k = min(max_w / w, max_h / h) * scale
+    pw, ph = w * k, h * k
+    K.image(c, sub, cx - pw / 2, cy - ph / 2, pw, ph, 1.0, blend=blend)
+
+
+def hero_plate(ax_deg, el_deg, yaw_deg, W=640, H=520, fill=0.80, mat=None):
+    """One plate, framed as a product shot.
+
+    `render(... only=(c,r))` keeps the plate in its stacking pose, i.e. lying flat,
+    which makes it read as a card. This stands it broadside and lights it on its
+    own, so the payoff frame is a plate and not a rectangle.
+    """
+    mat = mat or ACCENT
+    V, F = box(PX, PY, PZ, bevel=0.09)
+    V = xf(V, rot_xyz(ax=math.radians(ax_deg), az=math.radians(yaw_deg)), (0, 0, 0))
+    sc = GalleryScene(W, H, bg=PAPER, bg_top=PAPER)
+    sc.lights = LIGHTS
+    sc.glow = None
+    sc.add((V, F), mat)
+    eye, ctr = frame_camera([(V, F, mat)], 0.0, el_deg, fill, fov=30.0,
+                            W=W, H=H, yshift=0.0)
+    sc.set_camera(eye, ctr, fov=30.0)
+    return sc.render()
