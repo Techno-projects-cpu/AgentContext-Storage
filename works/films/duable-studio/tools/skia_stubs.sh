@@ -6,7 +6,19 @@ set -euo pipefail
 OUT=${1:-/tmp/gl}
 mkdir -p "$OUT"
 cd "$OUT"
-SYMS=$(nm -D --undefined-only "$(python3 -c 'import skia,os;print(skia.__file__)')" 2>/dev/null \
+PY=${PYTHON:-python3}
+# locate the extension module directly: importing it would fail before the stubs exist
+SKIA_SO=$($PY - <<'EOF'
+import glob, os, sysconfig
+pats = ["skia*.so", "skia*.pyd"]
+for d in (sysconfig.get_paths()["purelib"], sysconfig.get_paths()["platlib"]):
+    for pat in pats:
+        hits = glob.glob(os.path.join(d, pat))
+        if hits:
+            print(hits[0]); raise SystemExit
+EOF
+)
+SYMS=$(nm -D --undefined-only "$SKIA_SO" 2>/dev/null \
         | awk '{print $2}' | grep -E '^(gl|egl)' | sort -u || true)
 if [ -z "${SYMS:-}" ]; then
   echo "skia not importable yet — install skia-python first" >&2
@@ -17,4 +29,4 @@ fi
 gcc -shared -fPIC -o libEGL.so.1 stubs.c
 gcc -shared -fPIC -o libGL.so.1  stubs.c
 echo "wrote $OUT/libEGL.so.1 and $OUT/libGL.so.1 ($(wc -l < stubs.c) lines)"
-echo "run with: LD_LIBRARY_PATH=$OUT python3 ..."
+echo "run with: LD_LIBRARY_PATH=$OUT $PY ..."
