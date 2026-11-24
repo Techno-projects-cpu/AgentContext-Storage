@@ -8,6 +8,8 @@ These are **unmodified copies of the three photographs supplied by you**, not a 
 
 The photographed instructions say 40 marks, 60 minutes, one mark each and no negative marks; questions 1–28 are MCQs, 29–32 assertion–reason, 33–40 fill-ins. **This is the school paper's format, not guaranteed district rules.**
 
+For question-by-question independent checks alongside these exact photos, see the [school worked paper](original-school-worked.md). The checks are unofficial and flag uncertainty.
+
 ## Answer sheet for your attempt
 
 1 ___  2 ___  3 ___  4 ___  5 ___  6 ___  7 ___  8 ___  9 ___  10 ___
