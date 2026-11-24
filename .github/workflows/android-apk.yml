@@ -57,7 +57,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          # Named .zip because that is what it is: an Artifacts download is always a zip.
+          # An Artifacts download is always a zip, so say so in the name.
           name: namaz-azan-apk.zip
           path: out/*.apk
           if-no-files-found: error
@@ -79,7 +79,7 @@ jobs:
       - name: Download the built APK
         uses: actions/download-artifact@v4
         with:
-          name: namaz-azan-apk
+          name: namaz-azan-apk.zip
           path: /tmp/apk
 
       - name: Commit the APK
