@@ -1,0 +1,4 @@
+assets/narration.wav
+source/__pycache__/
+# the film itself is the deliverable, and the root rule ignores *.mp4
+!01-every-tv-screen-vertical-1080x1920.mp4
