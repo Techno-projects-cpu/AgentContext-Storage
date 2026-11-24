@@ -57,7 +57,8 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: namaz-azan-apk
+          # Named .zip because that is what it is: an Artifacts download is always a zip.
+          name: namaz-azan-apk.zip
           path: out/*.apk
           if-no-files-found: error
           retention-days: 90
@@ -91,3 +92,35 @@ jobs:
           git add -f works/apps/namaz-azan/release/namaz-azan-1.0.0.apk
           git commit -m "release: Namaz & Azan 1.0.0 APK [skip ci]" || exit 0
           git push
+
+  # Publishes the APK as a Release asset. A release asset downloads directly with the
+  # file's real name and extension — unlike an Actions artifact, which arrives as a zip.
+  publish-release:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download the built APK
+        uses: actions/download-artifact@v4
+        with:
+          name: namaz-azan-apk.zip
+          path: /tmp/apk
+
+      - name: Name the asset properly
+        run: |
+          mkdir -p dist
+          cp /tmp/apk/app-release.apk dist/namaz-azan-1.0.0.apk
+          ls -la dist/
+
+      - name: Create or update the release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: namaz-azan-v1.0.0
+          name: Namaz & Azan 1.0.0 — Android APK
+          body_path: works/apps/namaz-azan/RELEASE_NOTES.md
+          files: dist/namaz-azan-1.0.0.apk
+          fail_on_unmatched_files: true
