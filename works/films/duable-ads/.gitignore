@@ -1,0 +1,5 @@
+# the root .gitignore excludes *.mp4 and *.ogg; the deliverables must be exempt
+!01-duable-the-menu-1080x1920.mp4
+!02-duable-honest-mode-1080x1920.mp4
+source/__pycache__/
+source/_bed.wav
