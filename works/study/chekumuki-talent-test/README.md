@@ -33,7 +33,8 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [15 — Past-paper investigation](15-past-paper-investigation.md): district-format sources, past-paper links and a transparent analysis of accessible question fragments and limitations.
 - [16 — Your mandal paper analysis and district quiz](16-mandal-paper-analysis-and-district-quiz.md): format, topic map, quiz practice and source limitations.
 - [17 — Practice paper A](17-district-practice-paper-a.md) and [18 — Practice paper B](18-district-practice-paper-b.md): original 40-question papers modelled on the photographed mandal format, with explanations.
-- [10-paper heavy-sword workout](paper-workout/README.md): exact supplied school and mandal photographs, partial non-official checks, and 10 mixed 40-question papers with answer sheets.
+- [19 — User-linked old paper analysis](19-old-paper-link-analysis.md): source link, selected worked checks, uncertain OCR and a new old-paper-style model.
+- [Paper workout](paper-workout/README.md): exact supplied school and mandal photographs, partial non-official checks, and mixed 40-question practice papers with answer sheets.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
 
