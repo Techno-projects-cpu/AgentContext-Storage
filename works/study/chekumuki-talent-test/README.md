@@ -16,6 +16,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 
 ## All your material
 
+- [★ Night-before giant knowledge dump](night-before-knowledge/README.md): priority cards, dated sports and science news, space, biology, physical science, easy maths and a 40-question recall test.
 - [01 — Quick revision](01-quick-revision.md): a high-priority, low-overwhelm start.
 - [02 — Science and everyday life](02-science-and-everyday-life.md): physics, chemistry, biology, Earth and environment, with explanations and common traps.
 - [03 — Easy maths and reasoning](03-easy-maths-and-reasoning.md): small steps and worked examples; no Olympiad-level maths.
