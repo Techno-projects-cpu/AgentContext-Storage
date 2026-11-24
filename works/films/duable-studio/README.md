@@ -1,6 +1,10 @@
 # Duable — the studio film
 
-`05-duable-studio-1080x1920.mp4` · 19.6 s · 1080×1920 · 30 fps · H.264 + AAC · no voiceover
+`05-duable-studio-1080x1920.mp4` · 20.4 s · 1080×1920 · 30 fps · H.264 + AAC ·
+**score + narration, mastered to -14 LUFS**
+
+`05-duable-studio-1080x1920-music-only.mp4` — the same picture, score only, for
+anyone cutting against it.
 
 Minimal, editorial, and built from **three engines in one pipeline**:
 
@@ -53,15 +57,70 @@ The four chapter kickers and headlines are the site's own category pages:
 Counts 8 / 4 / 5 / 7 and the 24 service names are the site's, in its order.
 No prices, no client counts, no testimonials.
 
+## Sound
+
+Three layers, all synthesised or recorded here — no samples, no stock library.
+
+**`score.py` — the music.** Six-partial felted piano, an inharmonic celesta, a
+filtered pad, a lowpassed bass voice and a soft felt thump, sent through a
+synthetic convolution plate. The harmony turns where the picture cuts:
+
+| time | harmony | what enters |
+|---|---|---|
+| 0.0 | Am9 | one arpeggio, wide room, nothing to prove |
+| 3.2 | Fmaj7 → G6 | the pulse arrives, still soft |
+| 7.6 | Dm7 → Em7 | bells over the turning object |
+| 11.2 | Cmaj7 → Am7 → Fmaj7 | the fullest bar of the film |
+| 15.6 | G → Am9 | resolve, ring out, one last bell |
+
+The melodic material is one four-interval motif (`root, 2, 3, 1` of the chord)
+transposed across every section. Measured after mixing: 17 % bass, 50 % mid,
+centroid 543 Hz, stereo side/mid 0.24 — deliberately narrow, because a phone
+speaker folds to mono and a wide bed phase-cancels.
+
+**`vo/` — the narration.** Five lines, one per shot, recorded per line so each
+can be placed against its own picture beat:
+
+> A studio with a service for that. · Twenty-four services, in four categories.
+> · Eight. Four. Five. Seven. · Design. Automate. Edit. Position. · Duable
+> Industries. Independent creative technology studio.
+
+Every line is the site's own copy. There is no invented claim in the film, spoken
+or written.
+
+**`mix.py` — the mix.** Trims and normalises each line (two of the five came back
+17 dB quieter than the rest — a gain problem, not a performance problem),
+sidechain-ducks the score by the *measured* speech envelope, puts a short plate
+on the voice so it shares the piano's room, then bus-compresses and masters by
+measuring with ffmpeg's BS.1770 meter rather than trusting an estimate.
+
+### Two audio bugs worth remembering
+
+1. `(-3.0) ** 0.85` is **complex** in Python. A loudness-correction loop that
+   multiplied by a negative base raised to a fractional power silently wrote
+   complex samples into the wav. Keep the exponent outside the sign.
+2. My analytic loudness estimate read **3.5 dB optimistic** (-14.0 claimed,
+   -10.5 measured). Aiming with it shipped an over-loud master. The fix was to
+   stop guessing: write the wav, measure it with `ebur128`, correct.
+
 ## Build
 
 ```bash
 bash tools/skia_stubs.sh /tmp/gl        # CPU skia still links libEGL/libGL
 cd source
 LD_LIBRARY_PATH=/tmp/gl python3 film.py --still 9.6
-LD_LIBRARY_PATH=/tmp/gl python3 film.py --out ../05-duable-studio-1080x1920.mp4
+LD_LIBRARY_PATH=/tmp/gl python3 film.py \
+    --out ../05-duable-studio-1080x1920.mp4 \
+    --clean-out ../05-duable-studio-1080x1920-music-only.mp4
+
+python3 score.py --out /tmp/score.wav      # music alone
+python3 mix.py   --out /tmp/mix.wav        # score + voice, mastered
 ```
 
 ## QC
 
-`tooling/qc.py --safe 0.90` → **9/9**, motion in 13/13 sampled intervals.
+`tooling/qc.py --safe 0.90` → **10/10**, motion in 13/13 sampled intervals,
+`audio_has_voice` false on the music-only cut and true on the narrated one,
+measured -14.1 and -14.0 LUFS. The voice detector is envelope energy at speech
+rate (1.5–9 Hz), not level spread: a bed with a hit on every cut also swings
+20 dB and used to pass.

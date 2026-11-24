@@ -18,6 +18,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
+import score          # noqa: E402
 import kit as K       # noqa: E402
 import scenes as S    # noqa: E402
 
@@ -31,36 +32,11 @@ def make_film(fps=30, scale=1.0):
     return film
 
 
-def audio(out, duration, cuts):
-    """A bed you barely notice: sub drone, a soft hit per cut, air. No samples."""
-    sr = 48000
-    n = int(duration * sr)
-    t = np.arange(n) / sr
-    rng = np.random.default_rng(5)
-    mix = (np.sin(2 * np.pi * 48.0 * t) * 0.20
-           + np.sin(2 * np.pi * 72.0 * t) * 0.09)
-    mix *= 0.70 + 0.30 * np.sin(2 * np.pi * 0.05 * t + 0.4)
-    air = np.convolve(rng.standard_normal(n), np.ones(320) / 320, "same") * 0.7
-    mix += air * 0.20
-    for i, ct in enumerate(cuts):
-        m = int(0.8 * sr)
-        f = 58.0 * np.exp(-np.arange(m) / sr * 3.0) + 30.0
-        hit = np.sin(np.cumsum(2 * np.pi * f / sr)) * np.exp(-np.arange(m) / sr * 6.0)
-        tone = np.sin(2 * np.pi * 1180 * np.arange(m) / sr) * np.exp(-np.arange(m) / sr * 24)
-        s = int(ct * sr)
-        e = min(n, s + m)
-        seg = (hit * 0.42 + tone * 0.06)[: e - s]
-        mix[s:e] += seg
-    fade = int(1.4 * sr)
-    mix[-fade:] *= np.linspace(1, 0, fade)
-    peak = np.max(np.abs(mix)) or 1.0
-    mix = mix / peak * 0.78
-    pcm = (np.stack([mix, mix], 1) * 32767).astype(np.int16)
-    with wave.open(out, "wb") as w:
-        w.setnchannels(2)
-        w.setsampwidth(2)
-        w.setframerate(sr)
-        w.writeframes(pcm.tobytes())
+def audio(out, duration):
+    """The finished mix: score + voice, mastered. See score.py and mix.py."""
+    import mix
+    m, voice, bed, _ = mix.build(duration)
+    score.write(out, np.stack([m, m], 1))
     return out
 
 
@@ -71,6 +47,10 @@ def main():
     ap.add_argument("--out", default=os.path.join(HERE, "..", "05-duable-studio-1080x1920.mp4"))
     ap.add_argument("--still", type=float, default=None)
     ap.add_argument("--ffmpeg", default=os.environ.get("FFMPEG", "/tmp/fbin/ffmpeg"))
+    ap.add_argument("--clean-out", default=None,
+                    help="also write a music-only cut here (video stream copied)")
+    ap.add_argument("--audio-only", action="store_true",
+                    help="render the mix to _mix.wav and stop")
     a = ap.parse_args()
 
     film = make_film(a.fps, a.scale)
@@ -81,8 +61,12 @@ def main():
         print("wrote", os.path.abspath(p))
         return 0
 
-    wav = os.path.join(HERE, "_bed.wav")
-    audio(wav, film.duration, [s.t0 for s in film.shots[1:]])
+    wav = os.path.join(HERE, "_mix.wav")
+    print("  building the mix (score + voice)…")
+    audio(wav, film.duration)
+    if a.audio_only:
+        print("  wrote", wav)
+        return 0
     cmd = [a.ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{film.W}x{film.H}",
            "-r", str(film.fps), "-i", "-", "-i", wav,
@@ -103,8 +87,21 @@ def main():
     if rc != 0:
         print("\nffmpeg failed:\n" + err[-2000:], file=sys.stderr)
         return 1
-    os.remove(wav)
     print(f"\r  wrote {a.out} ({os.path.getsize(a.out)/1e6:.2f} MB, {film.duration:.2f}s)")
+
+    if a.clean_out:
+        # music only, for anyone who wants to cut against the picture themselves
+        import mix as _mix
+        clean = os.path.join(HERE, "_score.wav")
+        _, _, bedout, _ = _mix.build(film.duration)   # the mastered BED, no voice
+        _mix.score.write(clean, np.stack([bedout, bedout], 1))
+        subprocess.run([a.ffmpeg, "-hide_banner", "-loglevel", "error", "-y",
+                        "-i", a.out, "-i", clean, "-map", "0:v:0", "-map", "1:a:0",
+                        "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                        "-movflags", "+faststart", "-shortest", a.clean_out], check=False)
+        os.remove(clean)
+        print(f"  wrote {a.clean_out} ({os.path.getsize(a.clean_out)/1e6:.2f} MB, music only)")
+    os.remove(wav)
     return 0
 
 

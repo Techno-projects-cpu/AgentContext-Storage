@@ -280,5 +280,5 @@ def build(film):
         K.Shot("menu", 3.2, 7.6, dict(dz=0.010), s_menu),
         K.Shot("object", 7.6, 11.2, dict(dy=-24, dz=0.016), s_object),
         K.Shot("chapters", 11.2, 15.6, dict(dy=-30, dz=0.012), s_chapters),
-        K.Shot("close", 15.6, 19.6, dict(dz=0.014, dy=-12), s_close),
+        K.Shot("close", 15.6, 20.4, dict(dz=0.014, dy=-12), s_close),
     ]
