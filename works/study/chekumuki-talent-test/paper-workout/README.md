@@ -6,6 +6,15 @@ Your school- and mandal-level photographs both show **40 marks, 60 minutes, 28 M
 
 **Safety:** Never test electricity using mains, experiment with chemicals or reproduce deceptive “magic” demonstrations. These are reading/reasoning exercises.
 
+## Original papers with worked answers
+
+- [School: original photographs plus question-by-question independent checks](original-school-worked.md)
+- [Mandal: original photographs plus question-by-question independent checks](original-mandal-worked.md)
+- [2024 first-win paper: original Drive link plus selected checks](original-2024-school-worked.md)
+- [Other user-linked old paper: original Drive link plus selected checks](../19-old-paper-link-analysis.md)
+
+These checks are **not official keys**. The two 2026 pages show original photographs with paraphrased question identifiers and answers, not full verbatim transcripts; the two linked old papers have selected checks only. Ambiguous items are flagged. The Drive PDFs themselves are not stored in the repository; picture-dependent questions require the originals.
+
 ## Your exact photo copies
 
 - [Original school paper — exact supplied photos + response sheet and partial independent check](original-school-facsimile.md)
