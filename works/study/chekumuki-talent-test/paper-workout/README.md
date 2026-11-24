@@ -13,6 +13,14 @@ Your school- and mandal-level photographs both show **40 marks, 60 minutes, 28 M
 
 The seven image files are **unmodified copies of your supplied photographs**. They retain handwritten marks and the original image angles; they are not clean typed copies. The official answer keys were not provided. The independent checks are **partial and not official**; unclear or questionable questions are flagged rather than invented. If you send the official keys or clearer photos, the original-paper checks can be completed.
 
+## Calibrated to your actual papers
+
+- [Comparison and paper analysis](paper-analysis-calibration.md)
+- [School-style model paper 1](model-school-01.md)
+- [Mandal-style model paper 1](model-mandal-01.md)
+
+These two new papers approximate the type and difficulty of the supplied examples, with 40 questions and a separate explained key at the end. They are original unofficial practice, not old or official papers; an exact match in difficulty cannot be guaranteed. Use the original photographs above for full image and diagram practice.
+
 ## Ten practice papers — each has an answer sheet at the end
 
 Each paper is original preparation, **not an official JVV district question paper**. Questions are assembled from earlier original study-pack questions plus new worked-number variations; some concepts and question wording recur across papers or older guides. The assertion–reason items also use repeated patterns with changed numbers, so do not mistake these for 400 unrelated new questions. Papers 06–10 draw more heavily from the earlier reasoning-focused challenge sets; the difficulty labels are **approximate**, not verified measurements, and all papers are mixed. The ten papers contain 280 MCQ positions, 40 assertion–reason positions and 80 fill-in positions.
