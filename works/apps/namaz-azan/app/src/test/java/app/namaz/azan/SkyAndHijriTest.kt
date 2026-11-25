@@ -404,7 +404,7 @@ class SkyAndHijriTest {
         )
 
         val justAfterIsha = day.of(Prayer.ISHA)!!.instant.plusSeconds(60)
-        assertNull(day.next(justAfterIsha), "today has no prayer left after Isha")
+        assertNull("today has no prayer left after Isha", day.next(justAfterIsha))
 
         // The fall-through the UI uses.
         val fallThrough = day.next(justAfterIsha)
