@@ -30,6 +30,7 @@ frames/
 *.jpg
 *.jpeg
 !docs/**/*.png
+!works/apps/namaz-azan/design/*.png
 !docs/**/*.svg
 
 # node / python
@@ -42,3 +43,4 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+works/apps/namaz-azan/tools/__pycache__/

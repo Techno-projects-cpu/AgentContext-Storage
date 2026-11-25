@@ -4,16 +4,53 @@ A prayer-time and azan reminder app for Android, written in Kotlin + Jetpack Com
 Everything is computed on the device: **no network, no accounts, no ads, no analytics,
 and no location ever leaves the phone.**
 
+## What it looks like
+
+The whole screen is the sky. The background gradient is computed from the sun's **real
+altitude above your horizon**, so the app is orange at Maghrib in Guntur and daylight
+blue at the same clock time in London. Nothing is a time-of-day lookup table; the sun is
+solved every second from your coordinates.
+
+Text contrast was measured, not eyeballed. Dark ink on a lit sunset sky is only **1.67:1**,
+so the sky keeps its colour at the top of the screen and deepens toward the bottom, and
+cards are derived from that ground. The worst contrast anywhere in the day is **6.9:1**,
+and a unit test asserts it at every sun altitude from −25° to +60°.
+
+It opens with Bismillah, drawn rather than shown, while it computes the day.
+
 ## What it does
 
-- Five prayers plus sunrise, for the day, with a live countdown to the next one
+- **Today**: five prayers plus sunrise, a live countdown, and an arc showing how far
+  through the current prayer window you are
+- **The night**: Imsak, Islamic midnight and the last third of the night (tahajjud)
+- **The week**: seven days of sunrise and sunset, with day-length bars
+- **The year**: today's daylight, how fast it is changing, and a countdown to Ramadan
+- **The month**: a full timetable, Fajr to Isha, with the Hijri day in the margin
+- **Qibla**: the great-circle bearing to the Kaaba on a true-north compass rose
 - Azan at each prayer time, with a per-prayer on/off switch
 - Full-screen azan that shows over the lock screen and plays a tone
 - Automatic re-arming after reboot or a time-zone change
 - Sixteen preset cities (Guntur default) or the device's own location
 - Nine calculation methods and both Asr conventions (Shafi 1× / Hanafi 2×)
 - Per-prayer manual adjustment, ±15 min, for matching your local mosque
-- Light and dark themes, Material 3 with dynamic colour on Android 12+
+
+## Two things it deliberately does not pretend
+
+**The Hijri date is arithmetic, not observed.** It uses the tabular Islamic calendar,
+which is at most ±1 day from the Umm al-Qura table (it agreed outright at 2 of 4 dates
+checked, and was one day early at the other two). It is not the sighting in your city.
+The app therefore shows the date it is using and tells you to confirm with your mosque.
+Everything that depends on it — the Ramadan Isha interval — inherits that ±1 day.
+
+**There is one link out.** The home screen and settings carry a credit to
+[zero-vast.vercel.app](https://zero-vast.vercel.app), the developer's site. The app holds
+no WebView and makes no request — the tap hands a URL to your browser, which is why the
+manifest still has no network permission. The on-screen promise says "one link, opened in
+your browser" rather than pretending the app never leaves itself.
+
+**The qibla bearing is to true north.** Magnetic declination is not applied, because
+doing so from a coarse world model would be worse than saying plainly which north is
+which. The screen says "from true north" and tells you to allow for declination.
 
 ## Prayer time accuracy
 
@@ -22,9 +59,25 @@ Adhan-compatible libraries — Meeus, *Astronomical Algorithms*, chapters 12, 22
 It is not an approximation or a lookup table.
 
 It was validated against an independent reference implementation across four cities
-and four dates before a line of Kotlin was written. **Worst deviation of any prayer:
-58 seconds**, i.e. every prayer lands within one minute. The unit tests in
-`app/src/test` pin the results to the minute so a future change cannot silently drift.
+and four dates: **worst deviation of any prayer: 58 seconds**, i.e. every prayer lands
+within one minute. The unit tests in `app/src/test` pin the results to the minute so a
+future change cannot silently drift.
+
+Two errors were found and fixed in 1.1 by diffing against that reference:
+
+- **Dhuhr was 1–2 minutes late.** The one-minute guard after solar noon was being
+  followed by a second round-up on display. True solar noon in Guntur on 9 Nov 2026 is
+  11:52:03 (confirmed independently by two sources).
+- **Umm al-Qura and Qatar Isha were 30 minutes short in Ramadan.** The published rule is
+  90 minutes after Maghrib, extended to 120 in Ramadan. Verified against Makkah,
+  13 Ramadan 1448: Maghrib 18:21, Isha 20:21.
+
+Re-verified after the rewrite at Guntur, Oslo in polar night (the high-latitude fallback
+matches), Sydney in the southern winter, and Makkah.
+
+`tools/ref.py` is a line-for-line Python port of the Kotlin astronomy. There is no JDK in
+the authoring environment, so this is how the numbers were diffed without one — and it is
+kept in step with the app so a future diff is honest.
 
 No app like this should be trusted blindly: always confirm with your local mosque,
 and use the manual adjustment if your mosque differs by a few minutes.

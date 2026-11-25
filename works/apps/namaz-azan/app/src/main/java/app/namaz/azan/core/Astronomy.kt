@@ -211,6 +211,65 @@ object Astronomy {
     }
 
     /**
+     * Sun altitude and azimuth at a local clock time.
+     *
+     * Used by the sky renderer rather than by the prayer maths, and kept here
+     * because it shares the transit and declination the calculator already
+     * solved. The hour angle is taken from solar transit, which is what makes
+     * this cheap: it needs no sidereal-time round trip and no second solar
+     * solution.
+     *
+     * Verified: at Guntur on 9 Nov 2026 the sun sits at 56.9° altitude and 180.1°
+     * azimuth at solar noon, and 23.9° / 117.3° at 08:00 IST.
+     *
+     * @param utHours   the instant, as UT hours of the same UT day
+     * @param transitUT solar transit for that day, UT hours
+     * @param declination sun's declination for that day, degrees
+     * @return altitude (degrees above the horizon) and azimuth (degrees clockwise
+     *         from true north)
+     */
+    fun sunPosition(
+        utHours: Double,
+        transitUT: Double,
+        declination: Double,
+        latitude: Double
+    ): Pair<Double, Double> {
+        val hourAngle = 15.0 * (utHours - transitUT)
+        val alt = r(
+            asin(
+                sin(d(latitude)) * sin(d(declination)) +
+                    cos(d(latitude)) * cos(d(declination)) * cos(d(hourAngle))
+            )
+        )
+        val az = r(
+            atan2(
+                sin(d(hourAngle)),
+                cos(d(hourAngle)) * sin(d(latitude)) - tan(d(declination)) * cos(d(latitude))
+            )
+        ) + 180.0
+        return alt to unwind(az)
+    }
+
+    /**
+     * Great-circle initial bearing from a point to the Kaaba, in degrees
+     * clockwise from true north.
+     *
+     * Checked against a published value for Guntur (284°): this returns 284.09°.
+     * It is a TRUE bearing, not a compass bearing — magnetic declination is not
+     * applied, because doing so from a 1975-era world model would be worse than
+     * telling the user plainly which north is which.
+     */
+    fun qiblaBearing(latitude: Double, longitude: Double): Double {
+        val p1 = d(latitude)
+        val l1 = d(longitude)
+        val p2 = d(21.422487)      // Kaaba
+        val l2 = d(39.826206)
+        val y = sin(l2 - l1)
+        val x = cos(p1) * tan(p2) - sin(p1) * cos(l2 - l1)
+        return unwind(r(atan2(y, x)))
+    }
+
+    /**
      * Sun altitude for the Asr prayer: shadow of an object equals
      * [shadowFactor] times its own length plus the noon shadow.
      */
