@@ -391,6 +391,45 @@ class SkyAndHijriTest {
     }
 
     @Test
+    fun there_is_always_a_next_prayer_even_after_isha() {
+        // The bug this pins: `next` only looked at today, so for the two or three
+        // hours between Isha and midnight the hero said "Tomorrow" with no
+        // countdown. Every night, on the first screen, all year.
+        val ist = ZoneId.of("Asia/Kolkata")
+        val day = PrayerCalculator.forDate(
+            LocalDate.of(2026, 11, 9), 16.3067, 80.4365, ist, Method.KARACHI, Madhab.SHAFI
+        )
+        val tomorrow = PrayerCalculator.forDate(
+            LocalDate.of(2026, 11, 10), 16.3067, 80.4365, ist, Method.KARACHI, Madhab.SHAFI
+        )
+
+        val justAfterIsha = day.of(Prayer.ISHA)!!.instant.plusSeconds(60)
+        assertNull(day.next(justAfterIsha), "today has no prayer left after Isha")
+
+        // The fall-through the UI uses.
+        val fallThrough = day.next(justAfterIsha)
+            ?: tomorrow.times.firstOrNull { it.prayer != Prayer.SUNRISE }
+        assertNotNull(fallThrough)
+        assertEquals(Prayer.FAJR, fallThrough!!.prayer)
+        assertTrue(fallThrough.instant.isAfter(justAfterIsha))
+
+        // And the gap it has to cover is the real one, not a rounding error.
+        val gapMinutes = (fallThrough.instant.epochSecond - justAfterIsha.epochSecond) / 60
+        assertTrue("expected hours, got $gapMinutes min", gapMinutes > 120)
+    }
+
+    @Test
+    fun the_website_credit_points_at_the_real_site() {
+        // Guards against a typo in a string that is a link a user will tap.
+        val url = app.namaz.azan.data.Credits.WEBSITE
+        assertEquals("https://zero-vast.vercel.app", url)
+        assertTrue("must be https", url.startsWith("https://"))
+        assertEquals("zero-vast.vercel.app", app.namaz.azan.data.Credits.WEBSITE_LABEL)
+        // The label must actually be the URL without its scheme, or the card lies.
+        assertEquals(url.removePrefix("https://"), app.namaz.azan.data.Credits.WEBSITE_LABEL)
+    }
+
+    @Test
     fun every_day_of_the_year_produces_a_usable_sky() {
         // The renderer must never receive a NaN altitude, whatever the date.
         var date = LocalDate.of(2026, 1, 1)

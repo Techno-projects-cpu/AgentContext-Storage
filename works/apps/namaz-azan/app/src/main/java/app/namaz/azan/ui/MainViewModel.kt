@@ -60,7 +60,9 @@ data class UiState(
      */
     val week: List<DayTimes> = emptyList(),
     /** The whole of the current Gregorian month, for the timetable. */
-    val month: List<DayTimes> = emptyList()
+    val month: List<DayTimes> = emptyList(),
+    /** Tomorrow, so the hero still has a target after Isha. */
+    val tomorrow: DayTimes? = null
 ) {
     val zone: ZoneId get() = day?.zone ?: ZoneId.systemDefault()
 
@@ -72,8 +74,41 @@ data class UiState(
     /** The prayer that is "now" — the one whose window we are inside. */
     val current: PrayerTime? get() = day?.previous(now)
 
-    /** 0..1 between the last prayer and the next. Drives the hero arc. */
-    val progress: Float get() = day?.progress(now) ?: 0f
+    /**
+     * The next prayer, across midnight.
+     *
+     * [next] only looks at today, which leaves the hero with nothing to count down
+     * to for the two or three hours between Isha and midnight — every night. This
+     * falls through to tomorrow's Fajr instead, and says that it is tomorrow.
+     *
+     * The bug was visible on the first screen a user sees, for the whole of the
+     * evening, every day of the year: the number read "—" and the label read
+     * "Tomorrow".
+     */
+    val nextAcrossDays: PrayerTime?
+        get() = next ?: tomorrow?.times
+            ?.firstOrNull { it.prayer != app.namaz.azan.core.Prayer.SUNRISE }
+
+    /** True when the next prayer is after midnight. */
+    val nextIsTomorrow: Boolean get() = next == null && nextAcrossDays != null
+
+    /**
+     * 0..1 between the last prayer and the next. Drives the hero arc.
+     *
+     * After Isha this runs from Isha to tomorrow's Fajr, so the arc keeps moving
+     * through the night rather than sitting at 1.0.
+     */
+    val progress: Float
+        get() {
+            val d = day ?: return 0f
+            if (d.next(now) != null) return d.progress(now)
+            val isha = d.of(app.namaz.azan.core.Prayer.ISHA)?.instant ?: return 0f
+            val fajr = tomorrow?.of(app.namaz.azan.core.Prayer.FAJR)?.instant ?: return 1f
+            val total = (fajr.epochSecond - isha.epochSecond).toDouble()
+            if (total <= 0.0) return 1f
+            return ((now.epochSecond - isha.epochSecond) / total)
+                .coerceIn(0.0, 1.0).toFloat()
+        }
 
     /** Qibla bearing, true north. Cheap enough to recompute, but stable. */
     val qibla: Double get() = Astronomy.qiblaBearing(latitude, longitude)
@@ -91,7 +126,7 @@ data class UiState(
      */
     val countdownParts: Pair<String, String>
         get() {
-            val target = next ?: return "—" to ""
+            val target = nextAcrossDays ?: return "—" to ""
             var seconds = target.instant.epochSecond - now.epochSecond
             if (seconds < 0) seconds = 0
             val h = seconds / 3600
@@ -104,21 +139,6 @@ data class UiState(
             }
         }
 
-    /** Countdown text for the header card, e.g. "2 h 14 m". */
-    val countdown: String
-        get() {
-            val target = next ?: return "—"
-            var seconds = target.instant.epochSecond - now.epochSecond
-            if (seconds < 0) seconds = 0
-            val h = seconds / 3600
-            val m = (seconds % 3600) / 60
-            val s = seconds % 60
-            return when {
-                h > 0 -> "%d h %02d m".format(h, m)
-                m > 0 -> "%d m %02d s".format(m, s)
-                else -> "%d s".format(s)
-            }
-        }
 }
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -209,7 +229,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 sunAltitude = sun.first,
                 sunAzimuth = sun.second,
                 week = buildWeek(day),
-                month = buildMonth(day)
+                month = buildMonth(day),
+                tomorrow = dayAt(day.date.plusDays(1), day.zone)
             )
         }
     }

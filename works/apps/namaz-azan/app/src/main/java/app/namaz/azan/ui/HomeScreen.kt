@@ -1,7 +1,21 @@
 package app.namaz.azan.ui
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,6 +57,7 @@ import app.namaz.azan.ui.theme.SkyInk
 import app.namaz.azan.ui.theme.SkyInkDim
 import app.namaz.azan.ui.theme.SkyInkFaint
 import app.namaz.azan.ui.theme.SkyPalette
+import app.namaz.azan.ui.theme.SunGold
 import app.namaz.azan.ui.theme.accent
 import app.namaz.azan.ui.theme.glass
 import app.namaz.azan.ui.theme.glassHero
@@ -71,7 +86,8 @@ import app.namaz.azan.ui.theme.hairlineStrong
 fun HomeScreen(
     state: UiState,
     onOpenSettings: () -> Unit,
-    onOpenTimetable: () -> Unit = {}
+    onOpenTimetable: () -> Unit = {},
+    onOpenWebsite: () -> Unit = {}
 ) {
     val sky = state.sky
     val accent by animateColorAsState(sky.accent(), tween(1200), label = "accent")
@@ -114,7 +130,10 @@ fun HomeScreen(
             Spacer(Modifier.height(16.dp))
             QiblaPanel(state, sky, accent)
 
-            Spacer(Modifier.height(32.dp))
+            Spacer(Modifier.height(16.dp))
+            MadeByCard(sky, onOpenWebsite)
+
+            Spacer(Modifier.height(28.dp))
             Footer(state)
             // Room for the navigation bar, so the footer never sits under it.
             Spacer(Modifier.height(48.dp))
@@ -201,12 +220,17 @@ private fun gregorianLine(state: UiState): String {
  */
 @Composable
 private fun NextPrayerHero(state: UiState, sky: SkyPalette, accent: Color) {
-    val next = state.next
+    val next = state.nextAcrossDays
     val (big, small) = state.countdownParts
     val progress by animateFloatAsState(
         targetValue = state.progress,
-        animationSpec = tween(900),
+        animationSpec = tween(900, easing = FastOutSlowInEasing),
         label = "progress"
+    )
+    val percent by animateIntAsState(
+        targetValue = (state.progress * 100).toInt(),
+        animationSpec = tween(900, easing = FastOutSlowInEasing),
+        label = "percent"
     )
 
     GlassCard(sky, hero = true) {
@@ -215,20 +239,36 @@ private fun NextPrayerHero(state: UiState, sky: SkyPalette, accent: Color) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(Modifier.weight(1f)) {
-                Text(
-                    text = if (next != null) "${next.prayer.label} in" else "Tomorrow",
-                    color = SkyInkDim,
-                    fontSize = 14.sp,
-                    letterSpacing = 0.8.sp
-                )
-                Spacer(Modifier.height(4.dp))
-                Row(verticalAlignment = Alignment.Bottom) {
+                // The label cross-fades rather than cuts when the prayer changes,
+                // so the card never flashes in the middle of the evening.
+                AnimatedContent(
+                    targetState = heroLabel(state, next),
+                    transitionSpec = {
+                        (fadeIn(tween(320)) togetherWith fadeOut(tween(180)))
+                            .using(SizeTransform(clip = false))
+                    },
+                    label = "heroLabel"
+                ) { label ->
                     Text(
-                        text = big,
-                        color = SkyInk,
+                        text = label,
+                        color = SkyInkDim,
+                        fontSize = 14.sp,
+                        letterSpacing = 0.8.sp
+                    )
+                }
+                Spacer(Modifier.height(4.dp))
+
+                // The numerals: a mechanical counter, not a text swap.
+                //
+                // Each tick moves the digit that changed. Old digit exits upward
+                // while the new one rises into place — the movement a physical
+                // odometer makes, and the reason a countdown feels alive rather
+                // than re-rendered.
+                Row(verticalAlignment = Alignment.Bottom) {
+                    CountdownNumber(
+                        value = big,
                         fontSize = if (big.length > 2) 56.sp else 68.sp,
-                        fontWeight = FontWeight.Light,
-                        letterSpacing = (-2).sp
+                        color = SkyInk
                     )
                     if (small.isNotEmpty()) {
                         Spacer(Modifier.width(8.dp))
@@ -236,15 +276,19 @@ private fun NextPrayerHero(state: UiState, sky: SkyPalette, accent: Color) {
                             text = small,
                             color = SkyInkDim,
                             fontSize = 17.sp,
-                            fontWeight = FontWeight.Normal,
                             modifier = Modifier.padding(bottom = 14.dp)
                         )
                     }
                 }
+
                 if (next != null) {
                     Spacer(Modifier.height(2.dp))
                     Text(
-                        text = "at ${format(next)}",
+                        text = buildString {
+                            if (state.nextIsTomorrow) append("tomorrow at ")
+                            else append("at ")
+                            append(format(next))
+                        },
                         color = SkyInkDim,
                         fontSize = 13.sp
                     )
@@ -264,7 +308,7 @@ private fun NextPrayerHero(state: UiState, sky: SkyPalette, accent: Color) {
                 )
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
-                        text = "%d".format((state.progress * 100).toInt()),
+                        text = percent.toString(),
                         color = SkyInk,
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Medium
@@ -277,6 +321,48 @@ private fun NextPrayerHero(state: UiState, sky: SkyPalette, accent: Color) {
                 }
             }
         }
+    }
+}
+
+/** "Maghrib in", or "Fajr tomorrow" when the next prayer is after midnight. */
+private fun heroLabel(state: UiState, next: PrayerTime?): String = when {
+    next == null -> "Next prayer"
+    state.nextIsTomorrow -> "${next.prayer.label} tomorrow"
+    else -> "${next.prayer.label} in"
+}
+
+/**
+ * The countdown numeral, sliding like an odometer.
+ *
+ * The number is treated as a unit rather than animated per-character: a per-digit
+ * animation needs the two strings to be the same length, and a countdown drops
+ * from 100 to 99 and from 10 to 9. Sliding the whole figure keeps every value
+ * correct and still gives the vertical movement that makes it feel mechanical.
+ */
+@Composable
+private fun CountdownNumber(
+    value: String,
+    fontSize: androidx.compose.ui.unit.TextUnit,
+    color: Color
+) {
+    AnimatedContent(
+        targetState = value,
+        transitionSpec = {
+            // Up and out on the old, up and in on the new: one direction, always.
+            (slideInVertically(tween(280)) { h -> h / 2 } + fadeIn(tween(280)))
+                .togetherWith(slideOutVertically(tween(220)) { h -> -h / 2 } + fadeOut(tween(200)))
+                .using(SizeTransform(clip = false))
+        },
+        label = "countdown"
+    ) { target ->
+        Text(
+            text = target,
+            color = color,
+            fontSize = fontSize,
+            fontWeight = FontWeight.Light,
+            letterSpacing = (-2).sp,
+            maxLines = 1
+        )
     }
 }
 
@@ -314,18 +400,21 @@ private fun DayStrip(state: UiState, sky: SkyPalette, accent: Color) {
                     Spacer(Modifier.height(7.dp))
                     // a dot instead of an icon: the app has no weather glyphs and
                     // inventing one per prayer would be decoration, not information
-                    Box(
-                        Modifier
-                            .size(6.dp)
-                            .clip(CircleShape)
-                            .background(
-                                when {
-                                    isNext -> accent
-                                    isPast -> Color.White.copy(alpha = 0.12f)
-                                    else -> Color.White.copy(alpha = 0.32f)
-                                }
-                            )
-                    )
+                    Box(contentAlignment = Alignment.Center) {
+                        if (isNext) PulseHalo(accent)
+                        Box(
+                            Modifier
+                                .size(6.dp)
+                                .clip(CircleShape)
+                                .background(
+                                    when {
+                                        isNext -> accent
+                                        isPast -> Color.White.copy(alpha = 0.12f)
+                                        else -> Color.White.copy(alpha = 0.32f)
+                                    }
+                                )
+                        )
+                    }
                     Spacer(Modifier.height(7.dp))
                     Text(
                         text = format(time),
@@ -341,6 +430,57 @@ private fun DayStrip(state: UiState, sky: SkyPalette, accent: Color) {
                 }
             }
         }
+    }
+}
+
+/**
+ * A slow halo around the next prayer's dot.
+ *
+ * The strip already marks the next prayer with colour and weight, but at arm's
+ * length on a bright sky a 6 dp dot is easy to miss. The halo expands and fades on
+ * a 2.6 s loop — slow enough not to nag, present enough to find. It stops entirely
+ * when the system asks for reduced motion, because an animation that cannot be
+ * switched off is a bug on a screen somebody has to sit in front of.
+ */
+@Composable
+private fun PulseHalo(color: Color) {
+    val motion = LocalMotionDuration()
+    if (motion == 0) return
+    val transition = rememberInfiniteTransition(label = "halo")
+    val t by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2600, easing = LinearOutSlowInEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "haloProgress"
+    )
+    Box(
+        Modifier
+            .size((6 + 14 * t).dp)
+            .clip(CircleShape)
+            .background(color.copy(alpha = (1f - t) * 0.34f))
+    )
+}
+
+/**
+ * Respect the platform's animation setting.
+ *
+ * Android exposes the animator duration scale; at 0 the user has turned animation
+ * off, usually for a reason (motion sensitivity, an old phone, a battery at 2%).
+ * The app keeps its cross-fades — those are information, not decoration — but the
+ * idle loops stop.
+ */
+@Composable
+private fun LocalMotionDuration(): Int {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    return remember(context) {
+        android.provider.Settings.Global.getFloat(
+            context.contentResolver,
+            android.provider.Settings.Global.ANIMATOR_DURATION_SCALE,
+            1f
+        ).let { if (it == 0f) 0 else 1 }
     }
 }
 
@@ -683,6 +823,88 @@ private fun QiblaPanel(state: UiState, sky: SkyPalette, accent: Color) {
 }
 
 /**
+ * Credit, and a door out.
+ *
+ * Placed last, above the promise, because it belongs at the foot of the screen —
+ * but given a card rather than a line of grey text, because a typed URL is the
+ * one thing a person will not do and a card is the one thing they will tap.
+ *
+ * This is the only UI in the app that leaves the device. See
+ * [app.namaz.azan.data.Credits] for why every claim on it is quoted from the site.
+ */
+@Composable
+private fun MadeByCard(sky: SkyPalette, onOpenWebsite: () -> Unit) {
+    val shape = RoundedCornerShape(22.dp)
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(sky.glass())
+            .border(
+                1.dp,
+                Brush.verticalGradient(
+                    0f to sky.hairlineStrong(),
+                    1f to Color.White.copy(alpha = 0.04f)
+                ),
+                shape
+            )
+            // The whole card is the target, not just the text: a 48 dp-tall row is
+            // a far better hit area than a URL.
+            .clickable(onClick = onOpenWebsite)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        // A small mark: a bracket pair, which is what the site is about — the code.
+        Box(
+            Modifier
+                .size(38.dp)
+                .clip(RoundedCornerShape(11.dp))
+                .background(Color.White.copy(alpha = 0.10f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "</>",
+                color = SunGold,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+                letterSpacing = (-0.5).sp
+            )
+        }
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Text(
+                text = app.namaz.azan.data.Credits.MADE_BY,
+                color = SkyInk,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium
+            )
+            Spacer(Modifier.height(2.dp))
+            Text(
+                text = app.namaz.azan.data.Credits.TAGLINE,
+                color = SkyInkDim,
+                fontSize = 11.sp
+            )
+        }
+        Spacer(Modifier.width(8.dp))
+        Column(horizontalAlignment = Alignment.End) {
+            Text(
+                text = app.namaz.azan.data.Credits.WEBSITE_LABEL,
+                color = SunGold,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Medium
+            )
+            Spacer(Modifier.height(2.dp))
+            // An arrow made of type, so there is no icon dependency here.
+            Text(
+                text = "open ↗",
+                color = SkyInkFaint,
+                fontSize = 10.sp
+            )
+        }
+    }
+}
+
+/**
  * The promise, in one line, at the bottom where it can be read without being in
  * the way. It is the thing that distinguishes this app from every other one in
  * the category, so it earns its place on the first screen.
@@ -702,7 +924,9 @@ private fun Footer(state: UiState) {
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            text = "Works offline · no account · your location never leaves this phone",
+            // "one link" rather than "no network": the app makes no request, but it
+            // can hand a URL to the browser, and the line should not claim otherwise.
+            text = "Works offline · no account · no ads · one link, opened in your browser",
             color = SkyInkFaint.copy(alpha = 0.75f),
             fontSize = 10.sp,
             textAlign = TextAlign.Center

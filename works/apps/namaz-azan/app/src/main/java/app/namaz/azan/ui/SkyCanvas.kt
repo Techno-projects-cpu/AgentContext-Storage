@@ -1,7 +1,17 @@
 package app.namaz.azan.ui
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -41,10 +51,63 @@ fun SkyCanvas(
     palette: SkyPalette,
     sunAltitude: Double,
     sunAzimuth: Double,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    animate: Boolean = true
 ) {
+    // Two slow, independent motions, both far too gentle to notice directly:
+    //
+    //   - the gradient drifts a few percent over 36 seconds, which is what stops a
+    //     static gradient from looking like a screenshot on a phone that is on a
+    //     desk in front of you;
+    //   - the stars twinkle through a 4-second breath, offset per star so the field
+    //     never pulses in unison.
+    //
+    // Both are derived from one infinite clock, so they cost one animation, not two.
+    val drift = if (!animate) 0f else {
+        val transition = rememberInfiniteTransition(label = "sky")
+        val v by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(36_000, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "drift"
+        )
+        v
+    }
+    val twinkle = if (!animate) 0.5f else {
+        val transition = rememberInfiniteTransition(label = "twinkle")
+        val v by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(4_000, easing = FastOutSlowInEasing),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "twinkle"
+        )
+        v
+    }
+
+    // The palette itself is animated between sun positions, so the moment the sun
+    // drops past a band boundary the screen dissolves rather than steps. 1.6 s is
+    // long enough to read as light changing and short enough not to lag the clock.
+    val animatedZenith by animateColorAsState(palette.zenith, tween(1600), label = "zenith")
+    val animatedMid by animateColorAsState(palette.mid, tween(1600), label = "mid")
+    val animatedBand by animateColorAsState(palette.band, tween(1600), label = "band")
+    val animatedGround by animateColorAsState(palette.ground, tween(1600), label = "ground")
+    val animatedNight by animateFloatAsState(palette.night, tween(1600), label = "night")
+    val shown = palette.copy(
+        zenith = animatedZenith,
+        mid = animatedMid,
+        band = animatedBand,
+        ground = animatedGround,
+        night = animatedNight
+    )
+
     Canvas(modifier) {
-        drawSky(palette, sunAltitude, sunAzimuth, size)
+        drawSky(shown, sunAltitude, sunAzimuth, size, drift, twinkle)
     }
 }
 
@@ -52,18 +115,25 @@ fun DrawScope.drawSky(
     palette: SkyPalette,
     sunAltitude: Double,
     sunAzimuth: Double,
-    size: Size
+    size: Size,
+    drift: Float = 0f,
+    twinkle: Float = 0.5f
 ) {
     val w = size.width
     val h = size.height
 
     // 1. the gradient. Four stops, at the fractions the render proved: the warm
     //    band needs its own stop or it drowns between the blue and the ground.
+    //
+    //    The stops breathe by up to 1.7% of the height. At this amplitude it is
+    //    invisible as motion and visible as life; anything larger reads as the
+    //    screen sliding, which is a bug, not an effect.
+    val breathe = 0.017f * (drift - 0.5f)
     drawRect(
         brush = Brush.verticalGradient(
             0.00f to palette.zenith,
-            0.38f to palette.mid,
-            0.66f to palette.band,
+            (0.38f + breathe) to palette.mid,
+            (0.66f + breathe * 0.6f) to palette.band,
             1.00f to palette.ground,
             startY = 0f,
             endY = h
@@ -103,7 +173,7 @@ fun DrawScope.drawSky(
 
     // 4. stars
     val starAlpha = ((-sunAltitude - 4.0) / 14.0).toFloat().coerceIn(0f, 1f)
-    if (starAlpha > 0.02f) drawStars(starAlpha, w, h)
+    if (starAlpha > 0.02f) drawStars(starAlpha, w, h, twinkle)
 }
 
 /**
@@ -170,14 +240,22 @@ private fun azimuthToX(azimuth: Double): Float {
  * source, so the same stars are in the same places every night — a sky that
  * reshuffles itself looks like noise, not a sky.
  */
-private fun DrawScope.drawStars(alpha: Float, w: Float, h: Float) {
+private fun DrawScope.drawStars(alpha: Float, w: Float, h: Float, twinkle: Float) {
     for (i in 0 until 90) {
         val fx = hash(i * 7 + 1)
         val fy = hash(i * 13 + 5) * 0.70f      // keep clear of the deep zone
         val bright = 0.25f + 0.75f * hash(i * 31 + 11)
         val r = (0.7f + 1.5f * bright) * density
         val tint = if (fy > 0.45f) Color(0xFFF3E7CE) else Color(0xFFE6EEFB)
-        drawCircle(tint.copy(alpha = alpha * bright * 0.9f), radius = r, center = Offset(w * fx, h * fy))
+        // Each star is at a different point in its own breath, so the field glitters
+        // instead of pulsing together like a Christmas tree.
+        val phase = hash(i * 53 + 3)
+        val breath = 0.72f + 0.28f * kotlin.math.sin(((twinkle + phase) % 1f) * Math.PI.toFloat() * 2f)
+        drawCircle(
+            tint.copy(alpha = (alpha * bright * 0.9f * breath).coerceIn(0f, 1f)),
+            radius = r,
+            center = Offset(w * fx, h * fy)
+        )
     }
     // three brighter anchors, so the field has hierarchy rather than being a dust
     listOf(0.22f to 0.14f, 0.62f to 0.09f, 0.48f to 0.30f).forEach { (fx, fy) ->

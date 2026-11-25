@@ -1,6 +1,7 @@
 package app.namaz.azan.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +35,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
@@ -54,7 +57,8 @@ fun SettingsScreen(
     viewModel: MainViewModel,
     onBack: () -> Unit,
     onRequestLocationPermission: () -> Unit,
-    onRequestExactAlarm: () -> Unit
+    onRequestExactAlarm: () -> Unit,
+    onOpenWebsite: () -> Unit = {}
 ) {
     val sky = state.sky
     Box(Modifier.fillMaxSize().background(sky.ground)) {
@@ -254,17 +258,27 @@ fun SettingsScreen(
             Section("About") {
                 Text(
                     "Prayer times are computed on the device with a standard solar algorithm, " +
-                        "the same mathematics used by Adhan-compatible libraries. No network " +
-                        "connection is needed and no location data leaves the phone.",
+                        "the same mathematics used by Adhan-compatible libraries. The app has no " +
+                        "network permission at all, so it cannot send anything anywhere.",
                     style = MaterialTheme.typography.bodySmall,
                     color = SkyInkGrey
                 )
-                Spacer(Modifier.height(6.dp))
+                Spacer(Modifier.height(10.dp))
                 Text(
-                    "Always confirm with your local mosque, especially during Ramadan.",
+                    "The Hijri date uses the arithmetic Islamic calendar, which can be a day " +
+                        "away from a local sighting. Always confirm with your local mosque, " +
+                        "especially during Ramadan.",
                     style = MaterialTheme.typography.bodySmall,
                     color = SkyInkGrey
                 )
+                Spacer(Modifier.height(16.dp))
+                Box(Modifier.fillMaxWidth().height(1.dp).background(Color.White.copy(alpha = 0.10f)))
+                Spacer(Modifier.height(14.dp))
+                SectionRow(
+                    title = "Made by ${app.namaz.azan.data.Credits.STUDIO}",
+                    subtitle = app.namaz.azan.data.Credits.BYLINE,
+                    value = app.namaz.azan.data.Credits.WEBSITE_LABEL
+                ) { onOpenWebsite() }
             }
         }
     }
@@ -288,6 +302,39 @@ private fun Section(title: String, content: @Composable () -> Unit) {
         ) {
             Column(Modifier.padding(16.dp)) { content() }
         }
+    }
+}
+
+/**
+ * A label pair with a value on the right and an action, used for the credit row.
+ *
+ * Rows like this are why settings screens end up feeling unfinished: the value
+ * looks tappable and is not, or the whole row is tappable and looks like text.
+ * Both the row and the value are clickable here, and the value is in the accent.
+ */
+@Composable
+private fun SectionRow(
+    title: String,
+    subtitle: String,
+    value: String,
+    onClick: () -> Unit
+) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
+            .clickable(onClick = onClick)
+            .padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(title, style = MaterialTheme.typography.bodyLarge, color = SkyInk)
+            Spacer(Modifier.height(2.dp))
+            Text(subtitle, style = MaterialTheme.typography.labelSmall, color = SkyInkGrey)
+        }
+        Text(value, style = MaterialTheme.typography.labelMedium, color = SunGold)
+        Spacer(Modifier.width(4.dp))
+        Text("↗", color = SunGold, fontSize = 13.sp)
     }
 }
 
