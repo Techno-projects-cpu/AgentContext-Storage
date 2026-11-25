@@ -1,0 +1,25 @@
+name: diag
+on:
+  push:
+    paths:
+      - "works/apps/namaz-azan/diag.txt"
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile tests and dump output
+        working-directory: works/apps/namaz-azan
+        run: gradle --no-daemon testDebugUnitTest > /tmp/build.log 2>&1; echo "exit=$?" >> /tmp/build.log; true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: buildlog
+          path: /tmp/build.log
+          if-no-files-found: error
