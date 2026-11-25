@@ -2,6 +2,8 @@
 
 You finished the [first night-before pack](../night-before-knowledge/README.md)—here is fresh revision for the Khammam district notice. The user's clarification: **Telugu includes grammar and literary GK; visual questions may ask for a connection between several pictures**. These are user-supplied examples and preparation assumptions, not an official detailed syllabus. This independent pack is not a prediction or official question set.
 
+Finished this pack? Continue with [Night Shift 3](../night-shift-3/README.md) for more Telugu, picture connections and science.
+
 ## Tonight's route
 
 1. [Telugu literary GK](01-telugu-literary-gk.md): authors, songs, poets and tricky titles — 25–30 min.
