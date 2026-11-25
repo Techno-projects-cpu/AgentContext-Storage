@@ -1,9 +1,19 @@
-## Namaz & Azan 1.1.0
+## Namaz & Azan 1.1.1
 
 Offline prayer times and azan reminders for Android. Kotlin + Jetpack Compose.
 
-**Download `namaz-azan-1.1.0.apk` and open it on your phone.** Android asks you to allow
+**Download `namaz-azan-1.1.1.apk` and open it on your phone.** Android asks you to allow
 installing from this source the first time.
+
+### Fixed in 1.1.1
+
+Turning the phone replayed the whole two-and-a-half second splash and dropped you
+back to the home screen from wherever you were — a rotation recreates the activity,
+and the screen state was not being saved across it. It is now. The release folder
+also kept every APK it ever built rather than only the current one.
+
+The core build was released as 1.1.0 first; 1.1.1 is the same app with these two
+fixed.
 
 ### What's new in 1.1
 

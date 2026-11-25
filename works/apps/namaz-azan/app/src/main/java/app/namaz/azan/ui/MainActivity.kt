@@ -15,6 +15,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.namaz.azan.ui.theme.NamazTheme
@@ -47,7 +48,12 @@ class MainActivity : ComponentActivity() {
                 // The splash runs once per launch. It is not a delay: it is the
                 // moment the app computes today's times, given the sentence that
                 // belongs at the start of a thing.
-                var screen by remember { mutableStateOf(Screen.SPLASH) }
+                //
+                // `rememberSaveable`, not `remember`: on a rotation the activity is
+                // recreated, and a plain remember would replay the whole two and a
+                // half second splash and throw the user back to the home screen
+                // from wherever they were.
+                var screen by rememberSaveable { mutableStateOf(Screen.SPLASH) }
 
                 LaunchedEffect(Unit) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
