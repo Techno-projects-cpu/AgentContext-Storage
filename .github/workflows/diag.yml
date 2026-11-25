@@ -4,25 +4,30 @@ on:
     paths:
       - "works/apps/namaz-azan/diag.txt"
 permissions:
-  contents: read
+  contents: write
 jobs:
   diag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: arena/60e296ba-agentcontext-storage
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
       - uses: gradle/actions/setup-gradle@v4
-      - name: Compile tests and dump output
-        working-directory: works/apps/namaz-azan
+      - name: Compile and capture output into the repo
         run: |
           set +e
-          gradle --no-daemon testDebugUnitTest > build.log 2>&1
-          echo "exit=$?" >> build.log
-      - uses: actions/upload-artifact@v4
-        with:
-          name: buildlog
-          path: works/apps/namaz-azan/build.log
-          if-no-files-found: error
+          cd works/apps/namaz-azan
+          gradle --no-daemon testDebugUnitTest --console=plain > buildlog.txt 2>&1
+          echo "exit=$?" >> buildlog.txt
+          grep -cE "^e: " buildlog.txt >> buildlog.txt
+      - name: Commit the log
+        run: |
+          git config user.name "diag-bot"
+          git config user.email "diag@example.com"
+          git add works/apps/namaz-azan/buildlog.txt
+          git commit -m "ci: compiler log [skip ci]" || exit 0
+          git push
