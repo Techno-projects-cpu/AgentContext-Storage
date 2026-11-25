@@ -20,6 +20,8 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 
 ## All your material
 
+- [★ Night Shift 2](night-shift-2/README.md): fresh science and maths, Telugu grammar and poets, picture-connection drills and a mixed mock.
+
 - [★ Khammam district level-up](khammam-district-2026/README.md): knowledge, visual and Telugu drills, safe activities, a 40-question practice mock and separate explanations.
 - [★ Night-before giant knowledge dump](night-before-knowledge/README.md): priority cards, dated sports and science news, space, biology, physical science, easy maths and a 40-question recall test.
 - [01 — Quick revision](01-quick-revision.md): a high-priority, low-overwhelm start.

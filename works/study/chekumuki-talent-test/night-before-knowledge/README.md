@@ -2,6 +2,8 @@
 
 Fast, interconnected bullet points for Chekumuki, built around patterns in **your supplied school and mandal photos and two linked older papers**: everyday science, images/matching, scientific temper, manageable maths, current science and sports. **These topics appeared in a few examples, not a verified probability ranking or official district syllabus.** The user has since shared a Khammam district notice; see the [district level-up pack](../khammam-district-2026/README.md). Current questions and many detailed rules remain unknown. Some older linked documents were only partly readable.
 
+Finished this pack? Continue with [Night Shift 2](../night-shift-2/README.md): Telugu literary GK and grammar, picture connections and fresh science.
+
 ## Choose your route
 
 ### One night (about 2½–3 hours with breaks)
