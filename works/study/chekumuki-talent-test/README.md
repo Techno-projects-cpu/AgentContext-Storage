@@ -36,6 +36,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 - [17 — Practice paper A](17-district-practice-paper-a.md) and [18 — Practice paper B](18-district-practice-paper-b.md): original 40-question papers modelled on the photographed mandal format, with explanations.
 - [19 — User-linked old paper analysis](19-old-paper-link-analysis.md): source link, selected worked checks, uncertain OCR and a new old-paper-style model.
 - [20 — Your 2024 school paper](20-2024-school-paper-expedition.md): source link, selected checks and two new expedition practice papers.
+- [21 — Magazine search](21-chekumuki-magazine-search.md): publisher contacts, an older issue lead and what is needed to compare the October 2026 magazine with your papers.
 - [Paper workout](paper-workout/README.md): exact supplied school and mandal photographs, partial non-official checks, and mixed 40-question practice papers with answer sheets.
 
 **Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
