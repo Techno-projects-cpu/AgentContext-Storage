@@ -1,6 +1,8 @@
 package app.namaz.azan.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,12 +33,18 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.namaz.azan.core.Madhab
 import app.namaz.azan.core.Method
 import app.namaz.azan.core.Prayer
 import app.namaz.azan.data.City
+import app.namaz.azan.ui.theme.SkyInk
+import app.namaz.azan.ui.theme.SkyInkDim
+import app.namaz.azan.ui.theme.SkyInkGrey
+import app.namaz.azan.ui.theme.SunGold
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,13 +56,31 @@ fun SettingsScreen(
     onRequestLocationPermission: () -> Unit,
     onRequestExactAlarm: () -> Unit
 ) {
+    val sky = state.sky
+    Box(Modifier.fillMaxSize().background(sky.ground)) {
+        // The same sky, held still and darkened: settings should feel like the
+        // same app with the lights turned down, not a different app.
+        SkyCanvas(
+            palette = sky,
+            sunAltitude = state.sunAltitude,
+            sunAzimuth = state.sunAzimuth,
+            modifier = Modifier.fillMaxSize()
+        )
     Scaffold(
+        containerColor = androidx.compose.ui.graphics.Color.Transparent,
         topBar = {
             TopAppBar(
-                title = { Text("Settings") },
+                title = { Text("Settings", color = SkyInk) },
+                colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
+                    containerColor = androidx.compose.ui.graphics.Color.Transparent
+                ),
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = SkyInkDim
+                        )
                     }
                 }
             )
@@ -75,11 +101,11 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column(Modifier.weight(1f)) {
-                        Text("Use my location", fontWeight = FontWeight.Medium)
+                        Text("Use my location", fontWeight = FontWeight.Medium, color = SkyInk)
                         Text(
                             "Uses the device's last known position",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = SkyInkGrey
                         )
                     }
                     Switch(
@@ -94,7 +120,7 @@ fun SettingsScreen(
                 Text(
                     "City",
                     style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = SkyInkGrey
                 )
                 Spacer(Modifier.height(8.dp))
                 LazyColumn(Modifier.height(190.dp)) {
@@ -109,7 +135,14 @@ fun SettingsScreen(
                                 FilterChip(
                                     selected = city.name == state.cityName && !state.useDeviceLocation,
                                     onClick = { viewModel.selectCity(city) },
-                                    label = { Text(city.name) },
+                                    label = { Text(city.name, color = SkyInk) },
+                                    colors = androidx.compose.material3.FilterChipDefaults
+                                        .filterChipColors(
+                                            containerColor = Color.White.copy(alpha = 0.08f),
+                                            labelColor = SkyInk,
+                                            selectedContainerColor = SunGold.copy(alpha = 0.24f),
+                                            selectedLabelColor = SkyInk
+                                        ),
                                     modifier = Modifier.weight(1f)
                                 )
                             }
@@ -151,11 +184,11 @@ fun SettingsScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column(Modifier.weight(1f)) {
-                        Text("Azan sound", fontWeight = FontWeight.Medium)
+                        Text("Azan sound", fontWeight = FontWeight.Medium, color = SkyInk)
                         Text(
                             "Plays a chime at each prayer time",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = SkyInkGrey
                         )
                     }
                     Switch(
@@ -172,7 +205,7 @@ fun SettingsScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(prayer.label, style = MaterialTheme.typography.bodyLarge)
+                        Text(prayer.label, style = MaterialTheme.typography.bodyLarge, color = SkyInk)
                         Switch(
                             checked = state.azanEnabled[prayer] == true,
                             onCheckedChange = { viewModel.toggleAzan(prayer, it) }
@@ -192,7 +225,7 @@ fun SettingsScreen(
                 Text(
                     "Shift a time if it differs from your mosque. Applies to this device only.",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = SkyInkGrey
                 )
                 Prayer.entries.forEach { prayer ->
                     val value = state.adjustments[prayer] ?: 0
@@ -201,7 +234,7 @@ fun SettingsScreen(
                             Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(prayer.label, style = MaterialTheme.typography.bodyLarge)
+                            Text(prayer.label, style = MaterialTheme.typography.bodyLarge, color = SkyInk)
                             Text(
                                 "${if (value > 0) "+" else ""}$value min",
                                 style = MaterialTheme.typography.bodyMedium,
@@ -224,16 +257,17 @@ fun SettingsScreen(
                         "the same mathematics used by Adhan-compatible libraries. No network " +
                         "connection is needed and no location data leaves the phone.",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = SkyInkGrey
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
                     "Always confirm with your local mosque, especially during Ramadan.",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = SkyInkGrey
                 )
             }
         }
+    }
     }
 }
 
@@ -273,11 +307,11 @@ private fun RadioRow(
         androidx.compose.material3.RadioButton(selected = selected, onClick = onClick)
         Spacer(Modifier.width(4.dp))
         Column(Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.bodyLarge)
+            Text(title, style = MaterialTheme.typography.bodyLarge, color = SkyInk)
             Text(
                 subtitle,
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = SkyInkGrey
             )
         }
     }
