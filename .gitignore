@@ -30,6 +30,7 @@ frames/
 *.jpg
 *.jpeg
 !docs/**/*.png
+!works/apps/namaz-azan/design/*.png
 !docs/**/*.svg
 
 # node / python
