@@ -95,7 +95,10 @@ jobs:
           ls -la works/apps/namaz-azan/release/
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f works/apps/namaz-azan/release/namaz-azan-1.1.1.apk
+          # `rm` deletes the file from the working tree but git still tracks it, so
+          # the deletion has to be staged explicitly or the commit only adds the new
+          # APK and the old one stays in the folder. -A on the whole directory.
+          git add -A -f works/apps/namaz-azan/release/
           git commit -m "release: Namaz & Azan 1.1.1 APK [skip ci]" || exit 0
           git push
 
