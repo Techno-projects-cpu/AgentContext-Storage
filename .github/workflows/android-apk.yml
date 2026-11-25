@@ -85,12 +85,18 @@ jobs:
       - name: Commit the APK
         run: |
           mkdir -p works/apps/namaz-azan/release
-          cp /tmp/apk/app-release.apk works/apps/namaz-azan/release/namaz-azan-1.1.0.apk
+          # One APK in the repo, not one per release.
+          #
+          # Without this the release/ folder keeps every build forever — two ~1 MB
+          # binaries after two releases, and a clone that grows by a megabyte each
+          # time. The history still has the old ones if they are ever needed.
+          rm -f works/apps/namaz-azan/release/*.apk
+          cp /tmp/apk/app-release.apk works/apps/namaz-azan/release/namaz-azan-1.1.1.apk
           ls -la works/apps/namaz-azan/release/
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f works/apps/namaz-azan/release/namaz-azan-1.1.0.apk
-          git commit -m "release: Namaz & Azan 1.1.0 APK [skip ci]" || exit 0
+          git add -f works/apps/namaz-azan/release/namaz-azan-1.1.1.apk
+          git commit -m "release: Namaz & Azan 1.1.1 APK [skip ci]" || exit 0
           git push
 
   # Publishes the APK as a Release asset. A release asset downloads directly with the
@@ -113,14 +119,14 @@ jobs:
       - name: Name the asset properly
         run: |
           mkdir -p dist
-          cp /tmp/apk/app-release.apk dist/namaz-azan-1.1.0.apk
+          cp /tmp/apk/app-release.apk dist/namaz-azan-1.1.1.apk
           ls -la dist/
 
       - name: Create or update the release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: namaz-azan-v1.1.0
-          name: Namaz & Azan 1.1.0 — Android APK
+          tag_name: namaz-azan-v1.1.1
+          name: Namaz & Azan 1.1.1 — Android APK
           body_path: works/apps/namaz-azan/RELEASE_NOTES.md
-          files: dist/namaz-azan-1.1.0.apk
+          files: dist/namaz-azan-1.1.1.apk
           fail_on_unmatched_files: true
