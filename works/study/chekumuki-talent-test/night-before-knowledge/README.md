@@ -1,6 +1,6 @@
 # The Giant Night-Before Knowledge Dump ⚔️🧠
 
-Fast, interconnected bullet points for Chekumuki, built around patterns in **your supplied school and mandal photos and two linked older papers**: everyday science, images/matching, scientific temper, manageable maths, current science and sports. **These topics appeared in a few examples, not a verified probability ranking or official district syllabus.** District format and current questions are unknown. Some older linked documents were only partly readable.
+Fast, interconnected bullet points for Chekumuki, built around patterns in **your supplied school and mandal photos and two linked older papers**: everyday science, images/matching, scientific temper, manageable maths, current science and sports. **These topics appeared in a few examples, not a verified probability ranking or official district syllabus.** The user has since shared a Khammam district notice; see the [district level-up pack](../khammam-district-2026/README.md). Current questions and many detailed rules remain unknown. Some older linked documents were only partly readable.
 
 ## Choose your route
 
