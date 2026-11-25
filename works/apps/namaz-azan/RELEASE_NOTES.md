@@ -7,6 +7,13 @@ installing from this source the first time.
 
 ### What's new in 1.1
 
+**It opens with Bismillah.** The first thing on screen is
+بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ, drawn rather than shown — the ornament writes itself
+outward from the centre, the Arabic settles in above the transliteration, and the whole
+screen dissolves into the live sky as the app finishes computing the day. About two and a
+half seconds, which is the time the work actually takes. A spinner would have filled the
+same two seconds and meant nothing.
+
 **The screen is the sky.** The whole background is a live gradient driven by the sun's
 real altitude above *your* horizon — orange at Maghrib, violet at Isha, near-black with
 stars after that, deep blue at noon. Nothing is a time-of-day lookup: the app solves the
@@ -21,6 +28,21 @@ sun's position every second, so the same app is a different colour in Delhi and 
 | The year | Today's daylight, how fast it is changing over the week, and a countdown to Ramadan |
 | Month timetable | The full month, Fajr to Isha, with the Hijri day in the margin — the sheet a mosque puts on the wall, computed for your coordinates |
 | Qibla | The bearing to the Kaaba on a true-north compass rose (Guntur 284.1°) |
+
+### Motion
+
+The countdown numerals slide like an odometer when the minute turns. The sky's own colours
+animate between sun positions rather than stepping at band boundaries. Stars twinkle on
+their own phases, so the field glitters instead of pulsing together. The next prayer's dot
+carries a slow halo. None of the idle loops run if the phone's animator duration scale is
+set to zero — an animation a person cannot switch off is a bug.
+
+### A bug found on the way
+
+**After Isha the app had nothing to count down to.** The hero card only looked at today's
+prayers, so from Isha until midnight it read "Tomorrow" with an em dash where the number
+should be — every night, on the first screen, all year. It now falls through to tomorrow's
+Fajr and says "tomorrow at 05:00". A test pins it.
 
 ### Accuracy, and one deliberate limitation
 
@@ -57,11 +79,15 @@ prayer · full-screen azan over the lock screen · alarms re-armed after reboot 
 change · 16 preset cities (Guntur default) or device GPS · 9 calculation methods ·
 Shafi/Hanafi Asr · ±15 min per-prayer adjustment.
 
-### The promise, unchanged
+### The promise, unchanged — with one honest exception named
 
-Fully offline — no network permission in the manifest, no account, no ads, no analytics,
-no third-party SDKs. Location never leaves the phone. The only two permissions are
-location (optional, for your own coordinates) and notifications.
+Fully offline: **no network permission in the manifest**, no account, no ads, no analytics,
+no third-party SDKs. Location never leaves the phone.
+
+The app does contain one link — to the developer's site, `zero-vast.vercel.app`, on the
+home screen and in settings. Tapping it hands a URL to your browser; the app itself makes
+no request and cannot, because Android would refuse it. The disclosure says "one link,
+opened in your browser" rather than claiming otherwise.
 
 ### Requirements
 

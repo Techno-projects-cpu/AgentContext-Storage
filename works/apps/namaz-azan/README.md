@@ -16,6 +16,8 @@ so the sky keeps its colour at the top of the screen and deepens toward the bott
 cards are derived from that ground. The worst contrast anywhere in the day is **6.9:1**,
 and a unit test asserts it at every sun altitude from −25° to +60°.
 
+It opens with Bismillah, drawn rather than shown, while it computes the day.
+
 ## What it does
 
 - **Today**: five prayers plus sunrise, a live countdown, and an arc showing how far
@@ -39,6 +41,12 @@ which is at most ±1 day from the Umm al-Qura table (it agreed outright at 2 of 
 checked, and was one day early at the other two). It is not the sighting in your city.
 The app therefore shows the date it is using and tells you to confirm with your mosque.
 Everything that depends on it — the Ramadan Isha interval — inherits that ±1 day.
+
+**There is one link out.** The home screen and settings carry a credit to
+[zero-vast.vercel.app](https://zero-vast.vercel.app), the developer's site. The app holds
+no WebView and makes no request — the tap hands a URL to your browser, which is why the
+manifest still has no network permission. The on-screen promise says "one link, opened in
+your browser" rather than pretending the app never leaves itself.
 
 **The qibla bearing is to true north.** Magnetic declination is not applied, because
 doing so from a coarse world model would be worse than saying plainly which north is
