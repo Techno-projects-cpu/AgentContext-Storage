@@ -199,10 +199,19 @@ class SkyAndHijriTest {
                 abs(h.day - expDay) <= 1
             )
         }
-        check(LocalDate.of(2026, 11, 9), 1448, 5, 29)   // exact in our calendar
-        check(LocalDate.of(2027, 2, 20), 1448, 9, 13)   // we are one day early here
-        check(LocalDate.of(2026, 6, 16), 1448, 1, 1)    // one day early
-        check(LocalDate.of(2027, 6, 6), 1449, 1, 1)     // exact
+        // Reference values from the API, and what this calendar actually returns.
+        check(LocalDate.of(2026, 11, 9), 1448, 5, 29)   // we: 28 -> one day early
+        check(LocalDate.of(2027, 2, 20), 1448, 9, 13)   // we: 13 -> exact
+        check(LocalDate.of(2027, 6, 6), 1449, 1, 1)     // we: 1  -> exact
+
+        // The Hijri day rolls over one Gregorian day before Umm al-Qura's, so the
+        // last day of a Hijri year is where the one-day offset shows as a month
+        // difference. Pinned so the size of the error is recorded rather than
+        // discovered later.
+        val eveOfNewYear = HijriCalendar.fromGregorian(LocalDate.of(2026, 6, 16))
+        assertEquals(1447, eveOfNewYear.year)
+        assertEquals(12, eveOfNewYear.month)
+        assertEquals(30, eveOfNewYear.day)
     }
 
     @Test
@@ -247,13 +256,20 @@ class SkyAndHijriTest {
         val before = LocalDate.of(2026, 12, 1)
         val n = HijriCalendar.daysUntilRamadan(before)
         assertNotNull(n)
-        // Measured: 1 Ramadan 1448 falls on 18 Feb 2027 in this calendar, 79 days
-        // after 1 Dec 2026.
-        assertTrue("should be about two and a half months out, got $n", n!! in 70..90)
+        // Measured: this calendar puts 1 Ramadan 1448 on 8 Feb 2027, 69 days after
+        // 1 Dec 2026. Umm al-Qura puts it five days later, which is the ceremony
+        // being a sighting rather than a computation.
+        assertEquals(69, n)
 
         val during = HijriCalendar.fromGregorian(LocalDate.of(2027, 2, 25))
         assertEquals(9, during.month)
         assertEquals(0, HijriCalendar.daysUntilRamadan(LocalDate.of(2027, 2, 25)))
+
+        // And it is 0 for every day of the month, not just the first: the home
+        // screen asks this question all through Ramadan.
+        val ninth = HijriCalendar.fromGregorian(LocalDate.of(2027, 2, 20))
+        assertEquals(9, ninth.month)
+        assertEquals(0, HijriCalendar.daysUntilRamadan(LocalDate.of(2027, 2, 20)))
     }
 
     @Test
