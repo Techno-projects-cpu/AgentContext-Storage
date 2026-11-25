@@ -2,6 +2,10 @@
 
 Congratulations on winning the **mandal level**! This pack helps you prepare for the district stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
 
+## Khammam district notice: new!
+
+Your shared notice gives 28 November 2026, 9 a.m., Pragathi Model School, Khanapuram, Illandu Road, and outlines a 40-mark preliminary followed by activity, experiment and quiz rounds for six selected teams. See the [Khammam district level-up pack](khammam-district-2026/README.md) for details and uncertainties. Confirm logistics and rules with your teacher.
+
 ## First: what to check with your teacher
 
 Ask for your **state, next-stage date, venue, exact pattern, language, time limit, syllabus and whether you compete individually or in a team**. Share a photo of the notice or your school paper if possible. JVV Andhra Pradesh describes school, mandal, district and state stages; in its described format a team includes one student each from Classes 8, 9 and 10. Other editions or local organisers may differ. [JVV Andhra Pradesh](https://jvvap.org/activites/science-samburalu/)
@@ -16,6 +20,7 @@ A local November 2026 Telangana report mentions a **21 November mandal round** i
 
 ## All your material
 
+- [★ Khammam district level-up](khammam-district-2026/README.md): knowledge, visual and Telugu drills, safe activities, a 40-question practice mock and separate explanations.
 - [★ Night-before giant knowledge dump](night-before-knowledge/README.md): priority cards, dated sports and science news, space, biology, physical science, easy maths and a 40-question recall test.
 - [01 — Quick revision](01-quick-revision.md): a high-priority, low-overwhelm start.
 - [02 — Science and everyday life](02-science-and-everyday-life.md): physics, chemistry, biology, Earth and environment, with explanations and common traps.
