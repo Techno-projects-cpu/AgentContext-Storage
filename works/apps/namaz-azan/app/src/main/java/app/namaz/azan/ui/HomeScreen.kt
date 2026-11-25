@@ -371,11 +371,11 @@ private fun NightPanel(state: UiState, sky: SkyPalette) {
             }
             Spacer(Modifier.height(14.dp))
             Row(Modifier.fillMaxWidth()) {
-                NightCell("Imsak", day.imsak?.let { format(it) } ?: "—",
+                NightCell("Imsak", day.imsak?.let { formatClock(it) } ?: "—",
                     "10 min before Fajr", Modifier.weight(1f))
-                NightCell("Midnight", day.midnight?.let { format(it) } ?: "—",
+                NightCell("Midnight", day.midnight?.let { formatClock(it) } ?: "—",
                     "half the night", Modifier.weight(1f))
-                NightCell("Last third", day.lastThird?.let { format(it) } ?: "—",
+                NightCell("Last third", day.lastThird?.let { formatClock(it) } ?: "—",
                     "tahajjud begins", Modifier.weight(1f))
             }
             if (day.isRamadan) {
@@ -743,8 +743,11 @@ fun GlassCard(
     }
 }
 
-private fun format(time: PrayerTime): String =
-    "%02d:%02d".format(time.time.hour, time.time.minute)
+private fun format(time: PrayerTime): String = formatClock(time.time)
+
+/** LocalTime -> "HH:MM". Used for the night times, which are not prayer instants. */
+private fun formatClock(time: java.time.LocalTime): String =
+    "%02d:%02d".format(time.hour, time.minute)
 
 private fun formatDuration(minutes: Int): String {
     val h = minutes / 60

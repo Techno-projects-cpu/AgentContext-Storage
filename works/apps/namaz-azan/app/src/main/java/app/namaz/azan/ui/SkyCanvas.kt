@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import app.namaz.azan.ui.theme.SkyPalette
+import app.namaz.azan.ui.theme.hairline
 import app.namaz.azan.ui.theme.isNight
 import app.namaz.azan.ui.theme.sunDiscColor
 import app.namaz.azan.ui.theme.sunDiscRadius

@@ -36,8 +36,8 @@ data class HijriDate(
     val month: Int,
     val day: Int
 ) {
-    val monthName: String get() = MONTHS[(month - 1).coerceIn(0, 11)]
-    val monthArabic: String get() = MONTHS_ARABIC[(month - 1).coerceIn(0, 11)]
+    val monthName: String get() = HijriCalendar.MONTHS[(month - 1).coerceIn(0, 11)]
+    val monthArabic: String get() = HijriCalendar.MONTHS_ARABIC[(month - 1).coerceIn(0, 11)]
     val formatted: String get() = "$day $monthName $year AH"
 
     val isRamadan: Boolean get() = month == 9

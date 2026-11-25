@@ -106,7 +106,9 @@ fun TimetableScreen(
             ) {
                 HeaderCell("DATE", 46.dp)
                 HeaderCell("H", 28.dp)
-                Prayer.entries.forEach { HeaderCell(it.label.take(3).uppercase(), 0.dp, weight = 1f) }
+                Prayer.entries.forEach { prayer ->
+                    HeaderCellWeighted(prayer.label.take(3).uppercase())
+                }
             }
             Box(
                 Modifier.fillMaxWidth().height(1.dp)
@@ -131,14 +133,32 @@ fun TimetableScreen(
 }
 
 @Composable
-private fun HeaderCell(text: String, width: androidx.compose.ui.unit.Dp, weight: Float = 0f) {
+private fun HeaderCell(text: String, width: androidx.compose.ui.unit.Dp) {
     Text(
         text = text,
         color = SkyInkFaint,
         fontSize = 9.sp,
         letterSpacing = 0.5.sp,
         textAlign = TextAlign.Center,
-        modifier = if (weight > 0f) Modifier.weight(weight) else Modifier.width(width)
+        modifier = Modifier.width(width)
+    )
+}
+
+/**
+ * The same heading, but taking an equal share of the row.
+ *
+ * `Modifier.weight` only exists inside a RowScope, so this has to be an extension
+ * on RowScope rather than a parameter the caller passes in.
+ */
+@Composable
+private fun androidx.compose.foundation.layout.RowScope.HeaderCellWeighted(text: String) {
+    Text(
+        text = text,
+        color = SkyInkFaint,
+        fontSize = 9.sp,
+        letterSpacing = 0.5.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.weight(1f)
     )
 }
 
