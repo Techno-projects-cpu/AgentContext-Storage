@@ -17,9 +17,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Compile tests and dump output
         working-directory: works/apps/namaz-azan
-        run: gradle --no-daemon testDebugUnitTest > /tmp/build.log 2>&1; echo "exit=$?" >> /tmp/build.log; true
+        run: |
+          set +e
+          gradle --no-daemon testDebugUnitTest > build.log 2>&1
+          echo "exit=$?" >> build.log
       - uses: actions/upload-artifact@v4
         with:
           name: buildlog
-          path: /tmp/build.log
+          path: works/apps/namaz-azan/build.log
           if-no-files-found: error
