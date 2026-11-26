@@ -12,6 +12,16 @@
 6. [04 — New picture-connection lab](04-visual/connections.md): 20 original multi-clue sets built on these topics. **Clues are text descriptions, not images or official slides.**
 7. [05 — Check yourself](05-practice/questions.md) and [separate explained answers](05-practice/answers.md): 30 original questions.
 
+## More fresh material: the next journey
+
+- [Digital world and online safety](06-next-journey/01-digital-world.md): binary, networks, algorithms, backups and phishing.
+- [Land, water and food](06-next-journey/02-land-water-food.md): erosion, watersheds, wastewater, eutrophication and fermentation.
+- [Telugu folk arts and literary forms](06-next-journey/03-telugu-arts.md): బుర్రకథ, ఒగ్గుకథ, తోలుబొమ్మలాట, అవధానం and meaning in context.
+- [Maps, money and evidence](06-next-journey/04-maps-money-evidence.md): coordinates, contour lines, budgets and interpreting claims.
+- [18 picture connections](06-next-journey/05-connections.md) and [24 practice questions](06-next-journey/06-practice.md) with [explained answers](06-next-journey/07-answers.md).
+
+These topics were selected after another keyword scan of the archived and fresh Markdown. Some background concepts may overlap; synonyms and images can hide previous coverage, so novelty is not absolute. Picture clues are descriptions, not official slides.
+
 ## Audit scope and limits
 
 We programmatically read/indexed **all 93 existing Markdown files** (about 674,000 characters), inspected their headings and searched the full corpus for candidate terms. Seven original JPEGs were preserved in the archive; their earlier transcriptions and analyses were included in the text audit, but this pass did **not** re-transcribe every image pixel or the inaccessible linked PDFs. Keyword matches are imperfect: translations, synonyms and prior question wording can hide overlap. So these are **less-covered/new angles**, not a guarantee that no old item mentions them. Background concepts may be used where needed, but we have intentionally avoided repeating the most common old drills.
