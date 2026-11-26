@@ -25,7 +25,7 @@ Finished this pack? Continue with [Night Shift 2](../night-shift-2/README.md): T
 - Cover the answer side, explain one sentence **why**, then check. Use the Telugu keywords as bridges, not extra facts to memorise.
 - Dated facts are labelled by event/year. **Current-affairs snapshot checked 12 November 2026**; later events and latest officeholders may change. Consult the linked organiser sources again near your test.
 - [Original school and mandal worked photographs](../paper-workout/README.md) remain essential for visual practice; our text cannot replace them. Treat proposed answers as **unofficial** and flagged ambiguities as unresolved.
-- [CCMB prep pack](../../ccmb-young-innovators/README.md) contains more on cells and experimental design; its syllabus is also unconfirmed.
+- [CCMB prep pack](../../../ccmb-young-innovators/README.md) contains more on cells and experimental design; its syllabus is also unconfirmed.
 
 ## Table of contents
 
