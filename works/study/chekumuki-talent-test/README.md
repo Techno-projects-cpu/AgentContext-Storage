@@ -1,69 +1,8 @@
-# Chekumuki Talent Test: Your Science & GK Pack
+# Chekumuki: start here ⚔️
 
-Congratulations on winning the **mandal level**! This pack helps you prepare for the district stage and beyond. It is an independent study guide, **not an official Chekumuki syllabus or question paper**.
+- **[Fresh material →](fresh/README.md)** — new topics chosen after auditing the older Chekumuki documents, with a new explained practice set.
+- **[Completed archive →](completed/README.md)** — the earlier packs, mock papers, original-paper analysis and photographs, preserved together.
 
-## Khammam district notice: new!
+The earlier files have moved into `completed`, so **old direct links to individual files may need `/completed/` inserted after `chekumuki-talent-test/`**. The root README stays at the same address. The original seven paper photographs are preserved in `completed/paper-workout/original-photos/`. The archive label means “previously provided”, not that every item was necessarily read or that the paper keys are official.
 
-Your shared notice gives 28 November 2026, 9 a.m., Pragathi Model School, Khanapuram, Illandu Road, and outlines a 40-mark preliminary followed by activity, experiment and quiz rounds for six selected teams. See the [Khammam district level-up pack](khammam-district-2026/README.md) for details and uncertainties. Confirm logistics and rules with your teacher.
-
-## First: what to check with your teacher
-
-Ask for your **state, next-stage date, venue, exact pattern, language, time limit, syllabus and whether you compete individually or in a team**. Share a photo of the notice or your school paper if possible. JVV Andhra Pradesh describes school, mandal, district and state stages; in its described format a team includes one student each from Classes 8, 9 and 10. Other editions or local organisers may differ. [JVV Andhra Pradesh](https://jvvap.org/activites/science-samburalu/)
-
-A local November 2026 Telangana report mentions a **21 November mandal round** in Dubbak, but **do not assume that is your own date or venue**; your organisers decide. [Local report](https://www.hmtvlive.com/telugu-news/siddipet/chekumuki-science-talent-test-2026-posters-released-in-dubbak-mandal-209835)
-
-## Start small — 30 minutes today
-
-1. Read [Quick revision](01-quick-revision.md): the first 25 facts. **10 min**.
-2. Read one topic in [Science and everyday life](02-science-and-everyday-life.md), then cover the answers and explain it. **10 min**.
-3. Solve any 5 questions from [Practice test](05-practice-mcq.md). Check explanations. **10 min**.
-
-## All your material
-
-- [★ District Knowledge Library](district-knowledge-library/README.md): organised new science, Telugu, maths, visual connections, activities and two practice papers; also a subject-based map to older material.
-
-- [★ Night Shift 4](night-shift-4/README.md): new science and maths cards, Telugu literature and grammar, picture connections, local GK and a mixed mock.
-
-- [★ Night Shift 3](night-shift-3/README.md): more Telugu grammar and literary GK, Telangana symbols, picture connections, science and a mixed mock.
-
-- [★ Night Shift 2](night-shift-2/README.md): fresh science and maths, Telugu grammar and poets, picture-connection drills and a mixed mock.
-
-- [★ Khammam district level-up](khammam-district-2026/README.md): knowledge, visual and Telugu drills, safe activities, a 40-question practice mock and separate explanations.
-- [★ Night-before giant knowledge dump](night-before-knowledge/README.md): priority cards, dated sports and science news, space, biology, physical science, easy maths and a 40-question recall test.
-- [01 — Quick revision](01-quick-revision.md): a high-priority, low-overwhelm start.
-- [02 — Science and everyday life](02-science-and-everyday-life.md): physics, chemistry, biology, Earth and environment, with explanations and common traps.
-- [03 — Easy maths and reasoning](03-easy-maths-and-reasoning.md): small steps and worked examples; no Olympiad-level maths.
-- [04 — Science GK, India, space and scientific thinking](04-gk-space-and-scientific-thinking.md): durable facts, scientist–contribution matches and evidence skills.
-- [05 — Original practice MCQs](05-practice-mcq.md): 60 questions with answer explanations, not official past-paper questions.
-- [06 — Deep science master guide](06-deep-science-master-guide.md): more demanding concepts, exceptions and everyday applications.
-- [07 — Challenge practice](07-challenge-practice.md): 45 additional reasoning-focused MCQs with explanations.
-- [08 — Extra science GK](08-science-gk-daily-life.md): India, scientists, geography, technology and everyday 'why' questions.
-- [09 — Deep connections and self-test](09-deep-connections-and-test.md): scientific reasoning, science, easy maths and 16 explained questions.
-- [10 — More knowledge and reasoning](10-more-knowledge-and-reasoning.md): deeper science, everyday applications, approachable maths and 30 new explained MCQs.
-- [11 — Fast, deep knowledge cards](11-fast-deep-knowledge-cards.md): 70 short explanations, easy maths and a 20-question self-test.
-- [12 — Electricity from zero](12-electricity-from-zero.md): beginner-friendly volts, current, resistance, watts, energy, circuits and 20 practice questions.
-- [13 — Sports current affairs](13-sports-current-affairs.md): recent Olympics, Paralympics, Asian and Commonwealth Games, World Cups and a 20-question quiz; dated 12 November 2026.
-- [14 — District “heavy sword” challenge](14-district-heavy-sword-challenge.md): a balanced one-week plan, deeper reasoning and 40 original explained questions.
-- [15 — Past-paper investigation](15-past-paper-investigation.md): district-format sources, past-paper links and a transparent analysis of accessible question fragments and limitations.
-- [16 — Your mandal paper analysis and district quiz](16-mandal-paper-analysis-and-district-quiz.md): format, topic map, quiz practice and source limitations.
-- [17 — Practice paper A](17-district-practice-paper-a.md) and [18 — Practice paper B](18-district-practice-paper-b.md): original 40-question papers modelled on the photographed mandal format, with explanations.
-- [19 — User-linked old paper analysis](19-old-paper-link-analysis.md): source link, selected worked checks, uncertain OCR and a new old-paper-style model.
-- [20 — Your 2024 school paper](20-2024-school-paper-expedition.md): source link, selected checks and two new expedition practice papers.
-- [21 — Magazine search](21-chekumuki-magazine-search.md): publisher contacts, an older issue lead and what is needed to compare the October 2026 magazine with your papers.
-- [Paper workout](paper-workout/README.md): exact supplied school and mandal photographs, partial non-official checks, and mixed 40-question practice papers with answer sheets.
-
-**Ready to go deeper?** Start with the ★ topics in guide 06, then try 10 questions from 07 and review their explanations. Maths is kept approachable.
-
-## Flexible plan
-
-If you have more time: study **one subject block per day** and spend 10 minutes reviewing mistakes. If the test is soon: quick revision → physics and biology → chemistry and environment → easy maths → mock test. Study in short sessions and sleep properly. For a team round, take turns explaining answers and listen before submitting.
-
-## Real papers and scope
-
-JVV Andhra Pradesh describes daily-life science, physics, chemistry, biology and maths; later stages may include activities beyond a written quiz. Exact format can vary by place and year. A **2025 AP** third-party account describes 50 school-level MCQs with 80% Class 8–10 science and 20% general studies, but **do not treat those figures as the rule for your round**. [2025 report](https://teachernews.in/chekumuki-science-sambaralu-school-district-state-level-test/)
-
-- [Previous paper collection, school to state levels](https://www.schools360.in/ap-chekumukhi-talent-test-question-papers/) — third party; check year, language, answer keys and availability.
-- [More older papers](https://www.apteacher.net/download-chemuki-talent-test-old-question-papers-by-jana-vignana-vedhika/) — third party; not guaranteed current or error-free.
-- [NCERT Class 10 science contents](https://ncert.nic.in/textbook/pdf/jesc1ps.pdf) and [NCERT practice materials](https://ncert.nic.in/exemplar-problems.php?ln=/) — useful supplementary study; your own state textbooks and JVV notice take priority.
-
-**Current affairs:** dates, missions, officeholders and discoveries change. The pack emphasises stable concepts rather than guessing current events. Use [ISRO](https://www.isro.gov.in/), [PIB](https://pib.gov.in/) and your teacher for verified recent science news; note the date of each item.
+This independent study material is not a verified district syllabus. The notice says a 40-mark preliminary, followed by activity, experiment and quiz rounds for selected teams; question count and detailed scoring are not specified. Confirm the rules with your teacher.
