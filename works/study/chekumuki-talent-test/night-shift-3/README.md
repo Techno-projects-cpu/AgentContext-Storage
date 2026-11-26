@@ -2,6 +2,8 @@
 
 Fresh **unofficial** material after [Night Shift 2](../night-shift-2/README.md): stronger Telugu literature and grammar, Telangana GK, multi-picture connections, everyday science and easy calculations. We don't have the organisers' syllabus or questions; these are practice, not predictions. No magazine was used.
 
+Need more? Continue with [Night Shift 4](../night-shift-4/README.md): new revision cards, local GK and picture connections.
+
 ## Choose a route
 
 - **45 minutes:** Telugu author pairs (01) → first 15 picture connections (02) → science traps (03).
