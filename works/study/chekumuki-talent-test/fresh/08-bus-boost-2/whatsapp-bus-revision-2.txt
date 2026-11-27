@@ -1,0 +1,203 @@
+🚌 *CHEKUMUKI BUS BOOST 2 — MORE KNOWLEDGE!*
+
+A fresh continuation, not a replacement for Bus Boost 1. Copy the whole message for offline revision. Short facts + examples + picture connections + a 20-question test. Some foundations overlap when needed. Independent study, NOT an official syllabus or guaranteed questions.
+
+*1️⃣ WAVES, SOUND & SMART DEVICES*
+
+1. SONAR uses sound waves and echoes, commonly underwater; RADAR uses radio waves, not sound.
+2. Echo travels to an object AND back. Distance = wave speed × round-trip time ÷ 2.
+3. Sonar echo in 2 s at 1500 m/s → distance = 1500 × 2 ÷ 2 = 1500 m.
+4. Ultrasound is sound above about 20,000 Hz; infrasound is below about 20 Hz. Hearing ranges vary by individual.
+5. Medical ultrasound uses sound waves, not X-rays. Images require trained interpretation.
+6. Doppler effect: relative motion changes observed frequency. A siren generally sounds higher approaching, lower receding.
+7. Pitch mainly relates to frequency; loudness generally relates to amplitude and also depends on frequency and the listener.
+8. A periscope uses mirrors/prisms to redirect light around an obstruction.
+9. A plane mirror forms a virtual, upright image. Lateral inversion is an apparent left-right reversal.
+10. A magnifying glass commonly uses a convex lens; the observed image depends on the object's position.
+11. Electroscope detects charge; identifying charge sign requires an appropriate known reference and method.
+12. Electroplating deposits a metal coating using electricity and an electrolyte. Do not experiment with mains electricity.
+13. A thermos reduces heat transfer: vacuum limits conduction/convection; reflective surfaces reduce radiation.
+14. A solar cell converts light directly to electrical energy; a solar water heater mainly heats water.
+15. Conduction, convection and radiation may operate together; insulation slows transfer, not destroys energy.
+
+*2️⃣ CHEMISTRY: SMALL CHANGES, BIG CLUES*
+
+16. Sublimation = solid → gas directly; deposition = gas → solid directly.
+17. Evaporation happens at a liquid surface at temperatures below boiling; boiling occurs throughout a liquid at its boiling conditions.
+18. Condensation = vapour → liquid; freezing = liquid → solid; melting = solid → liquid.
+19. Physical change need not create a new substance; chemical change forms new substances. Burning is chemical.
+20. Mass is conserved in an ordinary chemical reaction in a closed system; escaping gas can make an open container appear to lose mass.
+21. Emulsion = droplets of one liquid dispersed in another. Milk contains fat droplets dispersed in water.
+22. A solute dissolves in a solvent; salt is the solute and water the solvent in salt water.
+23. A saturated solution holds as much solute as it can at specified conditions; solubility depends on substance and temperature.
+24. Filtration removes insoluble particles; distillation can collect solvent from dissolved nonvolatile salt.
+25. Rusting iron usually needs oxygen and water. Painting or galvanising helps reduce corrosion.
+26. Acid + base can neutralise each other, producing salt and water in many simple examples; do not mix unknown chemicals.
+27. Baking soda is sodium bicarbonate; washing soda is sodium carbonate in a common hydrated form. They are not identical.
+28. LPG and CNG are fuels; carbon monoxide from incomplete combustion is poisonous and needs urgent attention.
+29. CO₂ is carbon dioxide; CO is carbon monoxide. One extra oxygen atom makes a different substance.
+30. Natural indicator: turmeric turns reddish-brown in a basic medium. Indicators show colour changes, not exact identity of every chemical.
+
+*3️⃣ PLANTS & ECOLOGY: HOW THEY WORK*
+
+31. Diffusion = net movement from higher to lower concentration through random motion; a membrane is not essential.
+32. Osmosis = net movement of water across a selectively permeable membrane, toward lower water potential.
+33. A plant cell's turgor pressure helps support it; water loss may reduce turgor and contribute to wilting.
+34. Transpiration = water-vapour loss from aerial plant parts, especially through stomata.
+35. Plant shoot bending toward light is an example of phototropism: a directional growth response.
+36. Roots often grow downward in response to gravity; growth direction is influenced by multiple environmental signals.
+37. Grafting joins a scion to a compatible rooted stock. Farmers use it to propagate selected plants.
+38. In horticultural budding a bud is joined to a rootstock; yeast budding is a different asexual reproductive process.
+39. Lichen is an association between a fungus and a photosynthetic partner, such as algae or cyanobacteria.
+40. Lichens can help indicate air quality, because species differ in sensitivity to pollution.
+41. Vermicomposting uses earthworms to help break down organic material under suitable conditions.
+42. Biogas is produced by microbes breaking down organic matter without oxygen; it contains methane.
+43. Habitat = place an organism lives; niche = its role and interactions in the ecosystem.
+44. Mutualism: both partners benefit. Parasitism: one benefits while the other is harmed. Nature can be complex.
+45. Biodiversity means variety of life at genetic, species and ecosystem levels.
+46. An adaptation is an inherited feature that can help survival/reproduction in an environment; an individual does not choose to evolve.
+47. A cactus stores water and often has spines; adaptations vary among species and are not guarantees against drought.
+48. Decomposers break down dead material, returning nutrients to ecosystems. Not all microorganisms cause disease.
+49. Rainwater harvesting collects rain for later use or recharge; storage and treatment determine whether water is safe.
+50. Ozone high in the stratosphere absorbs much harmful ultraviolet radiation; ground-level ozone can harm health.
+
+*4️⃣ HUMAN BODY & HEALTH: CONNECT THE STEPS*
+
+51. Digestion breaks food into smaller absorbable substances; absorption and use by cells are later steps.
+52. Saliva begins starch digestion; stomach acid and enzymes support digestion. Most absorption occurs in small intestine.
+53. Villi increase the small intestine's surface area for absorption.
+54. Diaphragm contracts and moves downward during normal inhalation; chest volume increases.
+55. Alveoli provide a large surface for gas exchange; oxygen enters blood and carbon dioxide leaves it.
+56. Heart's right side pumps blood to lungs; left side pumps blood to the body in normal circulation.
+57. Pulse reflects pressure waves in arteries from heartbeats; pulse rate and breathing rate are different.
+58. A reflex is a rapid automatic response. Pain is a warning: do not intentionally touch hot objects to test it.
+59. Bone + muscle + joint work together in movement; muscles pull when contracting, not push like a rod.
+60. Insulin helps regulate blood glucose; hormone levels and diabetes require qualified medical assessment.
+61. Immunity involves several defences; vaccination can train the immune system against specific diseases.
+62. Clean water, sanitation and handwashing reduce particular infections; none prevents all disease.
+63. Dehydration can be dangerous. Oral rehydration solution replaces water and salts; follow health-worker guidance.
+64. A balanced diet contains varied nutrients in appropriate amounts; no single food supplies every need in all situations.
+65. Anaemia can have multiple causes, including iron deficiency. Diagnosis and treatment require appropriate advice.
+
+*5️⃣ EARTH, SPACE & THE ENVIRONMENT*
+
+66. Earth's crust, mantle and core are broad layers. The tectonic plates include crust and uppermost mantle.
+67. Igneous rocks form from cooled molten material; sedimentary from accumulated material; metamorphic from changes under heat/pressure.
+68. Fossils are preserved remains, traces or impressions of past life. Most organisms do not become fossils.
+69. Weathering breaks rock down; erosion carries material away; deposition lays transported material down.
+70. Groundwater is stored in pore spaces and fractures; an aquifer is a formation able to yield useful quantities of water.
+71. Greenhouse gases absorb and re-emit infrared radiation. The natural greenhouse effect warms Earth; added gases increase warming.
+72. Ozone depletion and climate change are different issues, though atmospheric processes can interact.
+73. Acid rain can form from sulfur dioxide and nitrogen oxides reacting in the atmosphere; normal rain is mildly acidic.
+74. Most ocean tides arise mainly from the Moon's gravitational pull, with the Sun also contributing; local coast shapes matter.
+75. A geostationary satellite orbits above the equator with Earth's rotation period and direction, appearing fixed over one longitude.
+76. An orbiting satellite is continuously falling around Earth while moving sideways; it is not beyond gravity.
+77. A shooting star is a meteor, not a star falling from the sky. A meteorite reaches the ground.
+78. Earth's shadow on the Moon causes a lunar eclipse. Normal Moon phases are NOT caused by that shadow.
+79. Latitude tells position north/south of Equator; longitude east/west of Prime Meridian.
+80. IST = UTC+5:30; 10:00 UTC = 15:30 IST on the same date.
+
+*6️⃣ TELUGU: సాహిత్యం, పండుగలు & అర్థం*
+
+81. ద్విపద = a verse form with paired lines. పాల్కురికి సోమనాథుడు → బసవ పురాణం, associated with ద్విపద.
+82. ప్రబంధం = a literary composition/form; conventions vary. ఆముక్తమాల్యద → శ్రీకృష్ణదేవరాయలు.
+83. చాటుపద్యం = an occasional short verse, often linked to a person or situation; it is not always satire.
+84. జానపద గీతం = folk song, often passed through communities; words and tunes can vary by place.
+85. తోలుబొమ్మలాట = leather shadow-puppet theatre. Light + figures + screen create shadows.
+86. బుర్రకథ, ఒగ్గుకథ = storytelling performance traditions combining narration, song and music.
+87. బతుకమ్మ = Telangana floral festival with flower arrangements, songs and community celebrations.
+88. సమ్మక్క–సారలమ్మ జాతర = major tribal festival at Medaram, Telangana. Check official dates and local details.
+89. సుమతీ శతకం → బద్దెన. దాశరథీ శతకం → కంచర్ల గోపన్న / రామదాసు.
+90. మహాప్రస్థానం → శ్రీశ్రీ. కన్యాశుల్కం → గురజాడ అప్పారావు. గబ్బిలం → గుర్రం జాషువా.
+91. ఆంధ్ర మహాభాగవతం → పోతన. నా గొడవ → కాళోజీ నారాయణరావు.
+92. నన్నయ, తిక్కన, ఎర్రన → కవిత్రయం, associated with Telugu Mahabharata.
+93. మకుటం = recurring word/phrase in verses. ఉపమాలంకారం = explicit comparison, often with వలె/వంటి.
+94. రూపకం describes one thing as another figuratively; compare “ముఖం చంద్రుని వలె” (simile).
+95. కర్త–కర్మ–క్రియ: “సీత పుస్తకం చదివింది” → సీత / పుస్తకం / చదివింది.
+96. ఆత్మకథ = one's own life written by oneself; జీవిత చరిత్ర = someone's life written by another.
+97. సామెత = proverb; జాతీయము = idiom; meaning depends on actual usage.
+98. వాస్తవం = checkable factual claim; అభిప్రాయం = opinion. Evidence is needed for a claim.
+99. పర్యాయపదం = similar meaning; వ్యతిరేకపదం = opposite meaning: వెలుగు ↔ చీకటి.
+100. పూర్ణవిరామం = full stop; ప్రశ్నార్థకం = question mark; అల్పవిరామం = comma.
+
+*7️⃣ HISTORY, CIVICS & EVERYDAY EVIDENCE*
+
+101. Archaeology studies human past through material remains: tools, pottery, buildings and more.
+102. Epigraphy studies inscriptions; numismatics studies coins, medals and related objects.
+103. Manuscript = handwritten document. An inscription may be carved on stone or written on another durable surface.
+104. Primary sources are evidence from the period or direct participants; they may still be biased or mistaken.
+105. Carbon-14 can help date once-living material within its useful range; it does not directly date every metal object.
+106. India's Parliament = President + Lok Sabha + Rajya Sabha. They have distinct roles in the lawmaking process.
+107. Gram Sabha includes registered voters in a village-level area; elected Gram Panchayat is a local governing body.
+108. A bill is a proposal; it does not become law merely because someone introduces it.
+109. Secret ballot protects privacy of choice; election rules and dates must be checked with the relevant authority.
+110. A graph with a truncated vertical axis can exaggerate apparent differences; check scale, units and source.
+111. A single observation is not always representative. Compare more samples and repeat measurements where possible.
+112. Correlation alone does not prove causation; consider other possible explanations.
+113. A claim that “all metals are magnetic” fails: copper is not attracted like iron. One counterexample disproves an absolute claim.
+114. A trustworthy-looking message can still be phishing. Never give an OTP to claim an unexpected prize.
+115. Verify competition eligibility, closing date and prize on the organiser's official page; screenshots can be outdated.
+
+*8️⃣ EASY MATHS — THINK IN STEPS*
+
+116. Ratio 2:3 means 2 parts to 3 parts. For a total of 25, 5 parts = 25, so shares are 10 and 15.
+117. 3/4 of 80 = 60. 25% of 80 = 20. 3/4 = 75%.
+118. If 5 pens cost ₹75 at equal price, 1 costs ₹15; 8 cost ₹120.
+119. 120 km in 3 h → average speed 40 km/h. Actual speed can change during the trip.
+120. Rectangle 8 cm × 5 cm → area 40 cm²; perimeter 26 cm. Units matter.
+121. Triangle area = ½ × base × perpendicular height. Base 10 cm, height 4 cm → 20 cm².
+122. Mean of 3, 5, 7 = 5. Median of 1, 2, 9 = 2; extreme values affect mean differently.
+123. Mode of 2, 2, 3, 4 is 2; range = 4 − 2 = 2.
+124. Probability of drawing a red ball from 2 red and 3 blue, equally likely: 2/5.
+125. 200 increased by 10% = 220; then reduced by 10% = 198, not 200.
+126. 40% → 50% = 10 percentage points; the relative increase is 25%.
+127. 20 → 40 is a 100% increase, while 40 is 200% of 20.
+128. 2 hours 15 minutes = 135 minutes. 1 km = 1000 m; 1 litre = 1000 mL.
+129. If a number is divisible by 2 and 3, it is divisible by 6. Divisibility by 3 depends on digit sum.
+130. Pattern 4, 7, 10, 13 suggests +3 → 16; more than one rule may fit a short sequence.
+
+*9️⃣ PICTURE-CONNECTION CHALLENGE*
+
+131. Underwater transmitter + echo + submarine → SONAR / sound ranging.
+132. Radio dish + aircraft + reflected signal → RADAR.
+133. Sun + solar panel + electrical output → PHOTOVOLTAIC SOLAR CELL.
+134. Scion + rootstock + joined plant → GRAFTING.
+135. Fungus + alga + crust on rock → LICHEN ASSOCIATION.
+136. Earthworms + organic waste + compost → VERMICOMPOSTING.
+137. Leather puppet + lamp + screen shadow → తోలుబొమ్మలాట.
+138. Flower stacks + Telangana community singing → బతుకమ్మ.
+139. Stone writing + scholar + copied letters → EPIGRAPHY.
+140. Ancient coin + magnifier + collection → NUMISMATICS.
+141. Moon + sea + raised water level → TIDES, influenced mainly by lunar gravity.
+142. Wilting leaf + water loss + plant-cell pressure → reduced TURGOR, one possible explanation.
+143. Mirror + tube + observer behind obstruction → PERISCOPE.
+144. ₹200 → ₹220 → ₹198 with 10% signs → successive percentage changes.
+145. Map contours close together + hillside → STEEP SLOPE on the same map.
+
+*🔟 20-QUESTION SELF-TEST — COVER THE ANSWERS*
+
+1. SONAR uses sound or radio waves?
+2. Echo returns in 2 s at 1500 m/s. How far is the object?
+3. Solid directly to gas: name the change.
+4. Which plant process loses water vapour through leaves?
+5. Fungus + photosynthetic partner form what association?
+6. Name the gas-rich fuel produced by anaerobic microbes from organic matter.
+7. What do villi increase in the small intestine?
+8. Does Earth's shadow cause normal Moon phases?
+9. Which type of satellite appears fixed over one point on the equator?
+10. బసవ పురాణంతో సంబంధం ఉన్న కవి ఎవరు?
+11. బతుకమ్మలో ప్రధానంగా ఏవి ఉపయోగిస్తారు?
+12. What field studies inscriptions?
+13. What field studies coins?
+14. Is a bill automatically law immediately upon introduction?
+15. 3/4 of 80 = ?
+16. Area of rectangle 8 cm × 5 cm = ?
+17. 200 + 10%, then −10% = ?
+18. 40% to 50% is how many percentage points?
+19. A fake prize message demands an OTP. What should you do?
+20. Lamp + leather figures + screen: which art form?
+
+*✅ ANSWERS*
+1. Sound. 2. 1500 m: divide round-trip distance by 2. 3. Sublimation. 4. Transpiration. 5. Lichen. 6. Biogas. 7. Surface area for absorption. 8. No; normal phases show different views of the sunlit Moon. 9. Geostationary. 10. పాల్కురికి సోమనాథుడు. 11. పువ్వులు. 12. Epigraphy. 13. Numismatics. 14. No. 15. 60. 16. 40 cm². 17. 198. 18. 10. 19. Do not share it; independently verify. 20. తోలుబొమ్మలాట.
+
+💪 Recall beats rereading: name the link before you peek. These notes are not an official question list; check changing facts and rules with current official sources.

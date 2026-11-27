@@ -27,6 +27,11 @@ These topics were selected after another keyword scan of the archived and fresh 
 - [Copy-ready WhatsApp bus revision sheet](07-bus-boost/whatsapp-bus-revision.txt) — one standalone plain-text file with 164 compact facts and connections plus a self-test; it intentionally revisits essential basics.
 - [New knowledge: cells, waves, space and institutions](07-bus-boost/new-knowledge.md) — less-covered angles with examples and sources.
 
+## Bus boost 2: more to copy and study
+
+- [WhatsApp-ready bus revision 2](08-bus-boost-2/whatsapp-bus-revision-2.txt): 145 short facts and picture connections, plus a 20-question self-test.
+- [New knowledge: devices, plants, Telugu and history](08-bus-boost-2/new-knowledge.md): expanded explanations of less-covered subjects.
+
 ## Audit scope and limits
 
 We programmatically read/indexed **all 93 existing Markdown files** (about 674,000 characters), inspected their headings and searched the full corpus for candidate terms. Seven original JPEGs were preserved in the archive; their earlier transcriptions and analyses were included in the text audit, but this pass did **not** re-transcribe every image pixel or the inaccessible linked PDFs. Keyword matches are imperfect: translations, synonyms and prior question wording can hide overlap. So these are **less-covered/new angles**, not a guarantee that no old item mentions them. Background concepts may be used where needed, but we have intentionally avoided repeating the most common old drills.
