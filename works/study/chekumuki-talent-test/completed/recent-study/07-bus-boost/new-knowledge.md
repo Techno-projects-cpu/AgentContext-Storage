@@ -1,6 +1,6 @@
 # New knowledge: patterns, systems and everyday evidence
 
-These angles were selected after a keyword scan of the existing Chekumuki Markdown (November 2026). A keyword count cannot detect every synonym, image or question, so this is not a promise of zero overlap. The [separate bus sheet](whatsapp-bus-revision.txt) deliberately revises essential older basics as well as these newer ideas.
+These angles were selected after a keyword scan of the existing Chekumuki Markdown (November 2026). A keyword count cannot detect every synonym, image or question, so this is not a promise of zero overlap. The [separate bus sheet](../../../fresh/07-bus-boost/whatsapp-bus-revision.txt) deliberately revises essential older basics as well as these newer ideas.
 
 ## 1. Cells, inheritance and variation
 
