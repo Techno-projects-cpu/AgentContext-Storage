@@ -22,6 +22,11 @@
 
 These topics were selected after another keyword scan of the archived and fresh Markdown. Some background concepts may overlap; synonyms and images can hide previous coverage, so novelty is not absolute. Picture clues are descriptions, not official slides.
 
+## Bus boost: quick revision + new knowledge
+
+- [Copy-ready WhatsApp bus revision sheet](07-bus-boost/whatsapp-bus-revision.txt) — one standalone plain-text file with 164 compact facts and connections plus a self-test; it intentionally revisits essential basics.
+- [New knowledge: cells, waves, space and institutions](07-bus-boost/new-knowledge.md) — less-covered angles with examples and sources.
+
 ## Audit scope and limits
 
 We programmatically read/indexed **all 93 existing Markdown files** (about 674,000 characters), inspected their headings and searched the full corpus for candidate terms. Seven original JPEGs were preserved in the archive; their earlier transcriptions and analyses were included in the text audit, but this pass did **not** re-transcribe every image pixel or the inaccessible linked PDFs. Keyword matches are imperfect: translations, synonyms and prior question wording can hide overlap. So these are **less-covered/new angles**, not a guarantee that no old item mentions them. Background concepts may be used where needed, but we have intentionally avoided repeating the most common old drills.
