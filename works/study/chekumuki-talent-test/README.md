@@ -1,6 +1,7 @@
 # Chekumuki: start here ⚔️
 
-- **[Fresh material →](fresh/README.md)** — the bus packs kept available for continued study.
+- **[Fresh material →](fresh/README.md)** — new regular study material and the bus packs kept available for continued study.
+- **[New Knowledge Expedition →](fresh/12-knowledge-expedition/README.md)** — regular science, Telugu, maths, picture connections and practice.
 - **[WhatsApp bus revision →](fresh/07-bus-boost/whatsapp-bus-revision.txt)** — copy-ready quick revision and self-test.
 - **[More WhatsApp bus revision →](fresh/08-bus-boost-2/whatsapp-bus-revision-2.txt)** — another copy-ready pack.
 - **[WhatsApp bus revision 3 →](fresh/09-bus-boost-3/whatsapp-bus-revision-3.txt)** — more short facts, connections and questions.

@@ -1,6 +1,8 @@
-# Bus packs: keep studying 🚌
+# Fresh learning and bus packs 🧭
 
-The finished non-bus study material is now in [completed/recent-study](../completed/recent-study/README.md). The WhatsApp packs remain here **at their existing paths**, and two more have been added. Each text file is standalone: open, select all and paste into WhatsApp.
+A new regular reading pack is available: **[Knowledge Expedition →](12-knowledge-expedition/README.md)** — science, health, Telugu, maths, 20 picture connections and 30 explained practice questions.
+
+The finished earlier non-bus study material is now in [completed/recent-study](../completed/recent-study/README.md). The WhatsApp packs remain here **at their existing paths**, and two more have been added. Each text file is standalone: open, select all and paste into WhatsApp.
 
 1. [Bus Boost 1](07-bus-boost/whatsapp-bus-revision.txt) — broad revision, 164 numbered facts/connections and a self-test.
 2. [Bus Boost 2](08-bus-boost-2/whatsapp-bus-revision-2.txt) — 145 facts/connections and a 20-question self-test.
