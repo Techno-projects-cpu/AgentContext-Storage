@@ -32,6 +32,11 @@ These topics were selected after another keyword scan of the archived and fresh 
 - [WhatsApp-ready bus revision 2](08-bus-boost-2/whatsapp-bus-revision-2.txt): 145 short facts and picture connections, plus a 20-question self-test.
 - [New knowledge: devices, plants, Telugu and history](08-bus-boost-2/new-knowledge.md): expanded explanations of less-covered subjects.
 
+## Bus boost 3: new angles and quick recall
+
+- [WhatsApp-ready bus revision 3](09-bus-boost-3/whatsapp-bus-revision-3.txt) — 120 quick facts, 15 picture connections and a 20-question self-test.
+- [New knowledge: forces, diversity and evidence](09-bus-boost-3/new-knowledge.md) — expanded explanations and sources.
+
 ## Audit scope and limits
 
 We programmatically read/indexed **all 93 existing Markdown files** (about 674,000 characters), inspected their headings and searched the full corpus for candidate terms. Seven original JPEGs were preserved in the archive; their earlier transcriptions and analyses were included in the text audit, but this pass did **not** re-transcribe every image pixel or the inaccessible linked PDFs. Keyword matches are imperfect: translations, synonyms and prior question wording can hide overlap. So these are **less-covered/new angles**, not a guarantee that no old item mentions them. Background concepts may be used where needed, but we have intentionally avoided repeating the most common old drills.
