@@ -1,0 +1,190 @@
+🚌 *CHEKUMUKI BUS BOOST 3 — MORE QUICK KNOWLEDGE*
+
+A new copy-ready continuation. 120 short facts + 15 picture connections + 20 self-test questions. Earlier basics appear when needed to connect new ideas. Independent revision, not an official syllabus or guaranteed questions.
+
+*1️⃣ FORCES, FLUIDS & MACHINES*
+
+1. Force changes motion or shape; SI unit = newton (N). F = mass × acceleration when mass is constant.
+2. Pressure = force ÷ area; same force on less area produces more pressure.
+3. Liquid pressure at a given depth increases with fluid density and depth, assuming a stationary fluid.
+4. Buoyancy (ఉత్ప్లావక బలం) = upward force exerted by a fluid on an immersed object.
+5. Archimedes' principle: buoyant force equals the weight of the displaced fluid.
+6. A floating ship displaces enough water to balance its weight. Shape and overall average density matter.
+7. Pascal's principle: a pressure change in a confined fluid is transmitted throughout it.
+8. Ideal hydraulic example: 10 N on 1 cm² → 10 N/cm² → 50 N on 5 cm². Larger output moves less distance for equal displaced volume.
+9. A hydraulic brake uses fluid pressure; force multiplication is not free energy.
+10. Surface tension results from interactions between liquid molecules; some small insects can stand on water.
+11. Capillary action can draw liquid through a narrow tube or porous material. Plant water transport also involves other mechanisms.
+12. Friction helps tyres grip the road, but also causes wear and heating.
+13. A lever turns around a fulcrum. Changing distances from the fulcrum can change the effort needed.
+14. Mechanical advantage = output force ÷ input force. Real machines have losses; force gain can require greater input distance.
+15. Power = energy transferred ÷ time; 1 watt = 1 joule per second.
+
+*2️⃣ LIGHT, RADIATION & ELECTRICITY*
+
+16. Electromagnetic spectrum: radio → microwave → infrared → visible → ultraviolet → X-ray → gamma.
+17. In that order frequency generally increases and wavelength decreases. All travel at the same speed in vacuum.
+18. Radio and microwave are electromagnetic waves. SONAR uses sound, not electromagnetic waves.
+19. Infrared is associated with thermal radiation; objects at ordinary temperatures emit infrared.
+20. Ultraviolet can damage skin and eyes. Never look directly at the Sun without proper protection.
+21. X-rays can help produce medical images; professionals control their use because ionising radiation can damage tissue.
+22. Radiation is energy travelling through space or matter; radioactive contamination is unwanted radioactive material in a place or on a person.
+23. Half-life = time for about half the radioactive nuclei in a large sample to decay. 80 → 40 → 20 after two half-lives.
+24. Half-life does NOT mean all radioactive atoms disappear after that time.
+25. A mirror reflects light; refraction changes light's direction when its speed changes between media, except in some directions.
+26. White light contains many visible wavelengths; a prism can spread colours by dispersion.
+27. Electric current is charge flow, measured in amperes. Voltage is energy transferred per unit charge, measured in volts.
+28. For an ohmic conductor under fixed conditions, V = IR. At 12 V and 3 Ω, I = 4 A.
+29. Power P = VI. At 12 V and 2 A, power = 24 W. kWh is a unit of energy, not power.
+30. A solar cell converts light to electrical energy; a battery stores chemical energy that can provide electrical energy.
+
+*3️⃣ CHEMISTRY: REACTIONS & MATERIALS*
+
+31. Atom's proton number identifies the element. Isotopes have the same proton number but different neutron numbers.
+32. A compound contains elements chemically combined in fixed proportions; a mixture can have varying proportions.
+33. Chemical reaction forms new substances; physical changes do not necessarily form them.
+34. Catalyst = substance that speeds a reaction via a lower-activation-energy pathway without being consumed overall.
+35. Enzymes are biological catalysts; most are proteins. Temperature and pH can affect their activity.
+36. High heat can alter an enzyme's shape and reduce its activity; more heat does not improve activity indefinitely.
+37. Exothermic reaction transfers heat to surroundings; endothermic reaction absorbs heat from surroundings.
+38. An exothermic reaction can still need activation energy to start; a match starts fuel burning.
+39. Acid turns blue litmus red; base turns red litmus blue. Never taste chemicals to identify them.
+40. Neutralisation often produces salt and water, e.g. hydrochloric acid + sodium hydroxide. Conditions and chemicals matter.
+41. A solution has solute dissolved in solvent. In salt water, salt is solute; water is solvent.
+42. Filtration removes insoluble solids; chromatography separates components moving differently with a solvent.
+43. A saturated solution holds the maximum amount of solute under specified conditions; solubility can change with temperature.
+44. Alloy is a material containing a metal and other element(s). Brass: copper + zinc; bronze: copper + tin.
+45. Galvanising uses zinc coating to help protect iron/steel; rusting needs oxygen and water in ordinary conditions.
+
+*4️⃣ BIOLOGY: CELLS, CLASSIFICATION & BODY*
+
+46. Cell is the basic structural and functional unit of life; a cell membrane controls movement across its boundary.
+47. Plant cells generally have a cell wall and chloroplasts; animal cells lack these structures.
+48. Gene = DNA segment. Alleles are different forms of a gene. Phenotype depends on genes and often environment.
+49. Mitosis usually produces two genetically similar cells; meiosis reduces chromosome number in sexual reproduction.
+50. Human body cells normally have 46 chromosomes; human sperm and egg usually have 23 each.
+51. Classification groups organisms based on shared features and evolutionary relationships; classifications can change with evidence.
+52. Binomial scientific name has genus + specific epithet. In Homo sapiens, Homo is the genus, sapiens the epithet.
+53. Mango's scientific name is Mangifera indica: genus starts with a capital, specific epithet lowercase.
+54. Bacteria are single-celled organisms without a nucleus enclosed in a membrane; viruses need host cells to reproduce.
+55. Fungi absorb nutrients from their surroundings. Yeast is a fungus; mushrooms are fruiting structures of some fungi.
+56. Herbarium = collection of preserved, usually dried and labelled plant specimens. Botanical garden maintains living plants.
+57. Seed banks preserve suitable seeds under controlled conditions; not all seeds tolerate the same storage methods.
+58. Hydroponics grows plants without soil using nutrient solutions; roots still require oxygen, water and nutrients.
+59. A vaccine trains immune responses for specific diseases; antibiotics do not cure viral infections.
+60. Red blood cells carry oxygen using haemoglobin; platelets help clotting; white blood cells contribute to defence.
+61. Arteries carry blood away from the heart; veins carry it towards the heart. This is about direction, not always oxygen level.
+62. Alveoli in lungs exchange gases; villi in the small intestine help absorb nutrients.
+63. Kidneys filter blood and regulate water and salts. Nephrons are functional units of the kidney.
+64. Insulin helps regulate blood glucose; medical conditions should be assessed by qualified professionals.
+65. Reflex = rapid automatic response. Nervous and hormonal signalling are related but different systems.
+
+*5️⃣ ECOLOGY, EARTH & WEATHER*
+
+66. Habitat = place an organism lives. Niche = its role and interactions in an ecosystem.
+67. Endemic species is native to and restricted to a particular area; endemic disease means consistently present at expected levels in an area.
+68. Keystone species has an ecosystem effect disproportionately large compared with its abundance.
+69. Bioaccumulation = substance builds up in one organism over time; biomagnification = increasing concentration across food-chain levels for certain persistent substances.
+70. Not every chemical biomagnifies; properties of the substance and food web matter.
+71. Biodiversity includes genetic, species and ecosystem variety. Conservation protects habitats as well as individual species.
+72. Producer makes organic food using energy; consumer obtains food from organisms; decomposers break down dead material.
+73. Plants and animals both respire; plants also photosynthesise when suitable light and conditions are available.
+74. Nitrogen-fixing bacteria in some legume root nodules help convert nitrogen into usable compounds.
+75. Groundwater occupies spaces and cracks below ground; an aquifer can yield useful quantities of water.
+76. Weathering breaks rock in place; erosion transports it; deposition lays it down elsewhere.
+77. A watershed is land draining towards a common outlet. Upstream pollution can affect downstream water.
+78. A monsoon is a seasonal wind system linked to seasonal rainfall, not simply any heavy shower.
+79. El Niño involves episodic warming of parts of the tropical Pacific and can affect weather worldwide; it alone does not decide every Indian monsoon.
+80. Weather is short-term conditions; climate is a long-term pattern. One rainy day does not define climate.
+81. Greenhouse gases absorb and re-emit infrared radiation; adding them can strengthen Earth's warming effect.
+82. Stratospheric ozone absorbs much harmful UV; ground-level ozone can harm health. Ozone depletion and climate change are distinct issues.
+83. A tsunami is a series of waves often caused by sudden water displacement. Not every undersea earthquake generates one.
+84. Earthquake magnitude describes source size; intensity describes local shaking/effects. Epicentre is above the focus at the surface.
+85. The International Date Line generally follows 180° longitude with deviations; crossing it changes the calendar date.
+
+*6️⃣ TELUGU: LITERATURE, LANGUAGE & CULTURE*
+
+86. సుమతీ శతకం → బద్దెన. దాశరథీ శతకం → కంచర్ల గోపన్న / రామదాసు.
+87. దాశరథీ శతకం author is not the modern poet దాశరథి కృష్ణమాచార్య; similar names can mislead.
+88. ఆంధ్ర మహాభాగవతం → పోతన. ఆముక్తమాల్యద → శ్రీకృష్ణదేవరాయలు.
+89. మహాప్రస్థానం → శ్రీశ్రీ. కన్యాశుల్కం → గురజాడ అప్పారావు. గబ్బిలం → గుర్రం జాషువా.
+90. నా గొడవ → కాళోజీ నారాయణరావు. బసవ పురాణం → పాల్కురికి సోమనాథుడు.
+91. నన్నయ, తిక్కన, ఎర్రన → కవిత్రయం, associated with Telugu Mahabharata.
+92. మకుటం = recurring word or phrase in verses; “సుమతీ” is a clue to సుమతీ శతకం.
+93. ఉపమాలంకారం: explicit comparison, as in “ముఖం చంద్రుని వలె ఉంది”. వలె indicates “like”.
+94. రూపకాలంకారం describes one thing as another figuratively; don't classify by a single word without context.
+95. అనుప్రాస involves repetition of similar sounds/consonants for a sound effect; textbook rules determine tricky cases.
+96. ద్విపద is a verse form of paired lines. ఛందస్సు concerns verse metre and rhythmic structure.
+97. కర్త–కర్మ–క్రియ: “సీత పుస్తకం చదివింది” → సీత / పుస్తకం / చదివింది.
+98. సామెత = proverb; జాతీయము = idiom. Meaning depends on usage, not literal translation alone.
+99. ఆత్మకథ = one's own life written by oneself; జీవిత చరిత్ర = a life account written by another.
+100. తోలుబొమ్మలాట = leather shadow-puppet theatre. బతుకమ్మ = Telangana floral festival with community songs.
+
+*7️⃣ CIVICS, EVIDENCE & EASY MATHS*
+
+101. Indian Parliament consists of the President, Lok Sabha and Rajya Sabha.
+102. Broadly, legislature makes laws, executive administers them and judiciary interprets/applies them. Their actual powers follow the Constitution.
+103. Fundamental Rights and Fundamental Duties are distinct parts of India's Constitution; specific details and limits matter.
+104. Gram Sabha includes registered village-area voters; Gram Panchayat is an elected local governing institution.
+105. Archaeology studies the human past through material remains; epigraphy studies inscriptions; numismatics studies coins and related objects.
+106. A manuscript is handwritten. A primary source may still be mistaken or biased; compare independent evidence.
+107. A graph's axis scale and units matter; a truncated scale can exaggerate apparent differences.
+108. Correlation does not by itself prove causation. A third factor may influence both observations.
+109. If 4 notebooks cost ₹60 at equal prices, 1 costs ₹15 and 7 cost ₹105.
+110. 3/4 of 80 = 60; 25% of 80 = 20. 3/4 = 75%.
+111. ₹200 increased 10% becomes ₹220; reducing ₹220 by 10% gives ₹198, not ₹200.
+112. 40% to 50% is a rise of 10 percentage points; relative increase is 25%.
+113. 20 → 40 is 100% increase. The final 40 is 200% OF the original 20.
+114. Mean of 2, 3, 3, 4, 18 = 6; median = 3; mode = 3; range = 16.
+115. A bag has 3 red, 2 blue balls. One equally likely draw: P(red) = 3/5.
+116. Distance = speed × time. At constant 30 km/h for 2 h, distance = 60 km.
+117. Rectangle 8 cm × 5 cm: area 40 cm²; perimeter 26 cm.
+118. Triangle area = ½ × base × perpendicular height; 10 cm and 4 cm give 20 cm².
+119. Shares in ratio 2:3 with total 25 → 5 parts = 25 → shares 10 and 15.
+120. Binary 1011 = decimal 8 + 2 + 1 = 11. Eight bits make one byte.
+
+*8️⃣ PICTURE CONNECTIONS — NAME THE COMMON IDEA*
+
+121. Floating ship + displaced water + upward arrow → BUOYANCY / ARCHIMEDES' PRINCIPLE.
+122. Small piston + oil + large piston → PASCAL'S PRINCIPLE / HYDRAULICS.
+123. Water strider + droplet + liquid surface → SURFACE TENSION.
+124. Radio tower + infrared camera + X-ray image → ELECTROMAGNETIC SPECTRUM; different wavelengths.
+125. 80 → 40 → 20 labelled radioactive sample at equal intervals → TWO HALF-LIVES.
+126. Enzyme + substrate + faster reaction → BIOLOGICAL CATALYST.
+127. Sun + panel + electrical output → SOLAR CELL / PHOTOVOLTAIC EFFECT.
+128. Dried plant + label + specimen sheet → HERBARIUM.
+129. Roots + nutrient solution + no soil → HYDROPONICS.
+130. Small fish + larger fish + persistent pollutant labels rising → BIOMAGNIFICATION.
+131. Legume roots + nodules + bacteria → NITROGEN FIXATION.
+132. Forest species + unexpectedly large ecosystem effect → KEYSTONE SPECIES.
+133. 180° longitude + calendar dates + crossing arrow → INTERNATIONAL DATE LINE.
+134. Stone inscription + copied letters + researcher → EPIGRAPHY.
+135. బద్దెన + verses + repeated సుమతీ → సుమతీ శతకం / మకుటం.
+
+*9️⃣ SELF-TEST — TRY FIRST, ANSWERS BELOW*
+
+1. What force pushes upward on a submerged object?
+2. What fluid's weight equals buoyant force?
+3. Which principle explains pressure transmission in a confined fluid?
+4. Radio waves and X-rays belong to what spectrum?
+5. 80 g → how much remains after two half-lives, approximately?
+6. Does a catalyst raise or lower the activation energy of the pathway?
+7. Is most enzyme activity unaffected by temperature and pH?
+8. What are the two parts of a scientific species name?
+9. What is a preserved collection of labelled plant specimens called?
+10. What is growing plants in nutrient solution without soil called?
+11. What does endemic mean when describing a species?
+12. What's the difference between bioaccumulation and biomagnification?
+13. Is a monsoon simply any heavy rain shower?
+14. Which point on the surface is vertically above an earthquake focus?
+15. సుమతీ శతకం రచయిత ఎవరు?
+16. “ముఖం చంద్రుని వలె” is an example of which అలంకారం?
+17. Who studies inscriptions: epigraphy or numismatics?
+18. 40% → 50%: how many percentage points?
+19. Rectangle 8 cm × 5 cm: what is its area?
+20. A bag has 3 red and 2 blue balls. Chance of red on one equally likely draw?
+
+*✅ ANSWERS*
+1. Buoyant force. 2. Displaced fluid. 3. Pascal's principle. 4. Electromagnetic spectrum. 5. About 20 g. 6. Lowers it. 7. No; both can affect activity. 8. Genus and specific epithet. 9. Herbarium. 10. Hydroponics. 11. Native to and restricted to a particular area. 12. Build-up in one organism vs increasing concentration at successive trophic levels for certain substances. 13. No: it is a seasonal wind system linked to seasonal rainfall. 14. Epicentre. 15. బద్దెన. 16. ఉపమాలంకారం. 17. Epigraphy. 18. 10 percentage points. 19. 40 cm². 20. 3/5.
+
+⚡ Don't just reread: cover the answers and connect the ideas. Competition rules and current facts can change; check official sources.
