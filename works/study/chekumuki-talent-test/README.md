@@ -7,6 +7,7 @@
 - **[More WhatsApp bus revision →](fresh/08-bus-boost-2/whatsapp-bus-revision-2.txt)** — another copy-ready pack.
 - **[WhatsApp bus revision 3 →](fresh/09-bus-boost-3/whatsapp-bus-revision-3.txt)** — more short facts, connections and questions.
 - **[Bus revision 4 →](fresh/10-bus-boost-4/whatsapp-bus-revision-4.txt)** and **[Bus revision 5 →](fresh/11-bus-boost-5/whatsapp-bus-revision-5.txt)** — new copy-ready packs.
+- **[Constitution × Science bus pack →](fresh/14-constitution-bus/constitution-science-whatsapp.txt)** — scientific temper, direct science provisions and quick questions.
 - **[Completed archive →](completed/README.md)** — the earlier packs, mock papers, original-paper analysis and photographs, preserved together.
 
 The earlier files have moved into `completed`, so **old direct links to individual files may need `/completed/` inserted after `chekumuki-talent-test/`**. The root README stays at the same address. The original seven paper photographs are preserved in `completed/paper-workout/original-photos/`. The archive label means “previously provided”, not that every item was necessarily read or that the paper keys are official.
