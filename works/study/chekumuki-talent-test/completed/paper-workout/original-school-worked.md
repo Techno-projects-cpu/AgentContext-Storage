@@ -8,7 +8,7 @@
 
 ![Original school paper, first page](original-photos/school-page-1.jpg)
 
-1. **Fake blood trick with a lemon and a coated knife:** **B, intended chemical deception**—iron(III) and thiocyanate can produce a blood-red complex. Do not attempt the demonstration or handle its chemicals.
+1. **Fake blood trick with a lemon and a coated knife:** **B appears intended** (not an official key). The printed option mentions ferric chloride and **methyl orange OR potassium thiocyanate**, but does not fully specify the preparation. Iron(III) plus thiocyanate can form a red complex; separately, methyl orange can turn red in sufficiently acidic lemon juice without ferric chloride. The colour alone does not identify the mechanism. See [paper-specific molecular explanation](../../fresh/13-everyday-science/01-paper-questions.md). Do not perform the demonstration or handle its chemicals.
 2. **LCM 120, GCD 6, sum 54; find the difference:** **A, 6.** Product = 120 × 6 = 720; 24 and 30 sum to 54, difference 6.
 3. **Urease test for added urea and red litmus:** **A.** Ammonia from urea hydrolysis makes conditions basic, turning red litmus blue. This is not a complete food-safety test; do not try at home.
 4. **Telangana-born double-gold archer:** **B, Chikitha Taniparthi**, as reported by [The Hindu](https://www.thehindu.com/sport/other-sports/chikitha-taniparthi-2026-asian-games-gold-compound-archery-la-2028-olympics-profile-bio/article71530197.ece).
