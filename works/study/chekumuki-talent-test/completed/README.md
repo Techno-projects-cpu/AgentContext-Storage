@@ -67,3 +67,7 @@ JVV Andhra Pradesh describes daily-life science, physics, chemistry, biology and
 - [NCERT Class 10 science contents](https://ncert.nic.in/textbook/pdf/jesc1ps.pdf) and [NCERT practice materials](https://ncert.nic.in/exemplar-problems.php?ln=/) — useful supplementary study; your own state textbooks and JVV notice take priority.
 
 **Current affairs:** dates, missions, officeholders and discoveries change. The pack emphasises stable concepts rather than guessing current events. Use [ISRO](https://www.isro.gov.in/), [PIB](https://pib.gov.in/) and your teacher for verified recent science news; note the date of each item.
+
+## Recently completed
+
+[Recent non-bus study notes and exercises](recent-study/README.md) are archived here; the [bus packs remain available](../fresh/README.md).

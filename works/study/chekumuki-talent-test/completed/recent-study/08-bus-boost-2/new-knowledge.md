@@ -1,6 +1,6 @@
 # More new knowledge: devices, living systems and historical evidence
 
-Selected after searching the existing Chekumuki Markdown for candidate terms. Some related background may already appear under other names or in photographs; no keyword audit can guarantee absolute novelty. The [separate WhatsApp sheet](whatsapp-bus-revision-2.txt) includes short connections and worked revision. Independent practice; not a predicted district syllabus.
+Selected after searching the existing Chekumuki Markdown for candidate terms. Some related background may already appear under other names or in photographs; no keyword audit can guarantee absolute novelty. The [separate WhatsApp sheet](../../../fresh/08-bus-boost-2/whatsapp-bus-revision-2.txt) includes short connections and worked revision. Independent practice; not a predicted district syllabus.
 
 ## 1. Waves and devices
 

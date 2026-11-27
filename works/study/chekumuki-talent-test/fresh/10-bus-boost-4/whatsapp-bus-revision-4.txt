@@ -1,0 +1,175 @@
+🚌 *CHEKUMUKI BUS BOOST 4 — MORE TO LEARN!*
+
+A new standalone bus pack. Copy it into WhatsApp for offline reading. Less-covered ideas are mixed with a little essential background. These are independent revision notes, NOT an official syllabus or guaranteed questions. Picture clues are descriptions, not real quiz slides.
+
+*1️⃣ SCIENTIFIC THINKING & MEASUREMENT*
+
+1. Observation is what you notice or measure; inference is an interpretation. Wet ground is an observation; “it rained” is one possible inference.
+2. Hypothesis = a testable proposed explanation. A prediction states what you expect to observe if the hypothesis applies.
+3. Independent variable = the factor changed; dependent variable = the outcome measured. Keep other relevant conditions similar.
+4. Comparing seeds with/without fertiliser? Keep seed type, soil, light and water similar; measure growth for several plants.
+5. Control group offers a comparison; it does not automatically prove every difference has one cause.
+6. Repeated trials help reveal variability. Average = sum ÷ number of measurements; report unusual results honestly.
+7. Random error can make repeated readings vary; a systematic error shifts measurements in a consistent direction.
+8. Accuracy = closeness to a true value; precision = closeness of repeated measurements to one another. Precise readings can still be inaccurate.
+9. A measuring cylinder shows volume; read a water meniscus at eye level at the bottom of the curve.
+10. A balance compares mass; a spring balance measures force. Neither directly measures temperature.
+11. SI base units include metre (length), kilogram (mass), second (time), kelvin (temperature), ampere (current).
+12. 1 m = 100 cm; 1 km = 1000 m; 1 L = 1000 mL; 1 hour = 3600 s.
+13. 1 m/s = 3.6 km/h. Example: 10 m/s = 36 km/h.
+14. Resolution is the smallest change an instrument can distinguish; more digits on a display do not automatically mean more accuracy.
+15. A claim with correlation alone does not prove cause. Search for alternative explanations and better evidence.
+
+*2️⃣ PHYSICS: EVERYDAY CONNECTIONS*
+
+16. Pressure = force ÷ area. A sharp blade can apply more pressure with the same force over a smaller area.
+17. Liquid pressure generally increases with depth in a stationary liquid of uniform density.
+18. Drinking through a straw: lowering pressure inside allows atmospheric pressure to push liquid upward.
+19. Buoyancy is upward force from fluid; its magnitude equals the weight of fluid displaced (Archimedes' principle).
+20. A floating ship displaces enough water to balance its weight; hollow shape and overall average density matter.
+21. Work = force × displacement in force's direction. Holding a stationary bag still requires body energy, but mechanical work on it is zero if displacement is zero.
+22. A longer spanner can make turning easier: torque depends on force and perpendicular distance from the pivot.
+23. A screw is an inclined plane wrapped around a cylinder; it trades more turning distance for force advantage, subject to friction.
+24. A pulley can change force direction; some pulley arrangements reduce effort while requiring more rope movement.
+25. When light hits a mirror, angles of incidence and reflection are measured from the normal and are equal.
+26. Refraction occurs when light changes speed across media; a pencil partly in water can appear bent.
+27. Total internal reflection can occur when light travels from a higher to lower refractive-index medium above a critical angle; optical fibres use it.
+28. A convex lens can converge parallel light rays in air; a concave lens diverges them.
+29. An echo is reflected sound. Distance = speed × echo travel time ÷ 2 because sound travels out and back.
+30. Resonance: a system can respond strongly when driven near a natural frequency; damping affects the response.
+31. A transformer changes alternating voltage using electromagnetic induction. Ordinary transformers do not work as intended with steady DC.
+32. An electromagnet uses current in a coil; a soft iron core can strengthen the magnetic field. Its strength depends on construction and current.
+33. Electric power P = VI; 5 V and 2 A → 10 W. Electrical energy = power × time.
+34. An LED is a light-emitting diode; it must be used with a suitable circuit and current limit.
+35. Electric shock can kill. Never connect improvised experiments to household mains.
+
+*3️⃣ CHEMISTRY & MATERIALS*
+
+36. Atomic number = number of protons. Mass number = protons + neutrons in a nucleus.
+37. Isotopes of one element have equal proton numbers but different neutron numbers.
+38. Chemical symbol starts with a capital: Co = cobalt; CO = carbon monoxide, a compound.
+39. A molecule of O₂ contains two oxygen atoms; ozone is O₃. Different arrangements can give different properties.
+40. Conservation of mass: in an ordinary chemical reaction in a closed system, total mass remains the same.
+41. A catalyst speeds a reaction through an alternative pathway with lower activation energy; it is not consumed overall.
+42. Enzymes are biological catalysts, mostly proteins; their activity depends on factors including temperature and pH.
+43. Oxidation is not always simply “adding oxygen”: at a broader level it involves electron loss. Reduction involves electron gain.
+44. Rusting of iron usually involves oxygen and water; galvanising uses zinc to protect iron or steel.
+45. A solute dissolves in a solvent. A solution may contain dissolved solids invisible to ordinary filtration.
+46. Solubility varies with substance and conditions. A saturated solution holds the maximum under its specified conditions.
+47. Paper chromatography can separate ink components that move differently with the solvent.
+48. Distillation boils liquid and collects condensed vapour; evaporation can leave dissolved nonvolatile solids behind.
+49. An emulsion contains droplets of one liquid dispersed in another; milk includes dispersed fat droplets.
+50. Biodegradable means capable of biological breakdown under suitable conditions; it does not justify littering.
+
+*4️⃣ LIFE: MICROSCOPIC TO ECOSYSTEM*
+
+51. A microscope increases the apparent size of small objects. Magnification alone does not guarantee better resolution.
+52. Bacteria are cells without a membrane-bound nucleus; viruses require host cells to reproduce.
+53. Fungi absorb nutrients from surroundings; yeast is a fungus used in some fermentations.
+54. Enzymes assist digestion. Digestion breaks food down; absorption moves usable molecules into blood or lymph.
+55. Small-intestine villi increase absorptive surface area; alveoli in lungs provide a surface for gas exchange.
+56. Red blood cells use haemoglobin to carry oxygen. Platelets help blood clot; white blood cells contribute to defence.
+57. A reflex is a rapid automatic response. A reflex arc involves receptors, nerve pathways and an effector.
+58. Vaccines train responses against specific diseases; antibiotics do not treat viral infections.
+59. A disease vector can transmit a pathogen. Malaria is caused by Plasmodium parasites carried by infected mosquitoes.
+60. Blood groups involve antigens; actual transfusions require professional compatibility testing and crossmatching.
+61. DNA contains genetic information. Genes are DNA segments; different versions of a gene are alleles.
+62. Mitosis generally produces two genetically similar cells. Meiosis reduces chromosome number in sexual reproduction.
+63. Pollination is pollen transfer to a flower's stigma; fertilisation is fusion of reproductive cells.
+64. Seed germination generally needs water, oxygen and suitable temperature; light requirements vary by species.
+65. Plants transport water mainly in xylem and sugars in phloem. Water loss through stomata is transpiration.
+66. Nitrogen-fixing bacteria in some legume root nodules help convert atmospheric nitrogen into usable forms.
+67. Lichen is a close association of a fungus and a photosynthetic partner such as an alga or cyanobacterium.
+68. A habitat is where an organism lives; its niche includes its role and interactions.
+69. Bioaccumulation is build-up in an organism over time; biomagnification can increase concentration across food-chain levels for certain persistent substances.
+70. Eutrophication can follow excess nutrient runoff; decomposers may use up dissolved oxygen, harming aquatic life.
+
+*5️⃣ EARTH, SPACE & PRACTICAL SAFETY*
+
+71. Earth's crust, mantle and core are broad layers. Plates consist of crust and uppermost mantle.
+72. Igneous rock forms from cooling molten material; sedimentary rock from accumulated material; metamorphic rock changes under heat/pressure.
+73. Weathering breaks rock down in place; erosion transports material; deposition lays it down.
+74. An aquifer is a water-bearing geological formation that can yield useful water; groundwater is not necessarily an underground river.
+75. Cyclones bring changing hazards. Follow current official warnings and evacuation instructions, not forwarded rumours.
+76. Barometer measures atmospheric pressure; hygrometer humidity; anemometer wind speed; rain gauge rainfall depth.
+77. Earthquake focus is the starting point inside Earth; epicentre is the surface point vertically above it.
+78. Magnitude describes earthquake source size; intensity describes effects and shaking at a particular location.
+79. During an earthquake, follow locally issued guidance. Indoors, “Drop, Cover and Hold On” is widely recommended where appropriate; do not rush into danger.
+80. A tsunami is a series of waves from sudden water displacement. If strong/long shaking is felt on a coast, move to higher ground when safe and follow alerts.
+81. Rotation of Earth causes day and night; axial tilt and revolution are the principal reasons for seasons.
+82. Moon phases show changing views of its sunlit side. Earth's shadow causes a lunar eclipse, not ordinary phases.
+83. Meteoroid = object in space; meteor = atmospheric light streak; meteorite = material that reaches the ground.
+84. Remote sensing gathers information without contact, e.g. satellite observations of crops; interpretation needs checks.
+85. Latitude is N/S of Equator; longitude E/W of Prime Meridian. IST = UTC+5:30.
+
+*6️⃣ TELUGU: WORDS, WORKS & CULTURE*
+
+86. సుమతీ శతకం → బద్దెన; దాశరథీ శతకం → కంచర్ల గోపన్న / రామదాసు.
+87. మకుటం = recurring word or phrase in verses. “సుమతీ” is a clue to సుమతీ శతకం.
+88. పోతన → ఆంధ్ర మహాభాగవతం. శ్రీకృష్ణదేవరాయలు → ఆముక్తమాల్యద.
+89. గురజాడ అప్పారావు → కన్యాశుల్కం. గుర్రం జాషువా → గబ్బిలం. శ్రీశ్రీ → మహాప్రస్థానం.
+90. కాళోజీ నారాయణరావు → నా గొడవ. పాల్కురికి సోమనాథుడు → బసవ పురాణం.
+91. నన్నయ, తిక్కన, ఎర్రన → కవిత్రయం, associated with Telugu Mahabharata.
+92. ఉపమాలంకారం = explicit comparison: “ముఖం చంద్రుని వలె ఉంది.” రూపకం describes one thing as another figuratively.
+93. అనుప్రాస uses repetition of similar sounds; context and textbook definitions matter in tricky examples.
+94. కర్త–కర్మ–క్రియ: “రాము బంతిని విసిరాడు” → రాము / బంతిని / విసిరాడు.
+95. సామెత = proverb; జాతీయము = idiomatic expression. Understand intended meaning, not just literal words.
+96. పర్యాయపదం = similar meaning; వ్యతిరేకపదం = opposite meaning. వెలుగు ↔ చీకటి.
+97. ఆత్మకథ = one's life written by oneself; జీవిత చరిత్ర = a life story written by another.
+98. ద్విపద = paired-line verse form; ఛందస్సు concerns poetic metre and rhythm.
+99. తోలుబొమ్మలాట = leather shadow-puppet theatre; బుర్రకథ and ఒగ్గుకథ are storytelling performances.
+100. బతుకమ్మ is a Telangana floral festival; local songs and practices can vary.
+
+*7️⃣ MATHS & LOGIC — SHORT WORKED EXAMPLES*
+
+101. Ratio 2:3, total 25 → 5 parts = 25 → values 10 and 15.
+102. 3/4 of 80 = 60. 0.25 = 25% = 1/4.
+103. 20 → 40 is a 100% increase; 40 is 200% OF 20. These are different statements.
+104. 40% → 50% = 10 percentage points; relative increase = 10/40 = 25%.
+105. ₹200 with 10% off → ₹180; a second 10% off → ₹162.
+106. If 4 notebooks cost ₹60 at equal price, 7 cost ₹105.
+107. 120 km in 3 h → average speed 40 km/h. Average does not prove speed was constant.
+108. Mean of 2, 3, 3, 4, 18 = 6; median = 3; mode = 3; range = 16.
+109. Rectangle 8 cm × 5 cm: area 40 cm²; perimeter 26 cm.
+110. Triangle area = ½ × base × perpendicular height; 10 cm × 4 cm gives 20 cm².
+111. Two red and three blue balls, equal chance: P(red) = 2/5. Without replacement, later chances can change.
+112. If it rains the road may be wet; a wet road does not prove it rained. A hose is another explanation.
+113. A sequence 4, 7, 10, 13 suggests +3 → 16, but a short list can fit more than one rule.
+114. A bar chart with a shortened axis can exaggerate differences. Check scale, units and denominator.
+115. A sample of three leaves from one tree cannot establish the condition of every tree in the district.
+
+*8️⃣ PICTURE CONNECTIONS — COVER THE ANSWER!*
+
+116. Straw + liquid + lower pressure in straw → ATMOSPHERIC PRESSURE pushes liquid up.
+117. Mirror + incoming and outgoing rays + normal → REFLECTION and equal angles.
+118. Light inside a fibre + repeated internal reflections + signal → OPTICAL FIBRE.
+119. Coil + iron core + battery (proper safe circuit) → ELECTROMAGNET.
+120. Enzyme + substrate + faster reaction → BIOLOGICAL CATALYST.
+121. Stigma + pollen + flower → POLLINATION, not necessarily fertilisation.
+122. Fungus + alga + rock surface → LICHEN ASSOCIATION.
+123. Upstream fertiliser + algae + low oxygen in a pond → NUTRIENT POLLUTION / EUTROPHICATION.
+124. Stone inscription + copied script + historian → EPIGRAPHY.
+125. Leather figures + lamp + screen shadow → తోలుబొమ్మలాట.
+
+*⚡ 15-QUESTION SELF-TEST — ANSWERS BELOW*
+
+1. What is the difference between observation and inference?
+2. Which unit measures force?
+3. How many km/h is 10 m/s?
+4. Why does drinking through a straw work?
+5. What principle relates buoyant force to displaced fluid?
+6. Which type of current does an ordinary transformer need to operate as intended?
+7. What does a catalyst do to activation energy?
+8. Are viruses cells that reproduce independently?
+9. What is the difference between pollination and fertilisation?
+10. Name the point at the surface above an earthquake focus.
+11. Who wrote సుమతీ శతకం?
+12. “చంద్రుని వలె” suggests which అలంకారం?
+13. How many percentage points from 40% to 50%?
+14. What is the area of an 8 cm × 5 cm rectangle?
+15. Which field studies inscriptions?
+
+*✅ ANSWERS*
+1. Observation is noticed/measured; inference interprets it. 2. Newton. 3. 36 km/h. 4. Atmospheric pressure pushes liquid up when pressure in the straw is lowered. 5. Archimedes' principle. 6. Alternating current (AC). 7. Lowers activation energy via an alternative pathway. 8. No, they need host cells. 9. Pollen transfer to stigma vs fusion of reproductive cells. 10. Epicentre. 11. బద్దెన. 12. ఉపమాలంకారం. 13. 10. 14. 40 cm². 15. Epigraphy.
+
+💪 Study in chunks: say the idea before reading the answer. These are practice notes, not official test predictions. For urgent health or disaster advice, follow local qualified professionals and authorities.

@@ -1,6 +1,6 @@
 # New angles: forces, living diversity and evidence
 
-This set follows a search across the earlier Markdown and plain-text packs. These topics were less frequently named in that scan; synonyms, diagrams and older questions can still overlap. The [standalone WhatsApp sheet](whatsapp-bus-revision-3.txt) includes essential background where needed. This is independent study material, not an official syllabus.
+This set follows a search across the earlier Markdown and plain-text packs. These topics were less frequently named in that scan; synonyms, diagrams and older questions can still overlap. The [standalone WhatsApp sheet](../../../fresh/09-bus-boost-3/whatsapp-bus-revision-3.txt) includes essential background where needed. This is independent study material, not an official syllabus.
 
 ## 1. Pressure, fluids and waves
 

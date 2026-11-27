@@ -1,0 +1,108 @@
+🚌 *CHEKUMUKI BUS BOOST 5 — THINK, DON'T GUESS!*
+
+Copy this standalone message for the bus. A different format: compact comparisons, worked traps, picture links and a mini quiz. Some fundamentals intentionally overlap earlier packs. Independent practice, not an official paper or prediction.
+
+*1️⃣ SIMILAR WORDS, DIFFERENT ANSWERS*
+
+1. Mass vs weight: mass measures inertia/amount of matter; weight is gravitational force and changes with gravitational field.
+2. Speed vs velocity: speed is distance/time; velocity includes direction. A change in direction changes velocity.
+3. Distance vs displacement: distance is total path length; displacement is directed change in position.
+4. Heat vs temperature: heat is energy transferred due to a temperature difference; temperature describes thermal state.
+5. Conduction vs convection: energy transfer through matter vs transfer involving bulk fluid motion. Radiation can cross a vacuum.
+6. Sound vs light: sound requires a medium; electromagnetic light can travel through vacuum.
+7. Pitch vs loudness: frequency mainly determines pitch; amplitude generally influences loudness, along with frequency and hearing.
+8. Reflection vs refraction: light bounces at a boundary vs changes direction as speed changes between media (with exceptions for direction).
+9. Power vs energy: watts measure rate of energy transfer; kilowatt-hours measure energy.
+10. Series vs parallel: simple series components have one path; parallel components have separate paths and the same voltage across each branch.
+11. Element vs compound: one kind of atom vs elements chemically combined in fixed proportions.
+12. Compound vs mixture: chemically combined in fixed proportions vs substances physically combined in variable proportions.
+13. Evaporation vs boiling: evaporation at liquid surface below boiling; boiling throughout liquid at its boiling conditions.
+14. Filtration vs distillation: separates insoluble particles vs boils and condenses to collect a liquid.
+15. Atom vs molecule: atom is a unit of an element; molecule is a group of bonded atoms, which can be the same or different elements.
+16. Mutation vs adaptation: mutation is a DNA sequence change; adaptation is an inherited feature that can aid survival/reproduction in an environment.
+17. Pollination vs fertilisation: pollen reaches stigma vs reproductive cells fuse.
+18. Photosynthesis vs respiration: photosynthesis makes sugars using light energy; respiration releases energy from food molecules.
+19. Artery vs vein: carries blood away from heart vs toward heart. These are definitions by direction.
+20. Breathing vs cellular respiration: moving air in/out vs chemical processes that release energy in cells.
+21. Weather vs climate: short-term conditions vs long-term patterns.
+22. Focus vs epicentre: earthquake starts inside Earth vs point vertically above on surface.
+23. Magnitude vs intensity: source size vs local shaking/effects.
+24. Asteroid vs comet: generally rocky/metallic small body vs body containing ice and dust that can develop a coma and tail near the Sun.
+25. Meteor vs meteorite: light streak in atmosphere vs material reaching ground.
+26. Latitude vs longitude: north/south of Equator vs east/west of Prime Meridian.
+27. Endemic species vs invasive species: native and restricted to a place vs introduced, spreading and causing harm.
+28. Food chain vs food web: one feeding pathway vs interconnected pathways.
+29. Bioaccumulation vs biomagnification: build-up within one organism over time vs increasing concentration across trophic levels for some pollutants.
+30. Observation vs inference: recorded evidence vs an interpretation of it. Don't mistake a guess for a measurement.
+
+*2️⃣ QUESTION TRAPS — NOTICE THE WORDING*
+
+31. “40 is 200% OF 20” is true. “20 to 40 increased by 200%” is false: increase is 100%.
+32. Rate 40% → 50%: +10 percentage points, or +25% relative to the original 40%.
+33. ₹200 +10% −10% → ₹220 − ₹22 = ₹198, not ₹200.
+34. A journey at 40 km/h and another at 60 km/h does not always have average speed 50 km/h: time/distance on each leg matter.
+35. Equal times at 40 and 60 km/h → 50 km/h average. Equal distances → 48 km/h average (total 120 km divided by 1.5+1 hours, if each leg is 60 km).
+36. Five values 2, 3, 3, 4, 18: mean 6; median 3; mode 3. A large outlier shifts the mean.
+37. Ten students average 60; twenty average 75 → combined average (600+1500)/30 = 70, not 67.5.
+38. Perimeter of 8 cm × 5 cm rectangle = 26 cm; area = 40 cm². Don't mix units.
+39. 1 kg of cotton and 1 kg of iron have equal mass. Their volumes differ because their densities differ.
+40. More massive object does not always have greater density: density = mass ÷ volume.
+41. “All metals are magnetic” is false: copper is not attracted to a magnet like iron.
+42. Moon phases are not caused by Earth's shadow. A lunar eclipse involves Earth's shadow.
+43. Bats are mammals that fly; whales are mammals that live in water. Habitat alone does not decide classification.
+44. Not all bacteria cause disease; some help digestion, food production or nutrient cycling.
+45. Antibiotics do not kill viruses like the common cold virus. Take medicines only as advised by a qualified professional.
+46. A disease vector transmits a pathogen; it is not always the pathogen itself. Malaria is caused by a parasite.
+47. A single fever symptom is not a diagnosis; seek qualified medical advice.
+48. A higher-pitched sound is not necessarily louder. Frequency and amplitude answer different questions.
+49. Satellite navigation and satellite photography are different uses of satellites.
+50. A prediction that fits one event does not establish a general rule; repeat observations and consider alternatives.
+
+*3️⃣ TELUGU MINI-RECALL*
+
+51. సుమతీ శతకం → బద్దెన. మకుటం = recurring word or phrase in verses.
+52. దాశరథీ శతకం → కంచర్ల గోపన్న / రామదాసు, not దాశరథి కృష్ణమాచార్య.
+53. ఆంధ్ర మహాభాగవతం → పోతన. ఆముక్తమాల్యద → శ్రీకృష్ణదేవరాయలు.
+54. మహాప్రస్థానం → శ్రీశ్రీ. కన్యాశుల్కం → గురజాడ అప్పారావు. గబ్బిలం → గుర్రం జాషువా.
+55. నా గొడవ → కాళోజీ నారాయణరావు. బసవ పురాణం → పాల్కురికి సోమనాథుడు.
+56. ఉపమాలంకారం = explicit comparison: “ముఖం చంద్రుని వలె ఉంది.”
+57. రూపకంలో one thing is described as another figuratively. Context matters.
+58. “రాము బంతిని విసిరాడు” → కర్త రాము; కర్మ బంతిని; క్రియ విసిరాడు.
+59. ఆత్మకథ = own life written by oneself; జీవిత చరిత్ర = account of someone's life by another.
+60. బుర్రకథ / ఒగ్గుకథ = narrative performance traditions; తోలుబొమ్మలాట = leather shadow-puppet theatre.
+
+*4️⃣ MULTI-PICTURE CONNECTIONS*
+
+61. Clock + motion arrows + speedometer → SPEED = distance ÷ time.
+62. Mirror + incident ray + reflected ray → REFLECTION; equal angles measured from the normal.
+63. Prism + white light + colours → DISPERSION of visible light.
+64. Salt solution + heat + condenser → DISTILLATION; vapour is condensed for collection.
+65. Legume + root nodules + bacteria → NITROGEN FIXATION.
+66. Leaf + stomata + water vapour → TRANSPIRATION.
+67. Fertiliser runoff + algal bloom + low oxygen → EUTROPHICATION.
+68. Dried labelled leaf + collection sheet + cupboard → HERBARIUM.
+69. Earthquake starting point + surface point directly above → FOCUS AND EPICENTRE.
+70. Moon between Sun and Earth + shadow → SOLAR ECLIPSE. Never look directly at the Sun without proper protection.
+71. Honeybee + pollen + flower stigma → POLLINATION.
+72. Satellite + signals + receiver → SATELLITE NAVIGATION / position estimation.
+73. Coins + magnifying glass + collection → NUMISMATICS.
+74. బద్దెన + verses + recurring సుమతీ → సుమతీ శతకం / మకుటం.
+75. Lamp + puppet + screen + shadow → తోలుబొమ్మలాట.
+
+*5️⃣ QUICK PRACTICE: TRY BEFORE LOOKING*
+
+1. 1 kg cotton vs 1 kg iron: which has greater mass?
+2. 20 to 40: what is the percentage increase?
+3. What is the median of 2, 3, 3, 4, 18?
+4. What is average speed for equal times at 40 and 60 km/h?
+5. A lens or a mirror reflects light?
+6. Is a mosquito the malaria pathogen or a vector?
+7. What is the difference between pollen transfer and cell fusion called?
+8. What does an epicentre mark?
+9. “ముఖం చంద్రుని వలె” indicates which అలంకారం?
+10. What subject studies coins?
+
+*✅ ANSWERS*
+1. Equal mass. 2. 100%. 3. 3. 4. 50 km/h. 5. Mirror. 6. Vector; Plasmodium parasite causes malaria. 7. Pollination vs fertilisation. 8. Surface point vertically above earthquake focus. 9. ఉపమాలంకారం. 10. Numismatics.
+
+Keep questioning: look for words like “always”, “only”, “increase”, “of”, “at the surface” and “per unit”.
