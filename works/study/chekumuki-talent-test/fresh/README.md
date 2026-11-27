@@ -15,3 +15,7 @@ The finished earlier non-bus study material is now in [completed/recent-study](.
 The companion `new-knowledge.md` notes from packs 1–3 are archived in [completed/recent-study](../completed/recent-study/README.md); the `.txt` packs have **not** moved. Old direct links to the non-bus notes need `fresh/` changed to `completed/recent-study/`. Links to the first three bus packs still work.
 
 These are independently authored study packs, not official papers or a complete syllabus. Some important basics deliberately recur; no keyword scan can prove absolutely zero overlap. Picture clues are descriptions, not official quiz images. Verify changing rules, current affairs and urgent safety guidance with reliable current sources.
+
+## Constitution and science bus pack
+
+- [Copy-ready Constitution × Science](14-constitution-bus/constitution-science-whatsapp.txt) — Article 51A(h), scientific agriculture, directly science-worded Schedule entries, key education and environment distinctions, and 15 questions.

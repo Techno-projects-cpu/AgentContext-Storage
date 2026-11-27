@@ -1,0 +1,90 @@
+🇮🇳 *INDIAN CONSTITUTION × SCIENCE — QUICK BUS PACK*
+
+For Chekumuki revision: directly science-worded provisions first, then a few clearly labelled education, health and environment connections. Article numbers, clauses and Schedule entries are NOT interchangeable. Independent notes, not an official paper or legal advice.
+
+*🔬 1. SCIENTIFIC TEMPER — THE BIG ONE!*
+
+*Article 51A(h)* — A FUNDAMENTAL DUTY of every citizen of India:
+
+“to develop the scientific temper, humanism and the spirit of inquiry and reform.”
+
+• Scientific temper (శాస్త్రీయ దృక్పథం): ask questions, seek evidence, test claims, recognise uncertainty and change your view if evidence warrants it.
+• Humanism: concern for human dignity and well-being. Inquiry = questioning and investigation. Reform = making improvements.
+• Example: a lemon appears to bleed. Ask what was used and what evidence would distinguish a chemical colour from blood—don't accept a supernatural claim just because it looks convincing.
+• 51A(h) is in *Part IVA: Fundamental Duties*. It is not Article 51(h), Article 51A(g), or a Fundamental Right.
+• Fundamental Duties apply to citizens. They are not generally directly enforceable like Fundamental Rights, though legislation may give effect to some duties. Don't infer that 51A(h) itself creates a specific criminal penalty.
+
+*🌾 2. SCIENCE IN AGRICULTURE — ALSO DIRECT!*
+
+*Article 48* — A Directive Principle: the State shall endeavour to organise agriculture and animal husbandry on *modern and scientific lines*.
+
+• It also refers specifically to preserving and improving breeds, and prohibiting slaughter of cows and calves and other milch and draught cattle; it should not be reduced to a general science duty. Relevant laws and their application require separate study.
+• Article 48 is in *Part IV: Directive Principles of State Policy*; it is directed to the State, not a 51A citizen duty.
+• 48 and 48A are different: 48 = scientific agriculture/animal husbandry; 48A = environment.
+
+*🧪 3. RESEARCH & EDUCATION — DIRECT WORDS IN THE SEVENTH SCHEDULE*
+
+*Seventh Schedule, Union List (List I), Entry 64*: scientific or technical education institutions financed wholly or partly by Government of India AND declared by Parliament by law to be institutions of national importance.
+
+*Union List, Entry 65*: Union agencies/institutions for specified training, promotion of special studies or research, OR scientific/technical assistance in investigation or detection of crime.
+
+*Union List, Entry 66*: coordination and determination of standards in institutions for higher education or research and scientific/technical institutions.
+
+*Concurrent List (List III), Entry 25*: education, including technical education, medical education and universities, subject to Union List entries 63–66; also vocational and technical training of labour.
+
+• These are *Schedule LIST ENTRIES*, not Article 64, Article 65 or Article 66. Article 246 concerns the distribution of legislative powers with reference to the lists.
+• These entries allocate legislative subjects; they are not personal Fundamental Rights or an automatic promise of a research grant.
+
+*🌿 4. ENVIRONMENT — DIRECTLY RELEVANT, NOT THE SCIENTIFIC-TEMPER CLAUSE*
+
+*Article 51A(g)* — Fundamental Duty of citizens: protect and improve the natural environment, including forests, lakes, rivers and wildlife, and have compassion for living creatures.
+
+*Article 48A* — Directive Principle: the State shall endeavour to protect and improve the environment and safeguard the forests and wildlife of the country.
+
+• MEMORY: *g = green* → citizen's environmental duty. *h = hypothesis* → scientific temper. These are memory aids, not the wording of the Constitution.
+• 51A(g) = citizen duty, Part IVA. 48A = State directive, Part IV. Do not swap them.
+
+*📚 5. EDUCATION & HEALTH — USEFUL CLOSE CONNECTIONS*
+
+*Article 21A* — The State shall provide free and compulsory education to all children aged *6 to 14 years*, in the manner determined by law. It is a Fundamental Right in Part III; it does NOT itself say “scientific temper.”
+
+*Article 51A(k)* — Duty of a citizen who is a parent/guardian to provide opportunities for education to their child/ward aged 6–14. This is distinct from the State's Article 21A obligation.
+
+*Article 47* — Directive Principle: the State regards raising nutrition and standard of living, and improving public health, among its primary duties. The article also addresses certain intoxicating drinks and drugs. It does not specifically say “scientific temper.”
+
+*Article 45* — The State shall endeavour to provide early childhood care and education for all children until they complete six years. Do not confuse its age range with 21A's 6–14.
+
+*📜 6. AMENDMENTS & BIG TRAPS*
+
+• *42nd Constitutional Amendment Act, 1976*: inserted Part IVA / Article 51A with ten duties, including (g) and (h); also inserted Article 48A.
+• *86th Constitutional Amendment Act, 2002*: inserted Article 21A and added Article 51A(k); it also substituted Article 45.
+• There are *11 clauses* (a)–(k) in Article 51A. The first ten were introduced by the 42nd Amendment; (k) came later.
+• Fundamental Right ≠ Directive Principle ≠ Fundamental Duty ≠ Seventh Schedule entry. They have different constitutional roles.
+• A Directive Principle guides State policy and is not enforceable by any court by itself (Article 37); it is nevertheless fundamental in governance. Laws and court decisions can have separate effects.
+• Scientific temper is not “believe every scientist blindly.” It means evidence, questioning, fair testing and willingness to correct mistakes.
+
+*⚡ 7. QUICK SELF-TEST — ANSWERS BELOW*
+
+1. Which exact article AND clause mentions scientific temper?
+2. Is 51A(h) a right, State directive or citizen's fundamental duty?
+3. Which Part contains Fundamental Duties?
+4. Which amendment introduced the original duties, and in which year?
+5. Which Article mentions agriculture and animal husbandry on modern and scientific lines?
+6. Which Article requires the State to endeavour to protect and improve the environment?
+7. Which citizen duty refers to forests, lakes, rivers and wildlife?
+8. Which Article provides for free and compulsory education for children aged 6–14?
+9. Which clause refers to a parent/guardian providing educational opportunities for a child/ward aged 6–14?
+10. Which Directive Principle refers to nutrition and improving public health?
+11. Research standards and scientific/technical institutions: Union List Entry 66 or Article 66?
+12. Which amendment added 21A and 51A(k)?
+13. Does 51A(h) itself specify a particular criminal punishment?
+14. 48 or 48A: which specifically mentions scientific agriculture?
+15. Is “education” in Concurrent List Entry 25 subject to specified Union List entries?
+
+*✅ ANSWERS*
+1. Article 51A(h). 2. Fundamental Duty. 3. Part IVA. 4. 42nd Amendment, 1976. 5. Article 48. 6. Article 48A. 7. Article 51A(g). 8. Article 21A. 9. Article 51A(k). 10. Article 47. 11. Seventh Schedule, Union List Entry 66—not Article 66. 12. 86th Amendment, 2002. 13. No. 14. Article 48. 15. Yes—subject to Union List entries 63–66.
+
+📌 *SOURCE:* Government of India, Legislative Department, Constitution of India, official edition as at 10 September 2026:
+https://www.legislative.gov.in/static/uploads/2025/07/95ef471035ee0b5e4e5b1cac3d3584c1.pdf
+
+For amendments, consult the official 42nd and 86th amendment Acts. Constitutional provisions and laws should be checked in current official texts; this sheet is for quick study, not legal advice.
