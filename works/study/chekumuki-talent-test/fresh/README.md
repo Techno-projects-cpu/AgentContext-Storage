@@ -1,6 +1,8 @@
 # Fresh learning and bus packs 🧭
 
-A new regular reading pack is available: **[Knowledge Expedition →](12-knowledge-expedition/README.md)** — science, health, Telugu, maths, 20 picture connections and 30 explained practice questions.
+**[Everyday science: alum, “bleeding” lemons and home chemistry →](13-everyday-science/README.md)** — observation, particles, mechanism and evidence.
+
+Another regular reading pack is available: **[Knowledge Expedition →](12-knowledge-expedition/README.md)** — science, health, Telugu, maths, 20 picture connections and 30 explained practice questions.
 
 The finished earlier non-bus study material is now in [completed/recent-study](../completed/recent-study/README.md). The WhatsApp packs remain here **at their existing paths**, and two more have been added. Each text file is standalone: open, select all and paste into WhatsApp.
 
