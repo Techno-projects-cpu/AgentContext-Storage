@@ -1,0 +1,206 @@
+🚌 *CHEKUMUKI BUS REVISION — BIG QUICK-READ PACK*
+
+Copy all of this message. Read one numbered section at a time. English + important Telugu words. The picture clues are descriptions, not actual pictures. This is independent practice, NOT an official syllabus or a guarantee of questions. Essential basics are intentionally included even if you've seen them before.
+
+*1️⃣ PHYSICS: MOTION, FORCE & ENERGY*
+
+1. Speed = distance ÷ time. 120 km in 3 h → 40 km/h average.
+2. Velocity has direction; speed does not. Acceleration = rate of change of velocity.
+3. Inertia = resistance to change in motion. Greater mass → greater inertia.
+4. Newton's 1st law: without net force, an object stays at rest or moves at constant velocity.
+5. Newton's 2nd law: force = mass × acceleration (F = ma); SI force unit = newton (N).
+6. Action and reaction are equal and opposite, acting on DIFFERENT bodies.
+7. Mass is amount of matter; weight is gravitational force. Weight varies with gravitational field.
+8. Pressure = force ÷ area. Same force on smaller area → greater pressure.
+9. Work = force × displacement in force's direction. Work and energy are measured in joules (J).
+10. Power = energy transferred ÷ time. 1 watt = 1 joule per second.
+11. Kinetic energy = energy of motion; gravitational potential energy increases with height in a gravitational field.
+12. Energy is conserved overall; in real machines some becomes less useful heat or sound.
+13. Friction can oppose relative motion. It helps walking and braking but can cause wear and heating.
+14. A lever turns around a fulcrum. A pulley can change the direction of force; some arrangements reduce effort.
+15. Density = mass ÷ volume. Floating depends on density and buoyant force, not mass alone.
+
+*2️⃣ ELECTRICITY, HEAT, LIGHT & SOUND*
+
+16. Electric current (విద్యుత్ ప్రవాహం) = flow of electric charge; unit ampere (A).
+17. Voltage (విభవ భేదం) = energy transferred per unit charge; unit volt (V). It is not the same as current.
+18. Resistance opposes current; unit ohm (Ω). For an ohmic conductor under fixed conditions, V = IR.
+19. Electric power P = VI. A 12 V device drawing 2 A uses 24 W under those conditions.
+20. 1 kilowatt-hour (kWh) is a unit of energy: 1 kW used for 1 h = 1 kWh.
+21. In a simple series circuit current is the same through each component; one break stops the circuit.
+22. In parallel, components have separate paths and the same potential difference across each branch.
+23. Fuse or circuit breaker protects against excessive current; never replace a fuse with ordinary wire.
+24. Conductor allows charge to move readily; insulator resists charge flow. Dry wood is generally an insulator; conditions matter.
+25. A transistor can act as a switch or amplifier. A semiconductor such as silicon is useful in electronics.
+26. Heat flows spontaneously from hotter to colder regions; temperature describes thermal state, not total heat energy.
+27. Conduction: through material; convection: bulk fluid movement; radiation: electromagnetic waves, even through vacuum.
+28. Melting ice absorbs latent heat while its temperature remains near 0°C during melting at normal pressure.
+29. Reflection: light bounces; angle of incidence = angle of reflection, measured from the normal.
+30. Refraction: light changes direction when its speed changes between media, except for some directions such as normal incidence.
+31. Convex lens converges parallel rays in air; concave lens diverges them. Eye lens helps focus light on retina.
+32. White light can split into colours through a prism; a rainbow involves refraction, dispersion and internal reflection in droplets.
+33. Sound needs a medium and cannot travel through a perfect vacuum. An echo is reflected sound.
+34. Frequency measured in hertz (Hz) affects pitch; amplitude generally affects loudness. Higher pitch ≠ necessarily louder.
+35. Resonance: a system responds strongly when driven near a natural frequency; a well-timed push on a swing is an example.
+
+*3️⃣ CHEMISTRY: MATERIALS & CHANGES*
+
+36. Atom: nucleus with protons and neutrons; electrons occupy regions around it. Proton number identifies the element.
+37. Isotopes: same element, same proton number, different neutron numbers.
+38. Element contains one kind of atom; a compound has elements chemically combined in fixed proportions; a mixture is physically combined.
+39. Physical change need not form a new substance; chemical change forms new substances. Rusting is chemical.
+40. Acid turns blue litmus red; base turns red litmus blue. Never taste unknown chemicals.
+41. pH below 7 is acidic, 7 neutral, above 7 basic for aqueous solutions; values depend on temperature and conditions.
+42. Salt dissolved in water forms a solution; muddy water is a suspension; milk is a colloid.
+43. Filtration separates insoluble suspended solids from liquid; dissolved salt passes through ordinary filter paper.
+44. Evaporation can recover salt from salt water; distillation can collect the condensed water too.
+45. Chromatography separates mixture components travelling differently with a solvent, e.g. ink colours on paper.
+46. Centrifugation uses spinning to accelerate separation based on settling behaviour.
+47. Brass = mainly copper + zinc; bronze = mainly copper + tin; stainless steel is an iron-based alloy containing chromium.
+48. Galvanising coats iron/steel with zinc to help prevent corrosion.
+49. Hard water contains dissolved calcium/magnesium salts and can reduce soap lather; boiling does not remove every kind of hardness.
+50. Polymer = large molecule made from repeating units. Cellulose and natural rubber are natural polymers.
+51. Carbon monoxide is colourless, odourless and poisonous; it can form during incomplete combustion. It is not carbon dioxide.
+52. Metals often conduct heat/electricity; copper is not attracted to a magnet like iron. Not all metals behave identically.
+
+*4️⃣ BIOLOGY: BODY & HEALTH*
+
+53. Cell = basic structural and functional unit of life. Cell membrane controls movement of substances across it.
+54. Nucleus contains most DNA in human cells; mitochondria are major sites of energy release from food.
+55. Plant cells generally have a cell wall and chloroplasts; animal cells lack these structures.
+56. Chromosomes contain DNA. Genes are DNA segments; alleles are different versions of a gene.
+57. Genotype = genetic makeup at relevant genes; phenotype = observable characteristic influenced by genes and often environment.
+58. Mitosis generally produces two similar cells for growth/repair; meiosis reduces chromosome number to form reproductive cells.
+59. Human body cells usually have 46 chromosomes; egg and sperm cells usually have 23 each.
+60. Mutation = change in DNA. Its effect may be neutral, harmful or beneficial depending on context.
+61. Heart pumps blood; arteries carry blood away from heart; veins carry blood toward heart. Oxygen content is not the definition.
+62. Red blood cells transport oxygen using haemoglobin; white blood cells contribute to defence; platelets help clotting.
+63. Lungs exchange oxygen and carbon dioxide at tiny air sacs called alveoli. Breathing and cellular respiration are related but different.
+64. Small intestine absorbs most digested nutrients. Liver makes bile; pancreas makes digestive substances and insulin.
+65. Kidneys filter blood and help regulate water/salts; nephron is a functional unit of the kidney.
+66. Brain and spinal cord form the central nervous system. A reflex is a rapid automatic response; its pathway may involve the spinal cord.
+67. Hormones are chemical messengers. Insulin helps regulate blood glucose; thyroid hormones help regulate metabolism.
+68. ABO blood groups concern A/B antigens on red cells; RhD is another classification. Transfusions need professional tests and crossmatching.
+69. Bacteria are cells; viruses need host cells to reproduce. Antibiotics do not cure viral infections like the common cold.
+70. Malaria is caused by Plasmodium parasites transmitted by infected mosquitoes; dengue is caused by a virus spread by infected Aedes mosquitoes.
+71. Vaccines train immune responses against specific diseases. Safe water, handwashing and mosquito control reduce particular risks.
+72. Fever or similar symptoms do not identify a disease by themselves. For illness, ask a qualified health professional.
+
+*5️⃣ PLANTS, ECOLOGY & FOOD*
+
+73. Photosynthesis uses light energy to make sugars from carbon dioxide and water; oxygen is released in the usual process.
+74. Xylem mainly transports water/minerals; phloem transports sugars and other organic substances.
+75. Stomata are pores involved in gas exchange and water-vapour loss; guard cells regulate their opening.
+76. Pollination = pollen transfer to a flower's stigma; fertilisation = fusion of reproductive cells. They are not the same event.
+77. Seed germination usually needs suitable water, oxygen and temperature; light requirements vary by species.
+78. Producer → consumer → decomposer is a simplified relationship; a food web connects many feeding pathways.
+79. Energy is transferred and dissipated through food chains; matter such as carbon is recycled through ecosystems.
+80. Some bacteria in legume root nodules fix nitrogen; most plants cannot use atmospheric nitrogen gas directly.
+81. Weathering breaks rock down in place; erosion carries material away by water, wind or other agents.
+82. A watershed is land draining to a common outlet; an aquifer is a water-bearing geological formation.
+83. Excess nutrient runoff can promote algal growth; decomposition may lower dissolved oxygen and harm aquatic life.
+84. Sewage treatment may involve screening, settling, biological treatment and disinfection. Treated wastewater isn't automatically drinkable.
+85. Yeast fermentation can produce carbon dioxide that makes dough rise. Curd bacteria produce lactic acid from lactose.
+86. Pasteurization uses controlled heating and cooling to reduce harmful microbes; it is not a promise that food never spoils.
+87. Biodegradable means capable of biological breakdown under suitable conditions, not permission to litter.
+88. An invasive species is one that spreads and causes harm; not every introduced species is invasive.
+
+*6️⃣ EARTH, SPACE, WEATHER & MAPS*
+
+89. Earth rotates on its axis → day and night. Earth revolves around the Sun; axial tilt is the main reason for seasons.
+90. Moon phases show different views of its sunlit part. Earth's shadow produces a lunar eclipse, not normal monthly phases.
+91. Solar eclipse: Moon between Sun and Earth. Lunar eclipse: Earth between Sun and Moon. Never look directly at the Sun without proper solar protection.
+92. Asteroid: generally rocky/metallic small solar-system body. Comet: contains ice and dust and can form a coma and tail near the Sun.
+93. Meteoroid in space → meteor is its bright atmospheric streak → meteorite is material reaching the ground.
+94. Parallax = apparent shift against a background when viewing position changes; alternate eyes while holding a finger up.
+95. Leap year: divisible by 4, except century years must also be divisible by 400. 2000 yes; 1900 and 2100 no.
+96. Weather is short-term atmospheric conditions; climate describes long-term patterns.
+97. Barometer measures air pressure; hygrometer humidity; anemometer wind speed; rain gauge rainfall.
+98. Earthquake focus is where rupture starts inside Earth; epicentre is the surface point vertically above it.
+99. Magnitude describes earthquake source size; intensity describes shaking/effects at a location.
+100. A tsunami is a series of waves from sudden displacement of water; not every earthquake causes one and the first wave need not be largest.
+101. Latitude is north/south of Equator; longitude is east/west of Prime Meridian. India uses IST = UTC + 5:30.
+102. Map scale 1 cm = 5 km: 4 cm = 20 km straight-line distance. A road can be longer.
+103. Contours join equal elevations; closely spaced contours generally indicate a steeper slope on the same map.
+104. Remote sensing collects information without touching the location; satellite navigation estimates position from signals.
+
+*7️⃣ TELUGU — భాష, సాహిత్యం & కళలు*
+
+105. సుమతీ శతకం → బద్దెన. A recurring word or phrase in verses is a మకుటం.
+106. దాశరథీ శతకం → కంచర్ల గోపన్న / భద్రాచల రామదాసు; not the modern poet దాశరథి కృష్ణమాచార్య.
+107. శ్రీకాళహస్తీశ్వర శతకం → ధూర్జటి. వేమన పద్యాలకు “విశ్వదాభిరామ వినుర వేమ” is a clue.
+108. జాతీయ గీతం జన గణ మన → రవీంద్రనాథ్ ఠాగూర్; జాతీయ గేయం వందే మాతరం → బంకిమ్ చంద్ర ఛటర్జీ.
+109. తెలంగాణ రాష్ట్ర గీతం “జయ జయహే తెలంగాణ” రచయిత → అందెశ్రీ.
+110. మహాకవి శ్రీశ్రీ → మహాప్రస్థానం. గురజాడ అప్పారావు → కన్యాశుల్కం. గుర్రం జాషువా → గబ్బిలం.
+111. నన్నయ, తిక్కన, ఎర్రన → కవిత్రయం, associated with Telugu Mahabharata.
+112. పోతన → ఆంధ్ర మహాభాగవతం. శ్రీకృష్ణదేవరాయలు → ఆముక్తమాల్యద. కాళోజీ నారాయణరావు → నా గొడవ.
+113. ఉపమాలంకారం: explicit comparison. “ముఖం చంద్రుని వలె ఉంది” → ముఖం compared to చంద్రుడు using వలె.
+114. రూపకాలంకారం: one thing is described as another, e.g. సంసార సాగరం. Meaning and context matter.
+115. కర్త = doer/subject; కర్మ = object; క్రియ = action. “రాము బంతిని విసిరాడు”: రాము / బంతిని / విసిరాడు.
+116. పర్యాయపదం = similar meaning; వ్యతిరేకపదం = opposite meaning. వెలుగు ↔ చీకటి.
+117. సామెత = proverb expressing a general lesson; జాతీయము = idiomatic expression understood through usage.
+118. ఆత్మకథ = a person writes their own life story; జీవిత చరిత్ర = an account of a person's life written by another.
+119. జానపదం = folk tradition, often passed orally; stories and songs may have different local versions.
+120. బుర్రకథ and ఒగ్గుకథ are storytelling performance traditions using narration, song and music.
+121. తోలుబొమ్మలాట = leather shadow-puppet theatre. Light + leather figures + screen.
+122. అష్టావధానం is a literary attention performance commonly involving eight questioners. ఛందస్సు concerns verse metre.
+123. సంధి concerns joining sounds/word boundaries; సమాసం is a meaningful compound. Context and textbook rules matter.
+124. ప్రశ్నార్థకం = question mark; ఆశ్చర్యార్థకం = exclamation mark; పూర్ణవిరామం = full stop.
+
+*8️⃣ GK, CIVICS & DIGITAL KNOWLEDGE*
+
+125. Telangana state symbols: పాలపిట్ట (Indian roller), జింక (spotted deer), జమ్మి చెట్టు, తంగేడు పువ్వు.
+126. Ramappa (Kakatiya Rudreshwara) Temple at Palampet became a UNESCO World Heritage site in 2021.
+127. C. V. Raman received the 1930 Nobel Prize in Physics for work on light scattering, including the Raman effect.
+128. India's Constitution sets the framework of government and rights. Its Preamble names justice, liberty, equality and fraternity.
+129. Parliament of India = President + Lok Sabha + Rajya Sabha. Lok Sabha = House of the People; Rajya Sabha = Council of States.
+130. Gram Sabha includes registered voters in a village-level area; Gram Panchayat is an elected local governing institution.
+131. 8 bits = 1 byte. Binary 1011 = 8 + 2 + 1 = decimal 11.
+132. Algorithm = steps to solve a problem; bug = error; debugging = finding and fixing errors.
+133. RAM is working memory, generally volatile; storage such as an SSD retains files without power.
+134. Internet = network of networks; web = linked resources accessed over it. Browser displays pages; search engine finds them.
+135. Phishing tricks people into sharing information or taking unsafe actions. Never share a password or OTP for a supposed prize.
+136. A backup is a separate copy that can be restored. AI answers and viral posts can be wrong: check reliable sources.
+
+*9️⃣ EASY MATHS & REASONING — WORKED QUICKLY*
+
+137. Percentage = part ÷ whole × 100. 18 out of 24 = 75%.
+138. 20 to 40 = 100% increase. Final 40 is 200% OF original 20; these are different statements.
+139. 40% to 50% = +10 percentage points, but relative increase = 10/40 = 25%.
+140. Average (mean) = sum ÷ count. For 2, 3, 3, 4, 18: mean = 6, median = 3, mode = 3, range = 16.
+141. Even number median: 1, 3, 5, 9 → (3 + 5)/2 = 4.
+142. 4 notebooks cost ₹60 at the same rate → 1 costs ₹15 → 7 cost ₹105.
+143. Distance = speed × time. At 30 km/h for 2 h → 60 km, assuming that speed.
+144. Simple interest = principal × rate × time ÷ 100. ₹1,000 at 5% per year for 2 years → ₹100 interest.
+145. ₹200 with 10% discount = ₹180. Another 10% off ₹180 = ₹162, not ₹160.
+146. 500 g for ₹60 = ₹120/kg; compare equal units, quality and expiry before deciding.
+147. Bag has 3 red and 2 blue balls. One equally likely random draw: P(red) = 3/5.
+148. 10 students average 60, 20 average 75 → combined mean = (600 + 1500)/30 = 70.
+149. Perimeter of rectangle = 2(l + b); area = l × b. For 5 cm × 3 cm: perimeter 16 cm, area 15 cm².
+150. If it rains, road may be wet. Wet road alone does not prove rain: a hose may have wet it.
+151. Correlation does not prove causation: two sales can rise together because both respond to hot weather.
+152. A fair experiment keeps relevant conditions similar while changing the factor being tested; repeat and record actual results.
+
+*🔟 PICTURE CONNECTIONS — SAY HOW ALL CLUES FIT*
+
+153. Copper + zinc + key → BRASS alloy.
+154. Ink dot + solvent + separated bands → PAPER CHROMATOGRAPHY.
+155. Legume roots + nodules + bacteria → NITROGEN FIXATION.
+156. Earthquake focus + surface point directly above → EPICENTRE.
+157. Lamp + leather figures + screen shadows → తోలుబొమ్మలాట.
+158. Yeast + dough + bubbles → FERMENTATION / bread rising.
+159. River tributaries + hills + common outlet → WATERSHED.
+160. Laptop + fake prize message + OTP demand → PHISHING.
+161. Moon between Earth and Sun + aligned shadows → SOLAR ECLIPSE. Do not look directly at the Sun.
+162. Baddena + repeated “సుమతీ” + verses → సుమతీ శతకం / మకుటం.
+163. Closely spaced contour lines + hill → STEEP SLOPE.
+164. Blood cells + A/B antigen labels + hospital test → BLOOD GROUPING; actual transfusion requires professional testing.
+
+*⚡ 12-QUESTION SELF-TEST — ANSWERS BELOW*
+
+1. Unit of power? 2. Which separates coloured inks on paper? 3. Which cell division halves chromosome number? 4. Parasite causing malaria? 5. Difference between weathering and erosion? 6. Instrument for wind speed? 7. What is the point above an earthquake focus? 8. సుమతీ శతకం రచయిత? 9. “చంద్రుని వలె” suggests which అలంకారం? 10. Median of 2, 3, 3, 4, 18? 11. 40% → 50% is how many percentage points? 12. Lamp + screen + leather puppet: what art?
+
+*ANSWERS*
+1. Watt. 2. Chromatography. 3. Meiosis. 4. Plasmodium. 5. Weathering breaks down in place; erosion transports. 6. Anemometer. 7. Epicentre. 8. బద్దెన. 9. ఉపమాలంకారం. 10. 3. 11. 10 percentage points. 12. తోలుబొమ్మలాట.
+
+💡 Use the bus time to recall, not just reread: cover a section and say the connections aloud. Actual quiz questions and rules can differ; verify current affairs and competition details with reliable current sources.
